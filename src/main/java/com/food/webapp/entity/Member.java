@@ -4,33 +4,38 @@ import java.util.Date;
 
 public class Member {
 
-	private String id;
+	private int id;
 	private String pwd;
-	private String name;
-	private String gender;
-	private String phone;
+	private String nickNname;
 	private String email;
 	private Date regDate;
+	private int image;
+	private int role;
+	private String point;
+	private String mentor;
 	
 	public Member() {
 	}
 
-	public Member(String id, String pwd, String name, String gender, String phone, String email) {
+	public Member(int id, String pwd, String nickNname, String email, Date regDate, int image, int role, String point,
+			String mentor) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
-		this.name = name;
-		this.gender = gender;
-		this.phone = phone;
+		this.nickNname = nickNname;
 		this.email = email;
+		this.regDate = regDate;
+		this.image = image;
+		this.role = role;
+		this.point = point;
+		this.mentor = mentor;
 	}
-	
-	
-	public String getId() {
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -42,28 +47,12 @@ public class Member {
 		this.pwd = pwd;
 	}
 
-	public String getName() {
-		return name;
+	public String getNickNname() {
+		return nickNname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setNickNname(String nickNname) {
+		this.nickNname = nickNname;
 	}
 
 	public String getEmail() {
@@ -80,6 +69,38 @@ public class Member {
 
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
+	}
+
+	public int getImage() {
+		return image;
+	}
+
+	public void setImage(int image) {
+		this.image = image;
+	}
+
+	public int getRole() {
+		return role;
+	}
+
+	public void setRole(int role) {
+		this.role = role;
+	}
+
+	public String getPoint() {
+		return point;
+	}
+
+	public void setPoint(String point) {
+		this.point = point;
+	}
+
+	public String getMentor() {
+		return mentor;
+	}
+
+	public void setMentor(String mentor) {
+		this.mentor = mentor;
 	}
 
 }

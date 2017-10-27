@@ -5,9 +5,10 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 <footer id="footer">
-	<div class="container">
-		<div class="footer-logo">
-			<a href="">로고</a>
-		</div>
-	</div>
+	<div class="footer">
+        © 2017 LUNCHCONTAINER ·
+
+        <a href="/policy.service.php">이용약관</a> ·
+        <a href="/policy.privacy.php">개인정보취급방침</a> ·
+    </div>
 </footer>
