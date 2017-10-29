@@ -13,34 +13,8 @@
 }
 
 /* ----------------header------------------- */
-#header{
-    height: 60px;
-	width: 100%;
-    top: 0;
-    position: fixed;
-    z-index: 999;
-    background: white;
-}
 
-.head-logo{
-	float: left;
-	position: relative;
-	padding-right: 10px;
-}
 
-.gnb{
-	float: left;
-	position: relative;
-}
-
-.gnb-items li{
-	float: left;
-	padding-left: 10px;
-}
-
-.my-info{
-	float: right;
-}
 /* ----------------main------------------- */
 
 #main{
@@ -132,6 +106,3 @@
 }
 
 /* ----------------footer------------------- */
-#footer{
-	padding-top: 65px;
-}

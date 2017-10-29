@@ -7,7 +7,9 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/reset.css">
-<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/style.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/header.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/footer.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/main.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/join.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/login.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
