@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 		<main class="main" ng-controller="notice-controller">
-			<h2 class="main title">공지사항</h2>
+			<h2 class="main title">런치 리스트</h2>
 			
 			<div class="breadcrumb">
 				<h3 class="hidden">경로</h3>
