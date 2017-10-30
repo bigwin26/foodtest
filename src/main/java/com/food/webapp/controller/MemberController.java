@@ -43,5 +43,5 @@ public class MemberController {
 	   public String MemberJoin(Member member) {
 		memberDao.insert(member);
 		return "../index";
-}
+	}
 }

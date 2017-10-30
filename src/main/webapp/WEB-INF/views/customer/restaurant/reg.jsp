@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<main>
-		<h2 class="main title">디테일 페이지</h2>
+		<h2 class="main title">등록 페이지</h2>
 		
 		<div class="breadcrumb">
 			<h3 class="hidden">breadlet</h3>
