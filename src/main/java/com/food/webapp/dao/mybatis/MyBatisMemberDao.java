@@ -26,7 +26,15 @@ public class MyBatisMemberDao implements MemberDao {
 	public int insert(Member member) {
 		return memberDao.insert(member);
 	}
-	
-	
 
+	@Override
+	public Member Login(String email, String pwd) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*@Override
+	public Member Login(String email, String passwd) {
+        return ""memberDao.Login(email, passwd);
+    }*/
 }

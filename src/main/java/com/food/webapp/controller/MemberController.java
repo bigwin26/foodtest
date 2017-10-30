@@ -4,6 +4,7 @@ import java.lang.ProcessBuilder.Redirect;
 import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,12 +28,13 @@ public class MemberController {
 		return "member.login";
 	}
 	
-/*	@RequestMapping(value="member/login", method=RequestMethod.POST)
+	@RequestMapping(value="member/login", method=RequestMethod.POST)
 	   //public String noticeReg(String title, String content) throws UnsupportedEncodingException {
-	   public String Login(Member member) {
+	   public String Login(String email,String pwd,HttpSession session) {
+		Member LoginMember = memberDao.Login(email, pwd);
 		
 		return "redirect:../index";
-}*/
+}
 	
 
 	@RequestMapping(value="member/join", method=RequestMethod.GET)	
@@ -41,10 +43,10 @@ public class MemberController {
 		return "member.join";
 	}
 	
-	@RequestMapping(value="member/login", method=RequestMethod.POST)
+	@RequestMapping(value="member/join", method=RequestMethod.POST)
 	   //public String noticeReg(String title, String content) throws UnsupportedEncodingException {
 	   public String MemberJoin(Member member) {
 		memberDao.insert(member);
-		return "../index";
+		return "login";
 }
 }

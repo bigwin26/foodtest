@@ -28,7 +28,7 @@
                     <div style="margin:24px 0 100px 0; padding:24px 0; border:solid #E0E0E0 1px;">
                         <span class="fw-b">아직 회원이 아니신가요?</span><br />
                         <span>회원가입을 하시면 더 많은 정보와 혜택을 받으실 수 있습니다.</span>
-                        <button id="btn_intro" type="button" class="btn btn-white w200" style="margin-top:12px;"><a href="join.html" style="text-decoration: none; color: #000000;">회원가입</a></button>
+                        <button id="btn_intro" type="button" class="btn btn-white w200" style="margin-top:12px;"><a href="join" style="text-decoration: none; color: #000000;">회원가입</a></button>
                     </div>
                 </div>
             </form>

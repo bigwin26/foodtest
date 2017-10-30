@@ -12,4 +12,8 @@
 		insert into Member(id, pwd, nicName, email, image, mentor)
 		value(#{id},#{pwd}, #{nickName}, #{email}, #{image} ,#{mentor});
 	</insert>
+	
+	<select id="Login" resultType="com.food.webapp.entity.Member">
+	select email, pwd from Member WHERE email = #{email} and pwd = #{pwd};
+	</select>
 </mapper>

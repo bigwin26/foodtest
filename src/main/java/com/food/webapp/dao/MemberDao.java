@@ -18,4 +18,6 @@ public interface MemberDao {
 	 String mentor);
 
 	public int insert(Member member);
+	
+	public Member Login(String email, String pwd);
 }
