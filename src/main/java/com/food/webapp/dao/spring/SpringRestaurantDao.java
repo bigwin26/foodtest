@@ -16,19 +16,6 @@ public class SpringRestaurantDao implements RestaurantDao {
 	@Autowired
 	private JdbcTemplate template;
 
-	/*@Override
-	public int insert(int id, String pwd, String nickNname, String email, Date regDate, int image, int role,
-			String point, String mentor) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int insert(Member member) {
-		// TODO Auto-generated method stub
-		return 0;
-	}*/
-
 	@Override
 	public int insert(String name, String location, String address, String content, String mainImage, String menuImage,
 			String tip) {

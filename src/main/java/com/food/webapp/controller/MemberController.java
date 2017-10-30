@@ -18,12 +18,9 @@ import com.food.webapp.entity.Member;
 @RequestMapping("/*")
 public class MemberController {
 	
-<<<<<<< HEAD
-	/*@Autowired
-=======
-/*	@Autowired
->>>>>>> refs/remotes/origin/master
-	private MemberDao memberDao;*/
+
+	@Autowired
+	private MemberDao memberDao;
 
 	@RequestMapping(value="member/login", method=RequestMethod.GET)	
 	public String Login() 	{
