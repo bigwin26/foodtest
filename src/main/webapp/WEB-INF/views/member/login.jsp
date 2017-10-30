@@ -12,8 +12,8 @@
                         로그인을 통해 런치 컨테이너의 다양한 혜택을 누리세요.
                     </div>
                     <div>
-                        <input id="txt_id" type="text" class="input-text" placeholder="아이디 입력" style="margin-bottom:7px;" />
-                        <input id="txt_pw" type="password" class="input-text" placeholder="비밀번호 입력" />
+                        <input id="email" type="text" class="input-text" placeholder="아이디 입력" style="margin-bottom:7px;" />
+                        <input id="pwd" type="password" class="input-text" placeholder="비밀번호 입력" />
                     </div>
                     <div style="padding:24px 0;">
                         <div class="fl">

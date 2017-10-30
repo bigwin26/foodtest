@@ -23,10 +23,21 @@
    <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
       <property name="dataSource" ref="dataSource" />
    </bean>
+   
+   <bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"/>
+	<property name="mapperLocations" value="classpath:com/food/webapp/dao/mybatis/mapper/*.xml"></property>
+	</bean>
+
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory"/>
+	</bean>
     
    <!-- DAO 객체들 -->
-   <bean class="com.food.webapp.dao.spring.SpringRestaurantDao"/>
-   <bean class="com.food.webapp.dao.spring.SpringMemberDao"/>
+   <!-- <bean class="com.food.webapp.dao.spring.SpringRestaurantDao"/>
+   <bean class="com.food.webapp.dao.spring.SpringMemberDao"/> -->
+   <bean class="com.food.webapp.dao.mybatis.MyBatisMemberDao"/>
+   <bean class="com.food.webapp.dao.mybatis.MyBatisRestaurantDao"/>
    
    <context:annotation-config />
 </beans>

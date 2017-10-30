@@ -17,10 +17,9 @@ import com.food.webapp.entity.Member;
 @Controller
 @RequestMapping("/*")
 public class MemberController {
-	
-
 	@Autowired
 	private MemberDao memberDao;
+	
 
 	@RequestMapping(value="member/login", method=RequestMethod.GET)	
 	public String Login() 	{
@@ -28,12 +27,12 @@ public class MemberController {
 		return "member.login";
 	}
 	
-	@RequestMapping(value="member/login", method=RequestMethod.POST)
+/*	@RequestMapping(value="member/login", method=RequestMethod.POST)
 	   //public String noticeReg(String title, String content) throws UnsupportedEncodingException {
-	   public String Login(Member member,MultipartFile file,HttpServletRequest request,Principal principal) {
+	   public String Login(Member member) {
 		
 		return "redirect:../index";
-}
+}*/
 	
 
 	@RequestMapping(value="member/join", method=RequestMethod.GET)	
@@ -42,10 +41,10 @@ public class MemberController {
 		return "member.join";
 	}
 	
-	/*@RequestMapping(value="member/login", method=RequestMethod.POST)
+	@RequestMapping(value="member/login", method=RequestMethod.POST)
 	   //public String noticeReg(String title, String content) throws UnsupportedEncodingException {
 	   public String MemberJoin(Member member) {
-		
-		return "redirect:login";
-}*/
+		memberDao.insert(member);
+		return "../index";
+}
 }

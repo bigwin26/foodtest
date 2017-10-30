@@ -11,7 +11,7 @@
                 <tr id="tr_name">
                     <th>닉네임</th>
                     <td>
-                        <input id="txt_name" class="input-text w400" type="text" value="" placeholder="이름" /><br /><br />
+                        <input id="nickName" class="input-text w400" type="text" value="" placeholder="이름" /><br /><br />
                         런치 컨테이너에서 회원정보로 등록하실 닉네임을 입력해주세요. 영문 혹은 한글2~15자 이내로 입력해주세요.
                     </td>
                 </tr>
@@ -20,7 +20,7 @@
                 <tr id="tr_email">
                     <th>이메일</th>
                     <td>
-                        <input id="txt_email" class="input-text w400" type="text" value="" placeholder="아이디" />
+                        <input id="email" class="input-text w400" type="text" value="" placeholder="아이디" />
                         <span id="lbl_email_check" style="display:none;"></span><br /><br />
                         런치 컨테이너에서 이용하실 이메일을 입력해 주세요.
                     </td>
@@ -30,8 +30,8 @@
                     <td>
 
                         <div id="div_password_Y">
-                            <input id="txt_password" class="input-text w400" type="password" style="margin-bottom:8px;" placeholder="비밀번호" /><br />
-                            <input id="txt_password2" class="input-text w400" type="password" placeholder="비밀번호 확인" /><br /><br />
+                            <input id="pwd" class="input-text w400" type="password" style="margin-bottom:8px;" placeholder="비밀번호" /><br />
+                            <input id="pwd2" class="input-text w400" type="password" placeholder="비밀번호 확인" /><br /><br />
                             특수문자(예: !@#$ 등) 1자 이상을 포함한 8~15 글자의 비밀번호로 설정해주세요.
                         </div>
                     </td>
@@ -39,7 +39,7 @@
                  <tr id="tr_mentor">
                     <th>선생님</th>
                     <td>
-                        <input id="txt_name" class="input-text w400" type="text" value="" placeholder="선생님성함" /><br /><br />
+                        <input id="mentor" class="input-text w400" type="text" value="" placeholder="선생님성함" /><br /><br />
                         담당 선생님의 성함을 입력해주세요.
                     </td>
                 </tr>
@@ -90,7 +90,7 @@
 
         </div>
         <div class="row tc" style="padding:50px 0 55px 0;">
-            <button id="btn_submit" type="button" class="btn btn-red w400 fs-16" style="height:65px;"><a href="index.html" style="text-decoration: none; color: #ffffff;">회원가입하기</a></button>
+            <button id="btn_submit" type="button" class="btn btn-red w400 fs-16" style="height:65px;"><a href="../index" style="text-decoration: none; color: #ffffff;">회원가입하기</a></button>
         </div>
     </div>
 
