@@ -1,20 +1,26 @@
 package com.food.webapp.dao;
 
 
-import java.util.Date;
 
-import com.food.webapp.entity.Member;
+import java.util.List;
+
 import com.food.webapp.entity.Restaurant;
 
 public interface RestaurantDao {
 
-	int insert( String name,
-	 String location,
-	 String address,
-	 String content,
-	 String mainImage,
-	 String menuImage,
-	 String tip);
+	List<Restaurant> getList(int page, String query, String field);
+	Restaurant get(int id);
+	
+	int insert(
+			String name,
+			String location,
+			String address,
+			String content,
+			String genre,
+			String keyword,
+			String image,
+			String tip
+			);
 
 	int insert(Restaurant restaurant);
 }
