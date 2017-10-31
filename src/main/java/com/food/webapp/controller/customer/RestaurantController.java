@@ -1,30 +1,71 @@
 package com.food.webapp.controller.customer;
 
+import java.util.Calendar;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.food.webapp.dao.RestaurantDao;
+import com.food.webapp.entity.Restaurant;
 
 @Controller
 @RequestMapping("/customer/*")
 public class RestaurantController {
-
+	
+	@Autowired
+	RestaurantDao restaurantDao;
+	
 	@RequestMapping("restaurant")
-	public String restaurant() {
-
+	public String restaurant(@RequestParam(value="p", defaultValue="1")  Integer page,
+							@RequestParam(value="f", defaultValue="name")  String field,
+							@RequestParam(value="q", defaultValue="") String query,
+							Model model) {
+		
+		model.addAttribute("list", restaurantDao.getList(page, field, query));
+		
 		return "customer.restaurant.list";
 	}
 	
 	@RequestMapping("restaurant/{id}")
-	public String detail() {
-
+	public String detail(@PathVariable("id") int id,
+						Model model) {
+		
+		model.addAttribute("n", restaurantDao.get(id));
+		model.addAttribute("n", restaurantDao.getPrev(id));
+		model.addAttribute("n", restaurantDao.getNext(id));
+		
 		return "customer.restaurant.detail";
 	}
 	
-	@RequestMapping("restaurant/reg")
+	@RequestMapping(value="restaurant/reg", method=RequestMethod.GET)
 	public String reg() {
 
 		return "customer.restaurant.reg";
+	}
+	
+	@RequestMapping(value="restaurant/reg", method=RequestMethod.POST)
+	public String reg(Restaurant restaurant, MultipartFile file, HttpServletRequest request) {
+		
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		int nextId = restaurantDao.getNextId();
+	      
+		ServletContext ctx = request.getServletContext();
+		String path = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d", year,nextId));
+		
+		restaurantDao.insert(restaurant);
+		
+		
+		return "redirect:../";
 	}
 	
 	@RequestMapping(value="restaurant/edit/{id}", method=RequestMethod.GET)

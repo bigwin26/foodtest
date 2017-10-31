@@ -10,8 +10,10 @@ import com.food.webapp.entity.Restaurant;
 
 public interface RestaurantDao {
 
-	List<Restaurant> getList(@Param("page")int page, String query, String field);
+	List<Restaurant> getList(@Param("page")int page, String field, String query);
 	Restaurant get(int id);
+	Restaurant getPrev(int id);
+	Restaurant getNext(int id);
 	int getCount();
 	int insert(String name, String location, String address, String content, String genre, String keyword, String image, String tip);
 	int insert(Restaurant restaurant);
