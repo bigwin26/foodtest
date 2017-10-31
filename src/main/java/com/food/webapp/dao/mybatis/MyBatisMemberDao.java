@@ -28,7 +28,7 @@ public class MyBatisMemberDao implements MemberDao {
 	}
 
 	@Override
-	public Member Login(String email, String pwd) {
+	public Member login(String email, String pwd) {
 		// TODO Auto-generated method stub
 		return null;
 	}
