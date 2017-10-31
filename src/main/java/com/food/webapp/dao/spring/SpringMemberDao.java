@@ -1,4 +1,4 @@
-package com.food.webapp.dao.spring;
+/*package com.food.webapp.dao.spring;
 
 import java.util.Date;
 
@@ -27,4 +27,4 @@ public class SpringMemberDao implements MemberDao {
 		return 0;
 	}
 
-}
+}*/

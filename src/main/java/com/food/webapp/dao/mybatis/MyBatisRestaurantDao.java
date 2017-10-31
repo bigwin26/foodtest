@@ -1,20 +1,14 @@
-/*package com.food.webapp.dao.spring;
+package com.food.webapp.dao.mybatis;
 
-import java.util.Date;
+import java.util.List;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.food.webapp.dao.MemberDao;
 import com.food.webapp.dao.RestaurantDao;
-import com.food.webapp.entity.Member;
 import com.food.webapp.entity.Restaurant;
 
-
-public class SpringRestaurantDao implements RestaurantDao {
-
-	@Autowired
-	private JdbcTemplate template;
+public class MyBatisRestaurantDao implements RestaurantDao {
 
 	@Override
 	public int insert(String name, String location, String address, String content, String mainImage, String menuImage,
@@ -29,5 +23,6 @@ public class SpringRestaurantDao implements RestaurantDao {
 		return 0;
 	}
 
+	
 
-}*/
+}

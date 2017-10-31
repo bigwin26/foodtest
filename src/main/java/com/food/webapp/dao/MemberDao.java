@@ -7,7 +7,7 @@ import com.food.webapp.entity.Member;
 
 public interface MemberDao {
 
-	int insert(int id,
+	public int insert(int id,
 	String pwd,
 	 String nickNname,
 	 String email,
@@ -17,5 +17,7 @@ public interface MemberDao {
 	 String point,
 	 String mentor);
 
-	int insert(Member member);
+	public int insert(Member member);
+	
+	public Member Login(String email, String pwd);
 }
