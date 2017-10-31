@@ -6,7 +6,7 @@ public class Member {
 
 	private int id;
 	private String pwd;
-	private String nickNname;
+	private String nickName;
 	private String email;
 	private Date regDate;
 	private int image;
@@ -17,12 +17,12 @@ public class Member {
 	public Member() {
 	}
 
-	public Member(int id, String pwd, String nickNname, String email, Date regDate, int image, int role, String point,
+	public Member(int id, String pwd, String nickName, String email, Date regDate, int image, int role, String point,
 			String mentor) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
-		this.nickNname = nickNname;
+		this.nickName = nickName;
 		this.email = email;
 		this.regDate = regDate;
 		this.image = image;
@@ -47,12 +47,12 @@ public class Member {
 		this.pwd = pwd;
 	}
 
-	public String getNickNname() {
-		return nickNname;
+	public String getnickName() {
+		return nickName;
 	}
 
-	public void setNickNname(String nickNname) {
-		this.nickNname = nickNname;
+	public void setnickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public String getEmail() {

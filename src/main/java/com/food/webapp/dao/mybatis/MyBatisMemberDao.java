@@ -13,17 +13,17 @@ import com.food.webapp.entity.Member;
 public class MyBatisMemberDao implements MemberDao {
 	
 	@Autowired
-	private MemberDao memberDao;
+	private SqlSessionTemplate sqlsession;
 
 	@Override
-	public int insert(int id, String pwd, String nickNname, String email, Date regDate, int image, int role,
+	public int insert(int id,String pwd, String nickName, String email, Date regDate, int image, int role,
 			String point, String mentor) {
-		// TODO Auto-generated method stub
-		return 0;
+		return insert(new Member(id,pwd,nickName,email,regDate, role, role, mentor, mentor));
 	}
 
 	@Override
 	public int insert(Member member) {
+		MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
 		return memberDao.insert(member);
 	}
 
@@ -32,9 +32,10 @@ public class MyBatisMemberDao implements MemberDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	/*@Override
 	public Member Login(String email, String passwd) {
         return ""memberDao.Login(email, passwd);
     }*/
 }
+
+
