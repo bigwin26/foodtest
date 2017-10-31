@@ -1,10 +1,5 @@
 package com.food.webapp.dao.mybatis;
 
-import java.util.List;
-
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.food.webapp.dao.RestaurantDao;
 import com.food.webapp.entity.Restaurant;
 

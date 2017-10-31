@@ -6,11 +6,11 @@
 
 <header id="header">
 	<div class="container clearfix">
-		<a href="" class="head-logo">런치 컨테이너</a>
+		<a href="${ctx}/index" class="head-logo">런치 컨테이너</a>
 		<nav class="gnb">
 			<ul class="gnb-items">
-				<li><a href="${ctx}/customer/lunch">맛집 리스트</a></li>
-				<li><a href="${ctx}/customer/lunchmap">맛집 지도</a></li>
+				<li><a href="${ctx}/customer/restaurant">맛집 리스트</a></li>
+				<li><a href="${ctx}/customer/map">맛집 지도</a></li>
 				<li><a href="${ctx}/customer/worldcup">음식 월드컵</a></li>
 			</ul>
 		</nav>
