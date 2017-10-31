@@ -13,10 +13,9 @@ public class Restaurant {
 	private String tip;
 	
 	
-	public Restaurant(int id, String name, String location, String address, String content, String genre,
+	public Restaurant(String name, String location, String address, String content, String genre,
 			String keyword, String image, String tip) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.location = location;
 		this.address = address;
@@ -135,11 +134,6 @@ public class Restaurant {
 	}
 
 
-
-	public Restaurant() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 }
 
