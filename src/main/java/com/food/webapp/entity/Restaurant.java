@@ -12,6 +12,9 @@ public class Restaurant {
 	private String image;
 	private String tip;
 	
+	public Restaurant() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Restaurant(String name, String location, String address, String content, String genre,
 			String keyword, String image, String tip) {

@@ -23,8 +23,9 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	
 	@Override
 	public Restaurant get(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		
+		return restaurantDao.get(id);
 	}
 	
 	@Override
@@ -52,8 +53,23 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 
 	@Override
 	public int getNextId() {
-		// TODO Auto-generated method stub
-		return 0;
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		
+		return restaurantDao.getNextId();
+	}
+
+	@Override
+	public Restaurant getPrev(int id) {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		
+		return restaurantDao.getPrev(id);
+	}
+
+	@Override
+	public Restaurant getNext(int id) {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		
+		return restaurantDao.getNext(id);
 	}
 
 	

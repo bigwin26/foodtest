@@ -2,27 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-		<main class="main" ng-controller="notice-controller">
+		<main id="main" />
 			<h2 class="main title">런치 리스트</h2>
-			
-			<div class="breadcrumb">
-				<h3 class="hidden">경로</h3>
-				<ul>
-					<li>home</li>
-					<li>고객센터</li>
-					<li>공지사항</li>
-				</ul>
-			</div>
 			
 			<div class="search-form margin-top first align-right">
 				<h3 class="hidden">공지사항 검색폼</h3>
 				<form class="table-form">
 					<fieldset>
-						<legend class="hidden">공지사항 검색 필드</legend>
+						<legend class="hidden">Restaurant 검색 필드</legend>
 						<label class="hidden">검색분류</label> 
-						<select name="t">
-							<option selected="selected" value="TITLE">제목</option>
-							<option value="WRITER">작성자</option>
+						<select name="f">
+							<option selected="selected" value="name">가게이름</option>
+							<option value="genre">음식종류</option>
 						</select> 
 						<label class="hidden">검색어</label> 
 						<input type="text" name="q" /> 
@@ -47,11 +38,8 @@
 					<c:forEach var="n" items="${list}">					
 					<tr>
 						<td>${n.id}</td>
-						<td class="title indent"><a href="notice/${n.id}">JSP란 무엇인가JSP란 무엇인가JSP란 무엇인가JSP란 무엇인가JSP란 무엇인가JSP란 무엇인가JSP란 무엇인가JSP란 무엇인가JSP란 무엇인가JSP란 무엇인가</a></td>
+						<td class=""><a href="restaurant/${n.id}">${n.name}</a></td>
 						<td>newlec</td>
-						<td>
-							<fmt:formatDate pattern="yyyy-MM-dd" value="2017-02-28"/>		
-						</td>
 						<td>12</td>
 					</tr>
 					</c:forEach>
