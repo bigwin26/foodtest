@@ -22,16 +22,17 @@
 				</form>
 			</div>
 						
-			<div class="notice margin-top">
-				<h3 class="hidden">공지사항 목록</h3>
-				<table class="table">
+			<div class="">
+				<h3 class="hidden">레스토랑 목록</h3>
+				<table class="">
 					<thead>
 						<tr>
-							<th class="w60">번호</th>
-							<th class="expand">제목</th>
-							<th class="w100">작성자</th>
-							<th class="w100">작성일</th>
-							<th class="w60">조회수</th>
+							<th class="">번호</th>
+							<th class="">가게이름</th>
+							<th class="">음식 사진</th>
+							<th class="">작성자</th>
+							<th class="">작성자 한마디</th>
+							<th class="">좋아요</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -39,21 +40,20 @@
 					<tr>
 						<td>${n.id}</td>
 						<td class=""><a href="restaurant/${n.id}">${n.name}</a></td>
-						<td>newlec</td>
-						<td>12</td>
+						<td>${n.image}</td>
+						<td>${n.writerName}</td>
+						<td>${n.tip}</td>
+						<td>${n.countLiked}</td>
 					</tr>
 					</c:forEach>
 					</tbody>
 				</table>
 			</div>
 			
-			<div class="indexer margin-top align-right">
+			<div class="">
 				<h3 class="hidden">현재 페이지</h3>
-				<div><span class="text-orange text-strong">1</span> / 3 pages</div>
+				<div><span class="">1</span> / 3 pages</div>
 			</div>
 
-			<div class="margin-top align-center pager">
-				<new:pager />
-			</div>
 		</main>
 		
