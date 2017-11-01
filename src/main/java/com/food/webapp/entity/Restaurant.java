@@ -1,5 +1,7 @@
 package com.food.webapp.entity;
 
+import java.util.Date;
+
 public class Restaurant {
 	
 	private int id;
@@ -11,13 +13,14 @@ public class Restaurant {
 	private String keyword;
 	private String image;
 	private String tip;
+	private Date regDate;
 	
 	public Restaurant() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	public Restaurant(String name, String location, String address, String content, String genre,
-			String keyword, String image, String tip) {
+			String keyword, String image, String tip, Date regDate) {
 		super();
 		this.name = name;
 		this.location = location;
@@ -27,7 +30,18 @@ public class Restaurant {
 		this.keyword = keyword;
 		this.image = image;
 		this.tip = tip;
+		this.regDate = regDate;
 	}
+
+	public Date getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+
+
 
 
 	public int getId() {

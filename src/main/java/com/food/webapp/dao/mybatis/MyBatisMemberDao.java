@@ -16,7 +16,7 @@ public class MyBatisMemberDao implements MemberDao {
 	private SqlSessionTemplate sqlsession;
 
 	@Override
-	public int insert(int id,String pwd, String nickName, String email, Date regDate, int image, int role,
+	public int insert(String id,String pwd, String nickName, String email, Date regDate, String image, String role,
 			String point, String mentor) {
 		return insert(new Member(id,pwd,nickName,email,regDate, role, role, mentor, mentor));
 	}

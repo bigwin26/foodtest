@@ -7,13 +7,13 @@ import com.food.webapp.entity.Member;
 
 public interface MemberDao {
 
-	public int insert(int id,
+	public int insert(String id,
 	String pwd,
-	 String nickNname,
+	 String nickName,
 	 String email,
 	 Date regDate,
-	 int image,
-	 int role,
+	 String image,
+	 String role,
 	 String point,
 	 String mentor);
 

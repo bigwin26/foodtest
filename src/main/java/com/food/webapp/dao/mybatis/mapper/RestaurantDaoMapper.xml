@@ -5,23 +5,27 @@
 
 <mapper namespace="com.food.webapp.dao.RestaurantDao">
 
-	<select id="getList" resultType="com.food.webapp.entity.Restaurant">
-		select * from Restaurant where ${param3} like '%${param2}%' order by regDate desc limit ${(page-1)*10}, 10
+	<select id="getList" resultType="com.food.webapp.entity.RestaurantView">
+		select * from RestaurantView where ${param3} like '%${param2}%' order by regDate desc limit ${(page-1)*10}, 10
 	</select>
-
+	
+	<select id="get" resultType="com.food.webapp.entity.RestaurantView">
+		select * from RestaurantView where id = #{id}
+	</select>
+	
 	<select id="count">
-		select count(*) count FROM Restaurant
+		select count(*) count FROM RestaurantView
 	</select>
 
-	<select id="getPrev" resultType="com.food.webapp.entity.Restaurant">
-		select * from Restaurant
+	<select id="getPrev" resultType="com.food.webapp.entity.RestaurantView">
+		select * from RestaurantView
 		where id &lt; CAST(#{id} as UNSIGNED)
 		order by regDate desc
 		limit 1
 	</select>
 	
-	<select id="getNext" resultType="com.food.webapp.entity.Restaurant">
-		select * from Restaurant
+	<select id="getNext" resultType="com.food.webapp.entity.RestaurantView">
+		select * from RestaurantView
 		where id &gt; CAST(#{id} as UNSIGNED)
 		order by regDate asc
 		limit 1

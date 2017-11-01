@@ -1,5 +1,6 @@
 package com.food.webapp.dao.mybatis;
 
+import java.util.Date;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.food.webapp.dao.RestaurantDao;
 import com.food.webapp.entity.Restaurant;
+import com.food.webapp.entity.RestaurantView;
 
 public class MyBatisRestaurantDao implements RestaurantDao {
 
@@ -22,7 +24,7 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 	
 	@Override
-	public Restaurant get(int id) {
+	public RestaurantView get(int id) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
 		
 		return restaurantDao.get(id);
@@ -45,9 +47,9 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 
 	@Override
-	public int insert(String name, String location, String address, String content, String genre, String keyword, String image, String tip) {
+	public int insert(String name, String location, String address, String content, String genre, String keyword, String image, String tip, Date regDate) {
 		
-		return insert(new Restaurant(name, location, address, content, genre, keyword, image, tip));
+		return insert(new Restaurant(name, location, address, content, genre, keyword, image, tip, regDate));
 	}
 
 
@@ -59,14 +61,14 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 
 	@Override
-	public Restaurant getPrev(int id) {
+	public RestaurantView getPrev(int id) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
 		
 		return restaurantDao.getPrev(id);
 	}
 
 	@Override
-	public Restaurant getNext(int id) {
+	public RestaurantView getNext(int id) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
 		
 		return restaurantDao.getNext(id);

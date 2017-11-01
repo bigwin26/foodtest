@@ -40,8 +40,8 @@ public class RestaurantController {
 						Model model) {
 		
 		model.addAttribute("n", restaurantDao.get(id));
-		model.addAttribute("n", restaurantDao.getPrev(id));
-		model.addAttribute("n", restaurantDao.getNext(id));
+		model.addAttribute("prev", restaurantDao.getPrev(id));
+		model.addAttribute("next", restaurantDao.getNext(id));	
 		
 		return "customer.restaurant.detail";
 	}

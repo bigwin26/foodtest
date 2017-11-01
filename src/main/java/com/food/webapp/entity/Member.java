@@ -4,20 +4,20 @@ import java.util.Date;
 
 public class Member {
 
-	private int id;
+	private String id;
 	private String pwd;
 	private String nickName;
 	private String email;
 	private Date regDate;
-	private int image;
-	private int role;
+	private String image;
+	private String role;
 	private String point;
 	private String mentor;
 	
 	public Member() {
 	}
 
-	public Member(int id, String pwd, String nickName, String email, Date regDate, int image, int role, String point,
+	public Member(String id, String pwd, String nickName, String email, Date regDate, String image, String role, String point,
 			String mentor) {
 		super();
 		this.id = id;
@@ -31,11 +31,11 @@ public class Member {
 		this.mentor = mentor;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -71,19 +71,19 @@ public class Member {
 		this.regDate = regDate;
 	}
 
-	public int getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(int image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
-	public int getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(int role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 
