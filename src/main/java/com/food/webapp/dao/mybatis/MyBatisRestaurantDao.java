@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.food.webapp.dao.RestaurantDao;
+import com.food.webapp.entity.CommentView;
 import com.food.webapp.entity.Restaurant;
 import com.food.webapp.entity.RestaurantView;
 
@@ -72,6 +73,21 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
 		
 		return restaurantDao.getNext(id);
+	}
+
+	@Override
+	public List<CommentView> getCmt(int id, int page) {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		List<CommentView> list = restaurantDao.getCmt(id, page);
+		
+		return list;
+	}
+
+	@Override
+	public int cmtCount() {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		
+		return restaurantDao.cmtCount();
 	}
 
 	

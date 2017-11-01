@@ -10,25 +10,44 @@
 		<table class="">
 			<tbody>
 				<tr>
-					<th>가게 이름</th>
-					<td>${n.name}</td>
+					<th>가게 이름${cmtp}</th>
+					<td>${r.name}</td>
 				</tr>
 				<tr>
 					<th>작성일</th>
 					<td class="text-align-left text-indent" colspan="3">
-						<fmt:formatDate	pattern="yyyy-MM-dd" value="${n.regDate}" />
+						<fmt:formatDate	pattern="yyyy-MM-dd" value="${r.regDate}" />
 					</td>
 				</tr>
 				<tr>
 					<th>작성자</th>
-					<td>${n.writerName}</td>
+					<td>${r.writerName}</td>
 					<th>좋아요</th>
-					<td>${n.countLiked}</td>
+					<td>${r.countLiked}</td>
 				</tr>
 				<tr>
 					<th>상세내용</th>
-					<td>${n.content}</td>
+					<td>${r.content}</td>
 				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<div>
+		<table class="">
+			<tbody>
+				<tr>
+					<td>번호</td>
+					<td>내용</td>
+					<td>작성자</td>
+				</tr>
+				<c:forEach var="c" items="${cmtList}">					
+					<tr>
+						<td>${c.id}</td>
+						<td class="">${c.content}</td>
+						<td>${c.writerName}</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

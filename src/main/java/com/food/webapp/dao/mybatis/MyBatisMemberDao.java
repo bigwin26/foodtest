@@ -16,13 +16,14 @@ public class MyBatisMemberDao implements MemberDao {
 	private SqlSessionTemplate sqlsession;
 
 	@Override
-	public int insert(String id,String pwd, String nickName, String email, Date regDate, String image, String role,
-			String point, String mentor) {
+	public int insert(String id,String pwd, String nickName, String email, Date regDate, String image, String role,	String point, String mentor) {
+		
 		return insert(new Member(id,pwd,nickName,email,regDate, role, role, mentor, mentor));
 	}
 
 	@Override
 	public int insert(Member member) {
+		
 		MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
 		return memberDao.insert(member);
 	}
