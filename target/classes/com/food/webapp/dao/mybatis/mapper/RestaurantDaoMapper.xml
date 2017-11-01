@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.food.webapp.dao.RestaurantDao">
-
+	
 	<select id="getList" resultType="com.food.webapp.entity.RestaurantView">
 		select * from RestaurantView where ${param3} like '%${param2}%' order by regDate desc limit ${(page-1)*10}, 10
 	</select>
@@ -13,7 +13,7 @@
 		select * from RestaurantView where id = #{id}
 	</select>
 	
-	<select id="count">
+	<select id="getCount" resultType="int">
 		select count(*) count FROM RestaurantView
 	</select>
 
@@ -34,6 +34,15 @@
 	<select id="getNextId" resultType="int">
 		select ifnull(max(cast(id as unsigned)), 0) + 1
 		from Restaurant	
+	</select>
+
+
+	<select id="getCmt" resultType="com.food.webapp.entity.CommentView">
+		select * from CommentView where restaurantId = #{id} order by regDate desc limit (${page}-1)*10, 10
+	</select>
+	
+	<select id="cmtCount" resultType="int">
+		select count(*) count from CommentView
 	</select>
 
 
