@@ -2,6 +2,9 @@ package com.food.webapp.controller;
 
 
 
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +32,8 @@ public class MemberController {
       return "member.join";
    }
    @RequestMapping(value="join", method=RequestMethod.POST)
-   public String join(Member member){ 
-	   System.out.println(member.getEmail());
+   public String join(Member member,HttpServletRequest request){ 
        int row = memberDao.insert(member);
-      return "redirect:../login";
+      return "redirect:login";
    }
 }
