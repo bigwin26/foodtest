@@ -20,4 +20,6 @@ public interface MemberDao {
 	public int insert(Member member);
 	
 	public Member login(String email, String pwd);
+	
+	int pointUp(String id);
 }

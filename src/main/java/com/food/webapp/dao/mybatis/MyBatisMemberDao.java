@@ -37,6 +37,12 @@ public class MyBatisMemberDao implements MemberDao {
 	public Member Login(String email, String passwd) {
         return ""memberDao.Login(email, passwd);
     }*/
+
+	@Override
+	public int pointUp(String id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
 
 
