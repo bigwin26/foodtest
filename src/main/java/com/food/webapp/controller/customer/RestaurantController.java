@@ -1,5 +1,6 @@
 package com.food.webapp.controller.customer;
 
+import java.security.Principal;
 import java.util.Calendar;
 
 import javax.servlet.ServletContext;
@@ -45,8 +46,8 @@ public class RestaurantController {
 		model.addAttribute("prev", restaurantDao.getPrev(id));
 		model.addAttribute("next", restaurantDao.getNext(id));
 		
-		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));
-		model.addAttribute("cmtp", restaurantDao.cmtCount());
+		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//ÄÚ¸àÆ® ¸®½ºÆ® 
+		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//ÄÚ¸àÆ® °¹¼ö
 		
 		return "customer.restaurant.detail";
 	}
@@ -58,19 +59,23 @@ public class RestaurantController {
 	}
 	
 	@RequestMapping(value="restaurant/reg", method=RequestMethod.POST)
-	public String reg(Restaurant restaurant, MultipartFile file, HttpServletRequest request) {
+	public String reg(Restaurant restaurant, String aaa, MultipartFile file, HttpServletRequest request, Principal principal) {
 		
-		Calendar cal = Calendar.getInstance();
+		/*Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int nextId = restaurantDao.getNextId();
 	      
 		ServletContext ctx = request.getServletContext();
-		String path = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d", year,nextId));
+		String path = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d", year,nextId));*/
+		
+		restaurant.setImage(file.getOriginalFilename());
+		System.out.println("df");
+		System.out.println(principal.getName());
 		
 		restaurantDao.insert(restaurant);
 		
 		
-		return "redirect:../";
+		return "redirect:../restaurant";
 	}
 	
 	@RequestMapping(value="restaurant/edit/{id}", method=RequestMethod.GET)

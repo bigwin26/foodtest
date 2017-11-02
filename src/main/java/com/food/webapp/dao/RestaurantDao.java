@@ -13,7 +13,7 @@ import com.food.webapp.entity.RestaurantView;
 
 public interface RestaurantDao {
 
-	List<Restaurant> getList(@Param("page")int page, String field, String query);
+	List<Restaurant> getList(@Param("page")int page, @Param("field")String field, String query);
 	int getCount();
 	RestaurantView get(int id);
 	RestaurantView getPrev(int id);
@@ -22,6 +22,6 @@ public interface RestaurantDao {
 	int insert(String name, String location, String address, String content, String genre, String keyword, String image, String tip, Date regDate);
 	int insert(Restaurant restaurant);
 	
-	List<CommentView> getCmt(int id, int page);
-	int cmtCount();
+	List<CommentView> getCmt(@Param("id")int id, @Param("page")int page);
+	int cmtCount(int id);
 }

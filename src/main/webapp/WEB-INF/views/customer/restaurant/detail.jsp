@@ -36,18 +36,25 @@
 	<div>
 		<table class="">
 			<tbody>
-				<tr>
-					<td>번호</td>
-					<td>내용</td>
-					<td>작성자</td>
-				</tr>
-				<c:forEach var="c" items="${cmtList}">					
+				<c:if test="${empty cmtList}">
 					<tr>
-						<td>${c.id}</td>
-						<td class="">${c.content}</td>
-						<td>${c.writerName}</td>
+						<td colspan="3" class="">첫번째 후기를 작성해 주세요!</td>
 					</tr>
-				</c:forEach>
+				</c:if>
+				<c:if test="${not empty cmtList}">
+					<tr>
+						<td>번호</td>
+						<td>내용</td>
+						<td>작성자</td>
+					</tr>
+					<c:forEach var="c" items="${cmtList}">					
+						<tr>
+							<td>${c.id}</td>
+							<td class="">${c.content}</td>
+							<td>${c.writerName}</td>
+						</tr>
+					</c:forEach>
+				</c:if>
 			</tbody>
 		</table>
 	</div>
