@@ -4,23 +4,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 		<main id="main" />
 			<h2 class="main title">런치 리스트</h2>
-			
-			<div class="search-form margin-top first align-right">
-				<h3 class="hidden">공지사항 검색폼</h3>
-				<form class="table-form">
-					<fieldset>
-						<legend class="hidden">Restaurant 검색 필드</legend>
-						<label class="hidden">검색분류</label> 
-						<select name="f">
-							<option selected="selected" value="name">가게이름</option>
-							<option value="genre">음식종류</option>
-						</select> 
-						<label class="hidden">검색어</label> 
-						<input type="text" name="q" /> 
-						<input class="btn btn-search" type="submit" value="검색" />
-					</fieldset>
-				</form>
-			</div>
 						
 			<div class="">
 				<h3 class="hidden">레스토랑 목록</h3>
