@@ -13,15 +13,37 @@ public class Restaurant {
 	private String keyword;
 	private String image;
 	private String tip;
+	private int memberId;
+	private int lastMemberId;
 	private Date regDate;
 	
+	
+
 	public Restaurant() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
+	public int getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
+	}
+
+	public int getLastMemberId() {
+		return lastMemberId;
+	}
+
+	public void setLastMemberId(int lastMemberId) {
+		this.lastMemberId = lastMemberId;
+	}
+
 	public Restaurant(String name, String location, String address, String content, String genre,
-			String keyword, String image, String tip, Date regDate) {
+			String keyword, String image, String tip, int memberId, int lastMemberId, Date regDate) {
 		super();
+		
 		this.name = name;
 		this.location = location;
 		this.address = address;
@@ -30,6 +52,8 @@ public class Restaurant {
 		this.keyword = keyword;
 		this.image = image;
 		this.tip = tip;
+		this.memberId = memberId;
+		this.lastMemberId = lastMemberId;
 		this.regDate = regDate;
 	}
 

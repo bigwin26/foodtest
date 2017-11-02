@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.food.webapp.dao.MemberDao;
 import com.food.webapp.dao.RestaurantDao;
 import com.food.webapp.entity.Restaurant;
 
@@ -24,6 +25,9 @@ public class RestaurantController {
 	
 	@Autowired
 	RestaurantDao restaurantDao;
+	
+	@Autowired
+	MemberDao memberDao;
 	
 	@RequestMapping("restaurant")
 	public String restaurant(@RequestParam(value="p", defaultValue="1")  Integer page,
@@ -41,6 +45,7 @@ public class RestaurantController {
 	public String detail(@PathVariable("id") int id,
 						@RequestParam(value="p", defaultValue="1")  Integer page,
 						Model model) {
+		
 		
 		model.addAttribute("r", restaurantDao.get(id));
 		model.addAttribute("prev", restaurantDao.getPrev(id));
@@ -61,17 +66,17 @@ public class RestaurantController {
 	@RequestMapping(value="restaurant/reg", method=RequestMethod.POST)
 	public String reg(Restaurant restaurant, String aaa, MultipartFile file, HttpServletRequest request, Principal principal) {
 		
+		String loginEmail = principal.getName();
+		int loginId = memberDao.get(loginEmail).getId();
 		/*Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int nextId = restaurantDao.getNextId();
 	      
 		ServletContext ctx = request.getServletContext();
 		String path = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d", year,nextId));*/
-		
 		restaurant.setImage(file.getOriginalFilename());
-		System.out.println("df");
-		System.out.println(principal.getName());
-		
+		restaurant.setMemberId(loginId);
+		restaurant.setLastMemberId(loginId);
 		restaurantDao.insert(restaurant);
 		
 		

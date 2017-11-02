@@ -19,7 +19,7 @@ public interface RestaurantDao {
 	RestaurantView getPrev(int id);
 	RestaurantView getNext(int id);
 	int getNextId();
-	int insert(String name, String location, String address, String content, String genre, String keyword, String image, String tip, Date regDate);
+	int insert(String name, String location, String address, String content, String genre, String keyword, String image, String tip,int memberId, int lastMemberId, Date regDate);
 	int insert(Restaurant restaurant);
 	
 	List<CommentView> getCmt(@Param("id")int id, @Param("page")int page);

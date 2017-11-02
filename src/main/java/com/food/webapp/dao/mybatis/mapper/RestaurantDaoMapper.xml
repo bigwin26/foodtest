@@ -50,8 +50,8 @@
 		<selectKey order="BEFORE" keyProperty="id" resultType="int">
 			select IFNULL(max(cast(id as unsigned)), 0)+1 from Restaurant
 		</selectKey>
-		insert into Restaurant(id, name, location, address, content, genre, keyword, image, tip)
-		value(#{id},#{name}, #{location}, #{address},#{content},#{genre},#{keyword},#{image},#{tip});
+		insert into Restaurant(id, name, location, address, content, genre, keyword, image, tip, memberId, lastMemberId)
+		value(#{id},#{name}, #{location}, #{address},#{content},#{genre},#{keyword},#{image},#{tip},#{memberId},#{lastMemberId});
 	</insert>
 
 
