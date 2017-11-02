@@ -31,17 +31,22 @@ public class RestaurantController {
 							Model model) {
 		
 		model.addAttribute("list", restaurantDao.getList(page, field, query));
+		model.addAttribute("page", restaurantDao.getCount());
 		
 		return "customer.restaurant.list";
 	}
 	
 	@RequestMapping("restaurant/{id}")
 	public String detail(@PathVariable("id") int id,
+						@RequestParam(value="c", defaultValue="1")  Integer page,
 						Model model) {
 		
-		model.addAttribute("n", restaurantDao.get(id));
-		model.addAttribute("n", restaurantDao.getPrev(id));
-		model.addAttribute("n", restaurantDao.getNext(id));
+		model.addAttribute("r", restaurantDao.get(id));
+		model.addAttribute("prev", restaurantDao.getPrev(id));
+		model.addAttribute("next", restaurantDao.getNext(id));
+		
+		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//ÄÚ¸àÆ® ¸®½ºÆ® 
+		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//ÄÚ¸àÆ® °¹¼ö
 		
 		return "customer.restaurant.detail";
 	}

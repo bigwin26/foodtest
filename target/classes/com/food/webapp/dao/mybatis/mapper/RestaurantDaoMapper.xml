@@ -4,24 +4,28 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.food.webapp.dao.RestaurantDao">
-
-	<select id="getList" resultType="com.food.webapp.entity.Restaurant">
-		select * from Restaurant where ${param3} like '%${param2}%' order by regDate desc limit ${(page-1)*10}, 10
+	
+	<select id="getList" resultType="com.food.webapp.entity.RestaurantView">
+		select * from RestaurantView where ${param3} like '%${param2}%' order by regDate desc limit ${(page-1)*10}, 10
+	</select>
+	
+	<select id="get" resultType="com.food.webapp.entity.RestaurantView">
+		select * from RestaurantView where id = #{id}
+	</select>
+	
+	<select id="getCount" resultType="int">
+		select count(*) count FROM RestaurantView
 	</select>
 
-	<select id="count">
-		select count(*) count FROM Restaurant
-	</select>
-
-	<select id="getPrev" resultType="com.food.webapp.entity.Restaurant">
-		select * from Restaurant
+	<select id="getPrev" resultType="com.food.webapp.entity.RestaurantView">
+		select * from RestaurantView
 		where id &lt; CAST(#{id} as UNSIGNED)
 		order by regDate desc
 		limit 1
 	</select>
 	
-	<select id="getNext" resultType="com.food.webapp.entity.Restaurant">
-		select * from Restaurant
+	<select id="getNext" resultType="com.food.webapp.entity.RestaurantView">
+		select * from RestaurantView
 		where id &gt; CAST(#{id} as UNSIGNED)
 		order by regDate asc
 		limit 1
@@ -30,6 +34,15 @@
 	<select id="getNextId" resultType="int">
 		select ifnull(max(cast(id as unsigned)), 0) + 1
 		from Restaurant	
+	</select>
+
+
+	<select id="getCmt" resultType="com.food.webapp.entity.CommentView">
+		select * from CommentView where restaurantId = #{id} order by regDate desc limit ${(page-1)*5}, 5
+	</select>
+	
+	<select id="cmtCount" resultType="int">
+		select count(*) count from CommentView where restaurantId = #{id}
 	</select>
 
 
