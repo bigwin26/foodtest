@@ -17,7 +17,7 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<Restaurant> getList(int page, String query, String field) {
+	public List<Restaurant> getList(int page, String field, String query) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
 		List<Restaurant> list = restaurantDao.getList(page, field, query);
 		
@@ -48,9 +48,9 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 
 	@Override
-	public int insert(String name, String location, String address, String content, String genre, String keyword, String image, String tip, Date regDate) {
+	public int insert(String name, String location, String address, String content, String genre, String keyword, String image, String tip, int memberId, int lastMemberId, Date regDate) {
 		
-		return insert(new Restaurant(name, location, address, content, genre, keyword, image, tip, regDate));
+		return insert(new Restaurant(name, location, address, content, genre, keyword, image, tip, memberId, lastMemberId, regDate));
 	}
 
 

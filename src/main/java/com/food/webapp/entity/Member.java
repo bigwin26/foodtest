@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Member {
 
-	private String id;
+	private int id;
 	private String pwd;
 	private String nickName;
 	private String email;
@@ -17,10 +17,9 @@ public class Member {
 	public Member() {
 	}
 
-	public Member(String id, String pwd, String nickName, String email, Date regDate, String image, String role, String point,
+	public Member(String pwd, String nickName, String email, Date regDate, String image, String role, String point,
 			String mentor) {
 		super();
-		this.id = id;
 		this.pwd = pwd;
 		this.nickName = nickName;
 		this.email = email;
@@ -31,11 +30,11 @@ public class Member {
 		this.mentor = mentor;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

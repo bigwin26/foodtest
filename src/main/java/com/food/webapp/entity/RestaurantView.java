@@ -5,29 +5,46 @@ import java.util.Date;
 public class RestaurantView extends Restaurant {
 	
 	private String writerName;
+	private String writerImage;
 	private String lastWriter;
 	private int countCmt;
 	private int countLiked;
+	private double avgPoint;
 	
+	
+	
+
 	public RestaurantView() {
 		super();
-	
-	}
-	
-	public RestaurantView(int id, String name, String location, String address, String content, String genre,
-			String keyword, String image, String tip, Date regDate) {
-		super(name, location, address, content, genre, keyword, image, tip, regDate);
 		// TODO Auto-generated constructor stub
 	}
-
-	public RestaurantView(String writerName, String lastWriter, int countCmt, int countLiked) {
+	public RestaurantView(String name, String location, String address, String content, String genre, String keyword,
+			String image, String tip, int memberId, int lastMemberId, Date regDate) {
+		super(name, location, address, content, genre, keyword, image, tip, memberId, lastMemberId, regDate);
+		// TODO Auto-generated constructor stub
+	}
+	public RestaurantView(String writerName, String writerImage, String lastWriter, int countCmt, int countLiked,
+			double avgPoint) {
 		super();
 		this.writerName = writerName;
+		this.writerImage = writerImage;
 		this.lastWriter = lastWriter;
 		this.countCmt = countCmt;
 		this.countLiked = countLiked;
+		this.avgPoint = avgPoint;
 	}
-	
+	public String getWriterImage() {
+		return writerImage;
+	}
+	public void setWriterImage(String writerImage) {
+		this.writerImage = writerImage;
+	}
+	public double getAvgPoint() {
+		return avgPoint;
+	}
+	public void setAvgPoint(double avgPoint) {
+		this.avgPoint = avgPoint;
+	}
 	public String getWriterName() {
 		return writerName;
 	}

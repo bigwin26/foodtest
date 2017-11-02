@@ -10,7 +10,7 @@
 		<table class="">
 			<tbody>
 				<tr>
-					<th>가게 이름${cmtp}</th>
+					<th>가게 이름</th>
 					<td>${r.name}</td>
 				</tr>
 				<tr>
@@ -43,6 +43,9 @@
 				</c:if>
 				<c:if test="${not empty cmtList}">
 					<tr>
+						<td>생생한 후기들! (${cmtp})</td>
+					</tr>
+					<tr>
 						<td>번호</td>
 						<td>내용</td>
 						<td>작성자</td>
@@ -66,18 +69,6 @@
 	<div class="">
 		<table class="">
 			<tbody>
-				<c:if test="${empty prev}">
-					<tr>
-						<th>이전글</th>
-						<td colspan="3" class="">이전글이 없습니다.</td>
-					</tr>
-				</c:if>
-				<c:if test="${not empty prev}">
-					<tr>
-						<th>이전글</th>
-						<td colspan="3" class=""><a class="" href="${prev.id}">${prev.name}</a></td>
-					</tr>
-				</c:if>
 				<c:if test="${empty next}">
 					<tr>
 						<th>다음글</th>
@@ -88,6 +79,18 @@
 					<tr>
 						<th>다음글</th>
 						<td colspan="3" class=""><a class="" href="${next.id}">${next.name}</a></td>
+					</tr>
+				</c:if>
+				<c:if test="${empty prev}">
+					<tr>
+						<th>이전글</th>
+						<td colspan="3" class="">이전글이 없습니다.</td>
+					</tr>
+				</c:if>
+				<c:if test="${not empty prev}">
+					<tr>
+						<th>이전글</th>
+						<td colspan="3" class=""><a class="" href="${prev.id}">${prev.name}</a></td>
 					</tr>
 				</c:if>
 			</tbody>

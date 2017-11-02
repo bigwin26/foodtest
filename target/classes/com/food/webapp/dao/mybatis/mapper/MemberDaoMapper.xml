@@ -13,6 +13,10 @@
 	</insert>
 	
 	<select id="Login" resultType="com.food.webapp.entity.Member">
-	select email, pwd from Member WHERE email = #{email} and pwd = #{pwd};
+		select email, pwd from Member WHERE email = #{email} and pwd = #{pwd};
+	</select>
+	
+	<select id="get" resultType="com.food.webapp.entity.Member" >
+		select * from Member where email = #{loginEmail}
 	</select>
 </mapper>
