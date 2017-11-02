@@ -84,10 +84,10 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 
 	@Override
-	public int cmtCount() {
+	public int cmtCount(int id) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
 		
-		return restaurantDao.cmtCount();
+		return restaurantDao.cmtCount(id);
 	}
 
 	

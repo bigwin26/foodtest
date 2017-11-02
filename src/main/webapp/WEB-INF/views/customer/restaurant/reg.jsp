@@ -40,8 +40,7 @@
 								</c:forEach></td>
 						</tr>
 						<tr class="content">
-							<td colspan="4"><c:forEach var="f" items="${files}"
-									varStatus="s">
+							<td colspan="4"><c:forEach var="f" items="${files}"	varStatus="s">
 									<img src="upload/${f.src}" />
 								</c:forEach> ${n.content}<br />adf<br />dddd</td>
 						</tr>

@@ -38,11 +38,11 @@
 
 
 	<select id="getCmt" resultType="com.food.webapp.entity.CommentView">
-		select * from CommentView where restaurantId = #{id} order by regDate desc limit (${page}-1)*10, 10
+		select * from CommentView where restaurantId = #{id} order by regDate desc limit ${(page-1)*5}, 5
 	</select>
 	
 	<select id="cmtCount" resultType="int">
-		select count(*) count from CommentView
+		select count(*) count from CommentView where restaurantId = #{id}
 	</select>
 
 

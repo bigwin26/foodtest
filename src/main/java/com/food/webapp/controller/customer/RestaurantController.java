@@ -38,15 +38,15 @@ public class RestaurantController {
 	
 	@RequestMapping("restaurant/{id}")
 	public String detail(@PathVariable("id") int id,
-						@RequestParam(value="p", defaultValue="1")  Integer page,
+						@RequestParam(value="c", defaultValue="1")  Integer page,
 						Model model) {
 		
 		model.addAttribute("r", restaurantDao.get(id));
 		model.addAttribute("prev", restaurantDao.getPrev(id));
 		model.addAttribute("next", restaurantDao.getNext(id));
 		
-		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));
-		model.addAttribute("cmtp", restaurantDao.cmtCount());
+		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//ÄÚ¸àÆ® ¸®½ºÆ® 
+		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//ÄÚ¸àÆ® °¹¼ö
 		
 		return "customer.restaurant.detail";
 	}
