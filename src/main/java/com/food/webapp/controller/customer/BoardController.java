@@ -74,10 +74,10 @@ public class BoardController {
 	      return "customer.board.detail";
 	   }
 	   
-	   /*@RequestMapping(value="notice/reg", method=RequestMethod.GET)
+	  /* @RequestMapping(value="notice/reg", method=RequestMethod.GET)
 	   public String noticeReg() {
 	      
-	      return "customer.board.notice.reg";
+	      return "customer.board.reg";
 	   }
 	   
 	   @RequestMapping(value="notice/reg", method=RequestMethod.POST)
@@ -94,7 +94,7 @@ public class BoardController {
 		   int year = cal.get(Calendar.YEAR);
 		   
 		   SimpleDateFormat fmt = new SimpleDateFormat("hh:mm:ss"); //��¥ ��¹�3
-		   fmt.format(arg0);
+		   fmt.format(null);
 		   String nextId = noticeDao.getNextId();
 		   
 		   ServletContext ctx = request.getServletContext();
@@ -140,7 +140,7 @@ public class BoardController {
 		  
 		  //Statement st = con.createStatement();
 		   
-	      return "redirect:../notice";
+	      return "redirect:../board";
 	   }*/
 	   @RequestMapping(value="board/edit/{id}", method=RequestMethod.GET)
 	   public String noticeEdit(@PathVariable("id") String id,Model model) {

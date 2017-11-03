@@ -21,9 +21,6 @@ public interface MemberDao {
 	
 	public Member login(String email, String pwd);
 	
-<<<<<<< HEAD
 	int pointUp(String id);
-=======
 	public Member get(String loginEmail);
->>>>>>> refs/remotes/origin/master
 }

@@ -9,8 +9,8 @@ public class NoticeView extends Notice {
 	public NoticeView() {
 
 	}
-	public NoticeView(String id, String title, String content, String writerId, Date regDate, int hit, String fileName) {
-		super(id, title, content, writerId, regDate, hit, fileName);
+	public NoticeView(String id, String title, String content, String writerName, Date regDate, int hit, String fileName) {
+		super(id, title, content, writerName, regDate, hit, fileName);
 	
 	}
 	public String getWriterName() {

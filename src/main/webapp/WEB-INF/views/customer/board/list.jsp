@@ -2,17 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-		<main class="main" ng-controller="notice-controller">
-			<h2 class="main title">공지사항</h2>
-			
-			<div class="breadcrumb">
-				<h3 class="hidden">경로</h3>
-				<ul>
-					<li>home</li>
-					<li>고객센터</li>
-					<li>공지사항</li>
-				</ul>
-			</div>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+		<main class="main">
+			<h2 class="main title">자유게시판</h2>
 			
 			<div class="search-form margin-top first align-right">
 				<h3 class="hidden">공지사항 검색폼</h3>
@@ -32,7 +24,7 @@
 			</div>
 						
 			<div class="notice margin-top">
-				<h3 class="hidden">공지사항 목록</h3>
+				<h3 class="hidden">자유게시판 목록</h3>
 				<table class="table">
 					<thead>
 						<tr>
@@ -48,9 +40,9 @@
 					<tr>
 						<td>${n.id}</td>
 						<td class="title indent"><a href="notice/${n.id}">${n.title}</a></td>
-						<td>newlec</td>
+						<td>${n.writerName}</td>
 						<td>
-							<fmt:formatDate pattern="yyyy-MM-dd" value="2017-02-28"/>		
+							<fmt:formatDate pattern="yyyy-MM-dd" value="${n.regDate}"/>		
 						</td>
 						<td>12</td>
 					</tr>
@@ -65,7 +57,7 @@
 			</div>
 
 			<div>
-				<a href="notice/reg">등록하기</a>
+				<a href="board/reg">등록하기</a>
 			</div>
 			<div class="margin-top align-center pager">
 				<new:pager />

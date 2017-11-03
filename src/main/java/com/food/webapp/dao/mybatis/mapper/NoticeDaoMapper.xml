@@ -34,7 +34,7 @@
 	select IFNULL(max(cast(id as unsigned)), 0)+1 from Notice
 	</selectKey>
 		
-		insert into Notice(id, title, content, writerId)
-		value(#{id},#{title}, #{content}, #{writerId});
+		insert into Notice(id, title, content, writerName)
+		value(#{id},#{title}, #{content}, #{writerName});
 	</insert>
 </mapper>
