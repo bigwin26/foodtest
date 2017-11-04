@@ -4,7 +4,63 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
+    <link rel="stylesheet" href="resource/css/reset.css">
+    <link rel="stylesheet" href="resource/css/index.css">
+<main>
 
+<div class="main-info">
+        <div class="main-info-slide">
+            <div class="main-info-slide-image" style="background-image: url('resource/images/img-1.jpg');" ></div>
+            <div class="main-info-slide-image" style="background-image: url('resource/images/img-2.jpg');"></div>
+            <div class="main-info-slide-image" style="background-image: url('resource/images/img-3.jpg');"></div>
+            <div class="main-info-slide-image" style="background-image: url('resource/images/img-4.jpg');"></div>
+          
+        </div>   
+     
+    <div class="main-info-container" >
+        <div class="main-info-container-logo" style="background-image: url('resource/images/main-logo.png');">
+        </div>
+        <div class="main-info-container-search">
+         <span class="main-info-container-search-inner">
+	<input type="text" class="main-info-container-search-inner-text" />
+    </span>
+            <button type="submit" class="main-info-container-search-inner-submit" style="background-image: url('resource/images/search.png');"></button>
+        </div>
+    </div>
+
+    </div>
+<div class="main-notice">
+   <span class="main-notice-text">
+        그래서 오늘 점심은?
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <a href="">점심 추천 바로가기></a>
+   </span>
+    <span class="main-notice-text2">
+뭐 넣을거있나?
+   </span>
+</div>
+
+	
+
+
+
+<script src="resource/js/slider.js"></script>
+<script>
+    $(function(){
+        $('.main-info-slide').reSlider({
+            speed:1000,  //페이드속도
+            delay:5000,  //자동전환 속도
+            imgCount:4,  //이미지갯수
+            autoPlay:true//자동재생
+        })
+    })
+</script>
+</main>
 <main id="main">
  <!-------검색창 및 스크린-------------->
 <div class="screen">
@@ -111,4 +167,5 @@
 		</ol>
 	</div>
 </div>
+
 </main>

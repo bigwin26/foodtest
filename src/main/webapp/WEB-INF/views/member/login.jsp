@@ -3,6 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <main>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 	<form action="${path}/login" method="post">
 		<label>아이디 :</label><input type="text" name="username"/><br/>
 		<label>비밀번호:</label><input type="password" name="password"/><br/>
