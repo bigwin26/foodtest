@@ -1,5 +1,10 @@
 package com.food.webapp.controller.customer;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.security.Principal;
 import java.util.Calendar;
 
@@ -64,16 +69,27 @@ public class RestaurantController {
 	}
 	
 	@RequestMapping(value="restaurant/reg", method=RequestMethod.POST)
-	public String reg(Restaurant restaurant, String aaa, MultipartFile file, HttpServletRequest request, Principal principal) {
+	public String reg(Restaurant restaurant, String aaa, MultipartFile file, HttpServletRequest request, Principal principal) throws IOException {
 		
 		String loginEmail = principal.getName();
 		int loginId = memberDao.get(loginEmail).getId();
-		/*Calendar cal = Calendar.getInstance();
+		
+		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int nextId = restaurantDao.getNextId();
 	      
 		ServletContext ctx = request.getServletContext();
-		String path = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d", year,nextId));*/
+		String path = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d", year,nextId));
+		System.out.println("path : "+path);
+		File f = new File(path); 
+	      if(!f.exists()) {
+		         if(!f.mkdirs())
+		            System.out.println("디렉토리를 생성할 수가 없습니다.");
+		      }
+	      path +=File.separator + file.getOriginalFilename();
+	      File f2 = new File(path); 
+	      file.transferTo(f2);
+		
 		restaurant.setImage(file.getOriginalFilename());
 		restaurant.setMemberId(loginId);
 		restaurant.setLastMemberId(loginId);

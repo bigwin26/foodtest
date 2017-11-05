@@ -37,7 +37,7 @@
 					</tr>
 					<tr>
 						<th>대표 사진</th>
-						<td><input type="file" name="file"/></td>
+						<td><input type="file" name="file" multiple="multiple"/></td>
 					</tr>
 					<tr>
 						<th>대표 음식</th>
