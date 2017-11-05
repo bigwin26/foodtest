@@ -2,15 +2,14 @@ package com.food.webapp.controller;
 
 
 
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.food.webapp.dao.MemberDao;
 import com.food.webapp.entity.Member;
@@ -31,9 +30,16 @@ public class MemberController {
    public String join() { 
       return "member.join";
    }
+   
+   
    @RequestMapping(value="join", method=RequestMethod.POST)
-   public String join(Member member,HttpServletRequest request){ 
+   public String join(Member member,HttpServletRequest request, MultipartFile file){ 
        int row = memberDao.insert(member);
+       
+       System.out.println(file.getOriginalFilename());    
+       
+       
+       
       return "redirect:login";
    }
 }

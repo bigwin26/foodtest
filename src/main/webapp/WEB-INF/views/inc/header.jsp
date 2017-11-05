@@ -40,18 +40,13 @@
 
 
 .header-search-container{
-position: fixed;
-display: inline-block;
- z-index: 1000;
-left: 800px;
-top: 6px;
 display: none;
 }
 .header-search-container.show{
 position: fixed;
 display: inline-block;
  z-index: 1000;
-left: 800px;
+left: 1100px;
 top: 6px;
 
 }
@@ -97,7 +92,7 @@ top: 6px;
 </div>
 <div class="main-header">
 
- 
+
     <ul>
         <li><a href="${ctx}/customer/restaurant" style="border-right-style:solid; padding-right: 5px" >맛집 리스트</a></li>
         <li><a href="${ctx}/customer/map" style="border-right-style:solid; padding-right: 5px" >맛집 지도</a></li>
