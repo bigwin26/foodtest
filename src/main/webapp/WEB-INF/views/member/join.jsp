@@ -150,7 +150,7 @@
 							<input class="upload-name"  disabled="disabled" style="width: 200px;">
 
 							<label for="input_file">찾아보기</label> 
-						  <input type="file" id="input_file" class="upload-hidden"> 
+						  <input type="file" id="input_file" class="upload-hidden" name="file"> 
 						</div>
                         
                         <br /><br />
@@ -183,7 +183,7 @@
         </div>
         <div class="row tc" style="padding:50px 0 55px 0;">
             <button id="btn_submit" type="button" class="btn btn-red w400 fs-16" style="height:65px;"><a href="javascript:joinsubmit.submit()" style="text-decoration: none; color: #ffffff;">회원가입하기</a></button>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+          
 
         </div>
     </div>
