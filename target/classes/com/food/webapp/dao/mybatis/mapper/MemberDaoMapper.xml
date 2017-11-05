@@ -8,8 +8,8 @@
 	<selectKey order="BEFORE" keyProperty="id" resultType="int">
 	select IFNULL(max(cast(id as unsigned)), 0)+1 from Member;
 	</selectKey>
-		insert into Member(id, email, pwd, nickName, mentor)
-		values(#{id}, #{email} ,#{pwd}, #{nickName},#{mentor});
+		insert into Member(id, email, pwd, nickName, image, mentor)
+		values(#{id}, #{email} ,#{pwd}, #{nickName}, #{image}, #{mentor});
 	</insert>
 	
 	<select id="Login" resultType="com.food.webapp.entity.Member">

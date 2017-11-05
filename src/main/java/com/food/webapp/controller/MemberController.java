@@ -19,6 +19,7 @@ import com.food.webapp.entity.Member;
 public class MemberController {
 	@Autowired
 	private MemberDao memberDao;
+
 	
    @RequestMapping(value="login")
    public String login() { 
@@ -33,10 +34,12 @@ public class MemberController {
    
    
    @RequestMapping(value="join", method=RequestMethod.POST)
-   public String join(Member member,HttpServletRequest request, MultipartFile file){ 
+   public String join(Member member,HttpServletRequest request, MultipartFile file){
+   
+	   String image = file.getOriginalFilename();    
+	   member.setImage(image); 
        int row = memberDao.insert(member);
-       
-       System.out.println(file.getOriginalFilename());    
+      
        
        
        
