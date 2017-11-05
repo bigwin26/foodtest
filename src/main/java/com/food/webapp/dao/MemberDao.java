@@ -21,5 +21,6 @@ public interface MemberDao {
 	
 	public Member login(String email, String pwd);
 	
+	int pointUp(String id);
 	public Member get(String loginEmail);
 }

@@ -39,12 +39,15 @@ public class MyBatisMemberDao implements MemberDao {
     }*/
 
 	@Override
+	public int pointUp(String id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	public Member get(String loginEmail) {
 		MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
 		
 		return memberDao.get(loginEmail);
 	}
-
 }
 
 

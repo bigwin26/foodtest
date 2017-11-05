@@ -14,6 +14,7 @@
 				<li><a href="${ctx}/customer/restaurant">맛집 리스트</a></li>
 				<li><a href="${ctx}/customer/map">맛집 지도</a></li>
 				<li><a href="${ctx}/customer/worldcup">음식 월드컵</a></li>
+				<li><a href="${ctx}/customer/board">자유게시판</a></li>
 				<li><a href="${ctx}/member/join">회원가입</a></li>
 
 				<security:authorize access="!hasRole('ROLE_USER')">
