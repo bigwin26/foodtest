@@ -28,8 +28,8 @@ import com.food.webapp.entity.Restaurant;
 
 @Controller
 @RequestMapping("/customer/*")
-public class CommenttController {
-	
+public class CommentController {
+/*	
 	@Autowired
 	RestaurantDao restaurantDao;
 	
@@ -102,5 +102,5 @@ public class CommenttController {
    public String edit(@PathVariable("id") String id, String title, String content) {
       
       return "redirect:../{id}";
-   }
+   }*/
 }
