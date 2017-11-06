@@ -27,7 +27,6 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	@Override
 	public RestaurantView get(int id) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
-		
 		return restaurantDao.get(id);
 	}
 	
