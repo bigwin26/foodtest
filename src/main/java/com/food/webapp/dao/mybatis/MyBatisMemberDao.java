@@ -16,9 +16,9 @@ public class MyBatisMemberDao implements MemberDao {
 	private SqlSessionTemplate sqlsession;
 
 	@Override
-	public int insert(String id,String pwd, String nickName, String email, Date regDate, String image, String role,	String point, String mentor) {
+	public int insert(String pwd, String nickName, String email, Date regDate, String image, String role, String point, String mentor) {
 		
-		return insert(new Member(id,pwd,nickName,email,regDate, role, role, mentor, mentor));
+		return insert(new Member(pwd,nickName,email,regDate, role, role, mentor, mentor));
 	}
 
 	@Override
@@ -37,6 +37,17 @@ public class MyBatisMemberDao implements MemberDao {
 	public Member Login(String email, String passwd) {
         return ""memberDao.Login(email, passwd);
     }*/
+
+	@Override
+	public int pointUp(String id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public Member get(String loginEmail) {
+		MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
+		
+		return memberDao.get(loginEmail);
+	}
 }
 
 

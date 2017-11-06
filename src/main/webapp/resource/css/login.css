@@ -12,6 +12,8 @@ html {
     box-sizing:inherit;
 }
 
+
+
 html, body, form {
     margin:0;
     padding:0;
@@ -128,7 +130,7 @@ body {
 }
 
 .btn-red {
-    background-color:#FF4730;
+    background-color:#E73524;
     color:#FFFFFF;
 }
 
@@ -184,7 +186,7 @@ body {
 .fc-white { color:#FFFFFF; }
 .fc-blue { color:#2483FF; }
 .fc-gray { color:#999999; }
-.fc-red { color:#EE4949; }
+.fc-red { color:#E73524; }
 
 .w90 { width:90px; }
 .w100 { width:100px; }
@@ -227,9 +229,11 @@ body {
 }
 
 .checkbox { cursor:pointer; }
-.checkbox .check-icon { display:inline-block; width:30px; height:30px; margin-right:4px; background:url("image/check-off.png") left center no-repeat; vertical-align:middle; transition-duration:.3s; }
+.checkbox .check-icon { display:inline-block; width:30px; height:30px; margin-right:4px; background:url("../images/check-off.png") left center no-repeat; vertical-align:middle; transition-duration:.3s; }
 .checkbox input[type=checkbox] { display:none; }
-.checkbox input[type=checkbox]:checked + .check-icon { background-image:url("image/check-on.png"); }
+.checkbox input[type=checkbox]:checked + .check-icon { 
+	
+	background:url('../images/check-on.png'); }
 
 .table {
     font-size:13px;
@@ -256,6 +260,6 @@ body {
 
 .error {
     font-size:10px;
-    color:#EE4949;
+    color:#E73524;
     display:none;
 }
