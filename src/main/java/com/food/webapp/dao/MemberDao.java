@@ -23,4 +23,6 @@ public interface MemberDao {
 	
 	int pointUp(String id);
 	public Member get(String loginEmail);
+
+	public int checkId(Member member);
 }

@@ -19,4 +19,8 @@
 	<select id="get" resultType="com.food.webapp.entity.Member" >
 		select * from Member where email = #{loginEmail}
 	</select>
+	
+	<select id="checkId" resultType="com.food.webapp.entity.Member" >
+		select count(*) from Member where email = #{Email}
+	</select>
 </mapper>
