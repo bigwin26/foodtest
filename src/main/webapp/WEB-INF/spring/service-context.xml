@@ -40,5 +40,6 @@
    <bean class="com.food.webapp.dao.mybatis.MyBatisRestaurantDao"/>
    <bean class="com.food.webapp.dao.mybatis.MyBatisNoticeDao"/>
    <bean class="com.food.webapp.dao.mybatis.MyBatisNoticeFileDao"/>
+   <bean class="com.food.webapp.dao.mybatis.MyBatisCommentDao"/>
    <context:annotation-config />
 </beans>

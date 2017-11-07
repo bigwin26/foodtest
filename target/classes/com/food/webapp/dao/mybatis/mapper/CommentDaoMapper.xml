@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.food.webapp.dao.CommentDao">
+	
+	<insert id="insert" parameterType="com.food.webapp.entity.Comment">
+		<selectKey order="BEFORE" keyProperty="id" resultType="int">
+			select IFNULL(max(cast(id as unsigned)), 0)+1 from Comment
+		</selectKey>	
+		insert into Comment(id, content, point, memberId, restaurantId)
+		value(#{id}, #{content},#{point},#{memberId},#{restaurantId})
+	</insert>
+	
+	
+</mapper>
