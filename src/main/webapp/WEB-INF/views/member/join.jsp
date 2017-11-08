@@ -216,7 +216,7 @@ $(function checkId() {
 
         </div>
         <div class="row tc" style="padding:50px 0 55px 0;">
-            <button id="btn_submit" type="button" class="btn btn-red w400 fs-16" style="height:65px;"><a href="javascript:joinsubmit.submit()" style="text-decoration: none; color: #ffffff;">회원가입하기</a></button>
+            <a href="javascript:joinsubmit.submit()" style="text-decoration: none; color: #ffffff;"><button id="btn_submit" type="button" class="btn btn-red w400 fs-16" style="height:65px;">회원가입하기</button></a>
           
 
         </div>
