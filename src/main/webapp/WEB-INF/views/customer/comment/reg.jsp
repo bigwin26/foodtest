@@ -31,14 +31,14 @@
 		</table>
 	</div>
 	
-	<form action="?${_csrf.parameterName}=${_csrf.token}" method="post"	enctype="multipart/form-data">
+	<form id="comment-form" action="?${_csrf.parameterName}=${_csrf.token}" method="post"	enctype="multipart/form-data">
 		<table class="">
 			<tbody>
 				<tr>
 					<th>전체 평점</th>
-					<td><input type="radio" name="point" value="5"/></td>
-					<td><input type="radio" name="point" value="3"/></td>
-					<td><input type="radio" name="point" value="1"/></td>
+					<td><input type="radio" name="point" value="5"/>훌륭해요!</td>
+					<td><input type="radio" name="point" value="3"/>보통이에요</td>
+					<td><input type="radio" name="point" value="1"/>별로에요..</td>
 				</tr>
 				<tr>
 					<th>후기</th>
@@ -46,37 +46,20 @@
 				</tr>
 				<tr>
 					<th>사진첨부</th>
-					<td><input type="file" name="file" /></td>
-				</tr>
-				<tr>
-					<th>음식 종류</th>
-				</tr>
-				<tr>
-					<td><input type="radio" name="genre" value="한식" />한식</td>
-					<td><input type="radio" name="genre" value="일식" />일식</td>
-					<td><input type="radio" name="genre" value="중식" />중식</td>
-					<td><input type="radio" name="genre" value="양식" />양식</td>
-					<td><input type="radio" name="genre" value="뷔페" />뷔페</td>
-					<td><input type="radio" name="genre" value="세계음식" />세계음식</td>
-					<td><input type="radio" name="genre" value="카페" />카페</td>
-					<td><input type="radio" name="genre" value="술집" />술집</td>
-				</tr>
-				<tr>
-					<th>대표 사진</th>
-					<td><input type="file" name="file" multiple="multiple" /></td>
-				</tr>
-				<tr>
-					<th>대표 음식</th>
-					<td><input type="text" name="keyword" /></td>
-				</tr>
-				<tr>
-					<th>작성자 한마디!</th>
-					<td><input type="text" name="tip" /></td>
+					<td><input type="file" name="files" multiple="multiple"/></td>
 				</tr>
 			</tbody>
 		</table>
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" /> <input type="submit" value="등록하기" />
+		<input type="submit" value="등록하기" />
+	</form>
+	
+	<form id="menu-form" action="?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+		<table class="">
+			<tr>
+				<th>메뉴판 사진</th>
+				<td><input type="file" name="file" /></td>
+			</tr>
+		</table>
 	</form>
 	
 	<div class="margin-top text-align-center">

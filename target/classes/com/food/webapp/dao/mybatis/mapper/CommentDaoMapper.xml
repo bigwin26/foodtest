@@ -12,6 +12,10 @@
 		insert into Comment(id, content, point, memberId, restaurantId)
 		value(#{id}, #{content},#{point},#{memberId},#{restaurantId})
 	</insert>
-	
+		
+	<select id="getNextId" resultType="int">
+		select ifnull(max(cast(id as unsigned)), 0) + 1
+		from Comment	
+	</select>
 	
 </mapper>

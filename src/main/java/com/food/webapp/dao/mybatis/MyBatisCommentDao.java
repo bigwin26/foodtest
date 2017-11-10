@@ -33,6 +33,12 @@ public class MyBatisCommentDao implements CommentDao {
 		int result = commentDao.delete(id);
 		return result;
 	}
+
+	@Override
+	public int getNextId() {
+		CommentDao commentDao = sqlSession.getMapper(CommentDao.class);
+		return commentDao.getNextId();
+	}
 	
 	
 }

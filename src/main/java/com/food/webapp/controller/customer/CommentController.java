@@ -29,7 +29,7 @@ import com.food.webapp.entity.Restaurant;
 @Controller
 @RequestMapping("/customer/*")
 public class CommentController {
-/*	
+	
 	@Autowired
 	RestaurantDao restaurantDao;
 	
@@ -47,60 +47,44 @@ public class CommentController {
 		
 		model.addAttribute("cmtp", restaurantDao.cmtCount(id));
 		
-		return "customer.restaurant.detail";
+		return "customer.comment.reg";
 	}
 	
 	@RequestMapping(value="comment/{id}", method=RequestMethod.POST)
 	public String reg(@PathVariable("id") int id,
 						Comment comment,
 						MultipartFile[] file,
+						HttpServletRequest request,
 						Principal principal,
-						Model model) {
-		
-		
-		return "redirect:../restaurant/{id}";
-	}
-	
-	@RequestMapping(value="restaurant/reg", method=RequestMethod.POST)
-	public String reg(Restaurant restaurant, String aaa, MultipartFile file, HttpServletRequest request, Principal principal) throws IOException {
+						Model model) throws IllegalStateException, IOException {
 		
 		String loginEmail = principal.getName();
 		int loginId = memberDao.get(loginEmail).getId();
+		//int nextCmtId = commentDao.getNextId();
 		
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
-		int nextId = restaurantDao.getNextId();
-	      
 		ServletContext ctx = request.getServletContext();
-		String path = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d", year,nextId));
-		System.out.println("path : "+path);
+		String path = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d/commentImage", year,id));
+		
 		File f = new File(path); 
 	      if(!f.exists()) {
 		         if(!f.mkdirs())
 		            System.out.println("디렉토리를 생성할 수가 없습니다.");
 		      }
-	      path +=File.separator + file.getOriginalFilename();
-	      File f2 = new File(path); 
-	      file.transferTo(f2);
-		
-		restaurant.setImage(file.getOriginalFilename());
-		restaurant.setMemberId(loginId);
-		restaurant.setLastMemberId(loginId);
-		restaurantDao.insert(restaurant);
-		
-		
-		return "redirect:../restaurant";
+	      
+	      for(int i = 0; i<file.length; i++) {
+		      path +=File.separator + file[i].getOriginalFilename();
+		      File f2 = new File(path); 
+		      file[i].transferTo(f2);
+	      }
+	      
+	      comment.setMemberId(loginId);
+	      comment.setRestaurantId(id);
+	      commentDao.insert(comment);
+	      
+		return "redirect:../restaurant/{id}";
 	}
 	
-	@RequestMapping(value="restaurant/edit/{id}", method=RequestMethod.GET)
-	public String edit() {
-
-		return "customer.restaurant.edit";
-	}
 	
-   @RequestMapping(value="restaurant/edit/{id}", method=RequestMethod.POST)
-   public String edit(@PathVariable("id") String id, String title, String content) {
-      
-      return "redirect:../{id}";
-   }*/
 }

@@ -69,7 +69,7 @@ public class RestaurantController {
 	}
 	
 	@RequestMapping(value="restaurant/reg", method=RequestMethod.POST)
-	public String reg(Restaurant restaurant, String aaa, MultipartFile file, HttpServletRequest request, Principal principal) throws IOException {
+	public String reg(Restaurant restaurant, MultipartFile file, HttpServletRequest request, Principal principal) throws IOException {
 		
 		String loginEmail = principal.getName();
 		int loginId = memberDao.get(loginEmail).getId();
