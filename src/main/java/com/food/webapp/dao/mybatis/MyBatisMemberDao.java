@@ -48,6 +48,12 @@ public class MyBatisMemberDao implements MemberDao {
 		
 		return memberDao.get(loginEmail);
 	}
+
+	@Override
+	public int checkId(Member member) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
 
 

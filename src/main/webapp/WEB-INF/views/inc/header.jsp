@@ -46,7 +46,7 @@ display: none;
 position: fixed;
 display: inline-block;
  z-index: 1000;
-left: 1100px;
+left: 42.5%;
 top: 6px;
 
 }

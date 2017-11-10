@@ -3,6 +3,38 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(function checkId() {
+    var inputed = $('email').val();
+    $.ajax({
+        data : {
+            email : inputed
+        },
+        url : "../customer/ajax-check",
+        success : function(data) {
+            if(inputed=="" && data=='0') {
+                $(".signupbtn").prop("disabled", true);
+                $(".signupbtn").css("background-color", "#aaaaaa");
+                $("#email").css("background-color", "#FFCECE");
+                idCheck = 0;
+            } else if (data == '0') {
+                $("#email").css("background-color", "#B0F6AC");
+                idCheck = 1;
+                if(idCheck==1 && pwdCheck == 1) {
+                    $(".signupbtn").prop("disabled", false);
+                    $(".signupbtn").css("background-color", "#4CAF50");
+                    signupCheck();
+                } 
+            } else if (data == '1') {
+                $(".signupbtn").prop("disabled", true);
+                $(".signupbtn").css("background-color", "#aaaaaa");
+                $("#email").css("background-color", "#FFCECE");
+                idCheck = 0;
+            } 
+        }
+    });
+});
+</script>
 <link rel="stylesheet" href="../resource/css/reset.css">
 <link rel="stylesheet" href="../resource/css/join.css">
 <style>
@@ -109,7 +141,8 @@
                 <tr id="tr_name">
                     <th>닉네임</th>
                     <td>
-                        <input name="nickName" id="nickName" class="input-text w400" type="text" value="" placeholder="닉네임" /><br /><br />
+                        <input name="nickName" id="nickName" class="input-text w400" 
+                        type="text" value="" placeholder="닉네임" oninput="checkId()" required class="email"/><br /><br />
                         런치 컨테이너에서 회원정보로 등록하실 닉네임을 입력해주세요. <br/>영문 혹은 한글2~15자 이내로 입력해주세요.
                     </td>
                 </tr>
@@ -118,7 +151,8 @@
                 <tr id="tr_email">
                     <th>이메일</th>
                     <td>
-                        <input name="email" id="email" class="input-text w400" type="text" value="" placeholder="이메일" />
+                        <input name="email" id="email" class="input-text w400" type="text" value="" placeholder="이메일" 
+                        oninput="checkId()" required class="email"/>
                        <br /><br />
                         런치 컨테이너에서 이용하실 이메일을 입력해 주세요.
                     </td>
@@ -182,7 +216,7 @@
 
         </div>
         <div class="row tc" style="padding:50px 0 55px 0;">
-            <button id="btn_submit" type="button" class="btn btn-red w400 fs-16" style="height:65px;"><a href="javascript:joinsubmit.submit()" style="text-decoration: none; color: #ffffff;">회원가입하기</a></button>
+            <a href="javascript:joinsubmit.submit()" style="text-decoration: none; color: #ffffff;"><button id="btn_submit" type="button" class="btn btn-red w400 fs-16" style="height:65px;">회원가입하기</button></a>
           
 
         </div>
