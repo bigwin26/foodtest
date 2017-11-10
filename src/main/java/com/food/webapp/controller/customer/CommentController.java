@@ -74,9 +74,11 @@ public class CommentController {
 		      }
 	      
 	      for(int i = 0; i<file.length; i++) {
-		      path +=File.separator + file[i].getOriginalFilename();
+		      path += File.separator + file[i].getOriginalFilename();
+		      System.out.println(file[i].getOriginalFilename());
 		      File f2 = new File(path); 
 		      file[i].transferTo(f2);
+		      path = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d/commentImage", year,id));
 	      }
 	      
 	      comment.setMemberId(loginId);

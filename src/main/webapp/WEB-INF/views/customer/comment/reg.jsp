@@ -42,11 +42,11 @@
 				</tr>
 				<tr>
 					<th>후기</th>
-					<td><textarea name="content" placeholder="음식, 서비스, 분위기, 위생상태 등의 방문 경험을 적어주세요."></textarea></td>
+					<td><textarea cols="40" rows="5" name="content" placeholder="음식, 서비스, 분위기, 위생상태 등의 방문 경험을 적어주세요."></textarea></td>
 				</tr>
 				<tr>
 					<th>사진첨부</th>
-					<td><input type="file" name="files" multiple="multiple"/></td>
+					<td><input type="file" name="file" multiple="multiple"/></td>
 				</tr>
 			</tbody>
 		</table>
@@ -57,7 +57,7 @@
 		<table class="">
 			<tr>
 				<th>메뉴판 사진</th>
-				<td><input type="file" name="file" /></td>
+				<td><input type="file" name="image" /></td>
 			</tr>
 		</table>
 	</form>

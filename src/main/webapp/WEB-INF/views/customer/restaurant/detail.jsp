@@ -38,7 +38,7 @@
 			<tbody>
 				<c:if test="${empty cmtList}">
 					<tr>
-						<td colspan="3" class="">첫번째 후기를 작성해 주세요!</td>
+						<td colspan="3" class=""><a href="../comment/${r.id}">첫번째 후기를 작성해 주세요!</a></td>
 					</tr>
 				</c:if>
 				<c:if test="${not empty cmtList}">
@@ -57,6 +57,9 @@
 							<td>${c.writerName}</td>
 						</tr>
 					</c:forEach>
+					<tr>
+						<td><a href="../comment/${r.id}">후기작성!</a></td>
+					</tr>
 				</c:if>
 			</tbody>
 		</table>
