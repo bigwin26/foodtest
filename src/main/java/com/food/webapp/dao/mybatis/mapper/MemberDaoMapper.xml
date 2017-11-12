@@ -20,7 +20,7 @@
 		select * from Member where email = #{loginEmail}
 	</select>
 	
-	<select id="checkId" resultType="com.food.webapp.entity.Member" >
-		select count(*) from Member where email = #{Email}
+	<select id="sameCheckId" parameterType="com.food.webapp.entity.Member" resultType="Integer" >
+		select count(*) from Member where email = #{email}
 	</select>
 </mapper>

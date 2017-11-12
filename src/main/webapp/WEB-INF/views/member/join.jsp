@@ -3,38 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-$(function checkId() {
-    var inputed = $('email').val();
-    $.ajax({
-        data : {
-            email : inputed
-        },
-        url : "../customer/ajax-check",
-        success : function(data) {
-            if(inputed=="" && data=='0') {
-                $(".signupbtn").prop("disabled", true);
-                $(".signupbtn").css("background-color", "#aaaaaa");
-                $("#email").css("background-color", "#FFCECE");
-                idCheck = 0;
-            } else if (data == '0') {
-                $("#email").css("background-color", "#B0F6AC");
-                idCheck = 1;
-                if(idCheck==1 && pwdCheck == 1) {
-                    $(".signupbtn").prop("disabled", false);
-                    $(".signupbtn").css("background-color", "#4CAF50");
-                    signupCheck();
-                } 
-            } else if (data == '1') {
-                $(".signupbtn").prop("disabled", true);
-                $(".signupbtn").css("background-color", "#aaaaaa");
-                $("#email").css("background-color", "#FFCECE");
-                idCheck = 0;
-            } 
-        }
-    });
-});
-</script>
+
 <link rel="stylesheet" href="../resource/css/reset.css">
 <link rel="stylesheet" href="../resource/css/join.css">
 <style>
@@ -142,7 +111,7 @@ $(function checkId() {
                     <th>닉네임</th>
                     <td>
                         <input name="nickName" id="nickName" class="input-text w400" 
-                        type="text" value="" placeholder="닉네임" oninput="checkId()" required class="email"/><br /><br />
+                        type="text" value="" placeholder="닉네임"/><br /><br />
                         런치 컨테이너에서 회원정보로 등록하실 닉네임을 입력해주세요. <br/>영문 혹은 한글2~15자 이내로 입력해주세요.
                     </td>
                 </tr>
@@ -151,10 +120,18 @@ $(function checkId() {
                 <tr id="tr_email">
                     <th>이메일</th>
                     <td>
-                        <input name="email" id="email" class="input-text w400" type="text" value="" placeholder="이메일" 
-                        oninput="checkId()" required class="email"/>
+                        <input name="email" id="email" class="input-text w400" type="text" value="" placeholder="이메일"/>
                        <br /><br />
-                        런치 컨테이너에서 이용하실 이메일을 입력해 주세요.
+                      <!--  <input type="text" id="member_id" name="member_id" class="form-control" size="20" maxlength="12" />
+					<input type="button" id="id_cfm" class="btn btn-danger" value="중복체크" data-loading-text="읽는중..." style="font-size: 10pt;" />
+					<button type="button" id="id_cfm" class="btn btn-danger" style="font-size: 10pt;">중복체크</button>
+					<br/>
+					<div class="text-muted guide">※ 영문 + 숫자 조합 6~12글자</div> -->
+                      <!--  <input type="button" id="id_cfm" class="btn btn-danger" style="font-size: 10pt;"/>중복체크 -->
+                      	 런치 컨테이너에서 이용하실 이메일을 입력해 주세요.
+                      	 </br>
+                      <span id="checkEmail"></span>
+                       
                     </td>
                 </tr>
                 <tr id="tr_pw">
@@ -221,8 +198,62 @@ $(function checkId() {
 
         </div>
     </div>
-
-
+<div id="system_alert" style="position: fixed; width: 400px; top: 20px; left: 50%; margin-left: -200px; z-index: 9999; text-align: center;
+/* transform: translate(-50%, -50%); */">
+	<!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+</div>
+<script>
+$(document).ready(function() {
+var cfmId = "";		// 중복 체크 완료된 아이디 저장
+$('#email').keyup(function() {
+	var inputId = $('#email').val();
+	/* var regexEngLU = getRegex("regexEngLU");
+	var regexNum = getRegex("regexNum");
+	var regexNotEngNum = getRegex("regexNotEngNum");
+	 */
+	/* if ( inputId.length < 6 ) {
+		alert("최소 6글자 이상 입력해주세요.");
+		return false;
+	}
+	else if ( !regexEngLU.test(inputId) || !regexNum.test(inputId) || regexNotEngNum.test(inputId) ) {
+		alert("사용 할 수 없는 아이디입니다.");
+		return false;
+		
+	} else if ( regexEngLU.test(inputId) && regexNum.test(inputId) && !regexNotEngNum.test(inputId) ) { */
+		
+		$.ajax({
+			url: "sameCheckId?${_csrf.parameterName}=${_csrf.token}",
+			type: "POST",
+			data: { "email" : inputId },
+			success: function(result) {
+				
+				if ( result.message == "true" )	{
+					//$('#system_alert').attr('class', 'alert alert-dismissible alert-danger');
+					$('#checkEmail').html('<strong>이미 존재하는 아이디입니다!</strong>');
+					$('#checkEmail').css("color","red");
+					cfmId = '';
+					
+				} else {
+					//$('#system_alert').attr('class', 'alert alert-dismissible alert-success');
+					$('#checkEmail').html('<strong>사용 가능한 아이디입니다.</strong>');
+					$('#checkEmail').css("color","green");
+					cfmId = inputId;
+				}
+				
+				/* $('#checkEmail').slideDown('fast', function() {
+					setTimeout(function() { $('#checkEmail').slideUp('fast'); }, 1000);
+				}); */
+				
+				$('#id_cfm').text("중복 체크").attr('disabled', false);
+			},
+			error: function(result) {
+				alert("잠시 후 다시 이용해주세요.");
+			}
+		
+});
+});
+});
+</script>
 
 <script type="text/javascript">
 $(function(){

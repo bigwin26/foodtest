@@ -50,9 +50,9 @@ public class MyBatisMemberDao implements MemberDao {
 	}
 
 	@Override
-	public int checkId(Member member) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int sameCheckId(Member member) throws Exception {
+		MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
+		return memberDao.sameCheckId(member);
 	}
 }
 
