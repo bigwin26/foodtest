@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.food.webapp.dao.CommentDao;
+import com.food.webapp.entity.CmtImage;
 import com.food.webapp.entity.Comment;
 
 
@@ -38,6 +39,13 @@ public class MyBatisCommentDao implements CommentDao {
 	public int getNextId() {
 		CommentDao commentDao = sqlSession.getMapper(CommentDao.class);
 		return commentDao.getNextId();
+	}
+
+	@Override
+	public int insertCmtImage(CmtImage cmtImage) {
+		CommentDao commentDao = sqlSession.getMapper(CommentDao.class);
+		int result = commentDao.insertCmtImage(cmtImage);
+		return result;
 	}
 	
 	
