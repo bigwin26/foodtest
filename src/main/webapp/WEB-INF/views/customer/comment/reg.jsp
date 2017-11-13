@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <main>
 	<h2 class="main title">'${r.name}'후기 등록 페이지</h2>
 	
@@ -48,22 +49,18 @@
 					<th>사진첨부</th>
 					<td><input type="file" name="file" multiple="multiple"/></td>
 				</tr>
+				<tr>
+					<th>메뉴판 사진</th>
+					<td><input type="file" name="image" /></td>
+				</tr>
 			</tbody>
 		</table>
 		<input type="submit" value="등록하기" />
 	</form>
 	
-	<form id="menu-form" action="?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
-		<table class="">
-			<tr>
-				<th>메뉴판 사진</th>
-				<td><input type="file" name="image" /></td>
-			</tr>
-		</table>
-	</form>
 	
 	<div class="margin-top text-align-center">
 		<a class="btn btn-list" href="../restaurant/${r.id}">취소</a>
 	</div>
-
 </main>
+
