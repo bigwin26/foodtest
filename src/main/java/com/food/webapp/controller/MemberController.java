@@ -18,13 +18,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.food.webapp.dao.MemberDao;
 import com.food.webapp.entity.Member;
+import com.food.webapp.entity.ResultMessage;
 
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
 	@Autowired
 	private MemberDao memberDao;
-
 	
    @RequestMapping(value="login")
    public String login() { 
@@ -50,9 +50,25 @@ public class MemberController {
        
       return "redirect:login";
    }
-   
-   @RequestMapping(value = "ajax-check", method = { RequestMethod.GET, RequestMethod.POST})
-   public @ResponseBody int idCheck(Member member, Model model) {
-       return memberDao.checkId(member);
-   }
+
+   @RequestMapping(value="sameCheckId", method=RequestMethod.POST)
+	@ResponseBody
+	public ResultMessage sameCheckId(Member member) {
+		
+		ResultMessage resultMsg = null;
+		int selectCnt = 0;
+		
+		try {
+			selectCnt = memberDao.sameCheckId(member);
+			
+			if ( selectCnt == 0 )	resultMsg = new ResultMessage("false");
+			else					resultMsg = new ResultMessage("true");
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			resultMsg = new ResultMessage("Fail");
+		}
+		
+		return resultMsg;
+	}
 }
