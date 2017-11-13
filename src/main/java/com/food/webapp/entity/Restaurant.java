@@ -16,6 +16,7 @@ public class Restaurant {
 	private int memberId;
 	private int lastMemberId;
 	private Date regDate;
+	private int ok;
 	
 	
 
@@ -41,7 +42,7 @@ public class Restaurant {
 	}
 
 	public Restaurant(String name, String location, String address, String content, String genre,
-			String keyword, String image, String tip, int memberId, int lastMemberId, Date regDate) {
+			String keyword, String image, String tip, int memberId, int lastMemberId, Date regDate, int ok) {
 		super();
 		
 		this.name = name;
@@ -55,6 +56,7 @@ public class Restaurant {
 		this.memberId = memberId;
 		this.lastMemberId = lastMemberId;
 		this.regDate = regDate;
+		this.ok = ok;
 	}
 
 	public Date getRegDate() {
@@ -174,7 +176,17 @@ public class Restaurant {
 		this.tip = tip;
 	}
 
+	
+	public int getOk() {
+		return ok;
+	}
 
+	
+	public void setOk(int ok) {
+		this.ok = ok;
+	}
+
+	
 
 }
 

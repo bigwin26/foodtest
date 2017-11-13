@@ -1,4 +1,4 @@
-package com.food.webapp.controller.customer;
+package com.food.webapp.controller.admin;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.Principal;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -18,15 +19,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.food.webapp.dao.MemberDao;
 import com.food.webapp.dao.RestaurantDao;
 import com.food.webapp.entity.Restaurant;
+import com.google.gson.Gson;
 
-@Controller("customerController")
-@RequestMapping("/customer/*")
-public class RestaurantController {
+@Controller("adminController")
+@RequestMapping("/admin/*")
+public class RestaurantControllerr {
 	
 	@Autowired
 	RestaurantDao restaurantDao;
@@ -43,10 +46,26 @@ public class RestaurantController {
 		model.addAttribute("list", restaurantDao.getList(page, field, query));
 		model.addAttribute("page", restaurantDao.getCount());
 		
-		return "customer.restaurant.list";
+		return "admin.restaurant.list";
 	}
 	
-	@RequestMapping("restaurant/{id}")
+	@RequestMapping(value="restaurant-ajax", produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String restaurantAjax(Model model) {
+		
+		List<Restaurant> list = restaurantDao.getListAll();
+		
+		model.addAttribute("list", restaurantDao.getListAll());
+
+		String json = "";
+		
+		Gson gson = new Gson();
+		json = gson.toJson(list);
+		
+		return json;
+	}
+	
+/*	@RequestMapping("restaurant/{id}")
 	public String detail(@PathVariable("id") int id,
 						@RequestParam(value="p", defaultValue="1")  Integer page,
 						Model model) {
@@ -109,5 +128,7 @@ public class RestaurantController {
    public String edit(@PathVariable("id") String id, String title, String content) {
       
       return "redirect:../{id}";
-   }
+   }*/
+	
+	
 }
