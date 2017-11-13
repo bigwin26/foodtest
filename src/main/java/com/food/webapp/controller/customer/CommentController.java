@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.food.webapp.dao.CommentDao;
 import com.food.webapp.dao.MemberDao;
 import com.food.webapp.dao.RestaurantDao;
+import com.food.webapp.entity.CmtImage;
 import com.food.webapp.entity.Comment;
 import com.food.webapp.entity.Restaurant;
 
@@ -53,6 +54,7 @@ public class CommentController {
 	@RequestMapping(value="comment/{id}", method=RequestMethod.POST)
 	public String reg(@PathVariable("id") int id,
 						Comment comment,
+						CmtImage cmtImage,
 						MultipartFile[] file,
 						HttpServletRequest request,
 						Principal principal,
@@ -72,10 +74,14 @@ public class CommentController {
 		         if(!f.mkdirs())
 		            System.out.println("디렉토리를 생성할 수가 없습니다.");
 		      }
+	      cmtImage.setCommentId(id);
+	      cmtImage.setMemberId(loginId);
 	      
 	      for(int i = 0; i<file.length; i++) {
 		      path += File.separator + file[i].getOriginalFilename();
 		      System.out.println(file[i].getOriginalFilename());
+		      cmtImage.setSrc(file[i].getOriginalFilename());
+		      commentDao.insertCmtImage(cmtImage);
 		      File f2 = new File(path); 
 		      file[i].transferTo(f2);
 		      path = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d/commentImage", year,id));
