@@ -25,9 +25,9 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 	
 	@Override
-	public List<Restaurant> getList() {
+	public List<Restaurant> getMarkers() {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
-		List<Restaurant> list = restaurantDao.getList();
+		List<Restaurant> list = restaurantDao.getMarkers();
 		
 		return list;
 	}
