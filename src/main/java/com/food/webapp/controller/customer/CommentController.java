@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.food.webapp.dao.CommentDao;
@@ -51,12 +52,14 @@ public class CommentController {
 		
 		return "customer.comment.reg";
 	}
+	
 	@Transactional
 	@RequestMapping(value="comment/{id}", method=RequestMethod.POST)
 	public String reg(@PathVariable("id") int id,
 						Comment comment,
 						CmtImage cmtImage,
 						MultipartFile[] file,
+						MultipartFile image,
 						HttpServletRequest request,
 						Principal principal,
 						Model model) throws IllegalStateException, IOException {
@@ -85,7 +88,6 @@ public class CommentController {
 	      
 	      for(int i = 0; i<file.length; i++) {
 	    	  path += File.separator + file[i].getOriginalFilename();
-	    	  System.out.println(file[i].getOriginalFilename());
 	    	  cmtImage.setSrc(file[i].getOriginalFilename());
 	    	  commentDao.insertCmtImage(cmtImage);
 	    	  File f2 = new File(path); 
@@ -93,8 +95,8 @@ public class CommentController {
 	    	  path = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d/commentImage", year,id));
 	    	  System.out.println(path);
 	      }
+	      System.out.println(image.getOriginalFilename());
 		return "redirect:../restaurant/{id}";
 	}
-	
 	
 }
