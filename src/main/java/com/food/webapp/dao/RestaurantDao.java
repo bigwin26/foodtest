@@ -14,6 +14,7 @@ import com.food.webapp.entity.RestaurantView;
 public interface RestaurantDao {
 
 	List<Restaurant> getList(@Param("page")int page, @Param("field")String field, String query);
+	List<Restaurant> getList();
 	int getCount();
 	RestaurantView get(int id);
 	RestaurantView getPrev(int id);
