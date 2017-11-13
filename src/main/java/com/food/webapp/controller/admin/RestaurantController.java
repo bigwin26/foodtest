@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -29,7 +31,7 @@ import com.google.gson.Gson;
 
 @Controller("adminController")
 @RequestMapping("/admin/*")
-public class RestaurantControllerr {
+public class RestaurantController {
 	
 	@Autowired
 	RestaurantDao restaurantDao;
@@ -37,7 +39,7 @@ public class RestaurantControllerr {
 	@Autowired
 	MemberDao memberDao;
 	
-	@RequestMapping("restaurant")
+	@RequestMapping(value="restaurant", method=RequestMethod.GET)
 	public String restaurant(@RequestParam(value="p", defaultValue="1")  Integer page,
 							@RequestParam(value="f", defaultValue="name")  String field,
 							@RequestParam(value="q", defaultValue="") String query,
@@ -64,6 +66,34 @@ public class RestaurantControllerr {
 		
 		return json;
 	}
+	
+	@RequestMapping(value="restaurant", method=RequestMethod.POST)
+	public String reg(
+			Restaurant restaurant, 
+			String name, 
+			String writerName, 
+			Date regDate, 
+			HttpServletRequest request) throws IOException {
+		
+		/*restaurant.setImage(file.getOriginalFilename());
+		restaurant.setMemberId(loginId);
+		restaurant.setLastMemberId(loginId);
+		restaurantDao.insert(restaurant);*/
+		
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd kk:mm:ss");
+		String date = fmt.format(regDate);
+		
+		System.out.println(name);
+		System.out.println(writerName);
+		System.out.println(date);
+		
+		
+		
+		
+		//return "redirect:../restaurant";
+		return "aaa";
+	}
+	
 	
 /*	@RequestMapping("restaurant/{id}")
 	public String detail(@PathVariable("id") int id,

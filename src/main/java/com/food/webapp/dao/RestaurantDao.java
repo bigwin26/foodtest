@@ -22,7 +22,7 @@ public interface RestaurantDao {
 	int getNextId();
 	int insert(String name, String location, String address, String content, String genre, String keyword, String image, String tip,int memberId, int lastMemberId, Date regDate, int ok);
 	int insert(Restaurant restaurant);
-	
 	List<CommentView> getCmt(@Param("id")int id, @Param("page")int page);
 	int cmtCount(int id);
+	int okRestaurant(String name, String writerName, Date regDate);
 }
