@@ -25,9 +25,9 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 	
 	@Override
-	public List<Restaurant> getList() {
+	public List<Restaurant> getListAll() {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
-		List<Restaurant> list = restaurantDao.getList();
+		List<Restaurant> list = restaurantDao.getListAll();
 		
 		return list;
 	}
@@ -55,9 +55,9 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 
 	@Override
-	public int insert(String name, String location, String address, String content, String genre, String keyword, String image, String tip, int memberId, int lastMemberId, Date regDate) {
+	public int insert(String name, String location, String address, String content, String genre, String keyword, String image, String tip, int memberId, int lastMemberId, Date regDate, int ok) {
 		
-		return insert(new Restaurant(name, location, address, content, genre, keyword, image, tip, memberId, lastMemberId, regDate));
+		return insert(new Restaurant(name, location, address, content, genre, keyword, image, tip, memberId, lastMemberId, regDate, ok));
 	}
 
 
@@ -95,6 +95,14 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
 		
 		return restaurantDao.cmtCount(id);
+	}
+
+	@Override
+	public int okRestaurant(String name, String writerName, Date regDate) {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		int result = restaurantDao.okRestaurant(name, writerName, regDate);
+		
+		return result;
 	}
 
 	

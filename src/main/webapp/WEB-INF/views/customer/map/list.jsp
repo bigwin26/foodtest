@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 	<main class="main" ng-controller="notice-controller">
 <%-- 			<h2 class="main title">고객문의</h2>
 			
@@ -137,17 +138,17 @@
 		// 마커가 지도 위에 표시되도록 설정합니다
 		baseMarker.setMap(map);
 				
-		(function(baseMarker, title) {
+		(function(baseMarker, name) {
 			daum.maps.event.addListener(
 					baseMarker
 					, 'click'
 					, function() {
-						baseDisplayInfowindow(baseMarker, title);
+						baseDisplayInfowindow(baseMarker, name);
 					});
 		})(baseMarker, "쌍용강북교육센터");
 		
-		function baseDisplayInfowindow(baseMarker, title) {
-			var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
+		function baseDisplayInfowindow(baseMarker, name) {
+			var content = '<div style="padding:5px;z-index:1;">' + name + '</div>';
 
 			infowindow.setContent(content);
 			infowindow.open(map, baseMarker);
@@ -168,6 +169,7 @@
 						var restaurant = new Object();
 						var coordinate = locations[i].split(", ");
 						
+						restaurant.id = data[i].id;
 						restaurant.name = data[i].name;
 						restaurant.address = data[i].address;
 						restaurant.latlng = new daum.maps.LatLng(coordinate[0], coordinate[1]);
@@ -176,7 +178,6 @@
 					}
 					
 					//var positions = JSON.stringify(places);
-					
 					
 					for (var i = 0; i < data.length; i++) {
 						// 마커 이미지의 이미지 주소입니다
@@ -191,6 +192,7 @@
 						// 마커를 생성합니다
 						var marker = new daum.maps.Marker({
 							map : map, // 마커를 표시할 지도
+							id : places[i].id,
 							name : places[i].name, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 							address : places[i].address,
 							position : places[i].latlng, // 마커를 표시할 위치
@@ -200,15 +202,16 @@
 						marker.setMap(map); // 지도 위에 마커를 표출합니다
 						
 						
-						(function(marker, name, address, position) {
+						(function(marker, id, name, address, position) {
 							daum.maps.event.addListener(
 									marker
 									, 'click'
 									, function() {
-										displayInfowindow(marker, name, address, position);
+										
+										displayInfowindow(marker, id, name, address, position);
 									});
 						
-						})(marker, places[i].name, places[i].address, places[i].latlng);	
+						})(marker, places[i].id, places[i].name, places[i].address, places[i].latlng);	
 						// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다 
 		
 					}
@@ -225,10 +228,10 @@
 		});
 
 		// 인포윈도우에 장소명을 표시합니다
-		function displayInfowindow(marker, title, address, position) {
+		function displayInfowindow(marker, id, name, address, position) {
 			var content = '<div style="padding:5px; z-index:1; width: 180px; height: 180px;">'
-					+ '<img src="../resources/images/miboondang.jpg" style="width: 160px; padding: 2px;"><hr />'
-					+ title
+					/* + '<img src="../resources/images/miboondang.jpg" style="width: 160px; padding: 2px;"><hr />' */
+					+ '<a href="restaurant/'+ id +'">' + name + '</a>'
 					+ '<br />'
 					+ address
 					+ '<br />'

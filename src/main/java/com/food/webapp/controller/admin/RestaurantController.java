@@ -1,4 +1,4 @@
-package com.food.webapp.controller.customer;
+package com.food.webapp.controller.admin;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -6,7 +6,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -18,14 +21,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.food.webapp.dao.MemberDao;
 import com.food.webapp.dao.RestaurantDao;
 import com.food.webapp.entity.Restaurant;
+import com.google.gson.Gson;
 
-@Controller("customerController")
-@RequestMapping("/customer/*")
+@Controller("adminController")
+@RequestMapping("/admin/*")
 public class RestaurantController {
 	
 	@Autowired
@@ -34,7 +39,7 @@ public class RestaurantController {
 	@Autowired
 	MemberDao memberDao;
 	
-	@RequestMapping("restaurant")
+	@RequestMapping(value="restaurant", method=RequestMethod.GET)
 	public String restaurant(@RequestParam(value="p", defaultValue="1")  Integer page,
 							@RequestParam(value="f", defaultValue="name")  String field,
 							@RequestParam(value="q", defaultValue="") String query,
@@ -43,10 +48,54 @@ public class RestaurantController {
 		model.addAttribute("list", restaurantDao.getList(page, field, query));
 		model.addAttribute("page", restaurantDao.getCount());
 		
-		return "customer.restaurant.list";
+		return "admin.restaurant.list";
 	}
 	
-	@RequestMapping("restaurant/{id}")
+	@RequestMapping(value="restaurant-ajax", produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String restaurantAjax(Model model) {
+		
+		List<Restaurant> list = restaurantDao.getListAll();
+		
+		model.addAttribute("list", restaurantDao.getListAll());
+
+		String json = "";
+		
+		Gson gson = new Gson();
+		json = gson.toJson(list);
+		
+		return json;
+	}
+	
+	@RequestMapping(value="restaurant", method=RequestMethod.POST)
+	public String reg(
+			Restaurant restaurant, 
+			String name, 
+			String writerName, 
+			Date regDate, 
+			HttpServletRequest request) throws IOException {
+		
+		/*restaurant.setImage(file.getOriginalFilename());
+		restaurant.setMemberId(loginId);
+		restaurant.setLastMemberId(loginId);
+		restaurantDao.insert(restaurant);*/
+		
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd kk:mm:ss");
+		String date = fmt.format(regDate);
+		
+		System.out.println(name);
+		System.out.println(writerName);
+		System.out.println(date);
+		
+		
+		
+		
+		//return "redirect:../restaurant";
+		return "aaa";
+	}
+	
+	
+/*	@RequestMapping("restaurant/{id}")
 	public String detail(@PathVariable("id") int id,
 						@RequestParam(value="p", defaultValue="1")  Integer page,
 						Model model) {
@@ -109,5 +158,7 @@ public class RestaurantController {
    public String edit(@PathVariable("id") String id, String title, String content) {
       
       return "redirect:../{id}";
-   }
+   }*/
+	
+	
 }

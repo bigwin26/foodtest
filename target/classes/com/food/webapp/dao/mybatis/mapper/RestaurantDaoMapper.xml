@@ -5,12 +5,12 @@
 
 <mapper namespace="com.food.webapp.dao.RestaurantDao">
 	
-	<!-- <select id="getList" resultType="com.food.webapp.entity.RestaurantView">
-		select * from RestaurantView where ${field} like '%${param3}%' order by regDate desc limit ${(page-1)*10}, 10
-	</select> -->
-	
 	<select id="getList" resultType="com.food.webapp.entity.RestaurantView">
-		select * from RestaurantView
+		select * from RestaurantView where ${field} like '%${param3}%' order by regDate desc limit ${(page-1)*10}, 10
+	</select>
+	
+	<select id="getListAll" resultType="com.food.webapp.entity.RestaurantView">
+		select * from RestaurantView order by regDate desc
 	</select>
 	
 	<select id="get" resultType="com.food.webapp.entity.RestaurantView">
@@ -58,7 +58,10 @@
 		value(#{id},#{name}, #{location}, #{address},#{content},#{genre},#{keyword},#{image},#{tip},#{memberId},#{lastMemberId});
 	</insert>
 
-
+	<!-- <update id="okRestaurant" >
+	
+	
+	</update> -->
 
 
 </mapper>
