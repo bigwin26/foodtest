@@ -2,6 +2,7 @@ package com.food.webapp.dao;
 
 import com.food.webapp.entity.CmtImage;
 import com.food.webapp.entity.Comment;
+import com.food.webapp.entity.RestaurantMenu;
 
 public interface CommentDao {
 	
@@ -11,4 +12,5 @@ public interface CommentDao {
 	int getNextId();
 	
 	public int insertCmtImage(CmtImage cmtImage);
+	public int insertMenuImage(RestaurantMenu restaurantMenu);
 }

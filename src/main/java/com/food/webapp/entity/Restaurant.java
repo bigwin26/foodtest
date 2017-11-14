@@ -9,6 +9,7 @@ public class Restaurant {
 	private String location;
 	private String address;
 	private String content;
+	private int time;
 	private String genre;
 	private String keyword;
 	private String image;
@@ -19,6 +20,14 @@ public class Restaurant {
 	private int ok;
 	
 	
+
+	public int getTime() {
+		return time;
+	}
+
+	public void setTime(int time) {
+		this.time = time;
+	}
 
 	public Restaurant() {
 		super();
@@ -41,7 +50,8 @@ public class Restaurant {
 		this.lastMemberId = lastMemberId;
 	}
 
-	public Restaurant(String name, String location, String address, String content, String genre,
+	
+	public Restaurant( String name, String location, String address, String content, int time, String genre,
 			String keyword, String image, String tip, int memberId, int lastMemberId, Date regDate, int ok) {
 		super();
 		
@@ -49,6 +59,7 @@ public class Restaurant {
 		this.location = location;
 		this.address = address;
 		this.content = content;
+		this.time = time;
 		this.genre = genre;
 		this.keyword = keyword;
 		this.image = image;
