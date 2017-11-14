@@ -51,9 +51,9 @@ public class RestaurantController {
 	
 	@RequestMapping("restaurant-ajax")
 	@ResponseBody
-	public String noticeAjax(
+	public String restaurantAjax(
 			@RequestParam(value="p", defaultValue="1")  Integer page,
-			@RequestParam(value="f", defaultValue="title")  String field,
+			@RequestParam(value="f", defaultValue="name")  String field,
 			@RequestParam(value="q", defaultValue="") String query,
 			Model model) 
 	{
@@ -72,13 +72,6 @@ public class RestaurantController {
 			e.printStackTrace();
 		}
 		
-/*		StringBuilder builder = new StringBuilder();
-		builder.append("[");
-		builder.append("{},");
-		builder.append("{}");
-		builder.append("]");
-		
-		json = builder.toString();*/
 		
 		return json;
 	}
