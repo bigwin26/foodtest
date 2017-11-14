@@ -11,18 +11,17 @@ public class RestaurantView extends Restaurant {
 	private int countLiked;
 	private double avgPoint;
 	
-	
-	
-
 	public RestaurantView() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public RestaurantView(String name, String location, String address, String content, String genre, String keyword,
-			String image, String tip, int memberId, int lastMemberId, Date regDate, int ok) {
-		super(name, location, address, content, genre, keyword, image, tip, memberId, lastMemberId, regDate, ok);
+
+	public RestaurantView(int id, String name, String location, String address, String content, int time, String genre,
+			String keyword, String image, String tip, int memberId, int lastMemberId, Date regDate, int ok) {
+		super( name, location, address, content, time, genre, keyword, image, tip, memberId, lastMemberId, regDate, ok);
 		// TODO Auto-generated constructor stub
 	}
+
 	public RestaurantView(String writerName, String writerImage, String lastWriter, int countCmt, int countLiked,
 			double avgPoint) {
 		super();

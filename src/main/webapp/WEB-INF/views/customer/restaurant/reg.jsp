@@ -67,9 +67,20 @@
 						<td><input type="radio" name="genre" value="술집"/>술집</td>
 					</tr>
 					<tr>
+						<th>가게까지 거리</th>
+					</tr>
+					<tr>
+						<td>
+							<select name="time">
+								<option selected="selected" value="5">가까워요</option>
+								<option value="10">갈만해요</option>
+								<option value="15">멀어요ㅠㅠ</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
 						<th>대표 사진</th>
 						<td><input id="f" type="file" name="file"/></td>
-						<!-- <td><input type="file" name="file" multiple="multiple"/></td> -->
 					</tr>
 					<tr>
 						<th>대표 음식</th>
@@ -81,7 +92,6 @@
 					</tr>
 				</tbody>
 			</table>
-			<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
 			<input type="submit" value="등록하기"/>
 		</form>
 	</div>
