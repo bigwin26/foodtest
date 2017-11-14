@@ -97,6 +97,14 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 		return restaurantDao.cmtCount(id);
 	}
 
+	@Override
+	public int okRestaurant(String name, String writerName, Date regDate) {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		int result = restaurantDao.okRestaurant(name, writerName, regDate);
+		
+		return result;
+	}
+
 	
 
 	

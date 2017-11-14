@@ -21,6 +21,6 @@
 	</select>
 	
 	<select id="sameCheckId" parameterType="com.food.webapp.entity.Member" resultType="Integer" >
-		select count(*) from Member where email = #{email}
+		select count(*) from Member where nickName = #{nickName}
 	</select>
 </mapper>

@@ -58,7 +58,10 @@
 		value(#{id},#{name}, #{location}, #{address},#{content},#{genre},#{keyword},#{image},#{tip},#{memberId},#{lastMemberId});
 	</insert>
 
-
+	<!-- <update id="okRestaurant" >
+	
+	
+	</update> -->
 
 
 </mapper>

@@ -39,8 +39,8 @@
 					<td>${n.image}</td>
 					<td>${n.tip}</td>
 					<td>${n.regDate}</td>
-					<td>${n.ok}<input type="button" value="승인"/></td>
-					<!-- <td><input type="button" value="승인"/></td> -->
+					<td>${n.ok}</td>
+					<td><input type="button" value="승인"/></td>
 				</tr>
 				</c:forEach>
 				</tbody>
@@ -59,17 +59,30 @@
 				
 		$.getJSON("restaurant-ajax")
 			.done(function(data) {
-				//alert(data.length);
-				//alert(okButton.length);
-				/* for(var i=0; i<okButton.length; i++){
-					okButton.eq(i).click(function(){
-						alert(data[i].name);
-					})
-				} */
 				
-				for(var i=0; i<okButton.length; i++){
+				okButton.click(function(){
+					var index = okButton.index($(this));
+					//alert(index);
+					//alert(okButton.index($(this)));
 					
-				}
+					alert(data[index].name);
+					alert(data[index].writerName);
+					alert(data[index].regDate);
+					
+					var formData = new FormData();
+					formData.append("name", data[index].name);
+					formData.append("writerName", data[index].writerName);
+					formData.append("regDate", data[index].regDate);
+					
+					var xhr = new XMLHttpRequest();
+					
+					xhr.onerror = function(e){
+						alert("예기치 못한 오류");
+					};
+					xhr.open("POST", "?${_csrf.parameterName}=${_csrf.token}", true);	
+					xhr.send(formData);
+					
+				})
 				
 			})
 		
