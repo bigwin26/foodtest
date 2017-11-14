@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.Principal;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -18,11 +19,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.food.webapp.dao.MemberDao;
 import com.food.webapp.dao.RestaurantDao;
 import com.food.webapp.entity.Restaurant;
+import com.google.gson.Gson;
 
 @Controller("customerController")
 @RequestMapping("/customer/*")
@@ -44,6 +47,40 @@ public class RestaurantController {
 		model.addAttribute("page", restaurantDao.getCount());
 		
 		return "customer.restaurant.list";
+	}
+	
+	@RequestMapping("restaurant-ajax")
+	@ResponseBody
+	public String noticeAjax(
+			@RequestParam(value="p", defaultValue="1")  Integer page,
+			@RequestParam(value="f", defaultValue="title")  String field,
+			@RequestParam(value="q", defaultValue="") String query,
+			Model model) 
+	{
+		
+		List<Restaurant> list = restaurantDao.getList(page, field, query);
+		
+		String json = "";
+		
+		Gson gson = new Gson();
+		json = gson.toJson(list);
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+/*		StringBuilder builder = new StringBuilder();
+		builder.append("[");
+		builder.append("{},");
+		builder.append("{}");
+		builder.append("]");
+		
+		json = builder.toString();*/
+		
+		return json;
 	}
 	
 	@RequestMapping("restaurant/{id}")
@@ -94,7 +131,6 @@ public class RestaurantController {
 		restaurant.setMemberId(loginId);
 		restaurant.setLastMemberId(loginId);
 		restaurantDao.insert(restaurant);
-		
 		
 		return "redirect:../restaurant";
 	}

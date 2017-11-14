@@ -55,13 +55,12 @@
 			select IFNULL(max(cast(id as unsigned)), 0)+1 from Restaurant
 		</selectKey>
 		insert into Restaurant(id, name, location, address, content, genre, keyword, image, tip, memberId, lastMemberId)
-		value(#{id},#{name}, #{location}, #{address},#{content},#{genre},#{keyword},#{image},#{tip},#{memberId},#{lastMemberId});
+		value(#{id}, #{name}, #{location}, #{address}, #{content}, #{genre}, #{keyword}, #{image}, #{tip}, #{memberId}, #{lastMemberId});
 	</insert>
 
-	<!-- <update id="okRestaurant" >
-	
-	
-	</update> -->
+	<update id="okRestaurant" >
+		update Restaurant set ok=1 where id=#{id} and name=#{name} and regDate=#{date}
+	</update>
 
 
 </mapper>

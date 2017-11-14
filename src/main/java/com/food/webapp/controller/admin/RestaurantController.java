@@ -70,8 +70,8 @@ public class RestaurantController {
 	@RequestMapping(value="restaurant", method=RequestMethod.POST)
 	public String reg(
 			Restaurant restaurant, 
+			int restaurantId, 
 			String name, 
-			String writerName, 
 			Date regDate, 
 			HttpServletRequest request) throws IOException {
 		
@@ -80,15 +80,20 @@ public class RestaurantController {
 		restaurant.setLastMemberId(loginId);
 		restaurantDao.insert(restaurant);*/
 		
-		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd kk:mm:ss");
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
 		String date = fmt.format(regDate);
 		
+		/*System.out.println(restaurantId);
 		System.out.println(name);
-		System.out.println(writerName);
-		System.out.println(date);
+		System.out.println(date);*/
 		
+		restaurant.setId(restaurantId);
+		restaurant.setName(name);
+		restaurant.setDate(date);
 		
+		int n = restaurantDao.okRestaurant(restaurant);
 		
+		System.out.println(n);
 		
 		//return "redirect:../restaurant";
 		return "aaa";

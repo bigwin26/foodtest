@@ -26,4 +26,12 @@
 		value(#{id}, #{src},#{commentId},#{memberId})
 	</insert>
 	
+	<insert id="insertMenuImage" parameterType="com.food.webapp.entity.RestaurantMenu">
+		<selectKey order="BEFORE" keyProperty="id" resultType="int">
+			select IFNULL(max(cast(id as unsigned)), 0)+1 from RestaurantMenu
+		</selectKey>	
+		insert into RestaurantMenu(id, src, restaurantId, memberId)
+		value(#{id}, #{src},#{restaurantId},#{memberId})
+	</insert>
+	
 </mapper>

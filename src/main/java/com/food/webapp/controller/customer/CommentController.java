@@ -28,6 +28,7 @@ import com.food.webapp.dao.RestaurantDao;
 import com.food.webapp.entity.CmtImage;
 import com.food.webapp.entity.Comment;
 import com.food.webapp.entity.Restaurant;
+import com.food.webapp.entity.RestaurantMenu;
 
 @Controller
 @RequestMapping("/customer/*")
@@ -58,6 +59,7 @@ public class CommentController {
 	public String reg(@PathVariable("id") int id,
 						Comment comment,
 						CmtImage cmtImage,
+						RestaurantMenu restaurantMenu,
 						MultipartFile[] file,
 						MultipartFile image,
 						HttpServletRequest request,
@@ -95,7 +97,23 @@ public class CommentController {
 	    	  path = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d/commentImage", year,id));
 	    	  System.out.println(path);
 	      }
+	      
 	      System.out.println(image.getOriginalFilename());
+	      String menuPath = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d/menuImage", year,id));
+	      File mf = new File(menuPath); 
+	      if(!mf.exists()) {
+		         if(!mf.mkdirs())
+		            System.out.println("디렉토리를 생성할 수가 없습니다.");
+		      }
+	      restaurantMenu.setRestaurantId(id);
+	      restaurantMenu.setMemberId(loginId);
+	      restaurantMenu.setSrc(image.getOriginalFilename());
+	      commentDao.insertMenuImage(restaurantMenu);
+	      
+	      menuPath += File.separator + image.getOriginalFilename();
+	      File mf2 = new File(menuPath); 
+	      image.transferTo(mf2);
+	      System.out.println(menuPath);
 		return "redirect:../restaurant/{id}";
 	}
 	

@@ -20,9 +20,10 @@ public interface RestaurantDao {
 	RestaurantView getPrev(int id);
 	RestaurantView getNext(int id);
 	int getNextId();
-	int insert(String name, String location, String address, String content, String genre, String keyword, String image, String tip,int memberId, int lastMemberId, Date regDate, int ok);
+	int insert(String name, String location, String address, String content,int time, String genre, String keyword, String image, String tip,int memberId, int lastMemberId, Date regDate, int ok);
 	int insert(Restaurant restaurant);
 	List<CommentView> getCmt(@Param("id")int id, @Param("page")int page);
 	int cmtCount(int id);
-	int okRestaurant(String name, String writerName, Date regDate);
+	int okRestaurant(int id, String name, String date);
+	int okRestaurant(Restaurant restaurant);
 }

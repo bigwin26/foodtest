@@ -55,9 +55,9 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 
 	@Override
-	public int insert(String name, String location, String address, String content, String genre, String keyword, String image, String tip, int memberId, int lastMemberId, Date regDate, int ok) {
+	public int insert(String name, String location, String address, String content,int time, String genre, String keyword, String image, String tip, int memberId, int lastMemberId, Date regDate, int ok) {
 		
-		return insert(new Restaurant(name, location, address, content, genre, keyword, image, tip, memberId, lastMemberId, regDate, ok));
+		return insert(new Restaurant(name, location, address, content, time, genre, keyword, image, tip, memberId, lastMemberId, regDate, ok));
 	}
 
 
@@ -98,13 +98,21 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 
 	@Override
-	public int okRestaurant(String name, String writerName, Date regDate) {
+	public int okRestaurant(int id, String name, String date) {
+		
+		return okRestaurant(new Restaurant(id, name, date));
+	}
+
+	@Override
+	public int okRestaurant(Restaurant restaurant) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
-		int result = restaurantDao.okRestaurant(name, writerName, regDate);
+		
+		int result = restaurantDao.okRestaurant(restaurant);
 		
 		return result;
 	}
-
+	
+	
 	
 
 	
