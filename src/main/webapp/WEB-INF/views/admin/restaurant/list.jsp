@@ -54,6 +54,7 @@
 	</main>
 		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="../../resource/js/moment.min.js"></script>
 	<script>
 		var okButton = $("input[value='승인']");
 				
@@ -64,14 +65,17 @@
 					var index = okButton.index($(this));
 					//alert(index);
 					//alert(okButton.index($(this)));
+					/* var moment = monent();
+					var dateTime = data[index].regDate;
+					dateTime = moment(dateTime).format("YYYY-MM-DD HH:mm:ss"); */
 					
 					alert(data[index].name);
-					alert(data[index].writerName);
+					alert(data[index].id);
 					alert(data[index].regDate);
 					
 					var formData = new FormData();
 					formData.append("name", data[index].name);
-					formData.append("writerName", data[index].writerName);
+					formData.append("restaurantId", data[index].id);
 					formData.append("regDate", data[index].regDate);
 					
 					var xhr = new XMLHttpRequest();

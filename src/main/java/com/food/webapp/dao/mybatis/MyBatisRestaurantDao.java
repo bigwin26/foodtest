@@ -98,13 +98,21 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 
 	@Override
-	public int okRestaurant(String name, String writerName, Date regDate) {
+	public int okRestaurant(int id, String name, String date) {
+		
+		return okRestaurant(new Restaurant(id, name, date));
+	}
+
+	@Override
+	public int okRestaurant(Restaurant restaurant) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
-		int result = restaurantDao.okRestaurant(name, writerName, regDate);
+		
+		int result = restaurantDao.okRestaurant(restaurant);
 		
 		return result;
 	}
-
+	
+	
 	
 
 	
