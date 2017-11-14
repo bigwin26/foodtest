@@ -122,16 +122,17 @@
 				<tr id="tr_email">
 					<th>이메일</th>
 					<td><input name="email" id="email" class="input-text w400"
-						type="text" value="" placeholder="이메일" /> <br />런치
-						컨테이너에서 이용하실 이메일을 입력해 주세요. </br></td>
+						type="text" value="" placeholder="이메일" /> <br />런치 컨테이너에서 이용하실
+						이메일을 입력해 주세요. </br></td>
 				</tr>
 				<tr id="tr_pw">
 					<th>비밀번호</th>
 					<td>
 
 						<div id="div_password_Y">
-							<input name="pwd" id="pwd" class="input-text w400" type="password" style="margin-bottom: 8px;" placeholder="비밀번호" />
-								<div id="guidepwd" style="color: red; display:none;"></div>
+							<input name="pwd" id="pwd" class="input-text w400"
+								type="password" style="margin-bottom: 8px;" placeholder="비밀번호" />
+							<div id="guidepwd" style="color: red; display: none;"></div>
 							<br />특수문자(예: !@#$ 등) 1자 이상을 포함한 4~15 글자의 비밀번호로 설정해주세요.
 						</div>
 					</td>
@@ -141,9 +142,11 @@
 					<td>
 
 						<div id="div_password_Y">
-							<input name="pwdchk" id="pwdchk" class="input-text w400" t ype="password" style="margin-bottom: 8px;" placeholder="비밀번호 확인" />
-								<div id="guidepwd" style="color: red; display:none;"></div>
-								 <br /> <br /> 비밀번호를 한번 더 입력해주세요.
+							<input name="pwdchk" id="pwdchk" class="input-text w400"
+								type="password" style="margin-bottom: 8px;"
+								placeholder="비밀번호 확인" />
+							<div id="guidepwdchk" style="color: red; display: none;"></div>
+							<br /> <br /> 비밀번호를 한번 더 입력해주세요.
 						</div>
 					</td>
 				</tr>
@@ -254,7 +257,113 @@ $('#nickName').keyup(function() {
 });
 
 /* 이메일 중복체크 */
-	$("input[type='submit']").click(function(){
+	/*  비밀번호 검사 */
+		$('#pwd').keyup(checkPw).blur(checkPw).focus(checkPw);
+			
+		function checkPw() {
+			
+			var inputId = $('#nickName').val();
+			var inputPw = $(this).val();
+			
+			var strId = "";
+			var strPw = "";
+			for ( var i = 0; i < inputId.length-3; i++ ) {
+				strId = inputId.substr(i, 4);
+				
+				for ( var j = 0; j < inputPw.length-3; j++ ) {
+					strPw = inputPw.substr(j, 4);
+					
+					if ( strId == strPw ) {
+						$('#guidepwd').text("아이디와 동일한 글자 사용불가");
+						$('#guidepwd').show();
+						completePw = false;
+						
+						return true;
+					}
+				}
+			}
+			
+			// 동일한 문자 4개 이상 반복 확인
+			if ( inputPw.length >= 4 ) {
+				
+				for ( var i = 0; i < inputPw.length-3; i++ ) {
+					var sameCnt = 0;
+					
+					for ( var j = i; inputPw.length; j++ ) {
+						if ( inputPw.charAt(i) == inputPw.charAt(j) ) {
+							sameCnt++;
+						} else {
+							break;
+						}
+						
+						if ( sameCnt >= 4 ) {
+							$('#guidepwd').text("동일한 글자 4개 이상 사용불가");
+							$('#guidepwd').show();
+							completePw = false;
+							
+							return true;
+						}
+					}
+				}
+			}
+			var regexEngL = getRegex("regexEngL");
+			var regexEngU = getRegex("regexEngU");
+			var regexNum = getRegex("regexNum");
+			var regexSpe = getRegex("regexSpe");
+			var regexNotEngNumSpe = getRegex("regexNotEngNumSpe");
+			
+			// 공백 확인
+			if ( inputPw == '' ) {
+				$('#guidepwd').text("비밀번호를 입력해주세요.");
+				$('#guidepwd').show();
+				completePw = false;
+			
+			// 글자수 확인
+			} else if (inputPw.length < 4 || inputPw.length > 15 ) {
+				$('#guidepwd').text("최소 4글자 이상, 최대 15글자 이하로 입력해주세요.");
+				$('#guidepwd').show();
+				completePw = false;
+			
+			// 문자 확인
+			} else if (regexNotEngNumSpe.test(inputPw)){
+				$('#guidepwd').text("올바르게 입력해주세요.");
+				$('#guidepwd').show();
+				completePw = false;
+			
+			// 정상 입력
+			} else if (regexSpe.test(inputPw)&& regexNum.test(inputPw)||regexEngU.test(inputPw)||regexEngL.test(inputPw)) {
+				
+				$('#guidepwd').hide();
+				completePw = true;
+				
+			} else {
+				$('#guidepwd').text("올바르게 입력해주세요.");
+				$('#guidepwd').show();
+				completePw = false;
+			}
+		}	
+		
+		// 비밀번호 확인 검사
+		$('#pwd').blur(checkPwCfm);
+		$('#pwdchk').keyup(checkPwCfm);
+		
+		function checkPwCfm() {
+			var inputPw = $('#pwd').val();
+			var inputPwCfm = $('#pwdchk').val();
+			
+			if ( inputPw != inputPwCfm ) {
+				$('#guidepwdchk').text("비밀번호가 일치하지 않습니다.");
+				$('#guidepwdchk').show();
+				
+				completePwCfm = false;
+			} else {
+				$('#guidepwdchk').hide();
+				completePwCfm = true;
+			}
+		}
+		/*  비밀번호 검사 */
+		
+		$("input[type='submit']").click(function(){
 		alert('가입되었습니다.');
 	});
 	   var fileTarget = $('.filebox .upload-hidden');
@@ -288,112 +397,6 @@ $('#nickName').keyup(function() {
 	        
 	        
 	    });
-	    
-	 // 비밀번호 검사
-		$('#pwd').keyup(checkPw).blur(checkPw).focus(checkPw);
-			
-		function checkPw() {
-			
-			var inputId = $('#nickName').val();
-			var inputPw = $(this).val();
-			
-			var strId = "";
-			var strPw = "";
-			for ( var i = 0; i < inputId.length-3; i++ ) {
-				strId = inputId.substr(i, 4);
-				
-				for ( var j = 0; j < inputPw.length-3; j++ ) {
-					strPw = inputPw.substr(j, 4);
-					
-					if ( strId == strPw ) {
-						$('#guidepwd').text("아이디와 동일한 글자 4개 이상 사용불가");
-						$('#guidepwd').show();
-						completePw = false;
-						
-						return true;
-					}
-				}
-			}
-			
-			// 동일한 문자 4개 이상 반복 확인
-			if ( inputPw.length >= 4 ) {
-				
-				for ( var i = 0; i < inputPw.length-3; i++ ) {
-					var sameCnt = 0;
-					
-					for ( var j = i; inputPw.length; j++ ) {
-						if ( inputPw.charAt(i) == inputPw.charAt(j) ) {
-							sameCnt++;
-						} else {
-							break;
-						}
-						
-						if ( sameCnt >= 4 ) {
-							$('#guidepwd').text("동일한 글자 4개 이상 사용불가");
-							$('#guidepwd').show();
-							completePw = false;
-							
-							return true;
-						}
-					}
-				}
-			}
-			
-			var regexNum = getRegex("regexNum");
-			var regexSpe = getRegex("regexSpe");
-			var regexNotEngNumSpe = getRegex("regexNotEngNumSpe");
-			
-			// 공백 확인
-			if ( inputPw == '' ) {
-				$('#guidepwd').text("비밀번호를 입력해주세요.");
-				$('#guidepwd').show();
-				completePw = false;
-			
-			// 글자수 확인
-			} else if (inputPw.length < 4 || inputPw.length > 15 ) {
-				$('#guidepwd').text("최소 4글자 이상, 최대 15글자 이하로 입력해주세요.");
-				$('#guidepwd').show();
-				completePw = false;
-			
-			// 문자 확인
-			} else if ( regexNotEngNumSpe.test(inputPw)) {
-				$('#guidepwd').text("올바르게 입력해주세요.");
-				$('#guidepwd').show();
-				completePw = false;
-			
-			// 정상 입력
-			} else if (regexNum.test(inputPw)
-					&& regexSpe.test(inputPw)) {
-				
-				$('#guidepwd').hide();
-				completePw = true;
-				
-			} else {
-				$('#guidepwd').text("올바르게 입력해주세요.");
-				$('#guidepwd').show();
-				completePw = false;
-			}
-		}	
-		
-		// 비밀번호 확인 검사
-		$('#pwd').blur(checkPwCfm);
-		$('#pwdchk').keyup(checkPwCfm);
-		
-		function checkPwCfm() {
-			var inputPw = $('#pwd').val();
-			var inputPwCfm = $('#pwdchk').val();
-			
-			if ( inputPw != inputPwCfm ) {
-				$('#guidepwdchk').text("비밀번호가 일치하지 않습니다.");
-				$('#guidepwdchk').show();
-				
-				completePwCfm = false;
-			} else {
-				$('#guidepwdchk').hide();
-				completePwCfm = true;
-			}
-		}
-
 	    //preview image 
 	    var imgTarget = $('.preview-image .upload-hidden');
 
