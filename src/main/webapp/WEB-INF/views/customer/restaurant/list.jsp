@@ -24,7 +24,7 @@
 					<c:forEach var="n" items="${list}">					
 						<tr>
 							<td>${n.id}</td>
-							<td class=""><a href="restaurant/${n.id}">${n.name} (${n.countCmt})</a></td>
+							<td><a href="restaurant/${n.id}">${n.name} (${n.countCmt})</a></td>
 							<td>${n.image}</td>
 							<td>${n.writerName}</td>
 							<td>${n.writerImage}</td>
@@ -50,14 +50,33 @@
 		var page = 1;
 		
 		$(".restaurant-ajax").click(function(){
+           	page +=1;
 			$.ajax({
 				type:"POST",
 				url: "../customer/restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
-				dataType:'json', 
+				data: {"page":page},
+				dataType:"json", 
 				success:function(data){
-					console.log(data)	
-				}
-			
+					//console.log(data)	
+					var content="";
+		            for(var i=0; i<data.length; i++){
+		                content +=
+		                "<tr>"+
+		                    "<td>"+data[i].id+"</td>"+
+		                    "<td><a href=restaurant/"+data[i].id+">"+data[i].name+"</a></td>"+
+		                    "<td>"+data[i].image+"</td>"+
+		                    "<td>"+data[i].writerName+"</td>"+
+		                    "<td>"+data[i].writerImage+"</td>"+
+		                    "<td>"+data[i].tip+"</td>"+
+		                    "<td>"+data[i].countLiked+"</td>"+
+		                    "<td>"+data[i].avgPoint+"</td>"+
+		                "</tr>";
+		            }
+				$("tbody").append(content);	  
+				
+				}, error:function(request,status,error){
+		            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		           }
 			});
 		});
 	});
