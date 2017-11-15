@@ -9,9 +9,9 @@
 		select * from RestaurantView where ${field} like '%${param3}%' order by regDate desc limit ${(page-1)*10}, 10
 	</select>
 	
-	<select id="getListAll" resultType="com.food.webapp.entity.RestaurantView">
-		select * from RestaurantView where ok=1 order by regDate desc
-	</select>
+	<!-- <select id="getListAll" resultType="com.food.webapp.entity.RestaurantView">
+		select * from RestaurantView 
+	</select> -->
 	
 	<select id="get" resultType="com.food.webapp.entity.RestaurantView">
 		select * from RestaurantView where id = #{id}
