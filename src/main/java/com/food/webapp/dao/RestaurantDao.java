@@ -24,5 +24,6 @@ public interface RestaurantDao {
 	int insert(Restaurant restaurant);
 	List<CommentView> getCmt(@Param("id")int id, @Param("page")int page);
 	int cmtCount(int id);
-	int okRestaurant(String name, String writerName, Date regDate);
+	int okRestaurant(int id, String name, String date);
+	int okRestaurant(Restaurant restaurant);
 }

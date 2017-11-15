@@ -18,7 +18,7 @@ public class Restaurant {
 	private int lastMemberId;
 	private Date regDate;
 	private int ok;
-	
+	private String date;
 	
 
 	public int getTime() {
@@ -68,6 +68,13 @@ public class Restaurant {
 		this.lastMemberId = lastMemberId;
 		this.regDate = regDate;
 		this.ok = ok;
+	}
+	
+	public Restaurant(int memberId, String name,  String date) {
+		
+		this.name = name;
+		this.memberId = memberId;
+		this.date = date;
 	}
 
 	public Date getRegDate() {
@@ -195,6 +202,14 @@ public class Restaurant {
 	
 	public void setOk(int ok) {
 		this.ok = ok;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	
