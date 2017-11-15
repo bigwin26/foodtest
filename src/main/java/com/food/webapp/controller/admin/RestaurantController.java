@@ -52,7 +52,7 @@ public class RestaurantController {
 		return "admin.restaurant.list";
 	}
 	
-	@RequestMapping(value="restaurant-ajax", produces="text/plain;charset=UTF-8")
+	@RequestMapping(value="restaurant-ajax", produces="text/plain;charset=UTF-8", method=RequestMethod.POST)
 	@ResponseBody
 	public String restaurantAjax(
 					@RequestParam(value="p", defaultValue="1")  Integer page,

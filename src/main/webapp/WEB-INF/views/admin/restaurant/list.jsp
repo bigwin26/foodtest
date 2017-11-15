@@ -42,19 +42,19 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="n" items="${list}">					
-				<tr>
-					<td>${n.id}</td>
-					<td class=""><a href="restaurant/${n.id}">${n.name} (${n.countCmt})</a></td>
-					<td>${n.writerName}</td>
-					<td>${n.writerImage}</td>
-					<td>${n.image}</td>
-					<td>${n.tip}</td>
-					<td>${n.regDate}</td>
-					<td>${n.ok}</td>
-					<td><input type="button" value="승인"/></td>
-				</tr>
-				</c:forEach>
+					<c:forEach var="n" items="${list}">					
+					<tr>
+						<td>${n.id}</td>
+						<td class=""><a href="restaurant/${n.id}">${n.name} (${n.countCmt})</a></td>
+						<td>${n.writerName}</td>
+						<td>${n.writerImage}</td>
+						<td>${n.image}</td>
+						<td>${n.tip}</td>
+						<td>${n.regDate}</td>
+						<td>${n.ok}</td>
+						<td><input type="button" value="승인"/></td>
+					</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 			
@@ -91,41 +91,43 @@
 	<script>
 		var okButton = $("input[value='승인']");
 		var num = $(".num");
+		var i=1;
 		num.click(function(){
-			alert(num.text());
-		});
-		$.getJSON("restaurant-ajax")
+			i = num.index($(this))+1;
+			alert("page: " + i);
+			//i = parseInt(i);
+			//alert(num.eq(0).text());
+		})
+		
+		$.getJSON("restaurant-ajax?p="+i)
 			.done(function(data) {
-				alert(data.length);
-				okButton.click(function(){
+				okButton.click(function() {
 					var index = okButton.index($(this));
 					//alert(index);
 					//alert(okButton.index($(this)));
 					/* var moment = monent();
 					var dateTime = data[index].regDate;
 					dateTime = moment(dateTime).format("YYYY-MM-DD HH:mm:ss"); */
-					
-					alert(data[index].id +": "+data[index].name);
+	
+					alert(data[index].id + ": " + data[index].name);
 					//alert(data[index].regDate);
-					
+	
 					var formData = new FormData();
 					formData.append("name", data[index].name);
 					formData.append("restaurantId", data[index].id);
 					formData.append("regDate", data[index].regDate);
-					
+	
 					var xhr = new XMLHttpRequest();
-					
-					xhr.onerror = function(e){
+	
+					xhr.onerror = function(e) {
 						alert("예기치 못한 오류");
 					};
-					xhr.open("POST", "?${_csrf.parameterName}=${_csrf.token}", true);	
+					xhr.open("POST", "?${_csrf.parameterName}=${_csrf.token}", true);
 					xhr.send(formData);
-					
+	
 				})
-				
-			})
-		
-		
+			});
+	
 		
 	</script>
 		
