@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="getListAll" resultType="com.food.webapp.entity.RestaurantView">
-		select * from RestaurantView order by regDate desc
+		select * from RestaurantView where ok=1 order by regDate desc
 	</select>
 	
 	<select id="get" resultType="com.food.webapp.entity.RestaurantView">

@@ -40,13 +40,14 @@ public class RestaurantController {
 	MemberDao memberDao;
 	
 	@RequestMapping(value="restaurant", method=RequestMethod.GET)
-	public String restaurant(@RequestParam(value="p", defaultValue="1")  Integer page,
-							@RequestParam(value="f", defaultValue="name")  String field,
-							@RequestParam(value="q", defaultValue="") String query,
-							Model model) {
+	public String restaurant(
+					@RequestParam(value="p", defaultValue="1")  Integer page,
+					@RequestParam(value="f", defaultValue="name")  String field,
+					@RequestParam(value="q", defaultValue="") String query,
+					Model model) {
 		
 		model.addAttribute("list", restaurantDao.getList(page, field, query));
-		model.addAttribute("page", restaurantDao.getCount());
+		model.addAttribute("count", restaurantDao.getCount());
 		
 		return "admin.restaurant.list";
 	}
@@ -74,11 +75,6 @@ public class RestaurantController {
 			String name, 
 			Date regDate, 
 			HttpServletRequest request) throws IOException {
-		
-		/*restaurant.setImage(file.getOriginalFilename());
-		restaurant.setMemberId(loginId);
-		restaurant.setLastMemberId(loginId);
-		restaurantDao.insert(restaurant);*/
 		
 		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
 		String date = fmt.format(regDate);
