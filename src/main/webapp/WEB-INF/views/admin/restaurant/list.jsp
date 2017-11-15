@@ -67,7 +67,7 @@
 				<ul>
 					<c:forEach var="i" begin="0" end="4">
 						<c:if test="${startPage+i<=lastPage}">
-							<li><a href="?p=${startPage+i}">${startPage+i}</a></li>
+							<li><a class="num" href="?p=${startPage+i}">${startPage+i}</a></li>
 						</c:if>
 
 						<c:if test="${startPage+i>lastPage}">
@@ -90,10 +90,13 @@
 	<!-- <script src="../../resource/js/moment.min.js"></script> -->
 	<script>
 		var okButton = $("input[value='승인']");
-				
+		var num = $(".num");
+		num.click(function(){
+			alert(num.text());
+		});
 		$.getJSON("restaurant-ajax")
 			.done(function(data) {
-				
+				alert(data.length);
 				okButton.click(function(){
 					var index = okButton.index($(this));
 					//alert(index);
@@ -102,9 +105,8 @@
 					var dateTime = data[index].regDate;
 					dateTime = moment(dateTime).format("YYYY-MM-DD HH:mm:ss"); */
 					
-					/* alert(data[index].name);
-					alert(data[index].id);
-					alert(data[index].regDate); */
+					alert(data[index].id +": "+data[index].name);
+					//alert(data[index].regDate);
 					
 					var formData = new FormData();
 					formData.append("name", data[index].name);
