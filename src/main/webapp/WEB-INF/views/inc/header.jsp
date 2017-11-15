@@ -5,6 +5,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <style>
 .main-header a{
     position: relative;
@@ -20,6 +21,7 @@
     width: 100%;
 
 }
+
 .main-header.show{
     position: fixed;
     padding: 15px 50px 15px 50px;

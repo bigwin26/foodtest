@@ -40,18 +40,41 @@ public class RestaurantController {
 	MemberDao memberDao;
 	
 	@RequestMapping(value="restaurant", method=RequestMethod.GET)
-	public String restaurant(@RequestParam(value="p", defaultValue="1")  Integer page,
-							@RequestParam(value="f", defaultValue="name")  String field,
-							@RequestParam(value="q", defaultValue="") String query,
-							Model model) {
+	public String restaurant(
+					@RequestParam(value="p", defaultValue="1")  Integer page,
+					@RequestParam(value="f", defaultValue="name")  String field,
+					@RequestParam(value="q", defaultValue="") String query,
+					Model model) {
 		
 		model.addAttribute("list", restaurantDao.getList(page, field, query));
-		model.addAttribute("page", restaurantDao.getCount());
+		model.addAttribute("count", restaurantDao.getCount());
 		
 		return "admin.restaurant.list";
 	}
 	
-	@RequestMapping(value="restaurant-ajax", produces="text/plain;charset=UTF-8")
+	@RequestMapping(value="restaurant-ajax", produces="text/plain;charset=UTF-8", method=RequestMethod.POST)
+	@ResponseBody
+	public String restaurantAjax(
+					@RequestParam(value="p", defaultValue="1")  Integer page,
+					@RequestParam(value="f", defaultValue="name")  String field,
+					@RequestParam(value="q", defaultValue="") String query,
+					Model model) {
+		
+		List<Restaurant> list = restaurantDao.getList(page, field, query);
+		
+		model.addAttribute("list", list);
+
+		String json = "";
+		
+		Gson gson = new Gson();
+		json = gson.toJson(list);
+		
+		System.out.println(json);
+		
+		return json;
+	}
+	
+/*	@RequestMapping(value="restaurant-ajax", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String restaurantAjax(Model model) {
 		
@@ -65,7 +88,7 @@ public class RestaurantController {
 		json = gson.toJson(list);
 		
 		return json;
-	}
+	}*/
 	
 	@RequestMapping(value="restaurant", method=RequestMethod.POST)
 	public String reg(
@@ -75,17 +98,12 @@ public class RestaurantController {
 			Date regDate, 
 			HttpServletRequest request) throws IOException {
 		
-		/*restaurant.setImage(file.getOriginalFilename());
-		restaurant.setMemberId(loginId);
-		restaurant.setLastMemberId(loginId);
-		restaurantDao.insert(restaurant);*/
-		
 		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
 		String date = fmt.format(regDate);
 		
-		/*System.out.println(restaurantId);
+		System.out.println(restaurantId);
 		System.out.println(name);
-		System.out.println(date);*/
+		System.out.println(date);
 		
 		restaurant.setId(restaurantId);
 		restaurant.setName(name);

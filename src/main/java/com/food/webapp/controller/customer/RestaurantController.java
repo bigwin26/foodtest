@@ -49,16 +49,17 @@ public class RestaurantController {
 		return "customer.restaurant.list";
 	}
 	
-	@RequestMapping("restaurant-ajax")
+	@RequestMapping(value="restaurant-ajax", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String restaurantAjax(
-			@RequestParam(value="p", defaultValue="1")  Integer page,
+			String page,
 			@RequestParam(value="f", defaultValue="name")  String field,
 			@RequestParam(value="q", defaultValue="") String query,
 			Model model) 
 	{
-		
-		List<Restaurant> list = restaurantDao.getList(page, field, query);
+		System.out.println(page);
+		int page1 = Integer.parseInt(page);
+		List<Restaurant> list = restaurantDao.getList(page1, field, query);
 		
 		String json = "";
 		
@@ -66,7 +67,7 @@ public class RestaurantController {
 		json = gson.toJson(list);
 		
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
