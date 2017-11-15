@@ -24,13 +24,13 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 		return list;
 	}
 	
-	@Override
+	/*@Override
 	public List<Restaurant> getListAll() {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
 		List<Restaurant> list = restaurantDao.getListAll();
 		
 		return list;
-	}
+	}*/
 	
 	@Override
 	public RestaurantView get(int id) {
