@@ -52,7 +52,7 @@
 						<td>${n.tip}</td>
 						<td>${n.regDate}</td>
 						<td>${n.ok}</td>
-						<td><input type="button" value="승인"/></td>
+						<td><input class="ok" type="button" value="승인"/></td>
 					</tr>
 					</c:forEach>
 				</tbody>
@@ -89,45 +89,112 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<!-- <script src="../../resource/js/moment.min.js"></script> -->
 	<script>
-		var okButton = $("input[value='승인']");
+	$(function(){
+		//var okButton = $("input[value='승인']");
+		var okButton = $(".ok");
 		var num = $(".num");
 		var i=1;
-		num.click(function(){
+		/* num.click(function(){
 			i = num.index($(this))+1;
 			alert("page: " + i);
 			//i = parseInt(i);
 			//alert(num.eq(0).text());
+		}) */
+		
+		/* okButton.click(function() {
+			var index = okButton.index($(this));
+			alert("hi~");
+		}) */
+		//var ajaxData;
+		
+		//var return_first;
+		/* function callback(response) {
+			//alert("hi");
+		 	return_first = response;
+		 	alert(return_first[1].name);
+		} */
+		var ajaxData;
+		
+		if(i==1){
+			alert("page: " + i);
+			$.ajax({
+				type:"POST",
+				url: "../admin/restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
+				data: {"page":i},
+				dataType:"json"
+			}).done(function(data){
+				var json = JSON.stringify(data);
+				//alert(json);
+				ajaxData = data;
+				//test();
+				/* okButton.click(function() {
+			 		alert("hi");
+					var index = okButton.index($(this));
+					//alert(return_first);
+				}) */
+			});
+		}
+		
+		num.click(function(){
+			i = num.index($(this))+1;
+			alert("page: " + i);
+			
+			$.ajax({
+				type:"POST",
+				url: "../admin/restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
+				data: {"page":i},
+				dataType:"json"
+			}).done(function(data){
+				var json = JSON.stringify(data);
+				alert(json);
+				ajaxData = data;
+			});
+			
 		})
 		
-		$.getJSON("restaurant-ajax?p="+i)
-			.done(function(data) {
-				okButton.click(function() {
-					var index = okButton.index($(this));
-					//alert(index);
-					//alert(okButton.index($(this)));
-					/* var moment = monent();
-					var dateTime = data[index].regDate;
-					dateTime = moment(dateTime).format("YYYY-MM-DD HH:mm:ss"); */
-	
-					alert(data[index].id + ": " + data[index].name);
-					//alert(data[index].regDate);
-	
-					var formData = new FormData();
-					formData.append("name", data[index].name);
-					formData.append("restaurantId", data[index].id);
-					formData.append("regDate", data[index].regDate);
-	
-					var xhr = new XMLHttpRequest();
-	
-					xhr.onerror = function(e) {
-						alert("예기치 못한 오류");
-					};
-					xhr.open("POST", "?${_csrf.parameterName}=${_csrf.token}", true);
-					xhr.send(formData);
-	
-				})
-			});
-	
+		okButton.click(function(){
+			alert(ajaxData[1].name);
+		})
 		
+		
+		
+		//alert(return_first);
+		/* okButton.click(function() {
+		 		//alert("hi");
+				var index = okButton.index($(this));
+				alert(return_first);
+		}) */
+		
+
+		
+
+		/* $.getJSON("restaurant-ajax")
+				.done(function(data) {
+					//alert(data.length);
+					okButton.click(function() {
+						var index = okButton.index($(this));
+						//alert(index);
+						//alert(okButton.index($(this)));
+			
+						alert(data[index].id + ": " + data[index].name);
+						//alert(data[index].regDate);
+			
+						var formData = new FormData();
+						formData.append("name", data[index].name);
+						formData.append("restaurantId", data[index].id);
+						formData.append("regDate", data[index].regDate);
+			
+						var xhr = new XMLHttpRequest();
+			
+						xhr.onerror = function(e) {
+							alert("예기치 못한 오류");
+						};
+						xhr.open("POST", "?${_csrf.parameterName}=${_csrf.token}", true);
+						xhr.send(formData);
+			
+					})
+				}); */
+
+		});
 	</script>
 		
