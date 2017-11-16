@@ -61,6 +61,13 @@
 	<update id="okRestaurant" >
 		update Restaurant set ok=1 where id=#{id} and name=#{name} and regDate=#{date}
 	</update>
-
+	
+	<select id="cmtImageList" resultType="com.food.webapp.entity.CmtImage">
+		select * from CmtImage where commentId = #{id}
+	</select>
+	
+	<select id="menuImageList" resultType="com.food.webapp.entity.RestaurantMenu">
+		select * from RestaurantMenu where restuarantId = #{id}
+	</select>
 
 </mapper>

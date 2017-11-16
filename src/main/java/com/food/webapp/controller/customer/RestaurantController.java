@@ -87,8 +87,10 @@ public class RestaurantController {
 		model.addAttribute("prev", restaurantDao.getPrev(id));
 		model.addAttribute("next", restaurantDao.getNext(id));
 		
-		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//코멘트 리스트 
-		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//코멘트 갯수
+		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//후기 리스트 
+		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//후기 갯수
+		
+		model.addAttribute("cmtImageList", restaurantDao.cmtImageList(id));//후기 사진들
 		
 		return "customer.restaurant.detail";
 	}

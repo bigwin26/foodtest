@@ -36,6 +36,7 @@
 				</tbody>
 			</table>
 		</div>
+		<img src="../resource/customer/restaurant/2017/41/rockefeller-center-christmas-tree-2014.jpg">
 		<div>
 			<a href="restaurant/reg">가게 등록!</a>
 		</div>
