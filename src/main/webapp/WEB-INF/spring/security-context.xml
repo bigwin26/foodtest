@@ -9,7 +9,7 @@
 
    <http auto-config="true">
 	<intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
-	<intercept-url pattern="/student/**" access="hasRole('ROLE_STUDENT')"/>
+	<intercept-url pattern="/customer/**" access="hasRole('ROLE_USER')"/>
 	<intercept-url pattern="/teacher/**" access="hasRole('ROLE_TEACHER')"/>
 	<intercept-url pattern="/index" access="hasRole('ROLE_USER')"/>
 	

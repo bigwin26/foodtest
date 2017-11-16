@@ -23,4 +23,8 @@
 	<select id="sameCheckId" parameterType="com.food.webapp.entity.Member" resultType="Integer" >
 		select count(*) from Member where nickName = #{nickName}
 	</select>
+	
+	<select id="getMember" resultType="com.food.webapp.entity.Member" >
+		select * from Member where nickName = #{nickName}
+	</select>
 </mapper>

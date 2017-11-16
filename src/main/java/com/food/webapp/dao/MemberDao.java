@@ -25,4 +25,6 @@ public interface MemberDao {
 	public Member get(String loginEmail);
 
 	public int sameCheckId(Member member) throws Exception;
+
+	public Object getMember(String nickName);
 }
