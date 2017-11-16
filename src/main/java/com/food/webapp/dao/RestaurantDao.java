@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import com.food.webapp.entity.CmtImage;
 import com.food.webapp.entity.CommentView;
 import com.food.webapp.entity.Restaurant;
+import com.food.webapp.entity.RestaurantMenu;
 import com.food.webapp.entity.RestaurantView;
 
 public interface RestaurantDao {
@@ -29,5 +30,5 @@ public interface RestaurantDao {
 	int okRestaurant(int id, String name, String date);
 	int okRestaurant(Restaurant restaurant);
 	List<CmtImage> cmtImageList(int id);
-	List<Restaurant> menuImageList(int id);
+	List<RestaurantMenu> menuImageList(int id);
 }

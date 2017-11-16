@@ -54,6 +54,11 @@ public class MyBatisMemberDao implements MemberDao {
 		MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
 		return memberDao.sameCheckId(member);
 	}
+	@Override
+	public Object getMember(String nickName) {
+		MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
+		return memberDao.getMember(nickName);
+	}
 }
 
 
