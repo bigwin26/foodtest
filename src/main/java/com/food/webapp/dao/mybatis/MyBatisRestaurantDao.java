@@ -10,6 +10,7 @@ import com.food.webapp.dao.RestaurantDao;
 import com.food.webapp.entity.CmtImage;
 import com.food.webapp.entity.CommentView;
 import com.food.webapp.entity.Restaurant;
+import com.food.webapp.entity.RestaurantMenu;
 import com.food.webapp.entity.RestaurantView;
 
 public class MyBatisRestaurantDao implements RestaurantDao {
@@ -121,9 +122,9 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 
 	@Override
-	public List<Restaurant> menuImageList(int id) {
+	public List<RestaurantMenu> menuImageList(int id) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
-		List<Restaurant> list = restaurantDao.menuImageList(id);
+		List<RestaurantMenu> list = restaurantDao.menuImageList(id);
 		return list;
 	}
 	

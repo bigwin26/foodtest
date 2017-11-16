@@ -2,30 +2,40 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+
 <main>
 	<h2 class="main title">점심 디테일 페이지</h2>
 	
 	<div class="">
-		<h3 class="hidden">공지사항 내용</h3>
+		<h3 class="hidden">가게 내용</h3>
 		<table class="">
 			<tbody>
 				<tr>
-					<th>가게 이름</th>
+					<th>가게 이름 (${r.countCmt})</th>
 					<td>${r.name}</td>
 				</tr>
 				<tr>
 					<th>작성일</th>
-					<td class="text-align-left text-indent" colspan="3">
+					<td>
 						<fmt:formatDate	pattern="yyyy-MM-dd" value="${r.regDate}" />
 					</td>
 				</tr>
 				<tr>
 					<th>작성자</th>
 					<td>${r.writerName}</td>
+					<td>${r.writerImage}</td>
+					<th>평점</th>
+					<td>${r.avgPoint}</td>
 					<th>좋아요</th>
 					<td>${r.countLiked}</td>
 				</tr>
 				<tr>
+					<th>종류</th>
+					<td>${r.genre}</td>
+					<th>걸어가는 시간</th>
+					<td>${r.time}</td>
 					<th>상세내용</th>
 					<td>${r.content}</td>
 				</tr>
@@ -34,6 +44,7 @@
 	</div>
 	
 	<div>
+		<h4 class="hidden">후기 내용</h4>
 		<table class="">
 			<tbody>
 				<c:if test="${empty cmtList}">
@@ -52,14 +63,15 @@
 						<td>사진</td>
 					</tr>
 					<c:forEach var="c" items="${cmtList}">					
-						<tr>
+						<tr class="comment">
 							<td>${c.id}</td>
 							<td class="">${c.content}</td>
 							<td>${c.writerName}</td>
-							<td>
-								<c:forEach var="c" items="">
-								
-								</c:forEach>
+							<td id="cmt-image">
+							<img src="../../resource/customer/restaurant/2017/41/rockefeller-center-christmas-tree-2014.jpg" style="width: 320px; height: 130px;">
+							<table id="menu-images">
+							
+							</table>
 							</td>
 						</tr>
 					</c:forEach>
@@ -106,3 +118,23 @@
 		</table>
 	</div>
 </main>
+
+<script type="text/javascript">
+	$(function(){
+		var id = $(".comment td:first-child");
+		alert(id.eq(0).text());
+		 $.ajax({
+			type:"POST",
+			url:"../../customer/restaurant-menu-ajax?${_csrf.parameterName}=${_csrf.token}",
+			data: {"id":id.eq(0).text()},
+			dataType:"json", 
+			success:function(data){
+				console.log(data);
+			}, error:function(request,status,error){
+	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	           }
+		});
+	});
+</script>
+
+

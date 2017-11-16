@@ -24,7 +24,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.food.webapp.dao.MemberDao;
 import com.food.webapp.dao.RestaurantDao;
+import com.food.webapp.entity.CmtImage;
 import com.food.webapp.entity.Restaurant;
+import com.food.webapp.entity.RestaurantMenu;
 import com.google.gson.Gson;
 
 @Controller("customerController")
@@ -76,6 +78,33 @@ public class RestaurantController {
 		
 		return json;
 	}
+
+	@RequestMapping(value="restaurant-menu-ajax", produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String restaurantMenuAjax(
+			String id,
+			Model model) 
+	{
+		System.out.println(id);
+		int id1 = Integer.parseInt(id);
+		List<CmtImage> list = restaurantDao.cmtImageList(id1);
+		
+		String json = "";
+		
+		Gson gson = new Gson();
+		json = gson.toJson(list);
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(json);
+		return json;
+	}
+
 	
 	@RequestMapping("restaurant/{id}")
 	public String detail(@PathVariable("id") int id,
@@ -122,7 +151,7 @@ public class RestaurantController {
 	      path +=File.separator + file.getOriginalFilename();
 	      File f2 = new File(path); 
 	      file.transferTo(f2);
-		
+		System.out.println(path);
 		restaurant.setImage(file.getOriginalFilename());
 		restaurant.setMemberId(loginId);
 		restaurant.setLastMemberId(loginId);
