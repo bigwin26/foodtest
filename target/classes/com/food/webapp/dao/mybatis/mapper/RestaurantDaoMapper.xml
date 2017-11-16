@@ -11,11 +11,11 @@
 	
 	<!-- <select id="getList" resultType="com.food.webapp.entity.RestaurantView">
 		select * from RestaurantView where ${field} like '%${param3}%' 
-		<if test="ok != 3 and p>0">
-   			and ok=${param4} order by regDate desc limit ${(page-1)*10}, 10
+		<if test="ok != 3 and page>0">
+   			and ok=${ok} order by regDate desc limit ${(page-1)*10}, 10
   		</if>
-  		<if test="ok == 3 and p>0">
-   			and order by regDate desc limit ${(page-1)*10}, 10
+  		<if test="ok == 3 and page>0">
+   			order by regDate desc limit ${(page-1)*10}, 10
   		</if>
 	</select> -->
 	

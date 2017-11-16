@@ -19,7 +19,7 @@
 			<div>
 				<form action="list" method="get">
 					<select id="selectBox" name="selectBox">
-						<option value="3" selected="selected">선택</option>
+						<option value="3" selected="selected">전체</option>
 						<option value="0">승인대기</option>
 						<option value="1">승인</option>
 						<option value="2">비승인</option>
@@ -96,18 +96,6 @@
 		var okButton = $(".ok");
 		var num = $(".num");
 		var ajaxData;
-		var ok=3;
-		
-		//var selectBox = $("#f option:selected").val();
-		//alert(selectBox);
-		/* $("#selectBox").change(function(){
-			//alert("hi");
-			var value = $(this).val();
-			if(value==1)
-           		alert(value);
-		}); */
-		
-		
 		
 		$.urlParam = function(name){
 		    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -119,14 +107,25 @@
 		        return results[1] || 0;
 		     }
 		}
-		var i = $.urlParam('p')?$.urlParam('p'):1;
+		var page = $.urlParam('p')?$.urlParam('p'):1;
+		var ok = $.urlParam('o')?$.urlParam('o'):3;
+		//alert(ok);
+		
+		$("#selectBox").change(function(){
+			ok = $(this).val();
+			var pathName = $(location).attr('pathname');
+			var url = pathName + "?p=" + page + "&o=" + ok;
+			
+			$(location).attr('href', url);
+			
+		});
 				
 		$.ajax({
 			type:"POST",
 			async: false,
 			url: "../admin/restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
-			/* data: {"page":i, "ok":ok}, */
-			data: {"page":i},
+			data: {"page":page, "ok":ok},
+			//data: {"page":page},
 			dataType:"json",
 			success: function (data) {
 				var json = JSON.stringify(data);

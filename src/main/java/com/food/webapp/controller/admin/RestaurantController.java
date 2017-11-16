@@ -76,13 +76,16 @@ public class RestaurantController {
 		return json;
 	}
 	
-/*	@RequestMapping(value="restaurant", method=RequestMethod.GET)
+	/*@RequestMapping(value="restaurant", method=RequestMethod.GET)
 	public String restaurant(
 					@RequestParam(value="p", defaultValue="1")  Integer page,
 					@RequestParam(value="f", defaultValue="name")  String field,
 					@RequestParam(value="q", defaultValue="") String query,
-					@RequestParam(value="o", defaultValue="3") String ok,
+					@RequestParam(value="o", defaultValue="3") Integer ok,
 					Model model) {
+		
+		System.out.println("restaurant page: " + page);
+		System.out.println("restaurant ok: " + ok);
 		
 		model.addAttribute("list", restaurantDao.getList(page, field, query, ok));
 		model.addAttribute("count", restaurantDao.getCount());
@@ -96,13 +99,16 @@ public class RestaurantController {
 					String page,
 					@RequestParam(value="f", defaultValue="name")  String field,
 					@RequestParam(value="q", defaultValue="") String query,
-					@RequestParam(value="o", defaultValue="3") String ok,
+					String ok,
 					Model model) {
 		
-		//System.out.println(page);
 		int page1 = Integer.parseInt(page);
-		List<Restaurant> list = restaurantDao.getList(page1, field, query, ok);
+		int ok1 = Integer.parseInt(ok);
 		
+		System.out.println("restaurant-ajax page: " + page);
+		System.out.println("restaurant-ajax ok: " + ok);
+		
+		List<Restaurant> list = restaurantDao.getList(page1, field, query, ok1);
 		model.addAttribute("list", list);
 
 		String json = "";
