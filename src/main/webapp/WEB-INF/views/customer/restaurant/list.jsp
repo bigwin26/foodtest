@@ -54,7 +54,7 @@
            	page +=1;
 			$.ajax({
 				type:"POST",
-				url: "../customer/restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
+				url: "restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
 				data: {"page":page},
 				dataType:"json", 
 				success:function(data){

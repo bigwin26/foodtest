@@ -60,7 +60,7 @@ public class RestaurantController {
 					@RequestParam(value="q", defaultValue="") String query,
 					Model model) {
 		
-		System.out.println(page);
+		//System.out.println(page);
 		int page1 = Integer.parseInt(page);
 		List<Restaurant> list = restaurantDao.getList(page1, field, query);
 		
@@ -76,23 +76,47 @@ public class RestaurantController {
 		return json;
 	}
 	
-/*	@RequestMapping(value="restaurant-ajax", produces="text/plain;charset=UTF-8")
+/*	@RequestMapping(value="restaurant", method=RequestMethod.GET)
+	public String restaurant(
+					@RequestParam(value="p", defaultValue="1")  Integer page,
+					@RequestParam(value="f", defaultValue="name")  String field,
+					@RequestParam(value="q", defaultValue="") String query,
+					@RequestParam(value="o", defaultValue="3") String ok,
+					Model model) {
+		
+		model.addAttribute("list", restaurantDao.getList(page, field, query, ok));
+		model.addAttribute("count", restaurantDao.getCount());
+		
+		return "admin.restaurant.list";
+	}
+	
+	@RequestMapping(value="restaurant-ajax", produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String restaurantAjax(Model model) {
+	public String restaurantAjax(
+					String page,
+					@RequestParam(value="f", defaultValue="name")  String field,
+					@RequestParam(value="q", defaultValue="") String query,
+					@RequestParam(value="o", defaultValue="3") String ok,
+					Model model) {
 		
-		List<Restaurant> list = restaurantDao.getListAll();
+		//System.out.println(page);
+		int page1 = Integer.parseInt(page);
+		List<Restaurant> list = restaurantDao.getList(page1, field, query, ok);
 		
-		model.addAttribute("list", restaurantDao.getListAll());
+		model.addAttribute("list", list);
 
 		String json = "";
 		
 		Gson gson = new Gson();
 		json = gson.toJson(list);
 		
+		//System.out.println(json);
+		
 		return json;
 	}*/
 	
 	@RequestMapping(value="restaurant", method=RequestMethod.POST)
+	@ResponseBody
 	public String reg(
 			Restaurant restaurant, 
 			int restaurantId, 
@@ -112,11 +136,11 @@ public class RestaurantController {
 		restaurant.setDate(date);
 		
 		int n = restaurantDao.okRestaurant(restaurant);
-		
-		System.out.println(n);
+		if(n>0)
+			System.out.println("success");
 		
 		//return "redirect:../restaurant";
-		return "aaa";
+		return "aa";
 	}
 	
 	

@@ -18,11 +18,11 @@
 			<h3 class="hidden">레스토랑 목록</h3>
 			<div>
 				<form action="list" method="get">
-					<select id="f" name="f">
-						<option>선택</option>
-						<option value="wait" selected="selected">승인대기</option>
-						<option value="ok">승인</option>
-						<option value="deny">비승인</option>
+					<select id="selectBox" name="selectBox">
+						<option value="3" selected="selected">선택</option>
+						<option value="0">승인대기</option>
+						<option value="1">승인</option>
+						<option value="2">비승인</option>
 					</select> 
 					<!-- <input type="text" name="query" /> 
 					<input type="submit" /> -->
@@ -45,7 +45,7 @@
 					<c:forEach var="n" items="${list}">					
 					<tr>
 						<td>${n.id}</td>
-						<td class=""><a href="restaurant/${n.id}">${n.name} (${n.countCmt})</a></td>
+						<td class=""><a href="../customer/restaurant/${n.id}">${n.name} (${n.countCmt})</a></td>
 						<td>${n.writerName}</td>
 						<td>${n.writerImage}</td>
 						<td>${n.image}</td>
@@ -68,6 +68,7 @@
 					<c:forEach var="i" begin="0" end="4">
 						<c:if test="${startPage+i<=lastPage}">
 							<li><a class="num" href="?p=${startPage+i}">${startPage+i}</a></li>
+							<%-- <li><a class="num">${startPage+i}</a></li> --%>
 						</c:if>
 
 						<c:if test="${startPage+i>lastPage}">
@@ -78,6 +79,7 @@
 				<div>
 					<c:if test="${lastPage>=startPage+5}">
 						<a href="?p=${startPage+5}">다음</a>
+						<a>다음</a>
 					</c:if>
 				</div>
 			</div>
@@ -93,81 +95,70 @@
 		//var okButton = $("input[value='승인']");
 		var okButton = $(".ok");
 		var num = $(".num");
-		var i=1;
-		/* num.click(function(){
-			i = num.index($(this))+1;
-			alert("page: " + i);
-			//i = parseInt(i);
-			//alert(num.eq(0).text());
-		}) */
-		
-		/* okButton.click(function() {
-			var index = okButton.index($(this));
-			alert("hi~");
-		}) */
-		//var ajaxData;
-		
-		//var return_first;
-		/* function callback(response) {
-			//alert("hi");
-		 	return_first = response;
-		 	alert(return_first[1].name);
-		} */
 		var ajaxData;
+		var ok=3;
 		
-		if(i==1){
-			alert("page: " + i);
-			$.ajax({
-				type:"POST",
-				url: "../admin/restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
-				data: {"page":i},
-				dataType:"json"
-			}).done(function(data){
+		//var selectBox = $("#f option:selected").val();
+		//alert(selectBox);
+		/* $("#selectBox").change(function(){
+			//alert("hi");
+			var value = $(this).val();
+			if(value==1)
+           		alert(value);
+		}); */
+		
+		
+		
+		$.urlParam = function(name){
+		    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		    //return results[1] || 0;
+		    if (results==null){
+		        return null;
+		     }
+		     else{
+		        return results[1] || 0;
+		     }
+		}
+		var i = $.urlParam('p')?$.urlParam('p'):1;
+				
+		$.ajax({
+			type:"POST",
+			async: false,
+			url: "../admin/restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
+			/* data: {"page":i, "ok":ok}, */
+			data: {"page":i},
+			dataType:"json",
+			success: function (data) {
 				var json = JSON.stringify(data);
 				//alert(json);
 				ajaxData = data;
-				//test();
-				/* okButton.click(function() {
-			 		alert("hi");
-					var index = okButton.index($(this));
-					//alert(return_first);
-				}) */
-			});
-		}
+				//alert("success");
+			}
+		});
+		//alert(ajaxData[1].name);
 		
-		num.click(function(){
-			i = num.index($(this))+1;
-			alert("page: " + i);
-			
-			$.ajax({
-				type:"POST",
-				url: "../admin/restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
-				data: {"page":i},
-				dataType:"json"
-			}).done(function(data){
-				var json = JSON.stringify(data);
-				alert(json);
-				ajaxData = data;
-			});
-			
-		})
-		
-		okButton.click(function(){
-			alert(ajaxData[1].name);
-		})
-		
-		
-		
-		//alert(return_first);
-		/* okButton.click(function() {
-		 		//alert("hi");
+		okButton.click(function() {
 				var index = okButton.index($(this));
-				alert(return_first);
-		}) */
+				alert(ajaxData[index].name);
+				
+				$.ajax({
+					type:"POST",
+					//async: false,
+					url: "restaurant?${_csrf.parameterName}=${_csrf.token}",
+					data: {
+						"restaurantId":ajaxData[index].id,
+						"name":ajaxData[index].name,
+						"regDate":ajaxData[index].regDate
+					},
+					dataType:"text",
+					success: function (data) {
+						alert("success");
+					}
+				});
+				
+			location.reload();
+		})
 		
-
-		
-
 		/* $.getJSON("restaurant-ajax")
 				.done(function(data) {
 					//alert(data.length);
@@ -195,6 +186,7 @@
 					})
 				}); */
 
-		});
+		
+	});
 	</script>
 		
