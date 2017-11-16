@@ -23,4 +23,15 @@ public class HomeController {
 
 		return "home.chat";
 	}
+	@RequestMapping("policyservice")
+	public String policyservice() {
+
+		return "home.policyservice";
+	}
+	@RequestMapping("policyprivacy")
+	public String policyprivacy() {
+
+		return "home.policyprivacy";
+	}
+	
 }

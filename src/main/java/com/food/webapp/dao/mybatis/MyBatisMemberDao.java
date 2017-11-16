@@ -48,6 +48,17 @@ public class MyBatisMemberDao implements MemberDao {
 		
 		return memberDao.get(loginEmail);
 	}
+
+	@Override
+	public int sameCheckId(Member member) throws Exception {
+		MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
+		return memberDao.sameCheckId(member);
+	}
+	@Override
+	public Object getMember(String nickName) {
+		MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
+		return memberDao.getMember(nickName);
+	}
 }
 
 

@@ -12,6 +12,26 @@
 		insert into Comment(id, content, point, memberId, restaurantId)
 		value(#{id}, #{content},#{point},#{memberId},#{restaurantId})
 	</insert>
+		
+	<select id="getNextId" resultType="int">
+		select ifnull(max(cast(id as unsigned)), 0) + 1
+		from Comment	
+	</select>
 	
+	<insert id="insertCmtImage" parameterType="com.food.webapp.entity.CmtImage">
+		<selectKey order="BEFORE" keyProperty="id" resultType="int">
+			select IFNULL(max(cast(id as unsigned)), 0)+1 from CmtImage
+		</selectKey>	
+		insert into CmtImage(id, src, commentId, memberId)
+		value(#{id}, #{src},#{commentId},#{memberId})
+	</insert>
+	
+	<insert id="insertMenuImage" parameterType="com.food.webapp.entity.RestaurantMenu">
+		<selectKey order="BEFORE" keyProperty="id" resultType="int">
+			select IFNULL(max(cast(id as unsigned)), 0)+1 from RestaurantMenu
+		</selectKey>	
+		insert into RestaurantMenu(id, src, restaurantId, memberId)
+		value(#{id}, #{src},#{restaurantId},#{memberId})
+	</insert>
 	
 </mapper>

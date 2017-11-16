@@ -23,4 +23,8 @@ public interface MemberDao {
 	
 	int pointUp(String id);
 	public Member get(String loginEmail);
+
+	public int sameCheckId(Member member) throws Exception;
+
+	public Object getMember(String nickName);
 }
