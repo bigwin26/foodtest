@@ -49,12 +49,18 @@
 						<td>번호</td>
 						<td>내용</td>
 						<td>작성자</td>
+						<td>사진</td>
 					</tr>
 					<c:forEach var="c" items="${cmtList}">					
 						<tr>
 							<td>${c.id}</td>
 							<td class="">${c.content}</td>
 							<td>${c.writerName}</td>
+							<td>
+								<c:forEach var="c" items="">
+								
+								</c:forEach>
+							</td>
 						</tr>
 					</c:forEach>
 					<tr>

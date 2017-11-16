@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.food.webapp.dao.RestaurantDao;
+import com.food.webapp.entity.CmtImage;
 import com.food.webapp.entity.CommentView;
 import com.food.webapp.entity.Restaurant;
 import com.food.webapp.entity.RestaurantView;
@@ -110,6 +111,20 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 		int result = restaurantDao.okRestaurant(restaurant);
 		
 		return result;
+	}
+
+	@Override
+	public List<CmtImage> cmtImageList(int id) {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		List<CmtImage> list = restaurantDao.cmtImageList(id);
+		return list;
+	}
+
+	@Override
+	public List<Restaurant> menuImageList(int id) {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		List<Restaurant> list = restaurantDao.menuImageList(id);
+		return list;
 	}
 	
 	
