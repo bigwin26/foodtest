@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<main id="main" />
 	<br />
 	<br />
@@ -19,7 +20,7 @@
 			<div>
 				<form action="list" method="get">
 					<select id="selectBox" name="selectBox">
-						<option value="3" selected="selected">전체</option>
+						<option value="3">전체</option>
 						<option value="0">승인대기</option>
 						<option value="1">승인</option>
 						<option value="2">비승인</option>
@@ -42,19 +43,37 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="n" items="${list}">					
-					<tr>
-						<td>${n.id}</td>
-						<td class=""><a href="../customer/restaurant/${n.id}">${n.name} (${n.countCmt})</a></td>
-						<td>${n.writerName}</td>
-						<td>${n.writerImage}</td>
-						<td>${n.image}</td>
-						<td>${n.tip}</td>
-						<td>${n.regDate}</td>
-						<td>${n.ok}</td>
-						<td><input class="ok" type="button" value="승인"/></td>
-					</tr>
-					</c:forEach>
+					<form>
+						<c:forEach var="n" items="${list}">					
+							<tr>
+								<td>${n.id}</td>
+								<td class=""><a href="../customer/restaurant/${n.id}">${n.name} (${n.countCmt})</a></td>
+								<td>${n.writerName}</td>
+								<td>${n.writerImage}</td>
+								<td>${n.image}</td>
+								<td>${n.tip}</td>
+								<td><fmt:formatDate	pattern="yyyy-MM-dd kk:mm:ss" value="${n.regDate}" /></td>
+								<%-- <td>${n.ok}</td> --%>
+								<c:if test="${'0' eq n.ok}">
+									<td>승인대기</td>
+									<td><input class="ok" type="button" value="승인"/></td>
+									<td><input class="deny" type="button" value="비승인"/></td>
+								</c:if>
+								<c:if test="${'1' eq n.ok}">
+									<td>승인</td>
+								</c:if>
+								<c:if test="${'2' eq n.ok}">
+									<td>비승인</td>
+									<td><input type="checkbox" value="${n.id}"/></td>
+								</c:if>
+							</tr>
+						</c:forEach>
+						<tr>
+							<td>
+								<input type="submit" value="삭제" />
+							</td>
+						</tr>
+					</form>
 				</tbody>
 			</table>
 			
@@ -94,6 +113,7 @@
 	$(function(){
 		//var okButton = $("input[value='승인']");
 		var okButton = $(".ok");
+		var denyButton = $(".deny");
 		var num = $(".num");
 		var ajaxData;
 		
@@ -109,15 +129,16 @@
 		}
 		var page = $.urlParam('p')?$.urlParam('p'):1;
 		var ok = $.urlParam('o')?$.urlParam('o'):3;
-		//alert(ok);
+		$("#selectBox > option[value="+ok+"]").prop("selected", true);
 		
 		$("#selectBox").change(function(){
 			ok = $(this).val();
 			var pathName = $(location).attr('pathname');
 			var url = pathName + "?p=" + page + "&o=" + ok;
 			
+			//alert($("#selectBox > option[value="+ok+"]").text());
+			//$("#selectBox > option[value="+ok+"]").prop("selected", true);
 			$(location).attr('href', url);
-			
 		});
 				
 		$.ajax({
@@ -134,7 +155,7 @@
 				//alert("success");
 			}
 		});
-		//alert(ajaxData[1].name);
+		//alert(ajaxData[0].name);
 		
 		okButton.click(function() {
 				var index = okButton.index($(this));
@@ -147,7 +168,31 @@
 					data: {
 						"restaurantId":ajaxData[index].id,
 						"name":ajaxData[index].name,
-						"regDate":ajaxData[index].regDate
+						"regDate":ajaxData[index].regDate,
+						"ok":1
+					},
+					dataType:"text",
+					success: function (data) {
+						alert("success");
+					}
+				});
+				
+			location.reload();
+		})
+		
+		denyButton.click(function() {
+				var index = denyButton.index($(this));
+				alert(ajaxData[index].name);
+				
+				$.ajax({
+					type:"POST",
+					//async: false,
+					url: "restaurant?${_csrf.parameterName}=${_csrf.token}",
+					data: {
+						"restaurantId":ajaxData[index].id,
+						"name":ajaxData[index].name,
+						"regDate":ajaxData[index].regDate,
+						"ok":2
 					},
 					dataType:"text",
 					success: function (data) {
