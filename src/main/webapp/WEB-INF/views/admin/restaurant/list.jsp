@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<main id="main" />
 	<br />
 	<br />
@@ -18,11 +19,11 @@
 			<h3 class="hidden">레스토랑 목록</h3>
 			<div>
 				<form action="list" method="get">
-					<select id="f" name="f">
-						<option>선택</option>
-						<option value="wait" selected="selected">승인대기</option>
-						<option value="ok">승인</option>
-						<option value="deny">비승인</option>
+					<select id="selectBox" name="selectBox">
+						<option value="3">전체</option>
+						<option value="0">승인대기</option>
+						<option value="1">승인</option>
+						<option value="2">비승인</option>
 					</select> 
 					<!-- <input type="text" name="query" /> 
 					<input type="submit" /> -->
@@ -42,19 +43,37 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="n" items="${list}">					
-					<tr>
-						<td>${n.id}</td>
-						<td class=""><a href="restaurant/${n.id}">${n.name} (${n.countCmt})</a></td>
-						<td>${n.writerName}</td>
-						<td>${n.writerImage}</td>
-						<td>${n.image}</td>
-						<td>${n.tip}</td>
-						<td>${n.regDate}</td>
-						<td>${n.ok}</td>
-						<td><input class="ok" type="button" value="승인"/></td>
-					</tr>
-					</c:forEach>
+					<form action="restaurant-delete?${_csrf.parameterName}=${_csrf.token}" method="post">
+						<c:forEach var="n" items="${list}">					
+							<tr>
+								<td>${n.id}</td>
+								<td class=""><a href="../customer/restaurant/${n.id}">${n.name} (${n.countCmt})</a></td>
+								<td>${n.writerName}</td>
+								<td>${n.writerImage}</td>
+								<td>${n.image}</td>
+								<td>${n.tip}</td>
+								<td><fmt:formatDate	pattern="yyyy-MM-dd kk:mm:ss" value="${n.regDate}" /></td>
+								<%-- <td>${n.ok}</td> --%>
+								<c:if test="${'0' eq n.ok}">
+									<td>승인대기</td>
+									<td><input class="ok" type="button" value="승인"/></td>
+									<td><input class="deny" type="button" value="비승인"/></td>
+								</c:if>
+								<c:if test="${'1' eq n.ok}">
+									<td>승인</td>
+								</c:if>
+								<c:if test="${'2' eq n.ok}">
+									<td>비승인</td>
+									<td><input type="checkbox" name="ids" value="${n.id}"/></td>
+								</c:if>
+							</tr>
+						</c:forEach>
+						<tr>
+							<td>
+								<input type="submit" value="삭제" />
+							</td>
+						</tr>
+					</form>
 				</tbody>
 			</table>
 			
@@ -68,6 +87,7 @@
 					<c:forEach var="i" begin="0" end="4">
 						<c:if test="${startPage+i<=lastPage}">
 							<li><a class="num" href="?p=${startPage+i}">${startPage+i}</a></li>
+							<%-- <li><a class="num">${startPage+i}</a></li> --%>
 						</c:if>
 
 						<c:if test="${startPage+i>lastPage}">
@@ -78,6 +98,7 @@
 				<div>
 					<c:if test="${lastPage>=startPage+5}">
 						<a href="?p=${startPage+5}">다음</a>
+						<a>다음</a>
 					</c:if>
 				</div>
 			</div>
@@ -92,82 +113,96 @@
 	$(function(){
 		//var okButton = $("input[value='승인']");
 		var okButton = $(".ok");
+		var denyButton = $(".deny");
 		var num = $(".num");
-		var i=1;
-		/* num.click(function(){
-			i = num.index($(this))+1;
-			alert("page: " + i);
-			//i = parseInt(i);
-			//alert(num.eq(0).text());
-		}) */
-		
-		/* okButton.click(function() {
-			var index = okButton.index($(this));
-			alert("hi~");
-		}) */
-		//var ajaxData;
-		
-		//var return_first;
-		/* function callback(response) {
-			//alert("hi");
-		 	return_first = response;
-		 	alert(return_first[1].name);
-		} */
 		var ajaxData;
 		
-		if(i==1){
-			alert("page: " + i);
-			$.ajax({
-				type:"POST",
-				url: "../admin/restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
-				data: {"page":i},
-				dataType:"json"
-			}).done(function(data){
+		$.urlParam = function(name){
+		    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		    //return results[1] || 0;
+		    if (results==null){
+		        return null;
+		     }
+		     else{
+		        return results[1] || 0;
+		     }
+		}
+		var page = $.urlParam('p')?$.urlParam('p'):1;
+		var ok = $.urlParam('o')?$.urlParam('o'):3;
+		$("#selectBox > option[value="+ok+"]").prop("selected", true);
+		
+		$("#selectBox").change(function(){
+			ok = $(this).val();
+			var pathName = $(location).attr('pathname');
+			var url = pathName + "?p=" + page + "&o=" + ok;
+			
+			//alert($("#selectBox > option[value="+ok+"]").text());
+			//$("#selectBox > option[value="+ok+"]").prop("selected", true);
+			$(location).attr('href', url);
+		});
+				
+		$.ajax({
+			type:"POST",
+			async: false,
+			url: "../admin/restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
+			data: {"page":page, "ok":ok},
+			//data: {"page":page},
+			dataType:"json",
+			success: function (data) {
 				var json = JSON.stringify(data);
 				//alert(json);
 				ajaxData = data;
-				//test();
-				/* okButton.click(function() {
-			 		alert("hi");
-					var index = okButton.index($(this));
-					//alert(return_first);
-				}) */
-			});
-		}
+				//alert("success");
+			}
+		});
+		//alert(ajaxData[0].name);
 		
-		num.click(function(){
-			i = num.index($(this))+1;
-			alert("page: " + i);
-			
-			$.ajax({
-				type:"POST",
-				url: "../admin/restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
-				data: {"page":i},
-				dataType:"json"
-			}).done(function(data){
-				var json = JSON.stringify(data);
-				alert(json);
-				ajaxData = data;
-			});
-			
-		})
-		
-		okButton.click(function(){
-			alert(ajaxData[1].name);
-		})
-		
-		
-		
-		//alert(return_first);
-		/* okButton.click(function() {
-		 		//alert("hi");
+		okButton.click(function() {
 				var index = okButton.index($(this));
-				alert(return_first);
-		}) */
+				alert(ajaxData[index].name);
+				
+				$.ajax({
+					type:"POST",
+					//async: false,
+					url: "restaurant?${_csrf.parameterName}=${_csrf.token}",
+					data: {
+						"restaurantId":ajaxData[index].id,
+						"name":ajaxData[index].name,
+						"regDate":ajaxData[index].regDate,
+						"ok":1
+					},
+					dataType:"text",
+					success: function (data) {
+						alert("success");
+					}
+				});
+				
+			location.reload();
+		})
 		
-
+		denyButton.click(function() {
+				var index = denyButton.index($(this));
+				alert(ajaxData[index].name);
+				
+				$.ajax({
+					type:"POST",
+					//async: false,
+					url: "restaurant?${_csrf.parameterName}=${_csrf.token}",
+					data: {
+						"restaurantId":ajaxData[index].id,
+						"name":ajaxData[index].name,
+						"regDate":ajaxData[index].regDate,
+						"ok":2
+					},
+					dataType:"text",
+					success: function (data) {
+						alert("success");
+					}
+				});
+				
+			location.reload();
+		})
 		
-
 		/* $.getJSON("restaurant-ajax")
 				.done(function(data) {
 					//alert(data.length);
@@ -195,6 +230,7 @@
 					})
 				}); */
 
-		});
+		
+	});
 	</script>
 		
