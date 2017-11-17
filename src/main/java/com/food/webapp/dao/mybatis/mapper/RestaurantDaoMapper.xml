@@ -5,11 +5,11 @@
 
 <mapper namespace="com.food.webapp.dao.RestaurantDao">
 	
-	<!-- <select id="getList" resultType="com.food.webapp.entity.RestaurantView">
+	 <select id="getList" resultType="com.food.webapp.entity.RestaurantView">
 		select * from RestaurantView where ${field} like '%${param3}%' order by regDate desc limit ${(page-1)*10}, 10
-	</select> -->
+	</select> 
 	
-	<select id="getList" resultType="com.food.webapp.entity.RestaurantView">
+	<select id="getListAdmin" resultType="com.food.webapp.entity.RestaurantView">
 		select * from RestaurantView where ${field} like '%${param3}%' 
 		<if test="ok != 3 and page>0">
    			and ok=${ok} order by regDate desc limit ${(page-1)*10}, 10

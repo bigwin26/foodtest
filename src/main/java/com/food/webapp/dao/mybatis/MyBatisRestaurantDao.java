@@ -19,20 +19,20 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<Restaurant> getList(int page, String field, String query, int ok) {
+	public List<Restaurant> getListAdmin(int page, String field, String query, int ok) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
-		List<Restaurant> list = restaurantDao.getList(page, field, query, ok);
+		List<Restaurant> list = restaurantDao.getListAdmin(page, field, query, ok);
 		
 		return list;
 	}
 	
-	/*@Override
+	@Override
 	public List<Restaurant> getList(int page, String field, String query) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
 		List<Restaurant> list = restaurantDao.getList(page, field, query);
 		
 		return list;
-	}*/
+	}
 	
 	/*@Override
 	public List<Restaurant> getListAll() {

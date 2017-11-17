@@ -87,7 +87,7 @@ public class RestaurantController {
 		System.out.println("restaurant page: " + page);
 		System.out.println("restaurant ok: " + ok);
 		
-		model.addAttribute("list", restaurantDao.getList(page, field, query, ok));
+		model.addAttribute("list", restaurantDao.getListAdmin(page, field, query, ok));
 		model.addAttribute("count", restaurantDao.getCount());
 		
 		return "admin.restaurant.list";
@@ -108,7 +108,7 @@ public class RestaurantController {
 		System.out.println("restaurant-ajax page: " + page);
 		System.out.println("restaurant-ajax ok: " + ok);
 		
-		List<Restaurant> list = restaurantDao.getList(page1, field, query, ok1);
+		List<Restaurant> list = restaurantDao.getListAdmin(page1, field, query, ok1);
 		model.addAttribute("list", list);
 
 		String json = "";
