@@ -31,4 +31,5 @@ public interface RestaurantDao {
 	int okRestaurant(Restaurant restaurant);
 	List<CmtImage> cmtImageList(int id);
 	List<RestaurantMenu> menuImageList(int id);
+	int deleteOk(int id);
 }

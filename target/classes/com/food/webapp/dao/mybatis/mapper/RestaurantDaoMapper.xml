@@ -79,5 +79,9 @@
 	<select id="menuImageList" resultType="com.food.webapp.entity.RestaurantMenu">
 		select * from RestaurantMenu where restuarantId = #{id}
 	</select>
+	
+	<delete id="deleteOk" parameterType="java.lang.Integer">
+		delete from Restaurant where id = #{id}
+	</delete>
 
 </mapper>

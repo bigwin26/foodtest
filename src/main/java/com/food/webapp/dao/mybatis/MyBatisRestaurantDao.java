@@ -135,6 +135,13 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 		List<RestaurantMenu> list = restaurantDao.menuImageList(id);
 		return list;
 	}
+
+	@Override
+	public int deleteOk(int id) {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		int result = restaurantDao.deleteOk(id);
+		return result;
+	}
 	
 	
 	

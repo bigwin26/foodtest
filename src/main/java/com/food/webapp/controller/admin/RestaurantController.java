@@ -153,6 +153,16 @@ public class RestaurantController {
 		return "aa";
 	}
 	
+	@RequestMapping(value="restaurant-delete", method=RequestMethod.POST)
+	public String delete(int[] ids, Restaurant restaurant, HttpServletRequest request)  {
+		int result = 0;
+		for(int i=0;i<ids.length;i++) {
+			result += restaurantDao.deleteOk(ids[i]);
+			System.out.println(ids[i]);
+		};
+		
+		return "redirect:restaurant";
+	}
 	
 /*	@RequestMapping("restaurant/{id}")
 	public String detail(@PathVariable("id") int id,

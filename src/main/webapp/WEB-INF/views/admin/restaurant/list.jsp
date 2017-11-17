@@ -43,7 +43,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<form>
+					<form action="restaurant-delete?${_csrf.parameterName}=${_csrf.token}" method="post">
 						<c:forEach var="n" items="${list}">					
 							<tr>
 								<td>${n.id}</td>
@@ -64,7 +64,7 @@
 								</c:if>
 								<c:if test="${'2' eq n.ok}">
 									<td>비승인</td>
-									<td><input type="checkbox" value="${n.id}"/></td>
+									<td><input type="checkbox" name="ids" value="${n.id}"/></td>
 								</c:if>
 							</tr>
 						</c:forEach>
