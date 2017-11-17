@@ -70,11 +70,12 @@ public class Restaurant {
 		this.ok = ok;
 	}
 	
-	public Restaurant(int memberId, String name,  String date) {
+	public Restaurant(int memberId, String name,  String date, int ok) {
 		
 		this.name = name;
 		this.memberId = memberId;
 		this.date = date;
+		this.ok = ok;
 	}
 
 	public Date getRegDate() {

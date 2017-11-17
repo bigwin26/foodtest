@@ -39,7 +39,7 @@ public class RestaurantController {
 	@Autowired
 	MemberDao memberDao;
 	
-	@RequestMapping(value="restaurant", method=RequestMethod.GET)
+	/*@RequestMapping(value="restaurant", method=RequestMethod.GET)
 	public String restaurant(
 					@RequestParam(value="p", defaultValue="1")  Integer page,
 					@RequestParam(value="f", defaultValue="name")  String field,
@@ -74,9 +74,9 @@ public class RestaurantController {
 		//System.out.println(json);
 		
 		return json;
-	}
+	}*/
 	
-	/*@RequestMapping(value="restaurant", method=RequestMethod.GET)
+	@RequestMapping(value="restaurant", method=RequestMethod.GET)
 	public String restaurant(
 					@RequestParam(value="p", defaultValue="1")  Integer page,
 					@RequestParam(value="f", defaultValue="name")  String field,
@@ -119,7 +119,7 @@ public class RestaurantController {
 		//System.out.println(json);
 		
 		return json;
-	}*/
+	}
 	
 	@RequestMapping(value="restaurant", method=RequestMethod.POST)
 	@ResponseBody
@@ -128,6 +128,7 @@ public class RestaurantController {
 			int restaurantId, 
 			String name, 
 			Date regDate, 
+			int ok,
 			HttpServletRequest request) throws IOException {
 		
 		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
@@ -140,10 +141,13 @@ public class RestaurantController {
 		restaurant.setId(restaurantId);
 		restaurant.setName(name);
 		restaurant.setDate(date);
+		restaurant.setOk(ok);
 		
 		int n = restaurantDao.okRestaurant(restaurant);
 		if(n>0)
-			System.out.println("success");
+			System.out.println("update success");
+		else
+			System.out.println("update fail");
 		
 		//return "redirect:../restaurant";
 		return "aa";

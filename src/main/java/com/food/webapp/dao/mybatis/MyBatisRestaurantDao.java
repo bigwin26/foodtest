@@ -18,21 +18,21 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	/*@Override
+	@Override
 	public List<Restaurant> getList(int page, String field, String query, int ok) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
 		List<Restaurant> list = restaurantDao.getList(page, field, query, ok);
 		
 		return list;
-	}*/
+	}
 	
-	@Override
+	/*@Override
 	public List<Restaurant> getList(int page, String field, String query) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
 		List<Restaurant> list = restaurantDao.getList(page, field, query);
 		
 		return list;
-	}
+	}*/
 	
 	/*@Override
 	public List<Restaurant> getListAll() {
@@ -108,9 +108,9 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 
 	@Override
-	public int okRestaurant(int id, String name, String date) {
+	public int okRestaurant(int id, String name, String date, int ok) {
 		
-		return okRestaurant(new Restaurant(id, name, date));
+		return okRestaurant(new Restaurant(id, name, date, ok));
 	}
 
 	@Override
