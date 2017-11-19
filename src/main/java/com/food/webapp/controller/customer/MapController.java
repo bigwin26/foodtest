@@ -24,7 +24,7 @@ public class MapController {
 	@RequestMapping("map")
 	public String map(Model model) {
 		
-		model.addAttribute("list", restaurantDao.getListAll());
+		model.addAttribute("list", restaurantDao.getOkList());
 		
 		return "customer.map.list";
 	}
@@ -33,9 +33,9 @@ public class MapController {
 	@ResponseBody
 	public String mapAjax(Model model) {
 		
-		List<Restaurant> list = restaurantDao.getListAll();
+		List<Restaurant> list = restaurantDao.getOkList();
 		
-		model.addAttribute("list", restaurantDao.getListAll());
+		model.addAttribute("list", restaurantDao.getOkList());
 
 		String json = "";
 		

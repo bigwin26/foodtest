@@ -34,18 +34,26 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 		return list;
 	}
 	
-	/*@Override
-	public List<Restaurant> getListAll() {
+	@Override
+	public List<Restaurant> getOkList() {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
-		List<Restaurant> list = restaurantDao.getListAll();
+		List<Restaurant> list = restaurantDao.getOkList();
 		
 		return list;
-	}*/
+	}
 	
 	@Override
 	public RestaurantView get(int id) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
 		return restaurantDao.get(id);
+	}
+	
+	@Override
+	public int getCountAdmin(Restaurant restaurant) {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		int result = restaurantDao.getCountAdmin(restaurant);
+		
+		return result;
 	}
 	
 	@Override
@@ -142,9 +150,6 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 		int result = restaurantDao.deleteOk(id);
 		return result;
 	}
-	
-	
-	
 
 	
 

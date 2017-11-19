@@ -17,8 +17,9 @@ public interface RestaurantDao {
 
 	List<Restaurant> getListAdmin(@Param("page")int page, @Param("field")String field, String query, @Param("ok")int ok);
 	List<Restaurant> getList(@Param("page")int page, @Param("field")String field, String query);
-	//List<Restaurant> getListAll();
+	List<Restaurant> getOkList();
 	int getCount();
+	int getCountAdmin(Restaurant restaurant);
 	RestaurantView get(int id);
 	RestaurantView getPrev(int id);
 	RestaurantView getNext(int id);
