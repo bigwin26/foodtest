@@ -39,7 +39,7 @@ public class RestaurantController {
 	@Autowired
 	MemberDao memberDao;
 	
-	@RequestMapping(value="restaurant", method=RequestMethod.GET)
+	/*@RequestMapping(value="restaurant", method=RequestMethod.GET)
 	public String restaurant(
 					@RequestParam(value="p", defaultValue="1")  Integer page,
 					@RequestParam(value="f", defaultValue="name")  String field,
@@ -74,9 +74,9 @@ public class RestaurantController {
 		//System.out.println(json);
 		
 		return json;
-	}
+	}*/
 	
-	/*@RequestMapping(value="restaurant", method=RequestMethod.GET)
+	@RequestMapping(value="restaurant", method=RequestMethod.GET)
 	public String restaurant(
 					@RequestParam(value="p", defaultValue="1")  Integer page,
 					@RequestParam(value="f", defaultValue="name")  String field,
@@ -87,7 +87,7 @@ public class RestaurantController {
 		System.out.println("restaurant page: " + page);
 		System.out.println("restaurant ok: " + ok);
 		
-		model.addAttribute("list", restaurantDao.getList(page, field, query, ok));
+		model.addAttribute("list", restaurantDao.getListAdmin(page, field, query, ok));
 		model.addAttribute("count", restaurantDao.getCount());
 		
 		return "admin.restaurant.list";
@@ -108,7 +108,7 @@ public class RestaurantController {
 		System.out.println("restaurant-ajax page: " + page);
 		System.out.println("restaurant-ajax ok: " + ok);
 		
-		List<Restaurant> list = restaurantDao.getList(page1, field, query, ok1);
+		List<Restaurant> list = restaurantDao.getListAdmin(page1, field, query, ok1);
 		model.addAttribute("list", list);
 
 		String json = "";
@@ -119,7 +119,7 @@ public class RestaurantController {
 		//System.out.println(json);
 		
 		return json;
-	}*/
+	}
 	
 	@RequestMapping(value="restaurant", method=RequestMethod.POST)
 	@ResponseBody
@@ -128,6 +128,7 @@ public class RestaurantController {
 			int restaurantId, 
 			String name, 
 			Date regDate, 
+			int ok,
 			HttpServletRequest request) throws IOException {
 		
 		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
@@ -140,15 +141,28 @@ public class RestaurantController {
 		restaurant.setId(restaurantId);
 		restaurant.setName(name);
 		restaurant.setDate(date);
+		restaurant.setOk(ok);
 		
 		int n = restaurantDao.okRestaurant(restaurant);
 		if(n>0)
-			System.out.println("success");
+			System.out.println("update success");
+		else
+			System.out.println("update fail");
 		
 		//return "redirect:../restaurant";
 		return "aa";
 	}
 	
+	@RequestMapping(value="restaurant-delete", method=RequestMethod.POST)
+	public String delete(int[] ids, Restaurant restaurant, HttpServletRequest request)  {
+		int result = 0;
+		for(int i=0;i<ids.length;i++) {
+			result += restaurantDao.deleteOk(ids[i]);
+			System.out.println(ids[i]);
+		};
+		
+		return "redirect:restaurant";
+	}
 	
 /*	@RequestMapping("restaurant/{id}")
 	public String detail(@PathVariable("id") int id,
