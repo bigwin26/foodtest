@@ -3,6 +3,7 @@ package com.food.webapp.dao.mybatis;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -49,12 +50,28 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 	
 	@Override
+	public int getCountAdmin(@Param("field")String field, @Param("query")String query, @Param("ok")int ok) {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		int result = restaurantDao.getCountAdmin(field, query, ok);
+		
+		return result;
+	}
+	
+	/*@Override
 	public int getCountAdmin(Restaurant restaurant) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
 		int result = restaurantDao.getCountAdmin(restaurant);
 		
 		return result;
-	}
+	}*/
+	
+	/*@Override
+	public int getCountAdmin(int ok) {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		int result = restaurantDao.getCountAdmin(ok);
+		
+		return result;
+	}*/
 	
 	@Override
 	public int getCount() {

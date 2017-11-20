@@ -27,10 +27,14 @@
 		select * from RestaurantView where id = #{id}
 	</select>
 	
-	<select id="getCountAdmin"  parameterType="com.food.webapp.entity.Restaurant" resultType="int">
+	<select id="getCountAdmin" parameterType="com.food.webapp.entity.RestaurantView" resultType="int">
 		select count(*) count FROM RestaurantView
 		<if test="ok != 3">
-   			where ok=${ok}
+   			<!-- and ok=${ok} -->
+   			where ${field} like '%${query}%'and ok=${ok}
+  		</if>
+  		<if test="ok == 3">
+   			 where ${field} like '%${query}%'
   		</if>
 		<!-- select count(if(ok=#{ok}, ok, null)) count FROM RestaurantView; -->
 	</select>

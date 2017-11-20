@@ -19,14 +19,15 @@
 			<h3 class="hidden">레스토랑 목록</h3>
 			<div>
 				<form action="list" method="get">
+					<label class="hidden">검색분류</label>
 					<select id="selectBox" name="selectBox">
 						<option value="3">전체</option>
 						<option value="0">승인대기</option>
 						<option value="1">승인</option>
 						<option value="2">비승인</option>
 					</select> 
-					<!-- <input type="text" name="query" /> 
-					<input type="submit" /> -->
+					<input type="text" name="query" />
+					<input id="search" type="button" value="검색"/>
 				</form>
 			</div>
 			<table class="">
@@ -80,10 +81,10 @@
 			<c:set var="page" value="${param.p}" /> 
 			<c:set var="startPage"	value="${page-(page-1)%5 }" />
 			<c:set var="lastPage" value="${fn:substringBefore((count%10 ==0 ? count / 10 : count/10+1),'.')}" /><!-- 삼항연산자 -->
-			<div>count: ${count}</div>
+			<%-- <div>count: ${count}</div>
 			<div>page: ${page}</div>
 			<div>startPage: ${startPage}</div>
-			<div>lastPage: ${lastPage}</div>	
+			<div>lastPage: ${lastPage}</div> --%>	
 			<div>
 				<div><a href="?p=1">이전</a></div>
 				<ul>
@@ -119,6 +120,7 @@
 		var okButton = $(".ok");
 		var denyButton = $(".deny");
 		var pageNum = $(".pageNum");
+		var searchButton = $("#search");
 		var ajaxData;
 		
 		$.urlParam = function(name){
@@ -131,8 +133,11 @@
 		        return results[1] || 0;
 		     }
 		}
+		
 		var page = $.urlParam('p')?$.urlParam('p'):1;
 		var ok = $.urlParam('o')?$.urlParam('o'):3;
+		var query = $.urlParam('q')?$.urlParam('q'):"";
+		
 		$("#selectBox > option[value="+ok+"]").prop("selected", true);
 		
 		/* pageNum.click(function(){
@@ -148,26 +153,43 @@
 		
 		for(var i=0; i<pageNum.length; i++){
 			var pathName = $(location).attr('pathname');
-			var url = pathName + "?p=" + i + "&o=" + ok;
-			
+			var url = pathName + "?p=" + (i+1) + "&o=" + ok;
+			//alert(url);
 			pageNum.eq(i).attr("href", url);
 		}
 		
 		$("#selectBox").change(function(){
 			ok = $(this).val();
 			var pathName = $(location).attr('pathname');
-			var url = pathName + "?p=" + page + "&o=" + ok;
-			alert(url);
+			var url = pathName + "?p=" + 1 + "&o=" + ok;
+			//alert(url);
 			//alert($("#selectBox > option[value="+ok+"]").text());
 			//$("#selectBox > option[value="+ok+"]").prop("selected", true);
 			$(location).attr('href', url);
 		});
-				
+		
+		searchButton.click(function(){
+			var query = $("input[name='query']").val();
+			var pathName = $(location).attr('pathname');
+			var url = pathName + "?p=" + page + "&o=" + ok + "&q=" + query;
+			//alert(query);
+			
+			$(location).attr('href', url);
+		})
+		
+		$("input[name='query']").keypress(function(event){
+		    if (event.which == 13) {
+		    	searchButton.click();
+		        return false;
+		    }
+		});
+		
 		$.ajax({
 			type:"POST",
 			async: false,
 			url: "../admin/restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
-			data: {"page":page, "ok":ok},
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+			data: {"page":page, "ok":ok, "q":query},
 			//data: {"page":page},
 			dataType:"json",
 			success: function (data) {
@@ -224,34 +246,6 @@
 				
 			location.reload();
 		})
-		
-		/* $.getJSON("restaurant-ajax")
-				.done(function(data) {
-					//alert(data.length);
-					okButton.click(function() {
-						var index = okButton.index($(this));
-						//alert(index);
-						//alert(okButton.index($(this)));
-			
-						alert(data[index].id + ": " + data[index].name);
-						//alert(data[index].regDate);
-			
-						var formData = new FormData();
-						formData.append("name", data[index].name);
-						formData.append("restaurantId", data[index].id);
-						formData.append("regDate", data[index].regDate);
-			
-						var xhr = new XMLHttpRequest();
-			
-						xhr.onerror = function(e) {
-							alert("예기치 못한 오류");
-						};
-						xhr.open("POST", "?${_csrf.parameterName}=${_csrf.token}", true);
-						xhr.send(formData);
-			
-					})
-				}); */
-
 		
 	});
 	</script>
