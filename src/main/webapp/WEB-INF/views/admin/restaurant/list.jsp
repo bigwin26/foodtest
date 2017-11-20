@@ -80,14 +80,18 @@
 			<c:set var="page" value="${param.p}" /> 
 			<c:set var="startPage"	value="${page-(page-1)%5 }" />
 			<c:set var="lastPage" value="${fn:substringBefore((count%10 ==0 ? count / 10 : count/10+1),'.')}" /><!-- 삼항연산자 -->
-						
+			<div>count: ${count}</div>
+			<div>page: ${page}</div>
+			<div>startPage: ${startPage}</div>
+			<div>lastPage: ${lastPage}</div>	
 			<div>
 				<div><a href="?p=1">이전</a></div>
 				<ul>
 					<c:forEach var="i" begin="0" end="4">
 						<c:if test="${startPage+i<=lastPage}">
-							<li><a class="num" href="?p=${startPage+i}">${startPage+i}</a></li>
-							<%-- <li><a class="num">${startPage+i}</a></li> --%>
+							<li><a class="pageNum">${startPage+i}</a></li>
+							<%-- <li><a class="pageNum" href="?p=${startPage+i}">${startPage+i}</a></li> --%>
+							<%-- <li><a class="pageNum">${startPage+i}</a></li> --%>
 						</c:if>
 
 						<c:if test="${startPage+i>lastPage}">
@@ -114,7 +118,7 @@
 		//var okButton = $("input[value='승인']");
 		var okButton = $(".ok");
 		var denyButton = $(".deny");
-		var num = $(".num");
+		var pageNum = $(".pageNum");
 		var ajaxData;
 		
 		$.urlParam = function(name){
@@ -131,11 +135,29 @@
 		var ok = $.urlParam('o')?$.urlParam('o'):3;
 		$("#selectBox > option[value="+ok+"]").prop("selected", true);
 		
+		/* pageNum.click(function(){
+			var index = pageNum.index($(this))+1;
+			//alert(index);
+			//alert("p: "+ index + "o: " + ok);
+			
+			var pathName = $(location).attr('pathname');
+			var url = pathName + "?p=" + index + "&o=" + ok;
+			
+			$(location).attr('href', url);
+		}) */
+		
+		for(var i=0; i<pageNum.length; i++){
+			var pathName = $(location).attr('pathname');
+			var url = pathName + "?p=" + i + "&o=" + ok;
+			
+			pageNum.eq(i).attr("href", url);
+		}
+		
 		$("#selectBox").change(function(){
 			ok = $(this).val();
 			var pathName = $(location).attr('pathname');
 			var url = pathName + "?p=" + page + "&o=" + ok;
-			
+			alert(url);
 			//alert($("#selectBox > option[value="+ok+"]").text());
 			//$("#selectBox > option[value="+ok+"]").prop("selected", true);
 			$(location).attr('href', url);

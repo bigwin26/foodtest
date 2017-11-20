@@ -78,17 +78,22 @@ public class RestaurantController {
 	
 	@RequestMapping(value="restaurant", method=RequestMethod.GET)
 	public String restaurant(
+					Restaurant restaurant,
 					@RequestParam(value="p", defaultValue="1")  Integer page,
 					@RequestParam(value="f", defaultValue="name")  String field,
 					@RequestParam(value="q", defaultValue="") String query,
-					@RequestParam(value="o", defaultValue="3") Integer ok,
+					@RequestParam(value="o", defaultValue="3") int ok,
 					Model model) {
 		
 		System.out.println("restaurant page: " + page);
 		System.out.println("restaurant ok: " + ok);
 		
+		restaurant.setOk(ok);
 		model.addAttribute("list", restaurantDao.getListAdmin(page, field, query, ok));
-		model.addAttribute("count", restaurantDao.getCount());
+		model.addAttribute("count", restaurantDao.getCountAdmin(restaurant));
+		
+		System.out.println("list:" + restaurantDao.getListAdmin(page, field, query, ok).size());
+		System.out.println("count: " + restaurantDao.getCountAdmin(restaurant));
 		
 		return "admin.restaurant.list";
 	}
