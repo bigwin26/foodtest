@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -90,10 +92,10 @@ public class RestaurantController {
 		
 		restaurant.setOk(ok);
 		model.addAttribute("list", restaurantDao.getListAdmin(page, field, query, ok));
-		model.addAttribute("count", restaurantDao.getCountAdmin(restaurant));
+		model.addAttribute("count", restaurantDao.getCountAdmin(field, query, ok));
 		
 		System.out.println("list:" + restaurantDao.getListAdmin(page, field, query, ok).size());
-		System.out.println("count: " + restaurantDao.getCountAdmin(restaurant));
+		System.out.println("count: " + restaurantDao.getCountAdmin(field, query, ok));
 		
 		return "admin.restaurant.list";
 	}
@@ -105,11 +107,12 @@ public class RestaurantController {
 					@RequestParam(value="f", defaultValue="name")  String field,
 					@RequestParam(value="q", defaultValue="") String query,
 					String ok,
-					Model model) {
+					Model model) throws UnsupportedEncodingException {
 		
 		int page1 = Integer.parseInt(page);
 		int ok1 = Integer.parseInt(ok);
-		
+		query = URLDecoder.decode(query,"UTF-8");
+		System.out.println("restaurant-ajax query:" + query);
 		System.out.println("restaurant-ajax page: " + page);
 		System.out.println("restaurant-ajax ok: " + ok);
 		
