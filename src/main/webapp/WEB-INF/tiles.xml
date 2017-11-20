@@ -27,6 +27,10 @@
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
 	</definition>
 	
+	<definition name="member.login" template="/WEB-INF/views/inc/login-layout.jsp">
+		<put-attribute name="main" value="/WEB-INF/views/member/login.jsp" />
+	</definition>
+	
 	<definition name="member.*" template="/WEB-INF/views/inc/sub-layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/inc/member-header.jsp" />
 		<put-attribute name="main" value="/WEB-INF/views/member/{1}.jsp" />
