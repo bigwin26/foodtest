@@ -128,7 +128,7 @@ top: 6px;
 				</security:authorize>
 				
 				<c:if test="${!empty pageContext.request.userPrincipal}">
-							<li><a href="">내정보</a></li>
+							<li><a href="${ctx}/member/login/${nickName}">내정보</a></li>
 						</c:if>
 
 
