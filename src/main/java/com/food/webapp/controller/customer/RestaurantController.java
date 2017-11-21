@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -109,17 +110,16 @@ public class RestaurantController {
 	@RequestMapping("restaurant/{id}")
 	public String detail(@PathVariable("id") int id,
 						@RequestParam(value="p", defaultValue="1")  Integer page,
-						Model model) {
+						Model model,HttpSession session) {
 		
 		
 		model.addAttribute("r", restaurantDao.get(id));
 		model.addAttribute("prev", restaurantDao.getPrev(id));
 		model.addAttribute("next", restaurantDao.getNext(id));
+		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//ï¿½Ä±ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® 
+		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//ï¿½Ä±ï¿½ ï¿½ï¿½ï¿½ï¿½
 		
-		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//ÈÄ±â ¸®½ºÆ® 
-		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//ÈÄ±â °¹¼ö
-		
-		model.addAttribute("cmtImageList", restaurantDao.cmtImageList(id));//ÈÄ±â »çÁøµé
+		model.addAttribute("cmtImageList", restaurantDao.cmtImageList(id));//ï¿½Ä±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		
 		return "customer.restaurant.detail";
 	}
@@ -150,7 +150,7 @@ public class RestaurantController {
 		File f = new File(path); 
 	      if(!f.exists()) {
 		         if(!f.mkdirs())
-		            System.out.println("µð·ºÅä¸®¸¦ »ý¼ºÇÒ ¼ö°¡ ¾ø½À´Ï´Ù.");
+		            System.out.println("ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 	      }
 	    path +=File.separator + file.getOriginalFilename();
 	    File f2 = new File(path); 

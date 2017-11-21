@@ -168,6 +168,4 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 		return result;
 	}
 
-	
-
 }
