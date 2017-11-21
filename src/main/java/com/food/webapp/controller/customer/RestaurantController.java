@@ -54,11 +54,11 @@ public class RestaurantController {
 	@RequestMapping(value="restaurant-ajax", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String restaurantAjax(
-			String page,
-			@RequestParam(value="f", defaultValue="name")  String field,
-			@RequestParam(value="q", defaultValue="") String query,
-			Model model) 
-	{
+							String page,
+							@RequestParam(value="f", defaultValue="name")  String field,
+							@RequestParam(value="q", defaultValue="") String query,
+							Model model) {
+		
 		System.out.println(page);
 		int page1 = Integer.parseInt(page);
 		List<Restaurant> list = restaurantDao.getList(page1, field, query);
@@ -68,10 +68,10 @@ public class RestaurantController {
 		Gson gson = new Gson();
 		json = gson.toJson(list);
 		
+		
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -82,9 +82,9 @@ public class RestaurantController {
 	@RequestMapping(value="restaurant-menu-ajax", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String restaurantMenuAjax(
-			String id,
-			Model model) 
-	{
+							String id,
+							Model model) {
+		
 		System.out.println(id);
 		int id1 = Integer.parseInt(id);
 		List<CmtImage> list = restaurantDao.cmtImageList(id1);
@@ -131,7 +131,11 @@ public class RestaurantController {
 	}
 	
 	@RequestMapping(value="restaurant/reg", method=RequestMethod.POST)
-	public String reg(Restaurant restaurant, MultipartFile file, HttpServletRequest request, Principal principal) throws IOException {
+	public String reg(
+					Restaurant restaurant, 
+					MultipartFile file, 
+					HttpServletRequest request, 
+					Principal principal) throws IOException {
 		
 		String loginEmail = principal.getName();
 		int loginId = memberDao.get(loginEmail).getId();
@@ -147,10 +151,10 @@ public class RestaurantController {
 	      if(!f.exists()) {
 		         if(!f.mkdirs())
 		            System.out.println("디렉토리를 생성할 수가 없습니다.");
-		      }
-	      path +=File.separator + file.getOriginalFilename();
-	      File f2 = new File(path); 
-	      file.transferTo(f2);
+	      }
+	    path +=File.separator + file.getOriginalFilename();
+	    File f2 = new File(path); 
+	    file.transferTo(f2);
 		System.out.println(path);
 		restaurant.setImage(file.getOriginalFilename());
 		restaurant.setMemberId(loginId);
