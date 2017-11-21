@@ -180,7 +180,7 @@
 			<div>
 				<label class="checkbox fl"><input id="ckb_service"
 					type="checkbox" value="Y" /><i class="check-icon"></i> <span
-					class="fs-13 fw-b">이용약관</span></label> <span class="fr"><a href=""
+					class="fs-13 fw-b">이용약관</span></label> <span class="fr"><a href="${path}/policyservice"
 					target="_blank" style="color: #222222;">내용보기</a></span>
 				<div class="clear"></div>
 			</div>
@@ -188,7 +188,7 @@
 				<label class="checkbox fl"><input id="ckb_policy"
 					type="checkbox" value="Y" /><i class="check-icon"></i> <span
 					class="fs-13 fw-b">개인정보 취급방침</span></label> <span class="fr"><a
-					href="" target="_blank" style="color: #222222;">내용보기</a></span>
+					href="${path}/policyprivacy" target="_blank" style="color: #222222;">내용보기</a></span>
 				<div class="clear"></div>
 			</div>
 			<div>
