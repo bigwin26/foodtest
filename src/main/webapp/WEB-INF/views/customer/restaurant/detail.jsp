@@ -70,13 +70,17 @@
 					<td class="">${c.content}</td>
 					<td>${c.writerName}</td>
 					<td id="cmt-image">
-						<table id="menu-images">
-							
+						<table id="menu-images">	
 						</table>
 					</td>
+					<c:if test="${sessionScope.nickName == c.writerName}">
+					<td>
+					<input type="button" value="삭제"/>
+					</td>
+					</c:if>
 				</tr>
 				</c:forEach>
-				
+					
 				<tr>
 					<td><a href="../comment/${r.id}">후기작성!</a></td>
 				</tr>
@@ -150,9 +154,10 @@
 						
 					}
 					var text = id.eq(i).text();
+					//alert(text);
 					$("#menu-images").attr('id', 'menu-images'+text).append(content);
 				}, error:function(request,status,error){
-		            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		           }
 			});
 			//alert(i);
