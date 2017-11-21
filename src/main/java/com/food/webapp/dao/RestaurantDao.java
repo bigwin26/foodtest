@@ -19,7 +19,10 @@ public interface RestaurantDao {
 	List<Restaurant> getList(@Param("page")int page, @Param("field")String field, String query);
 	List<Restaurant> getOkList();
 	int getCount();
-	int getCountAdmin(Restaurant restaurant);
+	//int getCountAdmin(@Param("field")String field, String query, Restaurant restaurant);
+	int getCountAdmin(@Param("field")String field, @Param("query")String query, @Param("ok")int ok);
+	//int getCountAdmin(Restaurant restaurant);
+	//int getCountAdmin(int ok);
 	RestaurantView get(int id);
 	RestaurantView getPrev(int id);
 	RestaurantView getNext(int id);

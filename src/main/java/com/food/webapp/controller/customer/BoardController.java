@@ -54,6 +54,7 @@ public class BoardController {
 			         Model model) {
 			      
 			      List<NoticeView> list = noticeDao.getList(1, "title", "%");
+			      
 			      model.addAttribute("list", list);
 			      
 			      /*String output = String.format("p:%s, q:%s", page, query);
@@ -63,8 +64,8 @@ public class BoardController {
 		return "customer.board.list";
 	}
 	
-	   @RequestMapping("board/{id}")
-	   public String noticeDetail(@PathVariable("id") String id,Model model) {
+	   @RequestMapping(value="board/{nickName}")
+	   public String noticeDetail(@PathVariable("nickName") String id,Model model) {
 	      
 	      model.addAttribute("n", noticeDao.get(id));
 	      model.addAttribute("prev", noticeDao.getNext(id));
@@ -74,15 +75,15 @@ public class BoardController {
 	      return "customer.board.detail";
 	   }
 	   
-	  /* @RequestMapping(value="notice/reg", method=RequestMethod.GET)
+	  @RequestMapping(value="board/reg", method=RequestMethod.GET)
 	   public String noticeReg() {
 	      
 	      return "customer.board.reg";
 	   }
 	   
-	   @RequestMapping(value="notice/reg", method=RequestMethod.POST)
+	   @RequestMapping(value="board/reg", method=RequestMethod.POST)
 	   public String noticeReg(Notice notice,MultipartFile file,HttpServletRequest request,Principal principal) throws IOException {
-	      //file.isempty() ����ڰ� ������ �������� �ʾҳ�?
+ //file.isempty() ����ڰ� ������ �������� �ʾҳ�?
 		   
 		   //title = new String(title.getBytes("ISO-8859-1"),"UTF-8");  //�ѱ۱��� ����
 		  // System.out.println(title);
@@ -93,10 +94,12 @@ public class BoardController {
 		  // Date curdate2 = cal.getTime();
 		   int year = cal.get(Calendar.YEAR);
 		   
-		   SimpleDateFormat fmt = new SimpleDateFormat("hh:mm:ss"); //��¥ ��¹�3
-		   fmt.format(null);
+		   /*SimpleDateFormat fmt = new SimpleDateFormat("hh:mm:ss"); //��¥ ��¹�3
+		   fmt.format(arg0);*/
 		   String nextId = noticeDao.getNextId();
-		   
+		   String loginEmail = principal.getName();
+		   String loginId = memberDao.get(loginEmail).getnickName();
+		   System.out.println(loginId);
 		   ServletContext ctx = request.getServletContext();
 		   String path = ctx.getRealPath(String.format("/resource/customer/notice"+year+"/"+nextId));
 		   
@@ -126,22 +129,22 @@ public class BoardController {
 		   //file.getInputStream();
 		   String fileName = file.getOriginalFilename();
 		   System.out.println(fileName);
-		   
-		   String writerId = "SAKURA";
-		   notice.setWriterId(writerId);
+		   notice.setId(nextId);
+		   notice.setWriterName(loginId);
+		   notice.setFileName(fileName);
 		   //int row = noticeDao.insert(title, content, writerId);
-		  //int row = service.insertAndPointUp(notice);
-		  memberDao.pointUp(principal.getName());
+		  noticeDao.insert(notice);
+		  //memberDao.pointUp(principal.getName());
 		  
-		 noticeFileDao.insert(new NoticeFile(null,fileName,nextId));
+		 /* noticeFileDao.insert(new NoticeFile(null,fileName,nextId));
 		  
-		  //Connection con = ;
-		 // con.setAutoCommit(false);
+		  Connection con = ;
+		  con.setAutoCommit(false);
 		  
-		  //Statement st = con.createStatement();
+		  Statement st = con.createStatement();*/
 		   
 	      return "redirect:../board";
-	   }*/
+	   }
 	   @RequestMapping(value="board/edit/{id}", method=RequestMethod.GET)
 	   public String noticeEdit(@PathVariable("id") String id,Model model) {
 		   
@@ -156,7 +159,7 @@ public class BoardController {
 	      int row = noticeDao.update(id, title, content);
 	      System.out.println(row);
 		   
-	      return "redirect:../../{id}";
+	      return "redirect:../{id}";
 	   }
 	   
 }

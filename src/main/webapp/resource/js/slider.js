@@ -36,7 +36,6 @@
 
     }
 
-
     _repro.nextNormal = function(position){
 
         var _self = this;
@@ -70,8 +69,6 @@
         }
     }
 
-
-
     _repro.autoPlay = function(){
         var _self = this;
 
@@ -86,10 +83,6 @@
 
     }
 
-
-
-
-
     _repro.setUrl = function(index){
         var $url = $('.main-info-slide-image').eq(index).attr('style');
 
@@ -97,7 +90,6 @@
             'background-image':'url('+$url+')'
         })
     }
-
 
     $.fn.reSlider = function(options){
         var reSlider = new Reslider();

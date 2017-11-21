@@ -63,18 +63,24 @@
 					<td>작성자</td>
 					<td>사진</td>
 				</tr>
+				
 				<c:forEach var="c" items="${cmtList}">
-					<tr class="comment">
-						<td>${c.id}</td>
-						<td class="">${c.content}</td>
-						<td>${c.writerName}</td>
-						<td id="cmt-image">
-							<table id="menu-images">
-								
-							</table>
-						</td>
-					</tr>
+				<tr class="comment">
+					<td>${c.id}</td>
+					<td class="">${c.content}</td>
+					<td>${c.writerName}</td>
+					<td id="cmt-image">
+						<table id="menu-images">	
+						</table>
+					</td>
+					<c:if test="${sessionScope.nickName == c.writerName}">
+					<td>
+					<input type="button" value="삭제"/>
+					</td>
+					</c:if>
+				</tr>
 				</c:forEach>
+					
 				<tr>
 					<td><a href="../comment/${r.id}">후기작성!</a></td>
 				</tr>
@@ -122,34 +128,41 @@
 <script type="text/javascript">
 	$(function(){
 		var id = $(".comment td:first-child");
-		for(var i =0; i<id.length; i++){
+		for(var i=0; i<id.length; i++){
 			//alert(id.eq(i).text());
+			//alert(k);
 			 $.ajax({
 				type:"POST",
 				url:"../../customer/restaurant-menu-ajax?${_csrf.parameterName}=${_csrf.token}",
 				data: {"id":id.eq(i).text()},
+				async: false,
 				dataType:"json", 
 				success:function(data){
 					//console.log(data);
+					//var json = JSON.stringify(data);
+					//alert(json);
 					var content ="";
-					for(var i=0;i<data.length;i++){
+					for(var j=0; j<data.length; j++){
+						//alert("id: " + data[i].id + ", commentId: " + data[i].commentId);
 						content += 
-		                "<tr>"+
-		                    "<td>"+data[i].id+"</td>"+
-		                    "<td><a href=restaurant/"+data[i].id+">"+data[i].src+"</a></td>"+
-		                    "<td>"+data[i].CommentId+"</td>"+
-		                    "<td>"+data[i].memberId+"</td>"+
-		                "</tr>";
-					};
+			                "<tr>"+
+			                    "<td>"+data[j].id+"</td>"+
+			                    "<td><a href=restaurant/"+data[j].id+">"+data[j].src+"</a></td>"+
+			                    "<td>"+data[j].commentId+"</td>"+
+			                    "<td>"+data[j].memberId+"</td>"+
+			                "</tr>";
+						
+					}
 					var text = id.eq(i).text();
-					alert(text);
+					//alert(text);
 					$("#menu-images").attr('id', 'menu-images'+text).append(content);
 				}, error:function(request,status,error){
-		            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		           }
 			});
 			//alert(i);
-		};
+		}
+		
 	});
 </script>
 

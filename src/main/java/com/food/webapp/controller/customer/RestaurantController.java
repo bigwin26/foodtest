@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,11 +55,11 @@ public class RestaurantController {
 	@RequestMapping(value="restaurant-ajax", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String restaurantAjax(
-			String page,
-			@RequestParam(value="f", defaultValue="name")  String field,
-			@RequestParam(value="q", defaultValue="") String query,
-			Model model) 
-	{
+							String page,
+							@RequestParam(value="f", defaultValue="name")  String field,
+							@RequestParam(value="q", defaultValue="") String query,
+							Model model) {
+		
 		System.out.println(page);
 		int page1 = Integer.parseInt(page);
 		List<Restaurant> list = restaurantDao.getList(page1, field, query);
@@ -68,10 +69,10 @@ public class RestaurantController {
 		Gson gson = new Gson();
 		json = gson.toJson(list);
 		
+		
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -82,9 +83,9 @@ public class RestaurantController {
 	@RequestMapping(value="restaurant-menu-ajax", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String restaurantMenuAjax(
-			String id,
-			Model model) 
-	{
+							String id,
+							Model model) {
+		
 		System.out.println(id);
 		int id1 = Integer.parseInt(id);
 		List<CmtImage> list = restaurantDao.cmtImageList(id1);
@@ -109,17 +110,16 @@ public class RestaurantController {
 	@RequestMapping("restaurant/{id}")
 	public String detail(@PathVariable("id") int id,
 						@RequestParam(value="p", defaultValue="1")  Integer page,
-						Model model) {
+						Model model,HttpSession session) {
 		
 		
 		model.addAttribute("r", restaurantDao.get(id));
 		model.addAttribute("prev", restaurantDao.getPrev(id));
 		model.addAttribute("next", restaurantDao.getNext(id));
+		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//ï¿½Ä±ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® 
+		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//ï¿½Ä±ï¿½ ï¿½ï¿½ï¿½ï¿½
 		
-		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//ÈÄ±â ¸®½ºÆ® 
-		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//ÈÄ±â °¹¼ö
-		
-		model.addAttribute("cmtImageList", restaurantDao.cmtImageList(id));//ÈÄ±â »çÁøµé
+		model.addAttribute("cmtImageList", restaurantDao.cmtImageList(id));//ï¿½Ä±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		
 		return "customer.restaurant.detail";
 	}
@@ -131,7 +131,11 @@ public class RestaurantController {
 	}
 	
 	@RequestMapping(value="restaurant/reg", method=RequestMethod.POST)
-	public String reg(Restaurant restaurant, MultipartFile file, HttpServletRequest request, Principal principal) throws IOException {
+	public String reg(
+					Restaurant restaurant, 
+					MultipartFile file, 
+					HttpServletRequest request, 
+					Principal principal) throws IOException {
 		
 		String loginEmail = principal.getName();
 		int loginId = memberDao.get(loginEmail).getId();
@@ -146,11 +150,11 @@ public class RestaurantController {
 		File f = new File(path); 
 	      if(!f.exists()) {
 		         if(!f.mkdirs())
-		            System.out.println("µð·ºÅä¸®¸¦ »ý¼ºÇÒ ¼ö°¡ ¾ø½À´Ï´Ù.");
-		      }
-	      path +=File.separator + file.getOriginalFilename();
-	      File f2 = new File(path); 
-	      file.transferTo(f2);
+		            System.out.println("ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+	      }
+	    path +=File.separator + file.getOriginalFilename();
+	    File f2 = new File(path); 
+	    file.transferTo(f2);
 		System.out.println(path);
 		restaurant.setImage(file.getOriginalFilename());
 		restaurant.setMemberId(loginId);

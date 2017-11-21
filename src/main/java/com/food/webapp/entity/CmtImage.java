@@ -3,7 +3,7 @@ package com.food.webapp.entity;
 public class CmtImage {
 	private int id;
 	private String src;
-	private int CommentId;
+	private int commentId;
 	private int memberId;
 	
 	
@@ -20,10 +20,10 @@ public class CmtImage {
 		this.src = src;
 	}
 	public int getCommentId() {
-		return CommentId;
+		return commentId;
 	}
 	public void setCommentId(int commentId) {
-		CommentId = commentId;
+		this.commentId = commentId;
 	}
 	public int getMemberId() {
 		return memberId;
@@ -39,7 +39,7 @@ public class CmtImage {
 		super();
 		this.id = id;
 		this.src = src;
-		CommentId = commentId;
+		this.commentId = commentId;
 		this.memberId = memberId;
 	}
 }

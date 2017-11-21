@@ -12,6 +12,8 @@
     top: 0;
     font-weight: 700;
     cursor: pointer;
+        text-decoration: none;
+    color: #ffffff;
 }
 
 .main-header{
@@ -36,10 +38,27 @@
    display: inline;
 }
 
-.main-header li:last-child{
+.main-header li:nth-child(5){
     display: inline;
+    float: right;
+    padding-right: 100px;
 }
 
+.main-header li:nth-child(6){
+    display: inline;
+    float: right;
+    padding-right: 5px;
+}
+.main-header li:nth-child(7){
+    display: inline;
+    float: right;
+}
+
+.main-header li:nth-child(8){
+    display: inline;
+    float: right;
+    padding-right: 5px;
+}
 
 .header-search-container{
 display: none;
@@ -128,7 +147,7 @@ top: 6px;
 				</security:authorize>
 				
 				<c:if test="${!empty pageContext.request.userPrincipal}">
-							<li><a href="">내정보</a></li>
+							<li><a href="${ctx}/member/login/${nickName}">내정보</a></li>
 						</c:if>
 
 
