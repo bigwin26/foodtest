@@ -86,7 +86,7 @@ public class RestaurantController {
 							String id,
 							Model model) {
 		
-		System.out.println(id);
+		//System.out.println(id);
 		int id1 = Integer.parseInt(id);
 		List<CmtImage> list = restaurantDao.cmtImageList(id1);
 		
@@ -102,7 +102,7 @@ public class RestaurantController {
 			e.printStackTrace();
 		}
 		
-		System.out.println(json);
+		//System.out.println(json);
 		return json;
 	}
 

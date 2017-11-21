@@ -66,11 +66,9 @@ public class CommentController {
 						Principal principal,
 						Model model) throws IllegalStateException, IOException {
 		
-		System.out.println("file[] length: " + file.length);
-		if(image.getOriginalFilename().equals(""))
-			System.out.println("image: 이름없다");
-		
-		//메뉴만 있는경우 (length 1) or 메뉴만 없는경우( length n, 이름없다) or 둘다 있는경우 
+		//메뉴만 있는경우 (file[0] 이름"", image 이름 존재) or 메뉴만 없는경우(file[]이름 존재, image 이름"") or 둘다 있는경우(둘다 이름존재) 
+		String checkMenuName = image.getOriginalFilename();
+		String checkFilesName = file[0].getOriginalFilename();
 		
 		String loginEmail = principal.getName();
 		int loginId = memberDao.get(loginEmail).getId();
@@ -81,20 +79,21 @@ public class CommentController {
 		ServletContext ctx = request.getServletContext();
 		String path = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d/commentImage", year,id));
 		
-		File f = new File(path); 
-		if (!f.exists()) {
-			if (!f.mkdirs())
-				System.out.println("디렉토리를 생성할 수가 없습니다.");
-		}
+		if((!checkFilesName.equals("")) && (!checkMenuName.equals(""))) {
+			
+			File f = new File(path); 
+			if (!f.exists()) {
+				if (!f.mkdirs())
+					System.out.println("디렉토리를 생성할 수가 없습니다.");
+			}
 
-		comment.setMemberId(loginId);
-		comment.setRestaurantId(id);
-		commentDao.insert(comment);
+			comment.setMemberId(loginId);
+			comment.setRestaurantId(id);
+			commentDao.insert(comment);
 
-		cmtImage.setCommentId(comment.getId());
-		cmtImage.setMemberId(loginId);
-		
-		if(file.length>0) {
+			cmtImage.setCommentId(comment.getId());
+			cmtImage.setMemberId(loginId);
+			
 			for (int i = 0; i < file.length; i++) {
 				path += File.separator + file[i].getOriginalFilename();
 				cmtImage.setSrc(file[i].getOriginalFilename());
@@ -104,26 +103,75 @@ public class CommentController {
 				path = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d/commentImage", year, id));
 				System.out.println(path);
 			}
-		}
-		
-		System.out.println(image.getOriginalFilename());
-		String menuPath = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d/menuImage", year, id));
-		File mf = new File(menuPath);
-		if (!mf.exists()) {
-			if (!mf.mkdirs())
-				System.out.println("디렉토리를 생성할 수가 없습니다.");
-		}
-		restaurantMenu.setRestaurantId(id);
-		restaurantMenu.setMemberId(loginId);
-		restaurantMenu.setSrc(image.getOriginalFilename());
-		commentDao.insertMenuImage(restaurantMenu);
-		//System.out.println("image: " + image);
-		if(image!=null) {
+			
+			//System.out.println(image.getOriginalFilename());
+			String menuPath = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d/menuImage", year, id));
+			File mf = new File(menuPath);
+			if (!mf.exists()) {
+				if (!mf.mkdirs())
+					System.out.println("디렉토리를 생성할 수가 없습니다.");
+			}
+			
+			restaurantMenu.setRestaurantId(id);
+			restaurantMenu.setMemberId(loginId);
+			restaurantMenu.setSrc(image.getOriginalFilename());
+			commentDao.insertMenuImage(restaurantMenu);
+			//System.out.println("image: " + image);
+			
 			menuPath += File.separator + image.getOriginalFilename();
 			File mf2 = new File(menuPath);
 			image.transferTo(mf2);
 			System.out.println(menuPath);
 		}
+		else if((checkFilesName.equals("")) && (!checkMenuName.equals(""))) {
+			
+			String menuPath = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d/menuImage", year, id));
+			File mf = new File(menuPath);
+			if (!mf.exists()) {
+				if (!mf.mkdirs())
+					System.out.println("디렉토리를 생성할 수가 없습니다.");
+			}
+			
+			restaurantMenu.setRestaurantId(id);
+			restaurantMenu.setMemberId(loginId);
+			restaurantMenu.setSrc(image.getOriginalFilename());
+			commentDao.insertMenuImage(restaurantMenu);
+			//System.out.println("image: " + image);
+			
+			menuPath += File.separator + image.getOriginalFilename();
+			File mf2 = new File(menuPath);
+			image.transferTo(mf2);
+			System.out.println(menuPath);
+			
+		}
+		else if((!checkFilesName.equals("")) && (checkMenuName.equals(""))) {
+			
+			File f = new File(path); 
+			if (!f.exists()) {
+				if (!f.mkdirs())
+					System.out.println("디렉토리를 생성할 수가 없습니다.");
+			}
+
+			comment.setMemberId(loginId);
+			comment.setRestaurantId(id);
+			commentDao.insert(comment);
+
+			cmtImage.setCommentId(comment.getId());
+			cmtImage.setMemberId(loginId);
+			
+			for (int i = 0; i < file.length; i++) {
+				path += File.separator + file[i].getOriginalFilename();
+				cmtImage.setSrc(file[i].getOriginalFilename());
+				commentDao.insertCmtImage(cmtImage);
+				File f2 = new File(path);
+				file[i].transferTo(f2);
+				path = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d/commentImage", year, id));
+				System.out.println(path);
+			}
+			
+		}
+		
+		
 
 		return "redirect:../restaurant/{id}";
 	}
