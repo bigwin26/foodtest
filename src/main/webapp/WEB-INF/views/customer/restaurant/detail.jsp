@@ -142,10 +142,10 @@
 		                "</tr>";
 					};
 					var text = id.eq(i).text();
-					alert(text);
+					//alert(text);
 					$("#menu-images").attr('id', 'menu-images'+text).append(content);
 				}, error:function(request,status,error){
-		            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		           }
 			});
 			//alert(i);
