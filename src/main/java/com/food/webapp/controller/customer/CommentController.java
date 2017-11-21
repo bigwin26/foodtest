@@ -114,6 +114,7 @@ public class CommentController {
 	      File mf2 = new File(menuPath); 
 	      image.transferTo(mf2);
 	      System.out.println(menuPath);
+	      
 		return "redirect:../restaurant/{id}";
 	}
 	

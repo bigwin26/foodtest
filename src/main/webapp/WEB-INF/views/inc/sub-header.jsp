@@ -7,33 +7,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <style>
+
 .main-header a{
     position: relative;
     top: 0;
     font-weight: 700;
     cursor: pointer;
-        text-decoration: none;
+     text-decoration: none;
     color: #ffffff;
 }
 
 .main-header{
-    position: fixed;
-    padding: 15px 50px 15px 50px;
-    z-index: 999;
-    width: 100%;
-
-}
-
-.main-header.show{
-    position: fixed;
+  position: fixed;
     padding: 15px 50px 15px 50px;
     z-index: 999;
     width: 100%;
     background-color: #E73524;
-    
-    
 
 }
+
 .main-header li{
    display: inline;
 }
@@ -60,16 +52,13 @@
     padding-right: 5px;
 }
 
+
 .header-search-container{
-display: none;
-}
-.header-search-container.show{
 position: fixed;
 display: inline-block;
  z-index: 1000;
 left: 42.5%;
 top: 6px;
-
 }
 
 
@@ -153,23 +142,6 @@ top: 6px;
 
     </ul>
 </div>
-<script type="text/javascript">
-
-$(document).ready(function () {
-    $(window).on("scroll",function(){ 
-    var scroll = $(window).scrollTop();  
-    
-    if(scroll>350){    	 
-    	$(".main-header").addClass("show");   
-    	$(".header-search-container").addClass("show");   
-    }else{    	 
-    	$(".main-header").removeClass("show");
-    	$(".header-search-container").removeClass("show");   
-    }; 
-    
-  });     
- });
-</script>
 
 <%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
