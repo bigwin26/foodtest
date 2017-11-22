@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.food.webapp.dao.CommentDao;
 import com.food.webapp.dao.MemberDao;
 import com.food.webapp.dao.RestaurantDao;
 import com.food.webapp.entity.CmtImage;
@@ -39,6 +40,9 @@ public class RestaurantController {
 	
 	@Autowired
 	MemberDao memberDao;
+	
+	@Autowired
+	CommentDao commentDao;
 	
 	@RequestMapping("restaurant")
 	public String restaurant(@RequestParam(value="p", defaultValue="1")  Integer page,
