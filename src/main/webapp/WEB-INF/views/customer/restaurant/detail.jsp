@@ -73,9 +73,13 @@
 						<table id="menu-images">	
 						</table>
 					</td>
-					<c:if test="${sessionScope.nickName == c.writerName}">
+					<td style="display: none;">${c.memberEmail}</td>
+					<c:if test="${email == c.memberEmail}">
 					<td>
-					<input type="button" value="삭제"/>
+					<input type="button" onclick="location.href='../deleteComment?id=${c.id}'" value="삭제"/>
+					</td>
+					<td>
+					<input type="button" onclick="location.href='../comment/edit'" value="수정"/>
 					</td>
 					</c:if>
 				</tr>

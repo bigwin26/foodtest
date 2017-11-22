@@ -22,8 +22,8 @@ public class CommentView extends Comment {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CommentView(int id, String content, Date regDate, int point, int memberId, int restaurant) {
-		super(id, content, regDate, point, memberId, restaurant);
+	public CommentView(int id, String content, Date regDate, int point, int memberId, int restaurant,String memberEmail) {
+		super(id, content, regDate, point, memberId, restaurant, memberEmail);
 		// TODO Auto-generated constructor stub
 	}
 	public CommentView(String writerName, String restaurantName) {

@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
          <aside class="aside">
-            <h1>ADMIN PAGE</h1>
+         	<h1>ADMIN ASIDE</h1>
+            <%-- <h1>ADMIN PAGE</h1>
 
             <nav class="menu text-menu first margin-top">
                <h1>마이페이지</h1>
@@ -33,7 +34,7 @@
                   <li><a href="">공지사항</a></li>
                   <li><a href="">팝업공지</a></li>                  
                </ul>
-            </nav>
+            </nav> --%>
             
             
 

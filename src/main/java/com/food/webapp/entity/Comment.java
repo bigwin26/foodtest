@@ -9,14 +9,22 @@ public class Comment {
 	private int point;
 	private int memberId;
 	private int restaurantId;
+	private String memberEmail;
 	
-
-
-	public int getPoint() {
-		return point;
+	public Comment() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	public void setPoint(int point) {
+	public Comment(int id, String content, Date regDate, int point, int memberId, int restaurantId,
+			String memberEmail) {
+		super();
+		this.id = id;
+		this.content = content;
+		this.regDate = regDate;
 		this.point = point;
+		this.memberId = memberId;
+		this.restaurantId = restaurantId;
+		this.memberEmail = memberEmail;
 	}
 	public int getId() {
 		return id;
@@ -36,6 +44,12 @@ public class Comment {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
 	public int getMemberId() {
 		return memberId;
 	}
@@ -48,18 +62,12 @@ public class Comment {
 	public void setRestaurantId(int restaurantId) {
 		this.restaurantId = restaurantId;
 	}
-	public Comment() {
-		super();
-		// TODO Auto-generated constructor stub
+	public String getMemberEmail() {
+		return memberEmail;
 	}
-	public Comment(int id, String content, Date regDate, int point, int memberId, int restaurantId) {
-		super();
-		this.id = id;
-		this.content = content;
-		this.regDate = regDate;
-		this.point = point;
-		this.memberId = memberId;
-		this.restaurantId = restaurantId;
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
 	}
+	
 
 }
