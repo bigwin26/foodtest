@@ -110,9 +110,9 @@ public class RestaurantController {
 	@RequestMapping("restaurant/{id}")
 	public String detail(@PathVariable("id") int id,
 						@RequestParam(value="p", defaultValue="1")  Integer page,
-						Model model,HttpSession session) {
+						Model model,Principal principal) {
 		
-		
+		model.addAttribute("email",principal.getName());
 		model.addAttribute("r", restaurantDao.get(id));
 		model.addAttribute("prev", restaurantDao.getPrev(id));
 		model.addAttribute("next", restaurantDao.getNext(id));

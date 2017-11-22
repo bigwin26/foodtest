@@ -27,7 +27,6 @@ import com.food.webapp.dao.MemberDao;
 import com.food.webapp.dao.RestaurantDao;
 import com.food.webapp.entity.CmtImage;
 import com.food.webapp.entity.Comment;
-import com.food.webapp.entity.Restaurant;
 import com.food.webapp.entity.RestaurantMenu;
 
 @Controller
@@ -66,7 +65,7 @@ public class CommentController {
 						Principal principal,
 						Model model) throws IllegalStateException, IOException {
 		
-		//¸Þ´º¸¸ ÀÖ´Â°æ¿ì (file[0] ÀÌ¸§"", image ÀÌ¸§ Á¸Àç) or ¸Þ´º¸¸ ¾ø´Â°æ¿ì(file[]ÀÌ¸§ Á¸Àç, image ÀÌ¸§"") or µÑ´Ù ÀÖ´Â°æ¿ì(µÑ´Ù ÀÌ¸§Á¸Àç) 
+		//ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½Ö´Â°ï¿½ï¿½ (file[0] ï¿½Ì¸ï¿½"", image ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½) or ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ï¿½(file[]ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½, image ï¿½Ì¸ï¿½"") or ï¿½Ñ´ï¿½ ï¿½Ö´Â°ï¿½ï¿½(ï¿½Ñ´ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½) 
 		String checkMenuName = image.getOriginalFilename();
 		String checkFilesName = file[0].getOriginalFilename();
 		
@@ -84,7 +83,7 @@ public class CommentController {
 			File f = new File(path); 
 			if (!f.exists()) {
 				if (!f.mkdirs())
-					System.out.println("µð·ºÅä¸®¸¦ »ý¼ºÇÒ ¼ö°¡ ¾ø½À´Ï´Ù.");
+					System.out.println("ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			}
 
 			comment.setMemberId(loginId);
@@ -109,7 +108,7 @@ public class CommentController {
 			File mf = new File(menuPath);
 			if (!mf.exists()) {
 				if (!mf.mkdirs())
-					System.out.println("µð·ºÅä¸®¸¦ »ý¼ºÇÒ ¼ö°¡ ¾ø½À´Ï´Ù.");
+					System.out.println("ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			}
 			
 			restaurantMenu.setRestaurantId(id);
@@ -129,7 +128,7 @@ public class CommentController {
 			File mf = new File(menuPath);
 			if (!mf.exists()) {
 				if (!mf.mkdirs())
-					System.out.println("µð·ºÅä¸®¸¦ »ý¼ºÇÒ ¼ö°¡ ¾ø½À´Ï´Ù.");
+					System.out.println("ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			}
 			
 			restaurantMenu.setRestaurantId(id);
@@ -149,7 +148,7 @@ public class CommentController {
 			File f = new File(path); 
 			if (!f.exists()) {
 				if (!f.mkdirs())
-					System.out.println("µð·ºÅä¸®¸¦ »ý¼ºÇÒ ¼ö°¡ ¾ø½À´Ï´Ù.");
+					System.out.println("ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			}
 
 			comment.setMemberId(loginId);
@@ -176,4 +175,14 @@ public class CommentController {
 		return "redirect:../restaurant/{id}";
 	}
 	
+	@RequestMapping(value="comment/edit")
+	public String edit() {
+		return "customer.comment.edit";
+	}
+	
+	@RequestMapping(value="deleteComment",method=RequestMethod.GET)
+	public String deleteComment(@RequestParam(value="id") int id) {
+		commentDao.delete(id);
+		return "redirect:restaurant";
+	}
 }
