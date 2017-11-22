@@ -41,43 +41,6 @@ public class RestaurantController {
 	@Autowired
 	MemberDao memberDao;
 	
-	/*@RequestMapping(value="restaurant", method=RequestMethod.GET)
-	public String restaurant(
-					@RequestParam(value="p", defaultValue="1")  Integer page,
-					@RequestParam(value="f", defaultValue="name")  String field,
-					@RequestParam(value="q", defaultValue="") String query,
-					Model model) {
-		
-		model.addAttribute("list", restaurantDao.getList(page, field, query));
-		model.addAttribute("count", restaurantDao.getCount());
-		
-		return "admin.restaurant.list";
-	}
-	
-	@RequestMapping(value="restaurant-ajax", produces="text/plain;charset=UTF-8")
-	@ResponseBody
-	public String restaurantAjax(
-					String page,
-					@RequestParam(value="f", defaultValue="name")  String field,
-					@RequestParam(value="q", defaultValue="") String query,
-					Model model) {
-		
-		//System.out.println(page);
-		int page1 = Integer.parseInt(page);
-		List<Restaurant> list = restaurantDao.getList(page1, field, query);
-		
-		model.addAttribute("list", list);
-
-		String json = "";
-		
-		Gson gson = new Gson();
-		json = gson.toJson(list);
-		
-		//System.out.println(json);
-		
-		return json;
-	}*/
-	
 	@RequestMapping(value="restaurant", method=RequestMethod.GET)
 	public String restaurant(
 					Restaurant restaurant,
@@ -182,8 +145,8 @@ public class RestaurantController {
 		model.addAttribute("prev", restaurantDao.getPrev(id));
 		model.addAttribute("next", restaurantDao.getNext(id));
 		
-		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//ÄÚ¸àÆ® ¸®½ºÆ® 
-		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//ÄÚ¸àÆ® °¹¼ö
+		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//ï¿½Ú¸ï¿½Æ® ï¿½ï¿½ï¿½ï¿½Æ® 
+		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//ï¿½Ú¸ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 		
 		return "customer.restaurant.detail";
 	}
@@ -210,7 +173,7 @@ public class RestaurantController {
 		File f = new File(path); 
 	      if(!f.exists()) {
 		         if(!f.mkdirs())
-		            System.out.println("µð·ºÅä¸®¸¦ »ý¼ºÇÒ ¼ö°¡ ¾ø½À´Ï´Ù.");
+		            System.out.println("ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 		      }
 	      path +=File.separator + file.getOriginalFilename();
 	      File f2 = new File(path); 
