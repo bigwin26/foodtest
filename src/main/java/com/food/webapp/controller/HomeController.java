@@ -26,12 +26,12 @@ public class HomeController {
 	@RequestMapping("policyservice")
 	public String policyservice() {
 
-		return "home.policyservice";
+		return "policy.policyservice";
 	}
 	@RequestMapping("policyprivacy")
 	public String policyprivacy() {
 
-		return "home.policyprivacy";
+		return "policy.policyprivacy";
 	}
 	
 }
