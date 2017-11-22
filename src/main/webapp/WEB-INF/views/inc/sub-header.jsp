@@ -98,7 +98,7 @@ top: 6px;
          <span class="header-search-bar">
 	<input type="text" class="header-search-text" />
     </span>
-            <button type="submit" class="header-search-text-submit" style="background-image: url('resource/images/header-search.png');"></button>
+            <button type="submit" class="header-search-text-submit" style="background-image: url('${ctx}/resource/images/header-search.png');"></button>
 </div>
 <div class="main-header">
 
