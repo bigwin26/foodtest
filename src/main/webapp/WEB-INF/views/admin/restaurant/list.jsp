@@ -3,10 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-	<main id="main" />
-		<h2 class="main title">런치 리스트</h2>
+	<main id="main">
+		<h1 class="main title">런치 리스트</h1>
 							
-		<div class="">
+		<div class="text-right space-top-1">
 			<h3 class="hidden">레스토랑 목록</h3>
 			<div>
 				<form action="list" method="get">
@@ -21,17 +21,17 @@
 					<input id="search" type="button" value="검색"/>
 				</form>
 			</div>
-			<table class="">
+			<table class="table table-list space-top">
 				<thead>
 					<tr>
-						<th class="">번호</th>
-						<th class="">가게이름</th>
-						<th class="">작성자</th>
-						<th class="">작성자 사진</th>
-						<th class="">음식 사진</th>
-						<th class="">작성자 한마디</th>
-						<th class="">날짜</th>
-						<th class="">승인여부</th>
+						<th class="w60">번호</th>
+						<th class="w150">가게이름</th>
+						<th class="w60">작성자</th>
+						<th class="w80">작성자 사진</th>
+						<th class="w80">음식 사진</th>
+						<th class="w150">작성자 한마디</th>
+						<th class="w150">날짜</th>
+						<th class="w60">승인여부</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -76,7 +76,7 @@
 			<div>page: ${page}</div>
 			<div>startPage: ${startPage}</div>
 			<div>lastPage: ${lastPage}</div> --%>	
-			<div>
+			<div class="hr-list admin-page">
 				<div><a href="?p=1">이전</a></div>
 				<ul>
 					<c:forEach var="i" begin="0" end="4">

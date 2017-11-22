@@ -65,7 +65,7 @@ public class CommentController {
 						Principal principal,
 						Model model) throws IllegalStateException, IOException {
 		
-		//�޴��� �ִ°�� (file[0] �̸�"", image �̸� ����) or �޴��� ���°��(file[]�̸� ����, image �̸�"") or �Ѵ� �ִ°��(�Ѵ� �̸�����) 
+		 
 		String checkMenuName = image.getOriginalFilename();
 		String checkFilesName = file[0].getOriginalFilename();
 		
