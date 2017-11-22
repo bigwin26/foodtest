@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+#visual {
+    height: 300px;
+    background: #313131 url(../images/admin-visual.jpg) center;
+    background-size: cover;
+    border-top: solid 3px #48C6C3;
+    background-position: 30% 30%;
+}
+
+.content-container {
+    margin: auto;
+    height: 100%;
+    min-height: inherit;
+    width: 960px;
+}
+
+#visual .content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#visual .admin-text {
+    font-size: 30px;
+    color: white;
+}
