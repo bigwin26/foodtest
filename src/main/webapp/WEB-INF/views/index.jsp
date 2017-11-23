@@ -57,8 +57,9 @@
 		    })
 		</script>
 	</main>
+
 	
-	<main id="main">
+<%--  <main id="main">
 		<!-------검색창 및 스크린-------------->
 		<div class="screen">
 			<div class="screen-gradation"></div>
@@ -164,4 +165,4 @@
 			</div>
 		</div>
 	
-	</main>
+	</main>  --%>

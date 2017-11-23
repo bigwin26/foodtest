@@ -32,8 +32,8 @@
  <div id="footer_div" style="background-color:#f6f6f6;">
         <div id="footer_text">
              
-			<a href="index">© 2017 LUNCHCONTAINER</a> ·
-            <a href="policyservice">이용약관</a> ·
-            <a href="policyprivacy">개인정보처리방침</a>
+			<a href="${ctx}/index">© 2017 LUNCHCONTAINER</a> ·
+            <a href="${ctx}/policyservice" target="_blank">이용약관</a> ·
+            <a href="${ctx}/policyprivacy" target="_blank">개인정보처리방침</a>
         </div>
 </div>

@@ -38,6 +38,7 @@ a{
     float: right;
 }
 
+
 .main-header li:nth-child(8){
     display: inline;
     float: right;
@@ -100,14 +101,14 @@ a{
     margin: 0; border: 0;
     vertical-align: top;
     cursor: pointer;
-    background: no-repeat center #E73524;
+    background: no-repeat center #F15C22;
 
 }
 
 .main-notice{
     position: relative;
     height: 50px;
-    background: #E73524;
+    background: #F15C22;
 
 }
 
