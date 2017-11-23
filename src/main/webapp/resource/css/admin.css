@@ -94,7 +94,7 @@ a{
 .table{
 	display: table;
 	width: 100%;
-	border-top: 2px solid #E73524;
+	border-top: 2px solid #f15c22;
 	table-layout: fixed;
 }
 
@@ -179,7 +179,7 @@ main .max400{
     height: 300px;
     background: #313131 url(../images/admin-visual.jpg) center;
     background-size: cover;
-    border-top: solid 3px #E73524;
+    border-top: solid 3px #f15c22;
     background-position: 30% 30%;
 }
 
@@ -241,7 +241,7 @@ main .max400{
 
 /* ------- body ------------------------------------ */
 #body {
-	border-top: solid 5px #E73524;
+	border-top: solid 5px #f15c22;
 	margin-top:1px;
 	min-height: 300px;
 }
