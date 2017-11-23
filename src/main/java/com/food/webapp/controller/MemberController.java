@@ -1,9 +1,5 @@
 package com.food.webapp.controller;
 
-
-
-
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +15,7 @@ import com.food.webapp.dao.MemberDao;
 import com.food.webapp.entity.Member;
 import com.food.webapp.entity.ResultMessage;
 
-@Controller
+@Controller("memberController")
 @RequestMapping("/member/*")
 public class MemberController {
 	@Autowired

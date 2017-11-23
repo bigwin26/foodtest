@@ -4,7 +4,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<main id="main">
-		<h1 class="main title">런치 리스트</h1>
+		<%-- admin member page
+		${list} --%>
+		<h1 class="main title">회원 리스트</h1>
 							
 		<div class="text-right space-top-1">
 			<h3 class="hidden">식당 목록</h3>
@@ -12,56 +14,44 @@
 				<form action="list" method="get">
 					<label class="hidden">검색분류</label>
 					<select id="selectBox" name="selectBox">
-						<option value="3">전체</option>
-						<option value="0">승인대기</option>
-						<option value="1">승인</option>
-						<option value="2">비승인</option>
+						<option value="all">전체</option>
+						<option value="email">이메일</option>
+						<option value="nickName">닉네임</option>
+						<option value="mentor">멘토</option>
 					</select> 
 					<input type="text" name="query" />
 					<input id="search" type="button" value="검색"/>
 				</form>
 			</div>
+			
 			<table class="table table-list space-top">
 				<thead>
 					<tr>
 						<th class="w60">번호</th>
-						<th class="w150">가게이름</th>
-						<th class="w60">작성자</th>
-						<!-- <th class="w80">작성자 사진</th>
-						<th class="w80">음식 사진</th> -->
-						<th class="w200">작성자 한마디</th>
-						<th class="w150">날짜</th>
-						<th class="w60">승인여부</th>
+						<th class="w100">이메일</th>
+						<th class="w100">닉네임</th>
+						<th class="w60">역할</th>
+						<th class="w150">가입일</th>
+						<th class="w60">멘토</th>
 						<th class="w60"><input type="submit" value="삭제" /></th>
 					</tr>
 				</thead>
 				<tbody>
-					<form action="restaurant-delete?${_csrf.parameterName}=${_csrf.token}" method="post">
+					<form action="member-delete?${_csrf.parameterName}=${_csrf.token}" method="post">
 						<c:forEach var="n" items="${list}">					
 							<tr>
 								<td>${n.id}</td>
-								<td class=""><a href="../customer/restaurant/${n.id}">${n.name} (${n.countCmt})</a></td>
-								<td>${n.writerName}</td>
-								<%-- <td>${n.writerImage}</td>
-								<td>${n.image}</td> --%>
-								<td>${n.tip}</td>
+								<td>${n.email}</td>
+								<td>${n.nickName}</td>
+								<c:if test="${'0' eq n.role}">
+									<td>일반회원</td>
+								</c:if>
+								<c:if test="${'1' eq n.role}">
+									<td>관리자</td>
+								</c:if>
 								<td><fmt:formatDate	pattern="yyyy-MM-dd kk:mm:ss" value="${n.regDate}" /></td>
-								<%-- <td>${n.ok}</td> --%>
-								<c:if test="${'0' eq n.ok}">
-									<td>승인대기</td>
-									<td>
-										<input class="ok" type="button" value="승인"/>
-										<input class="deny" type="button" value="비승인"/>
-									</td>
-								</c:if>
-								<c:if test="${'1' eq n.ok}">
-									<td>승인</td>
-									<td> </td>
-								</c:if>
-								<c:if test="${'2' eq n.ok}">
-									<td>비승인</td>
-									<td><input type="checkbox" name="ids" value="${n.id}"/></td>
-								</c:if>
+								<td>${n.mentor}</td>
+								<td><input type="checkbox" name="ids" value="${n.id}"/></td>
 							</tr>
 						</c:forEach>
 					</form>
@@ -100,14 +90,10 @@
 		</div>
 		
 	</main>
-		
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<!-- <script src="../../resource/js/moment.min.js"></script> -->
 	<script>
 	$(function(){
-		//var okButton = $("input[value='승인']");
-		var okButton = $(".ok");
-		var denyButton = $(".deny");
 		var pageNum = $(".pageNum");
 		var searchButton = $("#search");
 		var ajaxData;
@@ -124,33 +110,23 @@
 		}
 		
 		var page = $.urlParam('p')?$.urlParam('p'):1;
-		var ok = $.urlParam('o')?$.urlParam('o'):3;
+		var field = $.urlParam('f')?$.urlParam('f'):"all";
 		var query = $.urlParam('q')?$.urlParam('q'):"";
 		
-		$("#selectBox > option[value="+ok+"]").prop("selected", true);
-		
-		/* pageNum.click(function(){
-			var index = pageNum.index($(this))+1;
-			//alert(index);
-			//alert("p: "+ index + "o: " + ok);
-			
-			var pathName = $(location).attr('pathname');
-			var url = pathName + "?p=" + index + "&o=" + ok;
-			
-			$(location).attr('href', url);
-		}) */
+		$("#selectBox > option[value=" + field + "]").prop("selected", true);
+		//alert(field);
 		
 		for(var i=0; i<pageNum.length; i++){
 			var pathName = $(location).attr('pathname');
-			var url = pathName + "?p=" + (i+1) + "&o=" + ok;
+			var url = pathName + "?p=" + (i+1) + "&f=" + field;
 			//alert(url);
 			pageNum.eq(i).attr("href", url);
 		}
 		
 		$("#selectBox").change(function(){
-			ok = $(this).val();
+			field = $(this).val();
 			var pathName = $(location).attr('pathname');
-			var url = pathName + "?p=" + 1 + "&o=" + ok;
+			var url = pathName + "?p=" + 1 + "&f=" + field;
 			//alert(url);
 			//alert($("#selectBox > option[value="+ok+"]").text());
 			//$("#selectBox > option[value="+ok+"]").prop("selected", true);
@@ -160,7 +136,7 @@
 		searchButton.click(function(){
 			var query = $("input[name='query']").val();
 			var pathName = $(location).attr('pathname');
-			var url = pathName + "?p=" + page + "&o=" + ok + "&q=" + query;
+			var url = pathName + "?p=" + page + "&f=" + field + "&q=" + query;
 			//alert(query);
 			
 			$(location).attr('href', url);
@@ -176,10 +152,9 @@
 		$.ajax({
 			type:"POST",
 			async: false,
-			url: "../admin/restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
+			url: "../admin/member-ajax?${_csrf.parameterName}=${_csrf.token}",
 			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-			data: {"page":page, "ok":ok, "q":query},
-			//data: {"page":page},
+			data: {"page":page, "f":field, "q":query},
 			dataType:"json",
 			success: function (data) {
 				var json = JSON.stringify(data);
@@ -190,52 +165,6 @@
 		});
 		//alert(ajaxData[0].name);
 		
-		okButton.click(function() {
-				var index = okButton.index($(this));
-				alert(ajaxData[index].name);
-				
-				$.ajax({
-					type:"POST",
-					//async: false,
-					url: "restaurant?${_csrf.parameterName}=${_csrf.token}",
-					data: {
-						"restaurantId":ajaxData[index].id,
-						"name":ajaxData[index].name,
-						"regDate":ajaxData[index].regDate,
-						"ok":1
-					},
-					dataType:"text",
-					success: function (data) {
-						alert("success");
-					}
-				});
-				
-			location.reload();
-		})
-		
-		denyButton.click(function() {
-				var index = denyButton.index($(this));
-				alert(ajaxData[index].name);
-				
-				$.ajax({
-					type:"POST",
-					//async: false,
-					url: "restaurant?${_csrf.parameterName}=${_csrf.token}",
-					data: {
-						"restaurantId":ajaxData[index].id,
-						"name":ajaxData[index].name,
-						"regDate":ajaxData[index].regDate,
-						"ok":2
-					},
-					dataType:"text",
-					success: function (data) {
-						alert("success");
-					}
-				});
-				
-			location.reload();
-		})
 		
 	});
 	</script>
-		

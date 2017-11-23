@@ -2,10 +2,16 @@ package com.food.webapp.dao;
 
 
 import java.util.Date;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 import com.food.webapp.entity.Member;
 
 public interface MemberDao {
+	
+	public List<Member> getListAdmin(@Param("page")int page, @Param("field")String field, @Param("query")String query);
+	int getCountAdmin(@Param("field")String field, @Param("query")String query);
 
 	public int insert(
 			String pwd,
