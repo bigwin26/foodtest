@@ -32,7 +32,6 @@
 						<th class="w200">작성자 한마디</th>
 						<th class="w150">날짜</th>
 						<th class="w60">승인여부</th>
-						<th class="w60"><input type="submit" value="삭제" /></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -59,11 +58,15 @@
 									<td> </td>
 								</c:if>
 								<c:if test="${'2' eq n.ok}">
-									<td>비승인</td>
-									<td><input type="checkbox" name="ids" value="${n.id}"/></td>
+									<td>비승인&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="ids" value="${n.id}"/></td>
 								</c:if>
 							</tr>
 						</c:forEach>
+						<tr>
+							<td>
+								<input type="submit" value="삭제" />
+							</td>
+						</tr>
 					</form>
 				</tbody>
 			</table>
