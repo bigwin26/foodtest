@@ -175,10 +175,28 @@ public class CommentController {
 		return "redirect:../restaurant/{id}";
 	}
 	
-	@RequestMapping(value="comment/edit")
-	public String edit() {
-		return "customer.comment.edit";
-	}
+	@RequestMapping(value="comment/edit/{id}", method=RequestMethod.GET)
+	   public String edit(@PathVariable("id") int id,Model model,Integer page) {
+		   
+		model.addAttribute("r", restaurantDao.get(id));
+		model.addAttribute("prev", restaurantDao.getPrev(id));
+		model.addAttribute("next", restaurantDao.getNext(id));
+		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//�ı� ����Ʈ 
+		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//�ı� ����
+		
+		model.addAttribute("cmtImageList", restaurantDao.cmtImageList(id));//�ı� ������
+	      
+	      return "customer.comment.edit";
+	   }
+	   
+	   @RequestMapping(value="comment/edit/{id}", method=RequestMethod.POST)
+	   public String noticeEdit(@PathVariable("id") String id, Comment comment) {
+	      
+	      int row = commentDao.edit(comment);
+	      System.out.println(row);
+		   
+	      return "redirect:../{id}";
+	   }
 	
 	@RequestMapping(value="deleteComment",method=RequestMethod.GET)
 	public String deleteComment(@RequestParam(value="id") int id) {
