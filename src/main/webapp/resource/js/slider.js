@@ -27,8 +27,7 @@
 
         $('.main-info-slide-image').eq(0).css({
             'z-index':'1',
-            'opacity':'1'
-            
+            'opacity':'1'            
         })
 
     }
