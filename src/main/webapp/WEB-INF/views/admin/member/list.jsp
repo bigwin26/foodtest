@@ -33,7 +33,7 @@
 						<th class="w60">역할</th>
 						<th class="w150">가입일</th>
 						<th class="w60">멘토</th>
-						<th class="w60"><input type="submit" value="삭제" /></th>
+						<th class="w60"><input id="" type="button" value="탈퇴" /></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -54,6 +54,7 @@
 								<td><input type="checkbox" name="ids" value="${n.id}"/></td>
 							</tr>
 						</c:forEach>
+						<input type="submit" value="delete" style="display:none"/>
 					</form>
 				</tbody>
 			</table>
@@ -97,6 +98,7 @@
 		var pageNum = $(".pageNum");
 		var searchButton = $("#search");
 		var ajaxData;
+		
 		
 		$.urlParam = function(name){
 		    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
