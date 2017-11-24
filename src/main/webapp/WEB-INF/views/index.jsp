@@ -4,61 +4,115 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="resource/css/reset.css">
 <link rel="stylesheet" href="resource/css/index.css">
 
-	<main>
-	
-		<div class="main-info">
-	        <div class="main-info-slide">
-	            <div class="main-info-slide-image" style="background-image: url('resource/images/img-1.jpg');" ></div>
-	            <div class="main-info-slide-image" style="background-image: url('resource/images/img-2.jpg');"></div>
-	            <div class="main-info-slide-image" style="background-image: url('resource/images/img-3.jpg');"></div>
-	            <div class="main-info-slide-image" style="background-image: url('resource/images/img-4.jpg');"></div>
-	        </div>   
-	     
-		    <div class="main-info-container" >
-		        <div class="main-info-container-logo" style="background-image: url('resource/images/main-logo.png');"></div>
-		        <div class="main-info-container-search">
-			        <span class="main-info-container-search-inner">
-						<input type="text" class="main-info-container-search-inner-text" />
-			    	</span>
-			        <button type="submit" class="main-info-container-search-inner-submit" style="background-image: url('resource/images/search.png');"></button>
-		        </div>
-		    </div>
-	
-	    </div>
-	    
-		<div class="main-notice">
-		   <span class="main-notice-text">
-		        	그래서 오늘 점심은?
-		       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		       <a href="">점심 추천 바로가기></a>
-		   </span>
-		   
-		   <span class="main-notice-text2">
-				뭐 넣을거있나?
-		   </span>
+<main>
+
+<div class="main-info">
+	<div class="main-info-slide">
+		<div class="main-info-slide-image"
+			style="background-image: url('resource/images/img-1.jpg');"></div>
+		<div class="main-info-slide-image"
+			style="background-image: url('resource/images/img-2.jpg');"></div>
+		<div class="main-info-slide-image"
+			style="background-image: url('resource/images/img-3.jpg');"></div>
+		<div class="main-info-slide-image"
+			style="background-image: url('resource/images/img-4.jpg');"></div>
+	</div>
+
+	<div class="main-info-container">
+		<div class="main-info-container-logo"
+			style="background-image: url('resource/images/main-logo.png');"></div>
+		<div class="main-info-container-search">
+			<form action="list" method="get">
+				<span class="main-info-container-search-inner"> <input
+					type="text" class="main-info-container-search-inner-text" name="query" />
+				</span>
+				<input id="search" class="main-info-container-search-inner-submit"
+					style="background-image: url('resource/images/search.png');"
+					type="button">
+			</form>
 		</div>
-	
-		<script src="resource/js/slider.js"></script>
-		<script>
-		    $(function(){
+	</div>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="resource/js/slider.js"></script> 
+<script>
+		$(function(){
 		        $('.main-info-slide').reSlider({
 		            speed:1000,  //페이드속도
 		            delay:5000,  //자동전환 속도
 		            imgCount:4,  //이미지갯수
 		            autoPlay:true//자동재생
 		        })
-		    })
+		  
+		    
+		var pageNum = $(".pageNum");
+		var searchButton = $("#search");
+		var ajaxData;
+		
+		$.urlParam = function(name){
+		    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		    //return results[1] || 0;
+		    if (results==null){
+		        return null;
+		     }
+		     else{
+		        return results[1] || 0;
+		     }
+		}
+		
+		var page = $.urlParam('p')?$.urlParam('p'):1;
+		var query = $.urlParam('q')?$.urlParam('q'):"";
+		
+	/* 	for(var i=0; i<pageNum.length; i++){
+			var pathName = $(location).attr('pathname');
+			var url = pathName + "?p=" + (i+1) + "&o=" + ok;
+			//alert(url);
+			pageNum.eq(i).attr("href", url);
+		} */
+		
+		searchButton.click(function(){
+			var query = $("input[name='query']").val();
+			/* var path = $(location).attr('host'); */
+			var url = 'food/customer/restaurant?p=' + page + "&q=" + query;
+			//alert(query);
+			alert(url);
+			
+			$(location).attr('href', url);
+		})
+		
+		$("input[name='query']").keypress(function(event){
+		    if (event.which == 13) {
+		    	searchButton.click();
+		        return false;
+		    }
+		});
+		
+		$.ajax({
+			type:"POST",
+			async: false,
+			url: "/customer/restaurant?${_csrf.parameterName}=${_csrf.token}",
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+			data: {"page":page, "q":query},
+			//data: {"page":page},
+			dataType:"json",
+			success: function (data) {
+				var json = JSON.stringify(data);
+				//alert(json);
+				ajaxData = data;
+				//alert("success");
+			}
+		});
+		    });
 		</script>
-	</main>
+		</main>
 
-	
+
 <%--  <main id="main">
 		<!-------검색창 및 스크린-------------->
 		<div class="screen">
