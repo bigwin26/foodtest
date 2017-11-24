@@ -126,7 +126,7 @@ top: 6px;
 							<li><a href="${ctx}/member/login">로그인</a></li>
 						</c:if>
 						
-				<security:authorize access="hasRole('ROLE_USER')">
+				<security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
 					<li>
 					<c:url var="logout" value="/logout" />
 						<form action="${logout}" method="post" id="logoutform">

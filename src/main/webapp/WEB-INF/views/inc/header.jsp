@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
-	
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -136,7 +135,7 @@
 			<li><a href="${ctx}/member/login">로그인</a></li>
 		</c:if>
 
-		<security:authorize access="hasRole('ROLE_USER')">
+		<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
 			<li><c:url var="logout" value="/logout" />
 				<form action="${logout}" method="post" id="logoutform">
 					<input type="hidden" name="${_csrf.parameterName}"
@@ -147,12 +146,14 @@
 		</security:authorize>
 
 		<c:if test="${!empty pageContext.request.userPrincipal}">
-			<li><a href="${ctx}/member/login/${nickName}">내정보</a></li>
+			<%-- <li><a href="${ctx}/member/login/${nickName}"></a></li> --%>
+			<li><security:authentication property="name" />님</li>
 		</c:if>
-
+		
 
 	</ul>
 </div>
+
 <script type="text/javascript">
 
 $(document).ready(function () {
