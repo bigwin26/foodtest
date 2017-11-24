@@ -31,7 +31,7 @@ import com.food.webapp.dao.RestaurantDao;
 import com.food.webapp.entity.Restaurant;
 import com.google.gson.Gson;
 
-@Controller("adminController")
+@Controller("admin-restaurantController")
 @RequestMapping("/admin/*")
 public class RestaurantController {
 	

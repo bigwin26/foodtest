@@ -41,7 +41,7 @@
 	background-color: #fdfdfd;
 	cursor: pointer;
 	border: 1px solid #ebebeb;
-	border-bottom-color: #E73524;
+	border-bottom-color: #f15c22;
 	border-radius: .25em;
 }
 
@@ -95,7 +95,7 @@
 
 .filebox.bs3-primary label {
 	color: #ffffff;
-	background-color: #E73524;
+	background-color: #f15c22;
 }
 </style>
 
