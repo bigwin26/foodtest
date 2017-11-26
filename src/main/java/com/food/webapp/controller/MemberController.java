@@ -1,13 +1,11 @@
 package com.food.webapp.controller;
 
-
-
-
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,7 +15,7 @@ import com.food.webapp.dao.MemberDao;
 import com.food.webapp.entity.Member;
 import com.food.webapp.entity.ResultMessage;
 
-@Controller
+@Controller("memberController")
 @RequestMapping("/member/*")
 public class MemberController {
 	@Autowired
@@ -70,4 +68,21 @@ public class MemberController {
 		
 		return resultMsg;
 	}
+   
+   @RequestMapping(value="edit/{nickName}", method=RequestMethod.GET)
+   public String edit(@PathVariable("nickName") String nickName,Model model) {
+	   
+	   model.addAttribute("member", memberDao.getMember(nickName));
+      System.out.println(nickName);
+      return "member.edit";
+   }
+   
+   /*@RequestMapping(value="edit", method=RequestMethod.POST)
+   public String noticeEdit(@PathVariable("id") String id, String title, String content) {
+      
+      int row = service.updateNotice(id, title, content);
+      System.out.println(row);
+	   
+      return "redirect:../{id}";
+   }*/
 }

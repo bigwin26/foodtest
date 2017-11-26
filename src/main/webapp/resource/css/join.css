@@ -20,7 +20,7 @@ html, body, form {
 
 body {
     position:relative;
-    padding-bottom:24px;
+    /* padding-bottom:24px; */
     min-height:100%;
     font-size:13px;
 }
@@ -52,7 +52,7 @@ body {
 
 .container {
     width:100%;
-    padding-bottom:24px;
+    /* padding-bottom:24px; */
 }
 
 .footer {
@@ -149,7 +149,7 @@ body {
 }
 
 .btn-red {
-    background-color:#E73524;
+    background-color:#F15C22;
     color:#FFFFFF;
 }
 
@@ -183,7 +183,8 @@ body {
 .fc-white { color:#FFFFFF; }
 .fc-blue { color:#2483FF; }
 .fc-gray { color:#999999; }
-.fc-red { color:#E73524; }
+.fc-red { color:#f15c22; }
+
 
 .w90 { width:90px; }
 .w100 { width:100px; }
@@ -254,7 +255,7 @@ body {
 
 .error {
     font-size:10px;
-    color:#E73524;
+    color:#F15C22;
     display:none;
 }
  

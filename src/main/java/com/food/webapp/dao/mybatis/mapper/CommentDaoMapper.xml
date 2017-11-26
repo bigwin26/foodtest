@@ -33,5 +33,7 @@
 		insert into RestaurantMenu(id, src, restaurantId, memberId)
 		value(#{id}, #{src},#{restaurantId},#{memberId})
 	</insert>
-	
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from Comment where id = #{id}
+	</delete>
 </mapper>

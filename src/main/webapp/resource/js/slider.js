@@ -27,7 +27,7 @@
 
         $('.main-info-slide-image').eq(0).css({
             'z-index':'1',
-            'opacity':'1'
+            'opacity':'1'            
         })
 
     }
@@ -35,7 +35,6 @@
     _repro.doEvent = function(){
 
     }
-
 
     _repro.nextNormal = function(position){
 
@@ -70,8 +69,6 @@
         }
     }
 
-
-
     _repro.autoPlay = function(){
         var _self = this;
 
@@ -86,10 +83,6 @@
 
     }
 
-
-
-
-
     _repro.setUrl = function(index){
         var $url = $('.main-info-slide-image').eq(index).attr('style');
 
@@ -97,7 +90,6 @@
             'background-image':'url('+$url+')'
         })
     }
-
 
     $.fn.reSlider = function(options){
         var reSlider = new Reslider();

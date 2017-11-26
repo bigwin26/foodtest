@@ -10,13 +10,19 @@ import org.apache.ibatis.annotations.Param;
 import com.food.webapp.entity.CmtImage;
 import com.food.webapp.entity.CommentView;
 import com.food.webapp.entity.Restaurant;
+import com.food.webapp.entity.RestaurantMenu;
 import com.food.webapp.entity.RestaurantView;
 
 public interface RestaurantDao {
 
+	List<Restaurant> getListAdmin(@Param("page")int page, @Param("field")String field, String query, @Param("ok")int ok);
 	List<Restaurant> getList(@Param("page")int page, @Param("field")String field, String query);
-	//List<Restaurant> getListAll();
+	List<Restaurant> getOkList();
 	int getCount();
+	//int getCountAdmin(@Param("field")String field, String query, Restaurant restaurant);
+	int getCountAdmin(@Param("field")String field, @Param("query")String query, @Param("ok")int ok);
+	//int getCountAdmin(Restaurant restaurant);
+	//int getCountAdmin(int ok);
 	RestaurantView get(int id);
 	RestaurantView getPrev(int id);
 	RestaurantView getNext(int id);
@@ -25,8 +31,9 @@ public interface RestaurantDao {
 	int insert(Restaurant restaurant);
 	List<CommentView> getCmt(@Param("id")int id, @Param("page")int page);
 	int cmtCount(int id);
-	int okRestaurant(int id, String name, String date);
+	int okRestaurant(int id, String name, String date, int ok);
 	int okRestaurant(Restaurant restaurant);
 	List<CmtImage> cmtImageList(int id);
-	List<Restaurant> menuImageList(int id);
+	List<RestaurantMenu> menuImageList(int id);
+	int deleteOk(int id);
 }

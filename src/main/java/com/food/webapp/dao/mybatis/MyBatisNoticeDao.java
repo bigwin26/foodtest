@@ -43,8 +43,8 @@ public class MyBatisNoticeDao implements NoticeDao {
 
 	@Override
 	public int update(String id, String title, String content) {
-		// TODO Auto-generated method stub
-		return 0;
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		return noticeDao.update(id, title, content);
 	}
 
 	@Override

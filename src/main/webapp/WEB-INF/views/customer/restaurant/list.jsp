@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<link rel="stylesheet" href="resource/css/reset.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<main id="main" />
 		<h2 class="main title">런치 리스트</h2>
@@ -25,7 +26,9 @@
 						<tr>
 							<td>${n.id}</td>
 							<td><a href="restaurant/${n.id}">${n.name} (${n.countCmt})</a></td>
+							
 							<td>${n.image}</td>
+							
 							<td>${n.writerName}</td>
 							<td>${n.writerImage}</td>
 							<td>${n.tip}</td>
@@ -36,7 +39,7 @@
 				</tbody>
 			</table>
 		</div>
-		<img src="../resource/customer/restaurant/2017/41/rockefeller-center-christmas-tree-2014.jpg">
+		<img src="../resource/customer/restaurant/2017/41/rockefeller-center-christmas-tree-2014.jpg" style="width: 320px; height: 130px;">
 		<div>
 			<a href="restaurant/reg">가게 등록!</a>
 		</div>
@@ -54,7 +57,7 @@
            	page +=1;
 			$.ajax({
 				type:"POST",
-				url: "../customer/restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
+				url: "restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
 				data: {"page":page},
 				dataType:"json", 
 				success:function(data){

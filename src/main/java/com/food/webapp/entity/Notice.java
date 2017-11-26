@@ -6,7 +6,7 @@ public class Notice {
 	private String id;
 	private String title;
 	private String content;
-	private String writerId;
+	private String writerName;
 	private Date regDate;
 	private int hit;
 	private String fileName;
@@ -17,12 +17,12 @@ public class Notice {
 
 	
 
-	public Notice(String id, String title, String content, String writerId, Date regDate, int hit, String fileName) {
+	public Notice(String id, String title, String content, String writerName, Date regDate, int hit, String fileName) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.content = content;
-		this.writerId = writerId;
+		this.writerName = writerName;
 		this.regDate = regDate;
 		this.hit = hit;
 		this.fileName = fileName;
@@ -30,10 +30,10 @@ public class Notice {
 
 
 
-	public Notice(String title, String content, String writerId) {
+	public Notice(String title, String content, String writerName) {
 		this.title = title;
 		this.content = content;
-		this.writerId = writerId;
+		this.writerName = writerName;
 	}
 
 
@@ -57,12 +57,12 @@ public class Notice {
 		this.content = content;
 	}
 
-	public String getWriterId() {
-		return writerId;
+	public String getWriterName() {
+		return writerName;
 	}
 
-	public void setWriterId(String writerId) {
-		this.writerId = writerId;
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
 	}
 
 	public Date getRegDate() {

@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -29,7 +31,7 @@ import com.food.webapp.dao.RestaurantDao;
 import com.food.webapp.entity.Restaurant;
 import com.google.gson.Gson;
 
-@Controller("adminController")
+@Controller("admin-restaurantController")
 @RequestMapping("/admin/*")
 public class RestaurantController {
 	
@@ -41,13 +43,22 @@ public class RestaurantController {
 	
 	@RequestMapping(value="restaurant", method=RequestMethod.GET)
 	public String restaurant(
+					Restaurant restaurant,
 					@RequestParam(value="p", defaultValue="1")  Integer page,
 					@RequestParam(value="f", defaultValue="name")  String field,
 					@RequestParam(value="q", defaultValue="") String query,
+					@RequestParam(value="o", defaultValue="3") int ok,
 					Model model) {
 		
-		model.addAttribute("list", restaurantDao.getList(page, field, query));
-		model.addAttribute("count", restaurantDao.getCount());
+		System.out.println("restaurant page: " + page);
+		System.out.println("restaurant ok: " + ok);
+		
+		restaurant.setOk(ok);
+		model.addAttribute("list", restaurantDao.getListAdmin(page, field, query, ok));
+		model.addAttribute("count", restaurantDao.getCountAdmin(field, query, ok));
+		
+		System.out.println("list:" + restaurantDao.getListAdmin(page, field, query, ok).size());
+		System.out.println("count: " + restaurantDao.getCountAdmin(field, query, ok));
 		
 		return "admin.restaurant.list";
 	}
@@ -58,12 +69,17 @@ public class RestaurantController {
 					String page,
 					@RequestParam(value="f", defaultValue="name")  String field,
 					@RequestParam(value="q", defaultValue="") String query,
-					Model model) {
+					String ok,
+					Model model) throws UnsupportedEncodingException {
 		
-		System.out.println(page);
 		int page1 = Integer.parseInt(page);
-		List<Restaurant> list = restaurantDao.getList(page1, field, query);
+		int ok1 = Integer.parseInt(ok);
+		query = URLDecoder.decode(query,"UTF-8");
+		System.out.println("restaurant-ajax query:" + query);
+		System.out.println("restaurant-ajax page: " + page);
+		System.out.println("restaurant-ajax ok: " + ok);
 		
+		List<Restaurant> list = restaurantDao.getListAdmin(page1, field, query, ok1);
 		model.addAttribute("list", list);
 
 		String json = "";
@@ -76,28 +92,14 @@ public class RestaurantController {
 		return json;
 	}
 	
-/*	@RequestMapping(value="restaurant-ajax", produces="text/plain;charset=UTF-8")
-	@ResponseBody
-	public String restaurantAjax(Model model) {
-		
-		List<Restaurant> list = restaurantDao.getListAll();
-		
-		model.addAttribute("list", restaurantDao.getListAll());
-
-		String json = "";
-		
-		Gson gson = new Gson();
-		json = gson.toJson(list);
-		
-		return json;
-	}*/
-	
 	@RequestMapping(value="restaurant", method=RequestMethod.POST)
+	@ResponseBody
 	public String reg(
 			Restaurant restaurant, 
 			int restaurantId, 
 			String name, 
 			Date regDate, 
+			int ok,
 			HttpServletRequest request) throws IOException {
 		
 		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
@@ -110,15 +112,28 @@ public class RestaurantController {
 		restaurant.setId(restaurantId);
 		restaurant.setName(name);
 		restaurant.setDate(date);
+		restaurant.setOk(ok);
 		
 		int n = restaurantDao.okRestaurant(restaurant);
-		
-		System.out.println(n);
+		if(n>0)
+			System.out.println("update success");
+		else
+			System.out.println("update fail");
 		
 		//return "redirect:../restaurant";
-		return "aaa";
+		return "aa";
 	}
 	
+	@RequestMapping(value="restaurant-delete", method=RequestMethod.POST)
+	public String delete(int[] ids, Restaurant restaurant, HttpServletRequest request)  {
+		int result = 0;
+		for(int i=0;i<ids.length;i++) {
+			result += restaurantDao.deleteOk(ids[i]);
+			System.out.println(ids[i]);
+		};
+		
+		return "redirect:restaurant";
+	}
 	
 /*	@RequestMapping("restaurant/{id}")
 	public String detail(@PathVariable("id") int id,
@@ -130,8 +145,8 @@ public class RestaurantController {
 		model.addAttribute("prev", restaurantDao.getPrev(id));
 		model.addAttribute("next", restaurantDao.getNext(id));
 		
-		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//ÄÚ¸àÆ® ¸®½ºÆ® 
-		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//ÄÚ¸àÆ® °¹¼ö
+		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//ï¿½Ú¸ï¿½Æ® ï¿½ï¿½ï¿½ï¿½Æ® 
+		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//ï¿½Ú¸ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 		
 		return "customer.restaurant.detail";
 	}
@@ -158,7 +173,7 @@ public class RestaurantController {
 		File f = new File(path); 
 	      if(!f.exists()) {
 		         if(!f.mkdirs())
-		            System.out.println("µð·ºÅä¸®¸¦ »ý¼ºÇÒ ¼ö°¡ ¾ø½À´Ï´Ù.");
+		            System.out.println("ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 		      }
 	      path +=File.separator + file.getOriginalFilename();
 	      File f2 = new File(path); 

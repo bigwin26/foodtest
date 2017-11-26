@@ -3,6 +3,7 @@ package com.food.webapp.dao.mybatis;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,12 +11,21 @@ import com.food.webapp.dao.RestaurantDao;
 import com.food.webapp.entity.CmtImage;
 import com.food.webapp.entity.CommentView;
 import com.food.webapp.entity.Restaurant;
+import com.food.webapp.entity.RestaurantMenu;
 import com.food.webapp.entity.RestaurantView;
 
 public class MyBatisRestaurantDao implements RestaurantDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	@Override
+	public List<Restaurant> getListAdmin(int page, String field, String query, int ok) {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		List<Restaurant> list = restaurantDao.getListAdmin(page, field, query, ok);
+		
+		return list;
+	}
 	
 	@Override
 	public List<Restaurant> getList(int page, String field, String query) {
@@ -25,19 +35,43 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 		return list;
 	}
 	
-	/*@Override
-	public List<Restaurant> getListAll() {
+	@Override
+	public List<Restaurant> getOkList() {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
-		List<Restaurant> list = restaurantDao.getListAll();
+		List<Restaurant> list = restaurantDao.getOkList();
 		
 		return list;
-	}*/
+	}
 	
 	@Override
 	public RestaurantView get(int id) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
 		return restaurantDao.get(id);
 	}
+	
+	@Override
+	public int getCountAdmin(@Param("field")String field, @Param("query")String query, @Param("ok")int ok) {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		int result = restaurantDao.getCountAdmin(field, query, ok);
+		
+		return result;
+	}
+	
+	/*@Override
+	public int getCountAdmin(Restaurant restaurant) {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		int result = restaurantDao.getCountAdmin(restaurant);
+		
+		return result;
+	}*/
+	
+	/*@Override
+	public int getCountAdmin(int ok) {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		int result = restaurantDao.getCountAdmin(ok);
+		
+		return result;
+	}*/
 	
 	@Override
 	public int getCount() {
@@ -99,9 +133,9 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 
 	@Override
-	public int okRestaurant(int id, String name, String date) {
+	public int okRestaurant(int id, String name, String date, int ok) {
 		
-		return okRestaurant(new Restaurant(id, name, date));
+		return okRestaurant(new Restaurant(id, name, date, ok));
 	}
 
 	@Override
@@ -121,15 +155,17 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 
 	@Override
-	public List<Restaurant> menuImageList(int id) {
+	public List<RestaurantMenu> menuImageList(int id) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
-		List<Restaurant> list = restaurantDao.menuImageList(id);
+		List<RestaurantMenu> list = restaurantDao.menuImageList(id);
 		return list;
 	}
-	
-	
-	
 
-	
+	@Override
+	public int deleteOk(int id) {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		int result = restaurantDao.deleteOk(id);
+		return result;
+	}
 
 }

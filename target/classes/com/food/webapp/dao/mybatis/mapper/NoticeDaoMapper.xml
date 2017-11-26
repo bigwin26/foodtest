@@ -35,6 +35,10 @@
 	</selectKey>
 		
 		insert into Notice(id, title, content, writerName)
-		value(#{id},#{title}, #{content}, #{writerName});
+		value(#{id}, #{title}, #{content}, #{writerName});
 	</insert>
+	
+	<update id="update" parameterType="com.food.webapp.entity.Notice">
+	update Notice(title,content) set(${title},${content}) where id = ${id}
+	</update>
 </mapper>

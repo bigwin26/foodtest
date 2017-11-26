@@ -22,14 +22,23 @@ html, body, form {
 
 body {
     position:relative;
-    padding-bottom:24px;
     min-height:100%;
     font-size:13px;
+    
 }
 
 .row {
-    width:960px;
-    margin:0 auto;
+    /* width:960px;
+    margin:0 auto; */
+    position:relative;
+    top:18%;
+    width: 550px;
+    height: 650px;
+    padding: 45px 44px 38px 44px;
+    margin: 0 auto;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 5px;
 }
 
 @media (max-width:960px) {
@@ -54,8 +63,11 @@ body {
 }
 
 .container {
-    width:100%;
-    padding-bottom:24px;
+
+    height: 100%;
+    background-image: url(../images/login.gif);
+	background-position: center;
+	background-size: cover;
 }
 
 .footer {
@@ -186,7 +198,7 @@ body {
 .fc-white { color:#FFFFFF; }
 .fc-blue { color:#2483FF; }
 .fc-gray { color:#999999; }
-.fc-red { color:#E73524; }
+.fc-red { color:#f15c22; }
 
 .w90 { width:90px; }
 .w100 { width:100px; }
