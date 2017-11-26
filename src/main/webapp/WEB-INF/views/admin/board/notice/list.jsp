@@ -25,7 +25,7 @@
 							<option value="WRITER">작성자</option>
 						</select> 
 						<label class="hidden">검색어</label> 
-						<input type="text" name="q" /> 
+						<input type="text" name="q"/>
 						<input class="btn btn-search" type="submit" value="검색" />
 					</fieldset>
 				</form>

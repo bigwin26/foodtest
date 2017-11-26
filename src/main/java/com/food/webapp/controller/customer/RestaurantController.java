@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.security.Principal;
 import java.util.Calendar;
 import java.util.List;
@@ -44,7 +46,7 @@ public class RestaurantController {
 	@Autowired
 	CommentDao commentDao;
 	
-	@RequestMapping("restaurant")
+	@RequestMapping(value="restaurant",method=RequestMethod.GET)
 	public String restaurant(@RequestParam(value="p", defaultValue="1")  Integer page,
 							@RequestParam(value="f", defaultValue="name")  String field,
 							@RequestParam(value="q", defaultValue="") String query,
@@ -179,4 +181,17 @@ public class RestaurantController {
       
       return "redirect:../{id}";
    }
+   
+/*   @RequestMapping(value="searchRestaurant",produces="text/plain;charset=UTF-8")
+	public String search(Restaurant restaurant,
+			@RequestParam(value="p", defaultValue="1")  Integer page,
+			@RequestParam(value="f", defaultValue="name")  String field,
+			@RequestParam(value="q", defaultValue="") String query,
+			Model model) {
+
+		model.addAttribute("list", restaurantDao.getList(page, field, query));
+		model.addAttribute("count", restaurantDao.getCount());
+
+		return "redirect:restaurant";
+	}*/
 }

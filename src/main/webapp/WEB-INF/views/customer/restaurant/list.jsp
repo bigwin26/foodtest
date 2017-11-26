@@ -26,7 +26,9 @@
 						<tr>
 							<td>${n.id}</td>
 							<td><a href="restaurant/${n.id}">${n.name} (${n.countCmt})</a></td>
+							
 							<td>${n.image}</td>
+							
 							<td>${n.writerName}</td>
 							<td>${n.writerImage}</td>
 							<td>${n.tip}</td>

@@ -4,6 +4,7 @@
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
+<link rel="stylesheet" href="../resource/css/reset.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <style>
@@ -22,7 +23,7 @@
     padding: 15px 50px 15px 50px;
     z-index: 999;
     width: 100%;
-    background-color: #E73524;
+    background-color: #f15c22;
 
 }
 
@@ -89,7 +90,7 @@ top: 6px;
     margin: 0; border: 0;
     vertical-align: top;
     cursor: pointer;
-    background: no-repeat center #E73524;
+    background: no-repeat center #f15c22;
  	border: 3px solid #fff;
 }
 
@@ -125,7 +126,7 @@ top: 6px;
 							<li><a href="${ctx}/member/login">로그인</a></li>
 						</c:if>
 						
-				<security:authorize access="hasRole('ROLE_USER')">
+				<security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
 					<li>
 					<c:url var="logout" value="/logout" />
 						<form action="${logout}" method="post" id="logoutform">

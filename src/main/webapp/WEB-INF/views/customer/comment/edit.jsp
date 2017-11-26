@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <main>
-	<h2 class="main title">''후기 수정 페이지</h2>
+	<h2 class="main title">'${r.name}'후기 등록 페이지</h2>
 	
 	<div class="">
 		<h3 class="hidden">후기 등록 내용</h3>
@@ -12,21 +12,21 @@
 			<tbody>
 				<tr>
 					<th>가게 이름</th>
-					<td></td>
+					<td>${r.name}</td>
 				</tr>
 				<tr>
 					<th>작성일</th>
-					<td class="text-align-left text-indent" colspan="3"></td>
+					<td class="text-align-left text-indent" colspan="3"><fmt:formatDate	pattern="yyyy-MM-dd" value="${r.regDate}" /></td>
 				</tr>
 				<tr>
 					<th>작성자</th>
-					<td></td>
+					<td>${r.writerName}</td>
 					<th>좋아요</th>
-					<td></td>
+					<td>${r.countLiked}</td>
 				</tr>
 				<tr>
 					<th>상세내용</th>
-					<td></td>
+					<td>${r.content}</td>
 				</tr>
 			</tbody>
 		</table>

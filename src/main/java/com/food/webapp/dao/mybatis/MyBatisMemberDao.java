@@ -59,6 +59,18 @@ public class MyBatisMemberDao implements MemberDao {
 		MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
 		return memberDao.getMember(nickName);
 	}
+	
+	@Override
+	public List<Member> getListAdmin(int page, String field, String query) {
+		MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
+		return memberDao.getListAdmin(page, field, query);
+	}
+
+	@Override
+	public int getCountAdmin(String field, String query) {
+		MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
+		return memberDao.getCountAdmin(field, query);
+	}
 }
 
 

@@ -1,158 +1,159 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <style>
-.main-header a{
-    position: relative;
-    top: 0;
-    font-weight: 700;
-    cursor: pointer;
-        text-decoration: none;
-    color: #ffffff;
+.main-header a {
+	position: relative;
+	top: 0;
+	font-weight: 700;
+	cursor: pointer;
+	text-decoration: none;
+	color: #ffffff;
 }
 
-.main-header{
-    position: fixed;
-    padding: 15px 50px 15px 50px;
-    z-index: 999;
-    width: 100%;
-
+.main-header {
+	position: fixed;
+	padding: 15px 50px 15px 50px;
+	z-index: 999;
+	width: 100%;
 }
 
-.main-header.show{
-    position: fixed;
-    padding: 15px 50px 15px 50px;
-    z-index: 999;
-    width: 100%;
-    background-color: #E73524;
-    
-    
-
-}
-.main-header li{
-   display: inline;
+.main-header.show {
+	position: fixed;
+	padding: 15px 50px 15px 50px;
+	z-index: 999;
+	width: 100%;
+	background-color: #f15c22;
 }
 
-.main-header li:nth-child(5){
-    display: inline;
-    float: right;
-    padding-right: 100px;
+.main-header li {
+	display: inline;
 }
 
-.main-header li:nth-child(6){
-    display: inline;
-    float: right;
-    padding-right: 5px;
-}
-.main-header li:nth-child(7){
-    display: inline;
-    float: right;
+.main-header li:nth-child(5) {
+	display: inline;
+	float: right;
+	padding-right: 100px;
 }
 
-.main-header li:nth-child(8){
-    display: inline;
-    float: right;
-    padding-right: 5px;
+.main-header li:nth-child(6) {
+	display: inline;
+	float: right;
+	padding-right: 5px;
 }
 
-.header-search-container{
-display: none;
-}
-.header-search-container.show{
-position: fixed;
-display: inline-block;
- z-index: 1000;
-left: 42.5%;
-top: 6px;
-
+.main-header li:nth-child(7) {
+	display: inline;
+	float: right;
 }
 
+.main-header li:nth-child(8) {
+	display: inline;
+	float: right;
+	padding-right: 5px;
+}
+
+.header-search-container {
+	display: none;
+}
+
+.header-search-container.show {
+	position: fixed;
+	display: inline-block;
+	z-index: 1000;
+	left: 42.5%;
+	top: 6px;
+}
 
 .header-search-bar {
-    float: left;
-     display: inline-block;
-     width: 300px; 
-     height: 33px;
-     background: white;
-     border: 3px solid #fff;
- }
-
+	float: left;
+	display: inline-block;
+	width: 300px;
+	height: 33px;
+	background: white;
+	border: 3px solid #fff;
+}
 
 .header-search-text {
-
-    width: 90%; height: 20px;
-    margin: 6px 0 0 9px;
-    border: 0;
-    line-height: 20px;
-    font-weight: bold;
-    font-size: 13px;
-    outline: none;
+	width: 90%;
+	height: 20px;
+	margin: 6px 0 0 9px;
+	border: 0;
+	line-height: 20px;
+	font-weight: bold;
+	font-size: 13px;
+	outline: none;
 }
 
-.header-search-text-submit{
-
-    width: 39px; height: 39px;
-    margin: 0; border: 0;
-    vertical-align: top;
-    cursor: pointer;
-    background: no-repeat center #E73524;
- 	border: 3px solid #fff;
+.header-search-text-submit {
+	width: 39px;
+	height: 39px;
+	margin: 0;
+	border: 0;
+	vertical-align: top;
+	cursor: pointer;
+	background: no-repeat center #f15c22;
+	border: 3px solid #fff;
 }
-
 </style>
 <div class="header-search-container">
-         <span class="header-search-bar">
-	<input type="text" class="header-search-text" />
-    </span>
-            <button type="submit" class="header-search-text-submit" style="background-image: url('resource/images/header-search.png');"></button>
+	<span class="header-search-bar"> <input type="text"
+		class="header-search-text" />
+	</span>
+	<button type="submit" class="header-search-text-submit"
+		style="background-image: url('resource/images/header-search.png');"></button>
 </div>
 <div class="main-header">
+	<ul>
+		<li><a href="${ctx}/customer/restaurant"
+			style="border-right-style: solid; padding-right: 5px">맛집 리스트</a></li>
+		<li><a href="${ctx}/customer/map"
+			style="border-right-style: solid; padding-right: 5px">맛집 지도</a></li>
+		<li><a href="${ctx}/customer/worldcup"
+			style="border-right-style: solid; padding-right: 5px">맛집 월드컵</a></li>
+		<li><a href="${ctx}/customer/board">자유게시판</a></li>
 
 
-    <ul>
-        <li><a href="${ctx}/customer/restaurant" style="border-right-style:solid; padding-right: 5px" >맛집 리스트</a></li>
-        <li><a href="${ctx}/customer/map" style="border-right-style:solid; padding-right: 5px" >맛집 지도</a></li>
-        <li><a href="${ctx}/customer/worldcup" style="border-right-style:solid; padding-right: 5px" >맛집 월드컵</a></li>
-        <li><a href="${ctx}/customer/board">자유게시판</a></li>
-      
-        
-        
-        <c:if test="${empty pageContext.request.userPrincipal}">
-							<li><a href="${ctx}/member/join">회원가입</a></li>    
-						</c:if>
-						
-            
-        
-        
-        <%-- <security:authorize access="!hasRole('ROLE_USER')">
+
+		<c:if test="${empty pageContext.request.userPrincipal}">
+			<li><a href="${ctx}/member/join">회원가입</a></li>
+		</c:if>
+
+
+
+
+		<%-- <security:authorize access="!hasRole('ROLE_USER')">
 					<li><a href="${ctx}/member/login">로그인</a></li>
 				</security:authorize> --%>
-				<c:if test="${empty pageContext.request.userPrincipal}">
-							<li><a href="${ctx}/member/login">로그인</a></li>
-						</c:if>
-						
-				<security:authorize access="hasRole('ROLE_USER')">
-					<li>
-					<c:url var="logout" value="/logout" />
-						<form action="${logout}" method="post" id="logoutform">
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
-							<a href="javascript:logoutform.submit();">로그아웃</a></li>
-						</form>
-						</li>
-				</security:authorize>
-				
-				<c:if test="${!empty pageContext.request.userPrincipal}">
-							<li><a href="${ctx}/member/login/${nickName}">내정보</a></li>
-						</c:if>
+		<c:if test="${empty pageContext.request.userPrincipal}">
+			<li><a href="${ctx}/member/login">로그인</a></li>
+		</c:if>
 
+		<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
+			<li><c:url var="logout" value="/logout" />
+				<form action="${logout}" method="post" id="logoutform">
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" /> <a
+						href="javascript:logoutform.submit();">로그아웃</a></li>
+			</form>
+			</li>
+		</security:authorize>
 
-    </ul>
+		<c:if test="${!empty pageContext.request.userPrincipal}">
+			<%-- <li><a href="${ctx}/member/login/${nickName}"></a></li> --%>
+			<li><security:authentication property="name" />님</li>
+		</c:if>
+		
+
+	</ul>
 </div>
+
 <script type="text/javascript">
 
 $(document).ready(function () {
