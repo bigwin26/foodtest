@@ -30,12 +30,24 @@
 						<!-- <th class="w80">작성자 사진</th>
 						<th class="w80">음식 사진</th> -->
 						<th class="w200">작성자 한마디</th>
-						<th class="w150">날짜</th>
-						<th class="w60">승인여부</th>
-						<th class="w60"><input id="delete-button"  type="button" value="삭제" /></th>
-						<%-- <c:if test="${param.o !eq 1}">
+						<th class="w100">날짜</th>
+						<%-- <th class="w60"><input id="delete-button"  type="button" value="삭제" /></th> --%>
+						<c:if test="${null eq param.o}">
+							<th class="w60">승인여부</th>
 							<th class="w60"><input id="delete-button"  type="button" value="삭제" /></th>
-						</c:if> --%>
+						</c:if>
+						<c:if test="${'0' eq param.o}">
+							<th class="w150" colspan="2">승인여부</th>
+							<th class="w60" style="display:none"><input id="delete-button"  type="button" value="삭제" /></th>
+						</c:if>
+						<c:if test="${'1' eq param.o}">
+							<th class="w100">승인여부</th>
+							<th class="w60" style="display:none"><input id="delete-button"  type="button" value="삭제" /></th>
+						</c:if>
+						<c:if test="${'2' eq param.o or '3' eq param.o}">
+							<th class="w100">승인여부</th>
+							<th class="w60"><input id="delete-button"  type="button" value="삭제" /></th>
+						</c:if>
 					</tr>
 				</thead>
 				<tbody>
@@ -53,17 +65,17 @@
 								<c:if test="${'0' eq n.ok}">
 									<td>승인대기</td>
 									<td>
-										<input type="checkbox" name="ids" value="${n.id}"  style="display:none"/>
+										<input type="checkbox" name="ids" value="${n.id}" style="display:none"/>
 										<input class="ok" type="button" value="승인"/>
 										<input class="deny" type="button" value="비승인"/>
 									</td>
 								</c:if>
 								<c:if test="${'1' eq n.ok}">
 									<td>승인</td>
-									<td>
-										<input type="checkbox" name="ids" value="${n.id}"  style="display:none"/>
-										<input class="ok" type="button" value="승인"  style="display:none"/>
-										<input class="deny" type="button" value="비승인"  style="display:none"/>
+									<td style="display:none">
+										<input type="checkbox" name="ids" value="${n.id}" style="display:none"/>
+										<input class="ok" type="button" value="승인" style="display:none"/>
+										<input class="deny" type="button" value="비승인" style="display:none"/>
 									</td>
 								</c:if>
 								<c:if test="${'2' eq n.ok}">
