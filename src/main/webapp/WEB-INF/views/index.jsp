@@ -27,14 +27,14 @@
 		<div class="main-info-container-logo"
 			style="background-image: url('resource/images/main-logo.png');"></div>
 		<div class="main-info-container-search">
-			<form action="list" method="get">
+			 <form action="customer/restaurant" method="get">
 				<span class="main-info-container-search-inner"> <input
-					type="text" class="main-info-container-search-inner-text" name="query" />
+					type="text" class="main-info-container-search-inner-text" name="q" />
 				</span>
-				<input id="search" class="main-info-container-search-inner-submit"
+				<button id="search" class="main-info-container-search-inner-submit"
 					style="background-image: url('resource/images/search.png');"
-					type="button">
-			</form>
+					type="submit"></button>
+			</form> 
 		</div>
 	</div>
 
@@ -49,8 +49,7 @@
 		            imgCount:4,  //이미지갯수
 		            autoPlay:true//자동재생
 		        })
-		  
-		    
+	/* 	  
 		var pageNum = $(".pageNum");
 		var searchButton = $("#search");
 		var ajaxData;
@@ -69,17 +68,17 @@
 		var page = $.urlParam('p')?$.urlParam('p'):1;
 		var query = $.urlParam('q')?$.urlParam('q'):"";
 		
-	/* 	for(var i=0; i<pageNum.length; i++){
+	 	for(var i=0; i<pageNum.length; i++){
 			var pathName = $(location).attr('pathname');
-			var url = pathName + "?p=" + (i+1) + "&o=" + ok;
+			var url = pathName + "?p=" + (i+1);
 			//alert(url);
 			pageNum.eq(i).attr("href", url);
-		} */
+		} 
 		
 		searchButton.click(function(){
 			var query = $("input[name='query']").val();
-			/* var path = $(location).attr('host'); */
-			var url = 'food/customer/restaurant?p=' + page + "&q=" + query;
+			var path = $(location).attr('host');
+			var url = path +'/food/customer/restaurant?'+'p=' + page + "&q=" + query;
 			//alert(query);
 			alert(url);
 			
@@ -96,7 +95,7 @@
 		$.ajax({
 			type:"POST",
 			async: false,
-			url: "/customer/restaurant?${_csrf.parameterName}=${_csrf.token}",
+			url: "/food/customer/restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
 			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 			data: {"page":page, "q":query},
 			//data: {"page":page},
@@ -107,7 +106,7 @@
 				ajaxData = data;
 				//alert("success");
 			}
-		});
+		}); */
 		    });
 		</script>
 		</main>

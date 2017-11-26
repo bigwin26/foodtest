@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 		<main class="main">
-			<h2 class="main title">자유게시판</h2>
+			<h2 class="main title">공지사항</h2>
 			
 			<div class="search-form margin-top first align-right">
 				<h3 class="hidden">공지사항 검색폼</h3>
@@ -24,7 +24,7 @@
 			</div>
 						
 			<div class="notice margin-top">
-				<h3 class="hidden">자유게시판 목록</h3>
+				<h3 class="hidden">공지사항 목록</h3>
 				<table class="table">
 					<thead>
 						<tr>

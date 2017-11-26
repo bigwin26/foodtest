@@ -33,7 +33,7 @@
 						<th class="w60">역할</th>
 						<th class="w150">가입일</th>
 						<th class="w60">멘토</th>
-						<th class="w60"><input id="" type="button" value="탈퇴" /></th>
+						<th class="w60"><input id="delete-button" type="button" value="탈퇴" /></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -54,7 +54,7 @@
 								<td><input type="checkbox" name="ids" value="${n.id}"/></td>
 							</tr>
 						</c:forEach>
-						<input type="submit" value="delete" style="display:none"/>
+						<input id="submit-button" type="submit" value="delete" style="display:none"/>
 					</form>
 				</tbody>
 			</table>
@@ -97,6 +97,8 @@
 	$(function(){
 		var pageNum = $(".pageNum");
 		var searchButton = $("#search");
+		var deleteButton = $("#delete-button");
+		var submitButton = $("#submit-button");
 		var ajaxData;
 		
 		
@@ -143,6 +145,21 @@
 			
 			$(location).attr('href', url);
 		})
+		
+		deleteButton.click(function(){
+			var ids = $("input[name='ids']:checked").length;
+			alert(ids);
+			if(ids>0){
+				if(confirm("정말 탈퇴 시키겠습니까?") == true)
+					submitButton.click();
+				else
+					return;
+			}
+			else{
+				alert("탈퇴시킬 회원을 선택하세요.");
+				return;
+			}
+		});
 		
 		$("input[name='query']").keypress(function(event){
 		    if (event.which == 13) {
