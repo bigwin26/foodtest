@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,6 +75,17 @@ public class MemberController {
 		//System.out.println(json);
 		
 		return json;
+	}
+	
+	@RequestMapping(value="member-delete", method=RequestMethod.POST)
+	public String delete(int[] ids, Member member, HttpServletRequest request)  {
+		int result = 0;
+		for(int i=0;i<ids.length;i++) {
+			result += memberDao.delete(ids[i]);
+			System.out.println(ids[i]);
+		};
+		
+		return "redirect:member";
 	}
 	
 	

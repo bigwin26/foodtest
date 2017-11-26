@@ -89,7 +89,7 @@
 							</tr>
 						</c:forEach>
 						<!-- <input type="submit" value="delete" style="display:none"/> -->
-						<input id="submit-button" type="submit" value="delete"/>
+						<input id="submit-button" type="submit" value="delete" style="display:none"/>
 					</form>
 				</tbody>
 			</table>
@@ -198,10 +198,18 @@
 		})
 		
 		deleteButton.click(function(){
-			if(confirm("정말 삭제하시겠습니까?") == true)
-				submitButton.click();
-			else
+			var ids = $("input[name='ids']:checked").length;
+			//alert(ids);
+			if(ids>0){
+				if(confirm("정말 삭제하시겠습니까?") == true)
+					submitButton.click();
+				else
+					return;
+			}
+			else{
+				alert("삭제할 식당을 선택하세요.");
 				return;
+			}
 		});
 		
 		

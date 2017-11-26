@@ -12,6 +12,8 @@ public interface MemberDao {
 	
 	public List<Member> getListAdmin(@Param("page")int page, @Param("field")String field, @Param("query")String query);
 	int getCountAdmin(@Param("field")String field, @Param("query")String query);
+	
+	int delete(int id);
 
 	public int insert(
 			String pwd,
