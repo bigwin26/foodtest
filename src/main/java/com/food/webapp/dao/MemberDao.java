@@ -11,9 +11,12 @@ import com.food.webapp.entity.Member;
 public interface MemberDao {
 	
 	public List<Member> getListAdmin(@Param("page")int page, @Param("field")String field, @Param("query")String query);
+	
 	int getCountAdmin(@Param("field")String field, @Param("query")String query);
 	
 	int delete(int id);
+	
+	Member detail(int id); 
 
 	public int insert(
 			String pwd,
@@ -30,6 +33,7 @@ public interface MemberDao {
 	public Member login(String email, String pwd);
 	
 	int pointUp(String id);
+	
 	public Member get(String loginEmail);
 
 	public int sameCheckId(Member member) throws Exception;
