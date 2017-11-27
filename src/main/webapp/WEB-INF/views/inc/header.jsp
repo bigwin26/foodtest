@@ -117,7 +117,7 @@
 			style="border-right-style: solid; padding-right: 5px">맛집 지도</a></li>
 		<li><a href="${ctx}/customer/worldcup"
 			style="border-right-style: solid; padding-right: 5px">맛집 월드컵</a></li>
-		<li><a href="${ctx}/customer/board">자유게시판</a></li>
+		<li><a href="${ctx}/customer/board">공지사항</a></li>
 
 
 
