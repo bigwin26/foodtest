@@ -108,7 +108,7 @@ top: 6px;
         <li><a href="${ctx}/customer/restaurant" style="border-right-style:solid; padding-right: 5px" >맛집 리스트</a></li>
         <li><a href="${ctx}/customer/map" style="border-right-style:solid; padding-right: 5px" >맛집 지도</a></li>
         <li><a href="${ctx}/customer/worldcup" style="border-right-style:solid; padding-right: 5px" >맛집 월드컵</a></li>
-        <li><a href="${ctx}/customer/board">자유게시판</a></li>
+        <li><a href="${ctx}/customer/board">공지사항</a></li>
       
         
         

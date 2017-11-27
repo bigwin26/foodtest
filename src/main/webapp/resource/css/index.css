@@ -48,6 +48,30 @@ a{
 .main-info{
     position: relative;
  }
+ 
+#outline_div {
+    position: relative;
+    margin: auto;
+    min-width: 960px;
+    width: 100%;
+    min-height: 768px;
+    text-align: center;
+    opacity: 1;
+}
+
+#back_div {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    min-height: 672px;
+}
+
+#op_div {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    background: rgba(0,0,0,.5);
+}
 
 .main-info-slide-image {
     width: 100%;
