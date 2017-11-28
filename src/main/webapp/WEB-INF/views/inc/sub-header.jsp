@@ -19,7 +19,7 @@
 }
 
 .main-header{
-  position: fixed;
+  position: relative;
     padding: 15px 50px 15px 50px;
     z-index: 999;
     width: 100%;
