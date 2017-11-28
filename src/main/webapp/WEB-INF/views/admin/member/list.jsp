@@ -148,7 +148,7 @@
 		
 		deleteButton.click(function(){
 			var ids = $("input[name='ids']:checked").length;
-			alert(ids);
+			//alert(ids);
 			if(ids>0){
 				if(confirm("정말 탈퇴 시키겠습니까?") == true)
 					submitButton.click();
