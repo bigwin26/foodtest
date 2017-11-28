@@ -78,7 +78,7 @@ public class MemberController {
 		return json;
 	}
 	
-	@RequestMapping(value="member-delete", method=RequestMethod.POST)
+/*	@RequestMapping(value="member-delete", method=RequestMethod.POST)
 	public String delete(int[] ids, Member member, HttpServletRequest request)  {
 		int result = 0;
 		for(int i=0;i<ids.length;i++) {
@@ -87,7 +87,32 @@ public class MemberController {
 		};
 		
 		return "redirect:member";
+	}*/
+	
+	@RequestMapping(value="member-delete", method=RequestMethod.POST)
+	public String delete(int id, Member member, HttpServletRequest request)  {
+		int result = 0;
+		System.out.println("admin member " + id + "번 회원 탈퇴");
+		memberDao.delete(id);
+		
+		return "redirect:member";
 	}
+	
+	@RequestMapping(value="member-edit", method=RequestMethod.POST)
+	public String edit(int id, String nickName, int role, String mentor, Member member, HttpServletRequest request)  {
+		//int result = memberDao.edit(id);
+		System.out.println("edit");
+		System.out.println("id: " + id);
+		System.out.println("nickName: " + nickName);
+		System.out.println("role: " + role);
+		System.out.println("mentor: " + mentor);
+		
+		memberDao.edit(id, nickName, role, mentor);
+		
+		return "redirect:member";
+	}
+	
+	
 	
 	@RequestMapping("member/{id}")
 	public String detail(@PathVariable("id") int id,
@@ -99,7 +124,6 @@ public class MemberController {
 		//model.addAttribute("r", memberDao.get(id));
 		//model.addAttribute("prev", restaurantDao.getPrev(id));
 		//model.addAttribute("next", restaurantDao.getNext(id));
-		
 		//model.addAttribute("cmtList", restaurantDao.getCmt(id, page));
 		//model.addAttribute("cmtp", restaurantDao.cmtCount(id));
 		

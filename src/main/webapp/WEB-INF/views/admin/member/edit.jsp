@@ -27,40 +27,20 @@
 				<tr>
 					<th>닉네임</th>
 						<td><input type="text"  name="nickName" value="${m.nickName}" /></td>
-						<%-- <td>${m.nickName}</td> --%>
 					<th>비밀번호</th>
 						<td>${m.pwd}</td>
 				</tr>      
 				<tr>
-					<th>권한</th>
-						<%-- <td>${m.role}</td> --%>
-						<c:if test="${'0' eq m.role}">
-							<!-- <td>일반회원</td> -->
-							<td>
-								<select id="selectBox" name="selectBox">
-									<option value="${m.role}">일반회원</option>
-									<option value="1">관리자</option>
-								</select>
-								<input type="text" name="role" size="1" style="display: none;"/>
-							</td>
-						</c:if>
-						<c:if test="${'1' eq m.role}">
-							<!-- <td>관리자</td> -->
-							<td>
-								<select id="selectBox" name="selectBox">
-									<option value="0">일반회원</option>
-									<option value="${m.role}">관리자</option>
-								</select>
-								<input type="text" name="role" size="1" style="display: none;"/>
-							</td>
-						</c:if>
-					<th>멘토</th>
-						<td><input type="text"  name="mentor" value="${m.mentor}" /></td>
-						<%-- <td>${m.mentor}</td> --%>
-				</tr>
-				<tr>
 					<th>가입일</th>
 						<td><fmt:formatDate	pattern="yyyy-MM-dd kk:mm:ss" value="${m.regDate}" /></td> 
+					<th>권한</th>
+						<c:if test="${'0' eq m.role}">
+							<td>일반회원</td>
+						</c:if>
+						<c:if test="${'1' eq m.role}">
+							<td>관리자</td>
+						</c:if>
+						<%-- <td>${m.role}</td> --%>
 				</tr>
 				<%-- <tr>
 					<th>좋아요</th>
@@ -103,25 +83,7 @@
 		
 		editButton.click(function(){
 			
-			if(confirm("정말 수정하시겠습니까?") == true){
-				var form = document.form;
-				form.action = "${ctx}/admin/member-edit";
-				//alert(form.action);
-				
-				form.submit();
-			}
-			else
-				return;
 			
-		});
-		
-		$("#selectBox > option[value=" + ${m.role} + "]").prop("selected", true);
-		$("input[name='role']").attr("value", ${m.role});
-		
-		$("#selectBox").change(function(){
-			var value = $(this).val();
-			//alert(value);
-			$("input[name='role']").attr("value", value);
 		});
 		
 		/* function submit(val){
