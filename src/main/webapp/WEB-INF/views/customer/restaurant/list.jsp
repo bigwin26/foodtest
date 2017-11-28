@@ -3,9 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link rel="stylesheet" href="resource/css/reset.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/customer-restaurant.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<main id="main" />
-		<h2 class="main title">런치 리스트</h2>
+		<!-- <h2 class="main title">맛집 리스트</h2> -->
 		<div class="">
 			<h3 class="hidden">레스토랑 목록</h3>
 			<table class="restaurant-list">
