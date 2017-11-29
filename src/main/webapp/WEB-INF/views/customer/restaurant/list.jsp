@@ -16,16 +16,21 @@
 		<div class="restaurant-cards">
 		
 		<c:forEach var="n" items="${list}" begin="0" end="${fn:length(list)}">
-		
+			
+			<a href="restaurant/${n.id}">
 			<div class="restaurant-card">
 				<div class="img-wrapper">
-					<img class="img-size" src="../resource/images/1.jpg">
-					<div class="gradation"></div>
-					<div class="action-wrapper">
-						<%-- <div class="movie-title">${i.movieNm}</div> --%>
+					<!-- <img class="img-size" src="../resource/images/1.jpg"> -->
+					<div class="gradation">
+						<div class="inner-restaurant-info">
+							<span class="name">${n.name}</span>
+							<p class="tip">${n.genre}</p>
+							<p class="tip">"${n.tip}"</p>
+						</div>
 					</div>
 				</div>
 			</div>
+			</a>
 		
 		</c:forEach>
 		
@@ -128,7 +133,24 @@
 					//console.log(data)	
 					var content="";
 		            for(var i=0; i<data.length; i++){
-		                content +=
+		            	content +=
+		            		"<a href='restaurant/"+data[i].id+"'>"+
+			    			"<div class='restaurant-card'>"+
+			    				"<div class='img-wrapper'>"+
+			    					"<div class='gradation'>"+
+			    						"<div class='inner-restaurant-info'>"+
+			    							"<span class='name'>"+data[i].name+"</span>"+
+			    							"<p class='tip'>"+data[i].genre+"</p>"+
+			    							"<p class='tip'>"+data[i].tip+"</p>"+
+			    						"</div>"+
+		    						"</div>"+
+	    						"</div>"+
+    						"</div>"+
+    						"</a>";
+		            }
+		            $(".restaurant-cards").append(content);
+		            	
+		            	/* content +=
 		                "<tr>"+
 		                    "<td>"+data[i].id+"</td>"+
 		                    "<td><a href=restaurant/"+data[i].id+">"+data[i].name+"</a></td>"+
@@ -140,7 +162,7 @@
 		                    "<td>"+data[i].avgPoint+"</td>"+
 		                "</tr>";
 		            }
-				$("tbody").append(content);	  
+				$("tbody").append(content);	 */  
 				
 				}, error:function(request,status,error){
 		            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
