@@ -1,0 +1,86 @@
+@charset "UTF-8";
+.clearfix::after{
+   content: "";
+   display: block;
+   clear: both;
+}
+.main-dc{
+	position: relative;
+    width: 100%;
+    height: auto;
+}
+#main-wrapper{
+	position: relative;
+    width: 960px;
+    height: auto;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+#listArea {
+    float: left;
+    width: 100%;
+    height: auto;
+    margin: 56px 0px;
+}
+#articleList {
+    float: left;
+    width: 100%;
+    height: auto;
+}
+#article {
+    float: left;
+    width: 100%;
+    height: auto;
+    padding: 24px 0px;
+    border-bottom: 2px solid #fff;
+}
+.article-text {
+    float: left;
+    width: 760px;
+    height: 150px;
+    margin: 0px 0px 10px 0px;
+    padding: 0px 120px 0px 0px;
+    text-align: left;
+}
+.text-ellipsis {
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.article-title {
+    float: left;
+    width: 640px;
+    height: 31px;
+    margin-bottom: 24px;
+    color: #00cdcd;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 31px;
+}
+.article-content {
+    overflow: hidden;
+    float: left;
+    width: 640px;
+    height: 81px;
+    color: #000;
+    font-size: 16px;
+    line-height: 27px;
+}
+.article-date {
+    float: left;
+    width: auto;
+    height: auto;
+    color: #999;
+    font-size: 16px;
+    line-height: 24px;
+}
+.article-writername {
+    float: right;
+    width: auto;
+    height: auto;
+    color: #999;
+    font-size: 16px;
+    line-height: 24px;
+}
