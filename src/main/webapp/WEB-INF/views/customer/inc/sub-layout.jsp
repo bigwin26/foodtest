@@ -10,6 +10,8 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/reset.css">
 <%-- <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/customer-restaurant.css"> --%>
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/map.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/board.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/footer.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -31,7 +33,5 @@
 		</div>
 	</div>
 	<tiles:insertAttribute name="footer" />
-
-
 </body>
 </html>
