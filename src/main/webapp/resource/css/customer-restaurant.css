@@ -43,7 +43,9 @@ main .main{
 }
 
 /* --------------------visual--------------------------------------- */
-#visual {
+/* views/customer/restaurant/list script 부분에서 변경할 것 */
+
+/* #visual {
     height: 300px;
     background: #313131 url(../images/customer-visual3.jpg) center;
     background-size: cover;
@@ -61,4 +63,128 @@ main .main{
 #visual .customer-text {
     font-size: 30px;
     color: white;
+} */
+
+/* ----restaurant cards------------------------------------------------------------- */
+/* div{
+   display: block;
+} */
+
+.restaurant-cards{
+   width: 1350px;
+   position: relative;
+   overflow: hidden;
+   /* float: right; */
 }
+ 
+.restaurant-card{
+   position:relative;
+   overflow: hidden;
+   margin:10px;
+   float: left;
+}
+   
+.img-wrapper{
+	position:relative;
+}
+   
+.img-wrapper .gradation{
+	cursor: pointer;
+  	width: 100%;
+   	height: 98%;
+   	position: absolute;
+   	left: 0;
+   	top: 0;
+	border-radius: 6px;
+	transition-duration: 0.5s;
+ }
+   
+.img-wrapper:hover .gradation{
+	background-color: rgba(0,0,0,0.5);
+}
+
+.img-size {
+   	width: 300px;
+   	height: 200px;
+   	border-radius: 10px;
+}
+   
+   /* .action-wrapper{
+		position: absolute;
+	    bottom: 0;
+	    left: 0;
+	    width: 100%;
+	    background-color: white;
+	    text-align: center;
+	    opacity: 0;
+	    transition-property: opacity;
+   }
+   
+   .poster-wrapper:hover .action-wrapper{
+   		opacity: 1;
+   }
+   
+   .movie-title{
+	    height: 40px;
+	    line-height: 40px;
+	    font-size: 14px;
+	    color: #403f4e;
+	    border-bottom: 1px solid #F3F3F5;
+	    overflow: hidden;
+   }
+   
+   .wish-comment{
+		margin: 20px 0 20px 0;
+	    position: relative;
+	    color: #6d6c83;
+	    height: 20px;
+   }
+   
+   .wish,
+   .comment{
+		font-size: 12px;
+	    position: absolute;
+	    text-indent: 24px;
+	    line-height: 13px;
+	    cursor: pointer;
+   }
+   
+   .wish{
+   	left: 20px;
+   }
+   .wish:hover{
+   	color: red;
+   }
+   .wish:hover .icon{
+   	background: url(../images/icon-like-on.png);
+   }
+  .wish .icon{
+		position: absolute;
+	    left: 0;
+	    top: 0;
+	    width: 15px;
+	    height: 13px;
+	    display: block;
+	    background: url(../images/icon-like.png);
+   }
+	
+   .comment{
+   	right: 20px;
+   }
+   .comment:hover{
+	color: #48C6C3;
+   }
+    .comment:hover .icon{
+		background: url(../images/icon-keyword-on.png);
+    }
+   .comment .icon{
+	   	position: absolute;
+	    left: 0;
+	    top: 0;
+	    width: 14px;
+	    height: 13px;
+	    display: block;
+	    background: url(../images/icon-keyword.png);
+   } */
+   
+      

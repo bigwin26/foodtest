@@ -2,6 +2,6 @@
     pageEncoding="UTF-8"%>
 	<div id="visual">
 		<div class="content-container">
-			<!-- <h1 class="customer-text">맛집 리스트</h1> -->
+			<h1 class="customer-text"></h1>
 		</div>
 	</div>
