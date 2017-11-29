@@ -16,6 +16,8 @@ public interface MemberDao {
 	
 	int delete(int id);
 	
+	int edit(@Param("id")int id, @Param("nickName")String nickName, @Param("role")int role, @Param("mentor")String mentor);
+	
 	Member detail(int id); 
 
 	public int insert(

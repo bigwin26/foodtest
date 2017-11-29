@@ -68,4 +68,8 @@
 		select * from Member where id = #{id}
 	</select>
 	
+	<update id="edit">
+		update Member set nickName=#{nickName}, role=#{role}, mentor=#{mentor} where id=#{id}
+	</update>
+	
 </mapper>

@@ -25,10 +25,10 @@ a{
     width: 1200px;
 }
 
-/* body{
+body{
 	font-family:돋음, Arial, sans-serif;
-	font-size: 12px;
-} */
+	/* font-size: 12px; */
+}
 
 /* ---------------------text Style------------------------------ */
 .text-left{
