@@ -1,15 +1,99 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" href="../resource/css/reset.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+/* $(document).ready(function() {
+	   $("#notice").off("click").on("click", function() {
+	// test class를 포함하는 DOM 객체가 active class를 포함하면 true 아니면 false를 반환
+	       if ($("#notice").hasClass("active")) { 
+	// active class 제거
+	           	$("#notice").removeClass("active");
+	       }
+	       else {
+	// active class 추가
+	           	$("#notice").addClass("active");
+	       }
+	   });
+	}); */
+/* $(function(){ 
+$("#notice").click(function () {
+  $(this).toggleClass("active");
+});
+}) */
+</script>
 <style>
+#mainHeader {
+	position: relative;
+	top: 0px;
+	float: left;
+	width: 100%;
+	height: 56px;
+	background: #ff792a;
+}
 
-.main-header a{
+#headerWrapper {
+	position: relative;
+	width: 960px;
+	height: 56px;
+	margin: 0 auto;
+}
+
+#headerNavi {
+	float: left;
+	width: auto;
+	height: 56px;
+}
+
+#headerNavi li {
+	float: left;
+	height: auto;
+	padding: 18px 24px 12px 24px;
+	border-bottom: 6px solid transparent;
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 20px;
+}
+a:link,a:visited{
+    text-decoration: none;
+    color: inherit;
+}
+#headerNavi li:hover {
+    border-bottom: 6px solid #fff;
+}
+
+#headerLogo {
+	float: left;
+	padding: 13px 0px;
+}
+
+#headerLogo img {
+	width: 200px;
+	height: 30px;
+}
+#rightHeaderNavi{
+	float: right;
+	width: auto;
+	height: auto;
+}
+#rightHeaderNavi li{
+	float: right;
+	height: 56px;
+	padding: 18px 24px 12px 24px;
+	border-bottom: 6px solid transparent;
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 20px;
+}
+
+/* .main-header a{
     position: relative;
     top: 0;
     font-weight: 700;
@@ -93,55 +177,60 @@ top: 6px;
     background: no-repeat center #f15c22;
  	border: 3px solid #fff;
 }
-
+ */
 </style>
-<div class="header-search-container">
+<%-- <div class="header-search-container">
          <span class="header-search-bar">
 	<input type="text" class="header-search-text" />
     </span>
             <button type="submit" class="header-search-text-submit" style="background-image: url('${ctx}/resource/images/header-search.png');"></button>
-</div>
-<div class="main-header">
+</div> --%>
+<div id="mainHeader">
+	<div id="headerWrapper">
+		<a id="headerLogo" href="http://localhost/food/index"><img
+			src="${ctx}/resource/images/logo.png"></a>
+		<ul id="headerNavi">
+			<li id="notice"><a href="${ctx}/customer/restaurant"
+				style="padding-right: 5px">맛집 리스트</a></li>
+			<li id="notice"><a href="${ctx}/customer/map" style="padding-right: 5px">맛집
+					지도</a></li>
+			<li id="notice"><a href="${ctx}/customer/board">공지사항</a></li>
 
 
-    <ul>
-        <li><a href="${ctx}/customer/restaurant" style="border-right-style:solid; padding-right: 5px" >맛집 리스트</a></li>
-        <li><a href="${ctx}/customer/map" style="border-right-style:solid; padding-right: 5px" >맛집 지도</a></li>
-        <li><a href="${ctx}/customer/worldcup" style="border-right-style:solid; padding-right: 5px" >맛집 월드컵</a></li>
-        <li><a href="${ctx}/customer/board">공지사항</a></li>
-      
-        
-        
-        <c:if test="${empty pageContext.request.userPrincipal}">
-							<li><a href="${ctx}/member/join">회원가입</a></li>    
-						</c:if>
-						
-            
-        
-        
-        <%-- <security:authorize access="!hasRole('ROLE_USER')">
+		</ul>
+
+		<ul id="rightHeaderNavi">
+			<c:if test="${empty pageContext.request.userPrincipal}">
+				<li><a href="${ctx}/member/join">회원가입</a></li>
+			</c:if>
+
+
+
+
+			<%-- <security:authorize access="!hasRole('ROLE_USER')">
 					<li><a href="${ctx}/member/login">로그인</a></li>
 				</security:authorize> --%>
-				<c:if test="${empty pageContext.request.userPrincipal}">
-							<li><a href="${ctx}/member/login">로그인</a></li>
-						</c:if>
-						
-				<security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
-					<li>
-					<c:url var="logout" value="/logout" />
-						<form action="${logout}" method="post" id="logoutform">
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
-							<a href="javascript:logoutform.submit();">로그아웃</a></li>
-						</form>
-						</li>
-				</security:authorize>
-				
-				<c:if test="${!empty pageContext.request.userPrincipal}">
-							<li><a href="${ctx}/member/login/${nickName}">내정보</a></li>
-						</c:if>
+			<c:if test="${empty pageContext.request.userPrincipal}">
+				<li><a href="${ctx}/member/login">로그인</a></li>
+			</c:if>
+
+			<security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
+				<li><c:url var="logout" value="/logout" />
+					<form action="${logout}" method="post" id="logoutform">
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" /> <a
+							href="javascript:logoutform.submit();">로그아웃</a></li>
+				</form>
+				</li>
+			</security:authorize>
+
+			<c:if test="${!empty pageContext.request.userPrincipal}">
+				<li><a href="${ctx}/member/login/${nickName}">내정보</a></li>
+			</c:if>
 
 
-    </ul>
+		</ul>
+	</div>
 </div>
 
 <%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
