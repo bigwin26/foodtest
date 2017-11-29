@@ -101,6 +101,144 @@
 	background: no-repeat center #f15c22;
 	border: 3px solid #fff;
 }
+
+#gnb-right-menu{
+   float: right;
+   position: relative;
+   right:100px;
+   top:-11;
+}
+
+   #gnb-right-menu .my{
+      top: -10;
+    /* padding: 40px 15px; */
+    color: white;
+    float: right;
+    line-height: 0px;
+    padding-right: 75px;
+    height: 30px;
+   } 
+    #gnb-right-menu .my:visited .dropdown-content{
+    display: inline-block;
+     
+   }     
+  
+      
+      #gnb-right-menu .my .name{
+         color: white;
+      }
+      
+      #gnb-right-menu .my:hover .name{
+         color:#48C6C3;
+      }     
+   
+      #gnb-right-menu .my-picture{
+         width: 40px;
+         height: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+          object-position: 50% 50%;
+          position: absolute;
+          right: 20px;
+          top: 20px;
+   }
+   
+ 
+
+.dropdown-content {
+	top: 30px;
+	right: -3px;
+	display: none;
+	position: absolute;
+	background-color: AliceBlue;
+	min-width: 120px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 18px 16px;
+	text-decoration: none;
+	display: block;
+	border-bottom: 1px solid #bbb;
+}
+
+.dropdown-content a:last-child {
+	border-bottom: none;
+}
+
+.dropdown-content a:hover {
+	background-color: #f15c22;
+}
+
+.dropdown-content:hover a:first-child{
+
+border-radius: 5px 5px 0 0;
+
+}
+
+.dropdown-content:hover a:last-child{
+border-radius: 0 0 5px 5px;
+
+}
+
+.my:hover .dropdown-content {
+	display: block;
+}
+
+ .top-user-prof{
+    overflow: hidden;
+    position: absolute;
+    z-index: 11;
+    top: -19;
+    right: 0px;
+    width: 40px;
+    height: 40px;
+    background-color: #e0e0e0;
+    border-radius: 100%;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 2px solid #fff;
+        }
+        .top-user-prof img{
+            position:relative;
+            margin:-2px;
+            width:40px;
+            height:40px;
+            border-radius: 100%; -moz-border-radius: 100%; -webkit-border-radius: 100%;
+            box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+
+        }
+
+        #user_img {
+            width: 40px;
+            height: 40px;
+            /*border: 2px solid #fff;*/
+            z-index: 11;
+        }
+
+        #search_menu img {
+            height: 30px;
+        }
+        #my_menu_list a {
+            color: #000;
+        }
+        #my_menu_list a:hover {
+            color: #fff;
+            background-color: rgba(0, 205, 205, .85);
+        }
+        .pic-loading-wrap {
+            position: absolute;
+            top: 25%;
+            left: 24%;
+            width:50%;
+            height: 50%;
+        }
+   
 </style>
 <div class="header-search-container">
 	<span class="header-search-bar"> <input type="text"
@@ -118,24 +256,45 @@
 		<li><a href="${ctx}/customer/worldcup"
 			style="border-right-style: solid; padding-right: 5px">맛집 월드컵</a></li>
 		<li><a href="${ctx}/customer/board">공지사항</a></li>
+</ul>
+	<div id="gnb-right-menu">
+				<div class="my">
+					<security:authentication property="name" />님					
+					
+					<div class="top-user-prof"> 
+					<div class="pic-loading-wrap">
+					<div class="pic-loader">
+					</div>
+					</div> 
+					<img id="user_img" src="resource/images/user.png"/> 
+					</div>
+					
+					
+					<div class="dropdown-content">
+					
+					<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
+			<c:url var="logout" value="/logout" />
+				<form action="${logout}" method="post" id="logoutform">
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" /> <a
+						href="javascript:logoutform.submit();">로그아웃</a>
+				</form>
+		<a>1</a>
+		<a>2</a>
+		<a>3</a>
+		<a>4</a>
+		<a>5</a>
+		
+				
+			
+		</security:authorize>						
+						
+					</div>
+					
+				</div>
+			</div>
 
-
-
-		<c:if test="${empty pageContext.request.userPrincipal}">
-			<li><a href="${ctx}/member/join">회원가입</a></li>
-		</c:if>
-
-
-
-
-		<%-- <security:authorize access="!hasRole('ROLE_USER')">
-					<li><a href="${ctx}/member/login">로그인</a></li>
-				</security:authorize> --%>
-		<c:if test="${empty pageContext.request.userPrincipal}">
-			<li><a href="${ctx}/member/login">로그인</a></li>
-		</c:if>
-
-		<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
+		<%-- <security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
 			<li><c:url var="logout" value="/logout" />
 				<form action="${logout}" method="post" id="logoutform">
 					<input type="hidden" name="${_csrf.parameterName}"
@@ -146,12 +305,11 @@
 		</security:authorize>
 
 		<c:if test="${!empty pageContext.request.userPrincipal}">
-			<%-- <li><a href="${ctx}/member/login/${nickName}"></a></li> --%>
+			<li><a href="${ctx}/member/login/${nickName}"></a></li>
 			<li><security:authentication property="name" />님</li>
-		</c:if>
+		</c:if> --%>
 		
 
-	</ul>
 </div>
 
 <script type="text/javascript">

@@ -68,9 +68,10 @@ a{
 
 #op_div {
     position: relative;
+    
     z-index: 1;
     width: 100%;
-    background: rgba(0,0,0,.5);
+    background: rgba(0,0,0,.3);
 }
 
 .main-info-slide-image {

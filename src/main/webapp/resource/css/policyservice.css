@@ -1,4 +1,4 @@
-
+/* 
 input {
     -webkit-appearance: none;
     border-radius: 0;
@@ -56,7 +56,7 @@ input {
 #logo_cell {
     float:left;
     margin:13px 0px;
-    /*margin-right:77px;*/
+    margin-right:77px;
     margin-right:118px;
     width: 202px;
     height: 30px;
@@ -263,7 +263,7 @@ input {
     box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
 
 }
-/*.top-user-prof {
+.top-user-prof {
     display: inline-block;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -282,7 +282,7 @@ input {
     vertical-align: middle;
     width:40px;
     height:40px;
-}*/
+}
 
 
 
@@ -291,14 +291,14 @@ input {
 
 
 #user_intro{
-    /*color : rgba(255,255,255,0.54);*/
+    color : rgba(255,255,255,0.54);
     color : #b2ebf2;
 
 }
 #user_img {
     width: 40px;
     height: 40px;
-    /*border: 2px solid #fff;*/
+    border: 2px solid #fff;
     z-index: 11;
 }
 
@@ -353,10 +353,10 @@ input {
 }
 
 .pic-loader {
-    /*position: absolute;
+    position: absolute;
     top: 40%;
     left: 80%;
-    margin-left: -13px;*/
+    margin-left: -13px;
     border-top: 3px solid rgba(0,0,0, 0.2);
     border-right: 3px solid rgba(0,0,0, 0.2);
     border-bottom: 3px solid rgba(0,0,0, 0.2);
@@ -372,10 +372,10 @@ input {
 .img_max {
     max-width: 100%;
 }
-/*style.css*/
+style.css
 
 
-/*notice*/
+notice
 .w_pop {
     background-color: RGBA(255,255,255, 0.8);
     padding: 15px;
@@ -413,7 +413,7 @@ input {
     right: 0;
 }
 
-/*** label ***/
+** label **
 .label-name {
     width: 90%;
     white-space: nowrap;
@@ -423,7 +423,7 @@ input {
     overflow: hidden;
     text-overflow: ellipsis;
     color: #fff;
-    /*border : 1px solid #000;*/
+    border : 1px solid #000;
 }
 
 
@@ -500,7 +500,7 @@ ul, li {
     top: 350px;
 }
 
-/** bootstrap **/
+* bootstrap *
 .container {
     padding-right: 0px;
     padding-left: 0px;
@@ -530,7 +530,7 @@ ul, li {
     top: 0;
 }
 
-/*** background ***/
+** background **
 .top-back {
     position: absolute;
     min-width: 960px;
@@ -542,7 +542,7 @@ ul, li {
     background-size: cover;
 }
 
-/*** dropdown ***/
+** dropdown **
 .dropdown-menu>li>a {
     padding: 5px 20px 5px 10px;
     color: #404041;
@@ -590,23 +590,23 @@ ul, li {
     margin-top: 0px;
 }
 
-/*.top-user-name {
+.top-user-name {
     margin-top: 13px;
     margin-right: 49px;
     width: auto !important;
     max-width: 150px;
     text-align: right;
     left: inherit;
-}*/
+}
 
-/*.top-user-img {
+.top-user-img {
     float: right;
     position: absolute;
     top: 0;
     right: 0;
-}*/
+}
 
-/*** tab ***/
+** tab **
 .nav-mid-tab {
     border-bottom: 0px solid #ddd;
     padding: 15px 0;
@@ -631,8 +631,8 @@ ul, li {
     border: 0px solid #e0e0e0;
 }
 
-/*** 메뉴 fiexd ***/
-/*.scroll-fixed-menu {
+** 메뉴 fiexd **
+.scroll-fixed-menu {
     background-color: #f7f5f0;
     width:100%;
     z-index: 10;
@@ -657,7 +657,7 @@ ul, li {
     border-bottom: 0px solid #e0e0e0;
 }
 
-/*** slider ***/
+/*** slider **
 .slider-wrap {
     position: relative;
     padding: 20px 80px;
@@ -723,7 +723,7 @@ ul, li {
 }
 
 
-/*** bootstrap ***/
+** bootstrap **
 .form-control {
     border-radius: 0;
 }
@@ -788,7 +788,7 @@ ul, li {
     font-weight: 600;
 }
 
-/*** collapse ***/
+** collapse **
 .gray-box .collapse,.darkbaige-box .collapse {
     display: block;
     min-height: 35px;
@@ -820,7 +820,7 @@ ul, li {
     right: 0px;
     width: 50px;
     background: transparent;
-    /*top: 0px;*/
+    top: 0px;
     outline: none;
     z-index: 10;
 }
@@ -829,7 +829,7 @@ ul, li {
     outline: none !important;
 }
 
-/*** login ***/
+** login **
 .modal-login {
     margin: 100px auto;
     top: 49px;
@@ -871,7 +871,7 @@ ul, li {
     margin-right: 0;
 }
 
-/*** tab ***/
+** tab **
 .nav-term {
     border-bottom: 0px solid #ddd;
 }
@@ -897,7 +897,7 @@ ul, li {
     border-bottom: 5px solid #00cdcd;
 }
 
-/**** box ****/
+*** box ***
 .w-box {
     background: #fff;
     border: 1px solid #c2c1c1;
@@ -933,7 +933,7 @@ ul, li {
     background: #777777;
 }
 
-/*** img ***/
+** img **
 .mypage-user {
     margin-top: 100px;
     width: 960px;
@@ -971,7 +971,7 @@ ul, li {
     margin-left: 180px;
 }
 
-/*** input textarea ***/
+** input textarea **
 .form-list {
     margin-bottom: 5px;
     display: inline-block;
@@ -1049,7 +1049,7 @@ textarea.form-control {
     right: 0;
 }
 
-/*** checkbox radio select style ***/
+** checkbox radio select style **
 .radio-wrap label {
     padding: 4px 0;
 }
@@ -1080,7 +1080,7 @@ textarea.form-control {
     cursor: pointer;
     outline: none;
     opacity: 0;
-    /* CSS hacks for older browsers */
+    CSS hacks for older browsers
     _noFocusLine: expression(this.hideFocus=true);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity=0);
@@ -1115,7 +1115,7 @@ textarea.form-control {
     cursor: pointer;
     outline: none;
     opacity: 0;
-    /* CSS hacks for older browsers */
+    CSS hacks for older browsers
     _noFocusLine: expression(this.hideFocus=true);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity=0);
@@ -1150,7 +1150,7 @@ textarea.form-control {
     overflow: hidden;
     cursor: pointer;
     position: relative;
-    /* z-index: -1; */
+    z-index: -1;
 }
 
 .select-wrapper select {
@@ -1160,7 +1160,7 @@ textarea.form-control {
     cursor: pointer;
     outline: none;
     opacity: 0;
-    /* CSS hacks for older browsers */
+    CSS hacks for older browsers
     _noFocusLine: expression(this.hideFocus=true);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity=0);
@@ -1176,7 +1176,7 @@ textarea.form-control {
     top: -6px;
 }
 
-/*** btn ***/
+** btn **
 .box-collection {
     border: 2px solid #dcdcdc;
     background: #fff;
@@ -1317,7 +1317,7 @@ textarea.form-control {
     margin: 0px 5px 10px 5px;
     position: relative;
     overflow: hidden;
-    /*max-height: 234px;*/
+    max-height: 234px;
     border: 1px solid #dfdfdf;
     border-radius: 4px;
     width :234px;
@@ -1382,7 +1382,7 @@ h4.square-box-title {
     height: auto;
 }
 
-/** img btn **/
+* img btn *
 .btn-bucket,.btn-delete,.btn-save,.btn-share,.btn-move,.btn-write,.btn-check-green,.btn-user-green,.btn-close-b {
     width: 43px;
     height: 43px;
@@ -1419,7 +1419,7 @@ h4.square-box-title {
 }
 
 
-/** portlet move **/
+* portlet move *
 
 .column {
     width: 50%;
@@ -1471,7 +1471,7 @@ h4.square-box-title {
 }
 
 
-/*** icon ***/
+** icon **
 
 .caret-move {
     border-top: 70px solid #fff;
@@ -1612,7 +1612,7 @@ h4.square-box-title {
     background: #ff6000;
 }
 
-/*** tag ***/
+** tag **
 .bootstrap-tagsinput {
     background: transparent;
     border: 0px solid #fff;
@@ -1622,7 +1622,7 @@ h4.square-box-title {
 }
 
 
-/*.bootstrap-tagsinput input {
+.bootstrap-tagsinput input {
     background: #18d2d2 url("https://dcicons.s3.amazonaws.com/dicons/img/i_plus_w_sm.png") center center no-repeat;
     color: #fff;
     margin-right: 10px;
@@ -1632,7 +1632,7 @@ h4.square-box-title {
     line-height: 22px;
     margin-top: 10px;
     height: 32px;
-}*/
+}
 .bootstrap-tagsinput input.active {
     background-image: inherit;
 }
@@ -1645,7 +1645,7 @@ h4.square-box-title {
     background: #858585;
 }
 
-/*** common ***/
+** common **
 
 .comment-list li {
     margin-bottom: 10px;
@@ -2140,7 +2140,7 @@ h4.square-box-title {
 
 
 
-/*** popup ***/
+** popup **
 .email_check_pop {
     position: absolute;
     top: 30px;
@@ -2149,7 +2149,7 @@ h4.square-box-title {
 
 
 
-/*** column ***/
+** column **
 
 .all-column {
     width: 100%;
@@ -2232,7 +2232,7 @@ h4.square-box-title {
     min-width: 100px;
 }
 
-/*** common ***/
+** common **
 .preview_text {
     color: #353535;
     font-size: 20px;
@@ -2264,3 +2264,4 @@ h4.square-box-title {
 }
 
 
+ */
