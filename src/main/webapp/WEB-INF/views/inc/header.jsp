@@ -271,7 +271,8 @@ border-radius: 0 0 5px 5px;
 					
 					
 					<div class="dropdown-content">
-					
+					<a>내정보 수정</a>
+					<a>좋아하는 맛집</a>
 					<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
 			<c:url var="logout" value="/logout" />
 				<form action="${logout}" method="post" id="logoutform">
@@ -279,18 +280,8 @@ border-radius: 0 0 5px 5px;
 						value="${_csrf.token}" /> <a
 						href="javascript:logoutform.submit();">로그아웃</a>
 				</form>
-		<a>1</a>
-		<a>2</a>
-		<a>3</a>
-		<a>4</a>
-		<a>5</a>
-		
-				
-			
 		</security:authorize>						
-						
 					</div>
-					
 				</div>
 			</div>
 
