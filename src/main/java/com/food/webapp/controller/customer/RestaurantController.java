@@ -75,6 +75,7 @@ public class RestaurantController {
 		Gson gson = new Gson();
 		json = gson.toJson(list);
 		
+		System.out.println(json);
 		
 		try {
 			Thread.sleep(500);
@@ -194,4 +195,15 @@ public class RestaurantController {
 
 		return "redirect:restaurant";
 	}*/
+   @RequestMapping(value="like",method=RequestMethod.GET)
+	public String like(@RequestParam(value="p", defaultValue="1")  Integer page,
+							@RequestParam(value="f", defaultValue="name")  String field,
+							@RequestParam(value="q", defaultValue="") String query,
+							Model model) {
+		
+		model.addAttribute("list", restaurantDao.getList(page, field, query));
+		model.addAttribute("page", restaurantDao.getCount());
+		
+		return "customer.restaurant.like";
+	}
 }
