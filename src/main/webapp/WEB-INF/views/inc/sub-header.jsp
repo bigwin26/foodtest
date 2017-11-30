@@ -35,6 +35,7 @@ $("#notice").click(function () {
 	width: 100%;
 	height: 56px;
 	background: #ff792a;
+	z-index:2;
 }
 
 #headerWrapper {
