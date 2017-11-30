@@ -23,7 +23,7 @@ a{
     margin: auto;
     height: 100%;
     min-height: inherit;
-    width: 1200px;
+    width: 1800px;
 }
 
 /* ------------main------------------------- */
@@ -65,21 +65,37 @@ main .main{
     color: white;
 } */
 
+.restaurant-reg{
+	padding: 5px 5px;
+	float: right;
+}
+
+
 /* ----restaurant cards------------------------------------------------------------- */
 /* div{
    display: block;
 } */
 
 .restaurant-cards{
-	margin-top: 50px;
+	margin: 30px auto 30px auto;
+	/* margin-top: 30px;
 	margin-left: auto;
-	margin-right: auto;
-   	width: 1200px;
+	margin-right: auto; */
+   	width: 1800px;
 	position: relative;
 	overflow: hidden;
+	border-top: solid 3px #f15c22;
+	border-bottom: solid 3px #f15c22;
 	/* float: right; */
 }
  
+/* .cards-wraaper{
+	display:block;
+	width: 1800px;
+	position: relative;
+	overflow: auto;
+} */
+
 .restaurant-card{
    position:relative;
    overflow: hidden;
@@ -89,8 +105,8 @@ main .main{
    
 .img-wrapper{
 	position:relative;
-	background-image: url('../images/jjambbong.jpg'); 
-	width: 370px;
+	/* background-image: url('../images/jjambbong.jpg');  */
+	width: 560px;
 	height: 230px;
 	border-radius: 10px;
 }
@@ -112,6 +128,7 @@ main .main{
 
 .img-wrapper .gradation .name{
 	font-family: 맑은 고딕, 고딕, sans-serif;
+	font-weight: bold;
 	font-size: 22px;
 	color: white;
 	text-align: center;

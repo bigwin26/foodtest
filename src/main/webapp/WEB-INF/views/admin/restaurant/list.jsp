@@ -239,8 +239,8 @@
 		
 		okButton.click(function() {
 			var index = okButton.index($(this));
-			alert(index);
-			alert(ajaxData[index].name);
+			//alert(index);
+			//alert(ajaxData[index].name);
 			
 			$.ajax({
 				type:"POST",
@@ -263,8 +263,8 @@
 		
 		denyButton.click(function() {
 			var index = denyButton.index($(this));
-			alert(index);
-			alert(ajaxData[index].name);
+			//alert(index);
+			//alert(ajaxData[index].name);
 			
 			$.ajax({
 				type:"POST",

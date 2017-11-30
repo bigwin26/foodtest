@@ -7,8 +7,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<link rel="stylesheet" href="../resource/css/reset.css">
-<link rel="stylesheet" href="../resource/css/join.css">
+<link rel="stylesheet" href="../../resource/css/reset.css">
+<link rel="stylesheet" href="../../resource/css/join.css">
 <style>
 /*파일업로드디자인
 왜 css파일에 넣으면 f12할떄 포즈되는걸까*/

@@ -13,33 +13,34 @@
 	</div> -->
 	
 	<main id="main" />
-		<div class="restaurant-cards">
+	
+		<div class="restaurant-reg">
+			<a href="restaurant/reg">가게 등록!</a>
+		</div>
 		
-		<c:forEach var="n" items="${list}" begin="0" end="${fn:length(list)}">
-			
-			<a href="restaurant/${n.id}">
-			<div class="restaurant-card">
-				<div class="img-wrapper">
-					<!-- <img class="img-size" src="../resource/images/1.jpg"> -->
-					<div class="gradation">
-						<div class="inner-restaurant-info">
-							<span class="name">${n.name}</span>
-							<p class="tip">${n.genre}</p>
-							<p class="tip">"${n.tip}"</p>
+		<div class="restaurant-cards">
+			<!-- <div class="cards-wrapper"> -->
+			<!-- </div> -->
+				<c:forEach var="n" items="${list}" begin="0" end="${fn:length(list)}">
+					
+					<a href="restaurant/${n.id}">
+					<div class="restaurant-card">
+						<div id="menu-images" class="img-wrapper">
+							<div class="gradation">
+								<div class="inner-restaurant-info">
+									<span class="name">${n.name}</span>
+									<p class="tip">${n.genre}</p>
+									<p class="tip">"${n.tip}"</p>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-			</a>
-		
-		</c:forEach>
-		
+					</a>
+				
+				</c:forEach>
 		</div>
 	
 		<div>
-			<a href="restaurant/reg">가게 등록!</a>
-		</div>
-		<div class="">
 			<h3 class="hidden">현재 페이지</h3>
 			<div><input type="button" class="restaurant-ajax" value="더보기"/></div>
 		</div>
@@ -88,11 +89,13 @@
 			<div><input type="button" class="restaurant-ajax" value="더보기"/></div>
 		</div> -->
 		
-		
+		 
 	</main>
 		
 	<script type="text/javascript">
 	$(function(){
+		var n = ${fn:length(list)};
+		//alert('${list[0].name}');
 		
 		$("#visual")
 		.css({
@@ -103,27 +106,66 @@
 		    "background-position": "30% 30%"
 		});
 		
-		$("#visual .content-container")
+		/* $("#visual .content-container")
 		.css({
 			"display": "flex",
 		    "align-items": "center",
 		    "justify-content": "center"
-		});
+		}); */
 		
 		$("#visual .customer-text")
 		.css({
+			//"display": "flex",
+		    //"align-items": "center",
+		    //"justify-content": "center",
+			"text-align": "center",
+			"line-height": "300px",
 			"font-size": "30px",
 	    	"color": "white"
 		});
 		
-		$("#visual .content-container .customer-text").text("맛집 리스트");
+		$("#visual .customer-text").text("맛집 리스트");
+				
+		var list = new Array();
+		<c:forEach items="${list}" var="item">
+			var restaurant = new Object();
+			
+			restaurant.id = ${item.id};
+			restaurant.name = "${item.name}";
+			restaurant.tip = "${item.tip}";
+			restaurant.image = "${item.image}";
+			
+			list.push(restaurant);		
+		</c:forEach>		
 		
 		
-		
+		for (var i=0; i<n; i++) {
+			
+			$("#menu-images").attr('id', 'menu-images'+list[i].id);
+			
+			if(list[i].image.length == 0){
+				$("#menu-images"+list[i].id).css({
+					//"background-image": "url('../resource/customer/restaurant/2017/"+${n.id}+"/"+${n.image}+"')",
+					"background-image": "url('../resource/images/no-image.png')",
+					"background-size": "cover",
+					"background-position": "center center"
+				});
+			}
+			else{
+				$("#menu-images"+list[i].id).css({
+					//"background-image": "url('../resource/customer/restaurant/2017/"+${n.id}+"/"+${n.image}+"')",
+					"background-image": "url('../resource/customer/restaurant/2017/"+list[i].id+"/"+list[i].image+"')",
+					"background-size": "cover",
+					"background-position": "center center"					
+				});
+			}
+		}
+				
 		var page = 1;
 		
 		$(".restaurant-ajax").click(function(){
            	page +=1;
+           	
 			$.ajax({
 				type:"POST",
 				url: "restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
@@ -136,12 +178,12 @@
 		            	content +=
 		            		"<a href='restaurant/"+data[i].id+"'>"+
 			    			"<div class='restaurant-card'>"+
-			    				"<div class='img-wrapper'>"+
+			    				"<div id='menu-images' class='img-wrapper'>"+
 			    					"<div class='gradation'>"+
 			    						"<div class='inner-restaurant-info'>"+
 			    							"<span class='name'>"+data[i].name+"</span>"+
 			    							"<p class='tip'>"+data[i].genre+"</p>"+
-			    							"<p class='tip'>"+data[i].tip+"</p>"+
+			    							"<p class='tip'>\""+data[i].tip+"\"</p>"+
 			    						"</div>"+
 		    						"</div>"+
 	    						"</div>"+
@@ -149,6 +191,29 @@
     						"</a>";
 		            }
 		            $(".restaurant-cards").append(content);
+		            
+		            for(var i=0; i<data.length; i++){
+		            	$("#menu-images").attr('id', 'menu-images'+data[i].id);
+		    			
+		    			if(data[i].image.length == 0){
+		    				$("#menu-images"+data[i].id).css({
+		    					//"background-image": "url('../resource/customer/restaurant/2017/"+${n.id}+"/"+${n.image}+"')",
+		    					"background-image": "url('../resource/images/no-image.png')",
+		    					"background-size": "cover",
+		    					"background-position": "center center"				
+		    				});
+		    			}
+		    			else{
+		    				$("#menu-images"+data[i].id).css({
+		    					//"background-image": "url('../resource/customer/restaurant/2017/"+${n.id}+"/"+${n.image}+"')",
+		    					"background-image": "url('../resource/customer/restaurant/2017/"+data[i].id+"/"+data[i].image+"')",
+		    					"background-size": "cover",
+		    					"background-position": "center center"					
+		    				});
+		    			}
+		            }
+		            
+		            
 		            	
 		            	/* content +=
 		                "<tr>"+
