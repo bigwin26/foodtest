@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="resource/css/reset.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/board.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<main id="main" />
+<main id="main"/>
 	<div class="main-dc">
 	<div id="main-wrapper" class="mainWrapper" style="min-height:799px;">
 			<!-- <thead>

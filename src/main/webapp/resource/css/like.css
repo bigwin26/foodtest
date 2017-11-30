@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.area {
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    min-width: 960px !important;
+    width: 100%;
+}

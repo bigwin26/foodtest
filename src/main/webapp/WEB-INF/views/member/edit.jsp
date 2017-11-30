@@ -7,8 +7,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<link rel="stylesheet" href="../resource/css/reset.css">
-<link rel="stylesheet" href="../resource/css/join.css">
+<link rel="stylesheet" href="${path}/resource/css/reset.css">
+<link rel="stylesheet" href="${path}/resource/css/join.css">
 <style>
 /*파일업로드디자인
 왜 css파일에 넣으면 f12할떄 포즈되는걸까*/
@@ -104,7 +104,7 @@
 
 <div id="div_activate" class="container">
 	<div class="title">
-		<div class="row">신규 회원가입하기</div>
+		<div class="row">정보 수정페이지</div>
 	</div>
 	<!-- 회원가입 폼 -->
 
@@ -117,7 +117,7 @@
 					<th>닉네임</th>
 					<td><input name="nickName" id="nickName"
 						class="input-text w400" type="text" value="${member.nickName}" placeholder="닉네임" /><br />
-						<br /> 런치 컨테이너에서 회원정보로 등록하실 닉네임을 입력해주세요. <br />영문 혹은 한글2~15자 이내로
+						<br /> 변경할 닉네임을 입력해주세요. <br />영문 혹은 한글2~15자 이내로
 						입력해주세요.</br> <span id="checkName"></span></td>
 				</tr>
 
@@ -125,7 +125,7 @@
 				<tr id="tr_email">
 					<th>이메일</th>
 					<td><input name="email" id="email" class="input-text w400"
-						type="text" value="${member.email}" placeholder="이메일" /> <br />런치 컨테이너에서 이용하실
+						type="text" value="${member.email}" placeholder="이메일" /> <br />변경하실
 						이메일을 입력해 주세요. </br></td>
 				</tr>
 				<tr id="tr_pw">
@@ -136,7 +136,7 @@
 							<input name="pwd" id="pwd" class="input-text w400"
 								type="password" style="margin-bottom: 8px;" placeholder="비밀번호" />
 							<div id="guidepwd" style="color: red; display: none;"></div>
-							<br />특수문자(예: !@#$ 등) 1자 이상을 포함한 4~15 글자의 비밀번호로 설정해주세요.
+							<br />현재 사용중인 비밀번호를 입력해주세요.
 						</div>
 					</td>
 				</tr>
@@ -149,7 +149,7 @@
 								type="password" style="margin-bottom: 8px;"
 								placeholder="변경할 비밀번호" />
 							<div id="guidepwdchk" style="color: red; display: none;"></div>
-							<br /> <br /> 비밀번호를 한번 더 입력해주세요.
+							<br /> <br /> 변경하실 비밀번호를 입력해주세요.
 						</div>
 					</td>
 				</tr>
@@ -169,7 +169,7 @@
 								style="width: 200px;"> <label for="input_file">찾아보기</label>
 							<input type="file" id="input_file" class="upload-hidden"
 								name="file" value="${member.image}">
-						</div> <br /> <br /> 런치 컨테이너의 회원 프로필 사진으로 사용될 이미지를 등록해 주세요.
+						</div> <br /> <br /> 변경하실 프로필 사진이미지를 등록해 주세요.
 					</td>
 				</tr>
 			</table>

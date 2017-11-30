@@ -4,10 +4,6 @@
    display: block;
    clear: both;
 }
-#main{
-	height: inherit;
-	background-color: #f7f7f7;
-}
 .main-dc{
 	position: relative;
     width: 100%;
@@ -36,7 +32,7 @@
     width: 100%;
     height: auto;
     padding: 24px 0px;
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid #c0c0c0;
 }
 .article-text {
     float: left;
