@@ -75,6 +75,7 @@ public class RestaurantController {
 		Gson gson = new Gson();
 		json = gson.toJson(list);
 		
+		System.out.println(json);
 		
 		try {
 			Thread.sleep(500);
