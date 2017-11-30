@@ -1,3 +1,4 @@
+<%@page import="java.util.Properties"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -250,16 +251,15 @@ border-radius: 0 0 5px 5px;
 <div class="main-header">
 	<ul>
 		<li><a href="${ctx}/customer/restaurant"
-			style="border-right-style: solid; padding-right: 5px">맛집 리스트</a></li>
+			style="padding-right: 5px">맛집 리스트</a></li>
 		<li><a href="${ctx}/customer/map"
-			style="border-right-style: solid; padding-right: 5px">맛집 지도</a></li>
-		<li><a href="${ctx}/customer/worldcup"
-			style="border-right-style: solid; padding-right: 5px">맛집 월드컵</a></li>
+			style="padding-right: 5px">맛집 지도</a></li>
+			
 		<li><a href="${ctx}/customer/board">공지사항</a></li>
 </ul>
 	<div id="gnb-right-menu">
 				<div class="my">
-					<security:authentication property="name" />님					
+					<security:authentication property="name"/>님					
 					
 					<div class="top-user-prof"> 
 					<div class="pic-loading-wrap">
@@ -271,7 +271,10 @@ border-radius: 0 0 5px 5px;
 					
 					
 					<div class="dropdown-content">
-					
+					<c:if test="${!empty pageContext.request.userPrincipal.name}">
+					<a href="${ctx}/member/edit/${nickName}">내정보 수정</a>
+					</c:if>
+					<a href="${ctx}/customer/restaurant">좋아하는 맛집</a>
 					<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
 			<c:url var="logout" value="/logout" />
 				<form action="${logout}" method="post" id="logoutform">
@@ -279,18 +282,8 @@ border-radius: 0 0 5px 5px;
 						value="${_csrf.token}" /> <a
 						href="javascript:logoutform.submit();">로그아웃</a>
 				</form>
-		<a>1</a>
-		<a>2</a>
-		<a>3</a>
-		<a>4</a>
-		<a>5</a>
-		
-				
-			
 		</security:authorize>						
-						
 					</div>
-					
 				</div>
 			</div>
 
