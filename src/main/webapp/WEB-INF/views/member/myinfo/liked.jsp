@@ -1,17 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="path" value="${pageContext.request.contextPath}" />
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- <link rel="stylesheet" href="resource/css/reset.css"> -->
 <%-- <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/customer-restaurant.css"> --%>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- <div id="visual">
+		<div class="content-container">
+			<h1 class="customer-text">맛집 리스트</h1>
+		</div>
+	</div> -->
+	
 	<main id="main" />
 		<div class="restaurant-cards">
 			<!-- <div class="cards-wrapper"> -->
 			<!-- </div> -->
 				<c:forEach var="n" items="${list}" begin="0" end="${fn:length(list)}">
-					<a href="../customer/restaurant/${n.id}">
+					
+					<a href="restaurant/${n.id}">
 					<div class="restaurant-card">
 						<div id="menu-images" class="img-wrapper">
 							<div class="gradation">
@@ -27,27 +34,8 @@
 				</c:forEach>
 		</div>
 	</main>
-	<script type="text/javascript">
-	
-	function like(id){
-		var id;
-		$.ajax({
-			type : "POST",
-			url : "../../LikeRestaurantController",
-			data : {
-				id : id
-			},
-			success : function(result) {
-				if (result == 1) {
-					alert("저장되었습니다.");
-					
-				} else if(result == 0){
-					alert("삭제되었습니다.");
-				} 
-			}
-		})
 		
-	}
+	<script type="text/javascript">
 	$(function(){
 		var n = ${fn:length(list)};
 		//alert('${list[0].name}');
@@ -91,7 +79,7 @@
 			restaurant.image = "${item.image}";
 			
 			list.push(restaurant);		
-		</c:forEach>
+		</c:forEach>		
 		
 		
 		for (var i=0; i<n; i++) {

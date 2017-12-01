@@ -308,7 +308,7 @@ top: 6px;
 <div id="mainHeader">
 	<div id="headerWrapper">
 		<a id="headerLogo" href="http://localhost/food/index"><img
-			src="${ctx}/resource/images/logo.png"></a>
+			src="${ctx}/resource/images/logo-h.png"></a>
 		<ul id="headerNavi">
 			<li id="notice"><a href="${ctx}/customer/restaurant"
 				style="padding-right: 5px">맛집 리스트</a></li>
