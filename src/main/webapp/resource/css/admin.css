@@ -191,6 +191,8 @@ main .max400{
 }
 
 #visual .admin-text {
+	line-height: 250px;
+    text-align: center;
     font-size: 30px;
     color: white;
 }
