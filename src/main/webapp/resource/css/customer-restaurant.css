@@ -23,7 +23,7 @@ a{
     margin: auto;
     height: 100%;
     min-height: inherit;
-    width: 1800px;
+    width: 80%;
 }
 
 /* ------------main------------------------- */
@@ -33,11 +33,9 @@ main .title{
 	text-overflow: ellipsis;
 }
 
-main .main{
+#main{
 	font-family: 맑은 고딕, 고딕, sans-serif;
 	font-size: 21px;
-	font-weight: bold;
-	color: #646464;
 	padding-left: 25px;
 	/* background: url("../images/icon-main-title.png") no-repeat left center; */
 }
@@ -66,22 +64,18 @@ main .main{
 } */
 
 .restaurant-reg{
+	text-align: right;
 	padding: 5px 5px;
-	float: right;
+	/* float: right; */
 }
 
-
 /* ----restaurant cards------------------------------------------------------------- */
-/* div{
-   display: block;
-} */
 
 .restaurant-cards{
-	margin: 30px auto 30px auto;
+	margin: 0px auto 30px auto;
 	/* margin-top: 30px;
 	margin-left: auto;
 	margin-right: auto; */
-   	width: 1800px;
 	position: relative;
 	overflow: hidden;
 	border-top: solid 3px #f15c22;
@@ -89,24 +83,26 @@ main .main{
 	/* float: right; */
 }
  
-/* .cards-wraaper{
-	display:block;
+.cards-wraaper{
+	margin-left: auto;
+	margin-right: auto;
+	/* display:block;
 	width: 1800px;
 	position: relative;
-	overflow: auto;
-} */
+	overflow: auto; */
+}
 
 .restaurant-card{
-   position:relative;
-   overflow: hidden;
-   margin:10px;
-   float: left;
+	position:relative;
+	overflow: hidden;
+	margin:10px;
+	float: left;
 }
    
 .img-wrapper{
 	position:relative;
 	/* background-image: url('../images/jjambbong.jpg');  */
-	width: 560px;
+	width: 477px;
 	height: 230px;
 	border-radius: 10px;
 }
@@ -117,6 +113,7 @@ main .main{
    	height: 100%;
    	background-color: rgba(0,0,0,0.3);
    	text-align: center;
+   	border-radius: 10px;
 }
 
 .img-wrapper .gradation .inner-restaurant-info{
@@ -124,6 +121,7 @@ main .main{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
 }
 
 .img-wrapper .gradation .name{
