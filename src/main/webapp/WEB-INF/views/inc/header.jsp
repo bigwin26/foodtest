@@ -255,7 +255,7 @@ border-radius: 0 0 5px 5px;
 		<li><a href="${ctx}/customer/map"
 			style="padding-right: 5px">맛집 지도</a></li>
 			
-		<li><a href="${ctx}/customer/board">공지사항</a></li>
+		<li><a href="${ctx}/customer/notice">공지사항</a></li>
 </ul>
 	<div id="gnb-right-menu">
 				<div class="my">

@@ -3,8 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 	<main id="main">
-		<h1 class="main title">런치 리스트</h1>
+		<h1 class="main title">맛집 리스트</h1>
 		
 		<div class="text-right space-top-1">
 			<h3 class="hidden">식당 목록</h3>

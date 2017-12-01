@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!-- <link rel="stylesheet" href="resource/css/reset.css"> -->
 <%-- <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/customer-restaurant.css"> --%>
 <!-- <!DOCTYPE html> -->
@@ -15,7 +16,11 @@
 	
 	<main id="main">
 		<div class="restaurant-reg">
-			<a href="restaurant/reg">가게 등록!</a>
+			<!-- <a href="restaurant/reg">가게 등록!</a> -->
+			<span>다녀온 맛집이 있으세요?</span>
+			<a href="restaurant/reg">
+				맛집 등록하기<img src="${ctx}/resource/images/folk-spoon.png">
+			</a>
 		</div>
 		
 		<div class="restaurant-cards">
@@ -37,11 +42,16 @@
 				
 				</c:forEach>
 		</div>
+		
+		
+		<div class="ajax-loading" style="position:fixed; top: 40%; left: 45%; z-index: 999; display: none;" >
+		   	<img src="${ctx}/resource/images/loading.gif" style="width: 100px; height: 100px; text-align: center;" >
+	   	</div>
 	
-		<div>
+		<!-- <div>
 			<h3 class="hidden">현재 페이지</h3>
 			<div><input type="button" class="restaurant-ajax" value="더보기"/></div>
-		</div>
+		</div> -->
 	
 	
 	
@@ -99,7 +109,7 @@
 
             $(function() {
                 page += 1;
-
+				
                 $.ajax({
                     type: "POST",
                     url: "restaurant-ajax?${_csrf.parameterName}=${_csrf.token}",
@@ -108,13 +118,17 @@
                     },
                     dataType: "json",
                     beforeSend: function() {
-                    	
+                    	$(".ajax-loading").css("display","inline-block");
                     },
                     complete: function() {
-						
+                    	$(".ajax-loading").css("display","none");
                     },
                     success: function(data) {
-                        //console.log(data)   
+                        //console.log(data);
+                    	if(data.length == 0){
+	                        page -= 1;
+	                        return;
+                        }
                         var content = "";
                         for (var i = 0; i < data.length; i++) {
                             content +=
@@ -132,7 +146,6 @@
                                 "</div>" +
                                 "</a>";
                         }
-                        
                         $(".restaurant-cards").append(content);
 
                         for (var i = 0; i < data.length; i++) {

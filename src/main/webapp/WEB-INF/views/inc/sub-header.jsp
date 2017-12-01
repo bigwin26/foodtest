@@ -314,7 +314,7 @@ top: 6px;
 				style="padding-right: 5px">맛집 리스트</a></li>
 			<li id="notice"><a href="${ctx}/customer/map" style="padding-right: 5px">맛집
 					지도</a></li>
-			<li id="notice"><a href="${ctx}/customer/board">공지사항</a></li>
+			<li id="notice"><a href="${ctx}/customer/notice">공지사항</a></li>
 
 
 		</ul>

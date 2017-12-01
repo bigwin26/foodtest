@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link rel="stylesheet" href="resource/css/reset.css">
-<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/board.css">
+<%-- <link rel="stylesheet" href="resource/css/reset.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/board.css"> --%>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <main id="main"/>
 	<div class="main-dc">
@@ -25,7 +25,7 @@
 							<div style="display: none;">${n.id}</div>
 							<div class="article-text">
 								<div class="article-title text-ellipsis">
-									<a href="board/${n.id}">${n.title}</a>
+									<a href="notice/${n.id}">${n.title}</a>
 								</div>
 								<div class="article-content">${n.content}</div>
 							</div>
