@@ -308,7 +308,7 @@ top: 6px;
 <div id="mainHeader">
 	<div id="headerWrapper">
 		<a id="headerLogo" href="http://localhost/food/index"><img
-			src="${ctx}/resource/images/logo.png"></a>
+			src="${ctx}/resource/images/logo-h.png"></a>
 		<ul id="headerNavi">
 			<li id="notice"><a href="${ctx}/customer/restaurant"
 				style="padding-right: 5px">맛집 리스트</a></li>
@@ -336,7 +336,7 @@ top: 6px;
 					<c:if test="${!empty pageContext.request.userPrincipal.name}">
 					<a href="${ctx}/member/edit/${nickName}">내정보 수정</a>
 					</c:if>
-					<a href="${ctx}/customer/restaurant">좋아하는 맛집</a>
+						<a href="${ctx}/member/list">좋아하는 맛집</a>
 					<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
 			<c:url var="logout" value="/logout" />
 				<form action="${logout}" method="post" id="logoutform">
@@ -344,6 +344,9 @@ top: 6px;
 						value="${_csrf.token}" /> <a
 						href="javascript:logoutform.submit();">로그아웃</a>
 				</form>
+		</security:authorize>
+		<security:authorize access="hasRole('ROLE_ADMIN')">
+		<a href="${ctx}/admin/restaurant">관리자페이지</a>
 		</security:authorize>						
 					</div>
 				</div>

@@ -8,10 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.food.webapp.dao.MemberDao;
+import com.food.webapp.dao.RestaurantDao;
 import com.food.webapp.entity.Member;
 import com.food.webapp.entity.ResultMessage;
 
@@ -20,6 +22,9 @@ import com.food.webapp.entity.ResultMessage;
 public class MemberController {
 	@Autowired
 	private MemberDao memberDao;
+	
+	@Autowired
+	private RestaurantDao restaurantDao;
 	
    @RequestMapping(value="login")
    public String login() { 
@@ -85,4 +90,21 @@ public class MemberController {
 	   
       return "redirect:../{id}";
    }*/
+   
+   @RequestMapping(value="list",method=RequestMethod.GET)
+	public String list() {
+		return "member.myinfo.list";
+	}
+   
+   @RequestMapping(value="liked",method=RequestMethod.GET)
+	public String liked(@RequestParam(value="p", defaultValue="1")  Integer page,
+							@RequestParam(value="f", defaultValue="name")  String field,
+							@RequestParam(value="q", defaultValue="") String query,
+							Model model) {
+		
+		model.addAttribute("list", restaurantDao.getList(page, field, query));
+		model.addAttribute("page", restaurantDao.getCount());
+		
+		return "member.myinfo.liked";
+	}
 }

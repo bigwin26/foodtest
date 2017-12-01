@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -133,6 +134,7 @@ float: right;
 
 			<div class="defaultbks flex">
 				<div id="bkDefault" class="default-bks">
+				<a href="${path}/member/liked">
 						<div class="bk-box1">
 							<div class="bk-default-title">
 								<div class="default-title text-ellipsis">내가 좋아요한 맛집</div>
@@ -150,11 +152,11 @@ float: right;
 									<div class="title-desc"></div>
 								</div>
 							</div>
-
 						</div>
 					</a>
 				</div>
 				<div id="bkReview" class="default-bks">
+				<a href="${path}/member/commented">
 						<div class="bk-box">
 							<div class="bk-default-title">
 								<div class="default-title text-ellipsis">내가 평가한 맛집</div>
