@@ -64,18 +64,15 @@ main .title{
 } */
 
 .restaurant-reg{
+	text-align: right;
 	padding: 5px 5px;
-	float: right;
+	/* float: right; */
 }
 
-
 /* ----restaurant cards------------------------------------------------------------- */
-/* div{
-   display: block;
-} */
 
 .restaurant-cards{
-	margin: 30px auto 30px auto;
+	margin: 0px auto 30px auto;
 	/* margin-top: 30px;
 	margin-left: auto;
 	margin-right: auto; */

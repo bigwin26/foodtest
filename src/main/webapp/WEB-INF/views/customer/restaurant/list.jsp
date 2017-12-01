@@ -14,12 +14,10 @@
 	</div> -->
 	
 	<main id="main">
-	
-		<!-- <div class="restaurant-reg">
+		<div class="restaurant-reg">
 			<a href="restaurant/reg">가게 등록!</a>
-		</div> -->
+		</div>
 		
-		<div class="cards-wrapper">
 		<div class="restaurant-cards">
 				<c:forEach var="n" items="${list}" begin="0" end="${fn:length(list)}">
 					
@@ -38,7 +36,6 @@
 					</a>
 				
 				</c:forEach>
-		</div>
 		</div>
 	
 		<div>
