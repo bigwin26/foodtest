@@ -34,7 +34,7 @@ $("#notice").click(function () {
 	float: left;
 	width: 100%;
 	height: 56px;
-	background: #ff792a;
+	background: #f15c22;
 	z-index:2;
 }
 
@@ -328,26 +328,26 @@ top: 6px;
 					<div class="pic-loader">
 					</div>
 					</div> 
-					<img id="user_img" src="resource/images/user.png"/> 
+					<img id="user_img" src="${ctx}/resource/userimages/<security:authentication property="name"/>/<security:authentication property="name"/>.png"/> 
 					</div>
 					
 					
 					<div class="dropdown-content">
 					<c:if test="${!empty pageContext.request.userPrincipal.name}">
-					<a href="${ctx}/member/edit/${nickName}">내정보 수정</a>
+					<a href="${ctx}/member/edit/${nickName}">내정보</a>
 					</c:if>
-						<a href="${ctx}/member/list">좋아하는 맛집</a>
-					<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
+						<a href="${ctx}/member/list">좋아요</a>
+					
+		<security:authorize access="hasRole('ROLE_ADMIN')">
+		<a href="${ctx}/admin/restaurant">관리자</a>
+		</security:authorize>	
+		<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
 			<c:url var="logout" value="/logout" />
 				<form action="${logout}" method="post" id="logoutform">
 					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" /> <a
-						href="javascript:logoutform.submit();">로그아웃</a>
+						value="${_csrf.token}" /> <a href="javascript:logoutform.submit();">로그아웃</a>
 				</form>
-		</security:authorize>
-		<security:authorize access="hasRole('ROLE_ADMIN')">
-		<a href="${ctx}/admin/restaurant">관리자페이지</a>
-		</security:authorize>						
+		</security:authorize>					
 					</div>
 				</div>
 			</div>
