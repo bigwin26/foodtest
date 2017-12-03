@@ -82,19 +82,19 @@ public class NoticeController {
 	@RequestMapping(value = "notice/reg", method = RequestMethod.POST)
 	public String noticeReg(Notice notice, MultipartFile file, HttpServletRequest request, Principal principal)
 			throws IOException {
-		// file.isempty() ����ڰ� ������ �������� �ʾҳ�?
+		// file.isempty() 占쏙옙占쏙옙微占� 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占십았놂옙?
 
-		// title = new String(title.getBytes("ISO-8859-1"),"UTF-8"); //�ѱ۱��� ����
+		// title = new String(title.getBytes("ISO-8859-1"),"UTF-8"); //占싼글깍옙占쏙옙 占쏙옙占쏙옙
 		// System.out.println(title);
 
-		// Date curDate = new Date(); //��¥ ��¹�1
+		// Date curDate = new Date(); //占쏙옙짜 占쏙옙쨔占�1
 
-		Calendar cal = Calendar.getInstance(); // ��¥ ��¹�2
+		Calendar cal = Calendar.getInstance(); // 占쏙옙짜 占쏙옙쨔占�2
 		// Date curdate2 = cal.getTime();
 		int year = cal.get(Calendar.YEAR);
 
 		/*
-		 * SimpleDateFormat fmt = new SimpleDateFormat("hh:mm:ss"); //��¥ ��¹�3
+		 * SimpleDateFormat fmt = new SimpleDateFormat("hh:mm:ss"); //占쏙옙짜 占쏙옙쨔占�3
 		 * fmt.format(arg0);
 		 */
 		String nextId = noticeDao.getNextId();
@@ -110,7 +110,7 @@ public class NoticeController {
 
 		if (!f.exists()) {
 			if (!f.mkdirs())
-				System.out.println("���丮�� �����Ҽ� �����ϴ�.");
+				System.out.println("占쏙옙占썰리占쏙옙 占쏙옙占쏙옙占쌀쇽옙 占쏙옙占쏙옙占싹댐옙.");
 		}
 
 		path += File.separator + file.getOriginalFilename();
@@ -156,13 +156,13 @@ public class NoticeController {
 		return "customer.notice.edit";
 	}
 
-	@RequestMapping(value = "notice/edit/{id}", method = RequestMethod.POST)
+	/*@RequestMapping(value = "notice/edit/{id}", method = RequestMethod.POST)
 	public String noticeEdit(@PathVariable("id") String id, String title, String content) {
 
 		int row = noticeDao.update(id, title, content);
 		System.out.println(row);
 
 		return "redirect:../{id}";
-	}
+	}*/
 
 }

@@ -14,10 +14,11 @@ public interface NoticeDao {
 	int getCountAdmin(@Param("field")String field, @Param("query")String query);
 	int getCount();
 	NoticeView get(String id);
-	int update(String id, String title, String content);
+	//int update(String id, String title, String content);
+	int edit(@Param("id")int id, @Param("title")String title, @Param("content")String content);
 	NoticeView getPrev(String id);
 	NoticeView getNext(String id);
-	int insert(String title, String content, String writerId);
+	int insert(String title, String content, String writerName);
 	int insert(Notice notice);
 	String getNextId();
 }

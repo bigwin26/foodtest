@@ -40,33 +40,35 @@
 			select * from NoticeView where id=#{id}
 	</select>
 	
-		<select id = "getPrev" resultType="com.food.webapp.entity.NoticeView">
-			select * from NoticeView
-			where id &lt; CAST(#{id} AS UNSIGNED)
-			order by regDate desc
-			limit 1
+	<select id = "getPrev" resultType="com.food.webapp.entity.NoticeView">
+		select * from NoticeView
+		where id &lt; CAST(#{id} AS UNSIGNED)
+		order by regDate desc
+		limit 1
 	</select>
 	
-			<select id = "getNext" resultType="com.food.webapp.entity.NoticeView">
-			select * from NoticeView
-			where id &gt; CAST(#{id} AS UNSIGNED)
-			order by regDate desc
-			limit 1
+	<select id = "getNext" resultType="com.food.webapp.entity.NoticeView">
+		select * from NoticeView
+		where id &gt; CAST(#{id} AS UNSIGNED)
+		order by regDate desc
+		limit 1
 	</select>
+	
 	<select id = "getNextId" resultType="String">
 			select IFNULL(max(cast(id as unsigned)), 0)+1 from Notice
 	</select>
 	
 	<insert id="insert" parameterType="com.food.webapp.entity.Notice">
-	<selectKey order="BEFORE" keyProperty="id" resultType="String">
-	select IFNULL(max(cast(id as unsigned)), 0)+1 from Notice
-	</selectKey>
-		
-		insert into Notice(id, title, content, writerName)
-		value(#{id}, #{title}, #{content}, #{writerName});
+		<selectKey order="BEFORE" keyProperty="id" resultType="String">
+			select IFNULL(max(cast(id as unsigned)), 0)+1 from Notice
+		</selectKey>
+			
+			insert into Notice(id, title, content, writerName, fileName)
+			value(#{id}, #{title}, #{content}, #{writerName}, #{fileName});
 	</insert>
 	
-	<update id="update" parameterType="com.food.webapp.entity.Notice">
-	update Notice(title,content) set(${title},${content}) where id = ${id}
+	<update id="edit" parameterType="com.food.webapp.entity.Notice">
+		<!-- update Notice(title, content) set(#{title}, #{content}) where id = ${id} -->
+		update Notice set title=#{title}, content=#{content} where id = ${id}
 	</update>
 </mapper>

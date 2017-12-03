@@ -8,7 +8,7 @@
 	<main id="main">
 		
 		<h1>등록 페이지</h1>
-		<form method="post">
+		<form action="?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 			<fieldset>
 				<legend>공지사항 수정정보 필드</legend>
 				<table border="1">
@@ -34,7 +34,7 @@
 				</table>
 				<div>
 					<input type="submit" value="등록" />
-					<a href="notice">취소</a>				
+					<a href="../notice">취소</a>				
 				</div>
 			</fieldset>
 		</form>

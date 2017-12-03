@@ -4,7 +4,7 @@
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
-<link rel="stylesheet" href="../resource/css/reset.css">
+<link rel="stylesheet" href="${ctx}/resource/css/reset.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
