@@ -79,4 +79,17 @@ public class MyBatisNoticeDao implements NoticeDao {
 		return noticeDao.getNextId();
 	}
 
+	@Override
+	public int getCountAdmin(String field, String query) {
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		return noticeDao.getCountAdmin(field, query);
+	}
+
+	@Override
+	public List<NoticeView> getListAdmin(int page, String field, String query) {
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		List<NoticeView> list = noticeDao.getListAdmin(page, field, query);
+		return list;
+	}
+
 }

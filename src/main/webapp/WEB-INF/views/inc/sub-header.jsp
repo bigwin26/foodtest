@@ -1,15 +1,219 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" href="../resource/css/reset.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+/* $(document).ready(function() {
+	   $("#notice").off("click").on("click", function() {
+	// test class를 포함하는 DOM 객체가 active class를 포함하면 true 아니면 false를 반환
+	       if ($("#notice").hasClass("active")) { 
+	// active class 제거
+	           	$("#notice").removeClass("active");
+	       }
+	       else {
+	// active class 추가
+	           	$("#notice").addClass("active");
+	       }
+	   });
+	}); */
+/* $(function(){ 
+$("#notice").click(function () {
+  $(this).toggleClass("active");
+});
+}) */
+</script>
 <style>
+#mainHeader {
+	position: relative;
+	top: 0px;
+	float: left;
+	width: 100%;
+	height: 56px;
+	background: #ff792a;
+	z-index:2;
+}
 
-.main-header a{
+#headerWrapper {
+	position: relative;
+	width: 960px;
+	height: 56px;
+	margin: 0 auto;
+}
+
+#headerNavi {
+	float: left;
+	width: auto;
+	height: 56px;
+}
+
+#headerNavi li {
+	float: left;
+	height: auto;
+	padding: 18px 24px 12px 24px;
+	border-bottom: 6px solid transparent;
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 20px;
+}
+a:link,a:visited{
+    text-decoration: none;
+    color: inherit;
+}
+#headerNavi li:hover {
+    border-bottom: 6px solid #fff;
+}
+
+#headerLogo {
+	float: left;
+	padding: 13px 0px;
+}
+
+#headerLogo img {
+	width: 200px;
+	height: 30px;
+}
+
+#gnb-right-menu{
+   float: right;
+    position: relative;
+}
+
+   #gnb-right-menu .my{
+    top: -10;
+    padding: 25px 15px;
+    color: white;
+    float: right;
+    line-height: 0px;
+    padding-right: 50px;
+    height: 30px;
+   } 
+    #gnb-right-menu .my:visited .dropdown-content{
+    display: inline-block;
+     
+   }     
+  
+      
+      #gnb-right-menu .my .name{
+         color: white;
+      }
+      
+      #gnb-right-menu .my:hover .name{
+         color:#48C6C3;
+      }     
+   
+      #gnb-right-menu .my-picture{
+         width: 40px;
+         height: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+          object-position: 50% 50%;
+          position: absolute;
+          right: 20px;
+          top: 20px;
+   }
+
+.dropdown-content {
+	top: 55px;
+	right: -3px;
+	display: none;
+	position: absolute;
+	background-color: AliceBlue;
+	min-width: 120px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 18px 16px;
+	text-decoration: none;
+	display: block;
+	border-bottom: 1px solid #bbb;
+}
+
+.dropdown-content a:last-child {
+	border-bottom: none;
+}
+
+.dropdown-content a:hover {
+	background-color: #f15c22;
+}
+
+.dropdown-content:hover a:first-child{
+
+border-radius: 5px 5px 0 0;
+
+}
+
+.dropdown-content:hover a:last-child{
+border-radius: 0 0 5px 5px;
+
+}
+
+.my:hover .dropdown-content {
+	display: block;
+}
+
+ .top-user-prof{
+   overflow: hidden;
+    position: absolute;
+    z-index: 11;
+    top: -19;
+    right: 0px;
+    width: 40px;
+    height: 40px;
+    background-color: #e0e0e0;
+    border-radius: 100%;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 2px solid #fff;
+    bottom: 33px;
+        }
+        .top-user-prof img{
+            position:relative;
+            margin:-2px;
+            width:40px;
+            height:40px;
+            border-radius: 100%; -moz-border-radius: 100%; -webkit-border-radius: 100%;
+            box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+
+        }
+
+        #user_img {
+            width: 40px;
+            height: 40px;
+            /*border: 2px solid #fff;*/
+            z-index: 11;
+        }
+
+        #search_menu img {
+            height: 30px;
+        }
+        #my_menu_list a {
+            color: #000;
+        }
+        #my_menu_list a:hover {
+            color: #fff;
+            background-color: rgba(0, 205, 205, .85);
+        }
+        .pic-loading-wrap {
+            position: absolute;
+            top: 25%;
+            left: 24%;
+            width:50%;
+            height: 50%;
+        }
+  
+/* .main-header a{
     position: relative;
     top: 0;
     font-weight: 700;
@@ -19,7 +223,7 @@
 }
 
 .main-header{
-  position: fixed;
+  position: relative;
     padding: 15px 50px 15px 50px;
     z-index: 999;
     width: 100%;
@@ -93,55 +297,61 @@ top: 6px;
     background: no-repeat center #f15c22;
  	border: 3px solid #fff;
 }
-
+ */
 </style>
-<div class="header-search-container">
+<%-- <div class="header-search-container">
          <span class="header-search-bar">
 	<input type="text" class="header-search-text" />
     </span>
             <button type="submit" class="header-search-text-submit" style="background-image: url('${ctx}/resource/images/header-search.png');"></button>
-</div>
-<div class="main-header">
+</div> --%>
+<div id="mainHeader">
+	<div id="headerWrapper">
+		<a id="headerLogo" href="http://localhost/food/index"><img
+			src="${ctx}/resource/images/logo-h.png"></a>
+		<ul id="headerNavi">
+			<li id="notice"><a href="${ctx}/customer/restaurant"
+				style="padding-right: 5px">맛집 리스트</a></li>
+			<li id="notice"><a href="${ctx}/customer/map" style="padding-right: 5px">맛집
+					지도</a></li>
+			<li id="notice"><a href="${ctx}/customer/notice">공지사항</a></li>
 
 
-    <ul>
-        <li><a href="${ctx}/customer/restaurant" style="border-right-style:solid; padding-right: 5px" >맛집 리스트</a></li>
-        <li><a href="${ctx}/customer/map" style="border-right-style:solid; padding-right: 5px" >맛집 지도</a></li>
-        <li><a href="${ctx}/customer/worldcup" style="border-right-style:solid; padding-right: 5px" >맛집 월드컵</a></li>
-        <li><a href="${ctx}/customer/board">자유게시판</a></li>
-      
-        
-        
-        <c:if test="${empty pageContext.request.userPrincipal}">
-							<li><a href="${ctx}/member/join">회원가입</a></li>    
-						</c:if>
-						
-            
-        
-        
-        <%-- <security:authorize access="!hasRole('ROLE_USER')">
-					<li><a href="${ctx}/member/login">로그인</a></li>
-				</security:authorize> --%>
-				<c:if test="${empty pageContext.request.userPrincipal}">
-							<li><a href="${ctx}/member/login">로그인</a></li>
-						</c:if>
-						
-				<security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
-					<li>
-					<c:url var="logout" value="/logout" />
-						<form action="${logout}" method="post" id="logoutform">
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
-							<a href="javascript:logoutform.submit();">로그아웃</a></li>
-						</form>
-						</li>
-				</security:authorize>
-				
-				<c:if test="${!empty pageContext.request.userPrincipal}">
-							<li><a href="${ctx}/member/login/${nickName}">내정보</a></li>
-						</c:if>
+		</ul>
 
-
-    </ul>
+		<div id="gnb-right-menu">
+				<div class="my">
+					<security:authentication property="name"/>님					
+					
+					<div class="top-user-prof"> 
+					<div class="pic-loading-wrap">
+					<div class="pic-loader">
+					</div>
+					</div> 
+					<img id="user_img" src="resource/images/user.png"/> 
+					</div>
+					
+					
+					<div class="dropdown-content">
+					<c:if test="${!empty pageContext.request.userPrincipal.name}">
+					<a href="${ctx}/member/edit/${nickName}">내정보 수정</a>
+					</c:if>
+						<a href="${ctx}/member/list">좋아하는 맛집</a>
+					<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
+			<c:url var="logout" value="/logout" />
+				<form action="${logout}" method="post" id="logoutform">
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" /> <a
+						href="javascript:logoutform.submit();">로그아웃</a>
+				</form>
+		</security:authorize>
+		<security:authorize access="hasRole('ROLE_ADMIN')">
+		<a href="${ctx}/admin/restaurant">관리자페이지</a>
+		</security:authorize>						
+					</div>
+				</div>
+			</div>
+	</div>
 </div>
 
 <%-- <%@ page language="java" contentType="text/html; charset=UTF-8"

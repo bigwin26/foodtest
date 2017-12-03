@@ -4,9 +4,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -75,5 +78,56 @@ public class MemberController {
 		return json;
 	}
 	
+/*	@RequestMapping(value="member-delete", method=RequestMethod.POST)
+	public String delete(int[] ids, Member member, HttpServletRequest request)  {
+		int result = 0;
+		for(int i=0;i<ids.length;i++) {
+			result += memberDao.delete(ids[i]);
+			System.out.println(ids[i]);
+		};
+		
+		return "redirect:member";
+	}*/
+	
+	@RequestMapping(value="member-delete", method=RequestMethod.POST)
+	public String delete(int id, Member member, HttpServletRequest request)  {
+		int result = 0;
+		System.out.println("admin member " + id + "번 회원 탈퇴");
+		memberDao.delete(id);
+		
+		return "redirect:member";
+	}
+	
+	@RequestMapping(value="member-edit", method=RequestMethod.POST)
+	public String edit(int id, String nickName, int role, String mentor, Member member, HttpServletRequest request)  {
+		//int result = memberDao.edit(id);
+		System.out.println("edit");
+		System.out.println("id: " + id);
+		System.out.println("nickName: " + nickName);
+		System.out.println("role: " + role);
+		System.out.println("mentor: " + mentor);
+		
+		memberDao.edit(id, nickName, role, mentor);
+		
+		return "redirect:member";
+	}
+	
+	
+	
+	@RequestMapping("member/{id}")
+	public String detail(@PathVariable("id") int id,
+						//@RequestParam(value="p", defaultValue="1")  Integer page,
+						Model model) {
+		
+		model.addAttribute("m", memberDao.detail(id));
+		
+		//model.addAttribute("r", memberDao.get(id));
+		//model.addAttribute("prev", restaurantDao.getPrev(id));
+		//model.addAttribute("next", restaurantDao.getNext(id));
+		//model.addAttribute("cmtList", restaurantDao.getCmt(id, page));
+		//model.addAttribute("cmtp", restaurantDao.cmtCount(id));
+		
+		return "admin.member.detail";
+	}
 	
 }

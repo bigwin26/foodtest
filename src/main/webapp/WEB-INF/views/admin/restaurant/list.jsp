@@ -3,8 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 	<main id="main">
-		<h1 class="main title">런치 리스트</h1>
+		<h1 class="main title">맛집 리스트</h1>
 		
 		<div class="text-right space-top-1">
 			<h3 class="hidden">식당 목록</h3>
@@ -89,7 +91,7 @@
 							</tr>
 						</c:forEach>
 						<!-- <input type="submit" value="delete" style="display:none"/> -->
-						<input id="submit-button" type="submit" value="delete"/>
+						<input id="submit-button" type="submit" value="delete" style="display:none"/>
 					</form>
 				</tbody>
 			</table>
@@ -198,10 +200,18 @@
 		})
 		
 		deleteButton.click(function(){
-			if(confirm("정말 삭제하시겠습니까?") == true)
-				submitButton.click();
-			else
+			var ids = $("input[name='ids']:checked").length;
+			//alert(ids);
+			if(ids>0){
+				if(confirm("정말 삭제하시겠습니까?") == true)
+					submitButton.click();
+				else
+					return;
+			}
+			else{
+				alert("삭제할 식당을 선택하세요.");
 				return;
+			}
 		});
 		
 		
@@ -231,8 +241,8 @@
 		
 		okButton.click(function() {
 			var index = okButton.index($(this));
-			alert(index);
-			alert(ajaxData[index].name);
+			//alert(index);
+			//alert(ajaxData[index].name);
 			
 			$.ajax({
 				type:"POST",
@@ -255,8 +265,8 @@
 		
 		denyButton.click(function() {
 			var index = denyButton.index($(this));
-			alert(index);
-			alert(ajaxData[index].name);
+			//alert(index);
+			//alert(ajaxData[index].name);
 			
 			$.ajax({
 				type:"POST",

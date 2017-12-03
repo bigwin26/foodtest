@@ -11,4 +11,4 @@
 }
 	</style>
 	<div class="header"><a href="${path}/index">
-	<img src="../resource/images/sub-logo1.png" width="350px"/></a></div>
+	<img src="${path}/resource/images/sub-logo1.png" width="350px"/></a></div>

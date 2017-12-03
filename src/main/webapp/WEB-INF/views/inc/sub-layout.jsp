@@ -5,8 +5,9 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-<%-- <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/reset.css">
-<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/header.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/reset.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/footer.css">
+<%-- <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/header.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/footer.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/main.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/join.css">
@@ -17,10 +18,7 @@
 </head>
 <body>
 	<tiles:insertAttribute name="header" />
-	
 	<tiles:insertAttribute name="main" />
-	
 	<tiles:insertAttribute name="footer" />
-
 </body>
 </html>

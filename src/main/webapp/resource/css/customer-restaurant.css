@@ -1,0 +1,260 @@
+@charset "UTF-8";
+
+a{
+	/* color: #979797; */
+	text-decoration: none;
+	cursor: pointer;
+}
+
+
+/* -----------------------reset---------------------------------- */
+.hidden{
+	/* visibility:hidden; */
+	display: none;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.content-container {
+    margin: auto;
+    height: 100%;
+    min-height: inherit;
+    width: 80%;
+}
+
+/* ------------main------------------------- */
+main .title{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+#main{
+	font-family: 맑은 고딕, 고딕, sans-serif;
+	font-size: 16px;
+	padding-left: 25px;
+	/* background: url("../images/icon-main-title.png") no-repeat left center; */
+}
+
+/* --------------------visual--------------------------------------- */
+/* views/customer/restaurant/list script 부분에서 변경할 것 */
+
+/* #visual {
+    height: 300px;
+    background: #313131 url(../images/customer-visual3.jpg) center;
+    background-size: cover;
+    border-top: solid 3px #f15c22;
+    background-position: 30% 30%;
+}
+
+
+#visual .content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#visual .customer-text {
+    font-size: 30px;
+    color: white;
+} */
+
+.restaurant-reg{
+	height: 40px;
+	text-align: right;
+	line-height: 40px;
+	margin: 10px 10px 10px 10px;
+	/* float: right; */
+}
+
+.restaurant-reg a{
+	margin-left: 10px;
+	width: 40px;
+	height: 40px;
+	font-weight: bold;
+}
+
+.restaurant-reg img{
+	/* margin-right: 50px; */
+	width: 40px;
+	height: 40px;
+	float: right;
+}
+
+/* ----restaurant cards------------------------------------------------------------- */
+
+.restaurant-cards{
+	margin: 0px auto 30px auto;
+	/* margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto; */
+	position: relative;
+	overflow: hidden;
+	border-top: solid 3px #f15c22;
+	border-bottom: solid 3px #f15c22;
+	/* float: right; */
+}
+
+.restaurant-card{
+	position:relative;
+	overflow: hidden;
+	margin:10px;
+	float: left;
+}
+   
+.img-wrapper{
+	position:relative;
+	/* background-image: url('../images/jjambbong.jpg');  */
+	width: 477px;
+	height: 230px;
+	border-radius: 10px;
+}
+
+.img-wrapper .gradation{
+	cursor: pointer;
+	width: 100%;
+   	height: 100%;
+   	background-color: rgba(0,0,0,0.3);
+   	text-align: center;
+   	border-radius: 10px;
+}
+
+.img-wrapper .gradation .inner-restaurant-info{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.img-wrapper .gradation .name{
+	font-family: 맑은 고딕, 고딕, sans-serif;
+	font-weight: bold;
+	font-size: 25px;
+	color: white;
+	text-align: center;
+	text-shadow: 0.1em 0.2em 0.3em #000000;
+}
+
+.img-wrapper .gradation .tip{
+	margin-top: 12px;
+	font-family: 맑은 고딕, 고딕, sans-serif;
+	font-size: 15px;
+	color: white;
+	text-align: center;
+	text-shadow: 0.1em 0.2em 0.3em #000000;
+}
+   
+/* .img-wrapper .gradation{
+	cursor: pointer;
+  	width: 100%;
+   	height: 100%;
+   	position: absolute;
+   	left: 0;
+   	top: 0;
+	border-radius: 6px;
+	transition-duration: 0.5s;
+ }
+   
+.img-wrapper:hover .gradation{
+	background-color: rgba(0,0,0,0.5);
+}
+
+.gradation{
+	font-family: 맑은 고딕, 고딕, sans-serif;
+	font-size: 22px;
+	color: white;
+	text-align: center;
+	line-height: 100px;
+	text-shadow: 0.1em 0.2em 0.3em #000000;
+} */
+
+.img-size {
+   	/* width: 300px;
+   	height: 200px;
+   	border-radius: 10px; */
+}
+   
+   /* .action-wrapper{
+		position: absolute;
+	    bottom: 0;
+	    left: 0;
+	    width: 100%;
+	    background-color: white;
+	    text-align: center;
+	    opacity: 0;
+	    transition-property: opacity;
+   }
+   
+   .poster-wrapper:hover .action-wrapper{
+   		opacity: 1;
+   }
+   
+   .movie-title{
+	    height: 40px;
+	    line-height: 40px;
+	    font-size: 14px;
+	    color: #403f4e;
+	    border-bottom: 1px solid #F3F3F5;
+	    overflow: hidden;
+   }
+   
+   .wish-comment{
+		margin: 20px 0 20px 0;
+	    position: relative;
+	    color: #6d6c83;
+	    height: 20px;
+   }
+   
+   .wish,
+   .comment{
+		font-size: 12px;
+	    position: absolute;
+	    text-indent: 24px;
+	    line-height: 13px;
+	    cursor: pointer;
+   }
+   
+   .wish{
+   	left: 20px;
+   }
+   .wish:hover{
+   	color: red;
+   }
+   .wish:hover .icon{
+   	background: url(../images/icon-like-on.png);
+   }
+  .wish .icon{
+		position: absolute;
+	    left: 0;
+	    top: 0;
+	    width: 15px;
+	    height: 13px;
+	    display: block;
+	    background: url(../images/icon-like.png);
+   }
+	
+   .comment{
+   	right: 20px;
+   }
+   .comment:hover{
+	color: #48C6C3;
+   }
+    .comment:hover .icon{
+		background: url(../images/icon-keyword-on.png);
+    }
+   .comment .icon{
+	   	position: absolute;
+	    left: 0;
+	    top: 0;
+	    width: 14px;
+	    height: 13px;
+	    display: block;
+	    background: url(../images/icon-keyword.png);
+   } */
+   
+      

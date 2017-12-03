@@ -59,4 +59,17 @@
 	<select id="getMember" resultType="com.food.webapp.entity.Member" >
 		select * from Member where nickName = #{nickName}
 	</select>
+	
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from Member where id = #{id}
+	</delete>
+	
+	<select id="detail" parameterType="java.lang.Integer" resultType="com.food.webapp.entity.Member" >
+		select * from Member where id = #{id}
+	</select>
+	
+	<update id="edit">
+		update Member set nickName=#{nickName}, role=#{role}, mentor=#{mentor} where id=#{id}
+	</update>
+	
 </mapper>

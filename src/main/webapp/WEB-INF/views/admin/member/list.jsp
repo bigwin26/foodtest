@@ -3,13 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 	<main id="main">
 		<%-- admin member page
 		${list} --%>
 		<h1 class="main title">회원 리스트</h1>
 							
 		<div class="text-right space-top-1">
-			<h3 class="hidden">식당 목록</h3>
 			<div>
 				<form action="list" method="get">
 					<label class="hidden">검색분류</label>
@@ -30,10 +31,10 @@
 						<th class="w60">번호</th>
 						<th class="w100">이메일</th>
 						<th class="w100">닉네임</th>
-						<th class="w60">역할</th>
+						<!-- <th class="w60">역할</th> -->
 						<th class="w150">가입일</th>
 						<th class="w60">멘토</th>
-						<th class="w60"><input id="" type="button" value="탈퇴" /></th>
+						<!-- <th class="w60"><input id="delete-button" type="button" value="탈퇴" /></th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -41,20 +42,20 @@
 						<c:forEach var="n" items="${list}">					
 							<tr>
 								<td>${n.id}</td>
-								<td>${n.email}</td>
+								<td><a href="member/${n.id}">${n.email}</a></td>
 								<td>${n.nickName}</td>
-								<c:if test="${'0' eq n.role}">
+								<%-- <c:if test="${'0' eq n.role}">
 									<td>일반회원</td>
 								</c:if>
 								<c:if test="${'1' eq n.role}">
 									<td>관리자</td>
-								</c:if>
+								</c:if> --%>
 								<td><fmt:formatDate	pattern="yyyy-MM-dd kk:mm:ss" value="${n.regDate}" /></td>
 								<td>${n.mentor}</td>
-								<td><input type="checkbox" name="ids" value="${n.id}"/></td>
+								<%-- <td><input type="checkbox" name="ids" value="${n.id}"/></td> --%>
 							</tr>
 						</c:forEach>
-						<input type="submit" value="delete" style="display:none"/>
+						<input id="submit-button" type="submit" value="delete" style="display:none"/>
 					</form>
 				</tbody>
 			</table>
@@ -97,6 +98,8 @@
 	$(function(){
 		var pageNum = $(".pageNum");
 		var searchButton = $("#search");
+		var deleteButton = $("#delete-button");
+		var submitButton = $("#submit-button");
 		var ajaxData;
 		
 		
@@ -143,6 +146,21 @@
 			
 			$(location).attr('href', url);
 		})
+		
+		/* deleteButton.click(function(){
+			var ids = $("input[name='ids']:checked").length;
+			//alert(ids);
+			if(ids>0){
+				if(confirm("정말 탈퇴 시키겠습니까?") == true)
+					submitButton.click();
+				else
+					return;
+			}
+			else{
+				alert("탈퇴시킬 회원을 선택하세요.");
+				return;
+			}
+		}); */
 		
 		$("input[name='query']").keypress(function(event){
 		    if (event.which == 13) {
