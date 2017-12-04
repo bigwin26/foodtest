@@ -208,6 +208,15 @@ public class NoticeController {
 		
 		return "redirect:notice";
 	}
+	
+	@RequestMapping(value="notice-delete", method=RequestMethod.POST)
+	public String delete(int id, Notice notice, HttpServletRequest request)  {
+		int result = 0;
+		//System.out.println("admin member " + id + "踰� �쉶�썝 �깉�눜");
+		noticeDao.delete(id);
+		
+		return "redirect:notice";
+	}
 
 	/*@RequestMapping(value = "notice/edit/{id}", method = RequestMethod.GET)
 	public String noticeEdit(@PathVariable("id") String id, Model model) {

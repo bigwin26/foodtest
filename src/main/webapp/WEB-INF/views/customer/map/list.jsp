@@ -23,7 +23,8 @@ padding: 0 0 0 30px;
     border-bottom: 1px solid #eee;
     }
 </style>
-<main class="main" ng-controller="notice-controller">
+
+<main id="main" ng-controller="notice-controller">
 <div id="container" style="min-width: 1100px;">
 	<div class="list-wrapper" style="width:30%;">
 	<div class="list-area">
@@ -53,10 +54,8 @@ padding: 0 0 0 30px;
 </div>
 </main>
 
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9c613e70636456cd2f3178169be248f"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9c613e70636456cd2f3178169be248f"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 			mapOption = {

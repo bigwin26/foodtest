@@ -75,11 +75,11 @@
 		var submitButton = $("#submit-button");
 				
 		deleteButton.click(function(){
-			//alert("회원 탈퇴");
-			if(confirm("정말 탈퇴 시키겠습니까?") == true){
+			//alert("공지 삭제");
+			if(confirm("정말 삭제 하시겠습니까?") == true){
 				var form = document.form;
-				form.action = "${ctx}/admin/member-delete";
-				alert(form.action);
+				form.action = "${ctx}/admin/notice-delete";
+				//alert(form.action);
 				
 				form.submit();
 			}
