@@ -52,7 +52,7 @@ public class MemberController {
 	
 	@RequestMapping(value="member-ajax", produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String restaurantAjax(
+	public String memberAjax(
 					String page,
 					@RequestParam(value="f", defaultValue="nickName")  String field,
 					@RequestParam(value="q", defaultValue="") String query,
@@ -92,7 +92,7 @@ public class MemberController {
 	@RequestMapping(value="member-delete", method=RequestMethod.POST)
 	public String delete(int id, Member member, HttpServletRequest request)  {
 		int result = 0;
-		System.out.println("admin member " + id + "번 회원 탈퇴");
+		System.out.println("admin member " + id + "踰� �쉶�썝 �깉�눜");
 		memberDao.delete(id);
 		
 		return "redirect:member";
@@ -112,10 +112,9 @@ public class MemberController {
 		return "redirect:member";
 	}
 	
-	
-	
 	@RequestMapping("member/{id}")
-	public String detail(@PathVariable("id") int id,
+	public String detail(
+						@PathVariable("id") int id,
 						//@RequestParam(value="p", defaultValue="1")  Integer page,
 						Model model) {
 		

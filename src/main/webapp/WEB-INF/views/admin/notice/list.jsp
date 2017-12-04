@@ -34,7 +34,7 @@
 					<tr>
 						<th class="w60">번호</th>
 						<th class="w60">제목</th>
-						<th class="w60">글쓴이</th>
+						<th class="w60">작성자</th>
 						<th class="w150">내용</th>
 						<th class="w100">등록일</th>
 						<!-- <th class="w60"><input id="delete-button" type="button" value="탈퇴" /></th> -->

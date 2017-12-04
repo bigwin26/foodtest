@@ -62,18 +62,13 @@ public class NoticeController {
 
 		model.addAttribute("list", list);
 		model.addAttribute("count", count);
-
-		/*
-		 * String output = String.format("p:%s, q:%s", page, query); output +=
-		 * String.format("title : %s\n", list.get(0).getTitle());
-		 */
-		// return "customer/notice";
+		
 		return "admin.notice.list";
 	}
 	
 	@RequestMapping(value="notice-ajax", produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String restaurantAjax(
+	public String noticeAjax(
 					String page,
 					@RequestParam(value="f", defaultValue="title")  String field,
 					@RequestParam(value="q", defaultValue="") String query,
@@ -99,46 +94,58 @@ public class NoticeController {
 		return json;
 	}
 
-	@RequestMapping(value = "notice/{nickName}")
-	public String noticeDetail(@PathVariable("nickName") String id, Model model) {
-
+	@RequestMapping(value = "notice/{id}")
+	public String detail(
+					@PathVariable("id") String id, 
+					Principal principal,
+					Model model) {
+		
+		String loginEmail = principal.getName();
+		String loginId = memberDao.get(loginEmail).getnickName();
+		
+		model.addAttribute("loginId", loginId);
 		model.addAttribute("n", noticeDao.get(id));
-		model.addAttribute("prev", noticeDao.getNext(id));
-		model.addAttribute("next", noticeDao.getPrev(id));
+		//model.addAttribute("prev", noticeDao.getNext(id));
+		//model.addAttribute("next", noticeDao.getPrev(id));
 
 		return "admin.notice.detail";
 	}
 
 	@RequestMapping(value = "notice/reg", method = RequestMethod.GET)
-	public String noticeReg() {
+	public String reg() {
 
 		return "admin.notice.reg";
 	}
 
 	@RequestMapping(value = "notice/reg", method = RequestMethod.POST)
-	public String noticeReg(Notice notice, MultipartFile file, HttpServletRequest request, Principal principal)
-			throws IOException {
-		// file.isempty() ����ڰ� ������ �������� �ʾҳ�?
+	public String reg(
+					Notice notice, 
+					MultipartFile file, 
+					HttpServletRequest request, 
+					Principal principal) throws IOException {
+		
+		// file.isempty() 占쏙옙占쏙옙微占� 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占십았놂옙?
 
-		// title = new String(title.getBytes("ISO-8859-1"),"UTF-8"); //�ѱ۱��� ����
+		// title = new String(title.getBytes("ISO-8859-1"),"UTF-8"); //占싼글깍옙占쏙옙 占쏙옙占쏙옙
 		// System.out.println(title);
 
-		// Date curDate = new Date(); //��¥ ��¹�1
+		// Date curDate = new Date(); //占쏙옙짜 占쏙옙쨔占�1
 
-		Calendar cal = Calendar.getInstance(); // ��¥ ��¹�2
+		Calendar cal = Calendar.getInstance(); // 占쏙옙짜 占쏙옙쨔占�2
 		// Date curdate2 = cal.getTime();
 		int year = cal.get(Calendar.YEAR);
 
 		/*
-		 * SimpleDateFormat fmt = new SimpleDateFormat("hh:mm:ss"); //��¥ ��¹�3
+		 * SimpleDateFormat fmt = new SimpleDateFormat("hh:mm:ss"); //占쏙옙짜 占쏙옙쨔占�3
 		 * fmt.format(arg0);
 		 */
 		String nextId = noticeDao.getNextId();
 		String loginEmail = principal.getName();
 		String loginId = memberDao.get(loginEmail).getnickName();
-		System.out.println(loginId);
+		System.out.println("notice-principal: " + principal);
+		System.out.println("notice-loginId: " + loginId);
 		ServletContext ctx = request.getServletContext();
-		String path = ctx.getRealPath(String.format("/resource/customer/notice" + year + "/" + nextId));
+		String path = ctx.getRealPath(String.format("/resource/admin/notice/" + year + "/" + nextId));
 
 		System.out.println(path);
 
@@ -146,7 +153,7 @@ public class NoticeController {
 
 		if (!f.exists()) {
 			if (!f.mkdirs())
-				System.out.println("���丮�� �����Ҽ� �����ϴ�.");
+				System.out.println("占쏙옙占썰리占쏙옙 占쏙옙占쏙옙占쌀쇽옙 占쏙옙占쏙옙占싹댐옙.");
 		}
 
 		path += File.separator + file.getOriginalFilename();
@@ -183,8 +190,26 @@ public class NoticeController {
 
 		return "redirect:../notice";
 	}
+	
+	@RequestMapping(value="notice-edit", method=RequestMethod.POST)
+	public String edit(
+					int id, 
+					String title, 
+					String content, 
+					HttpServletRequest request)  {
+		
+		//int result = memberDao.edit(id);
+		System.out.println("edit");
+		System.out.println("id: " + id);
+		System.out.println("title: " + title);
+		System.out.println("content: " + content);
+		
+		noticeDao.edit(id, title, content);
+		
+		return "redirect:notice";
+	}
 
-	@RequestMapping(value = "notice/edit/{id}", method = RequestMethod.GET)
+	/*@RequestMapping(value = "notice/edit/{id}", method = RequestMethod.GET)
 	public String noticeEdit(@PathVariable("id") String id, Model model) {
 
 		model.addAttribute("n", noticeDao.get(id));
@@ -199,6 +224,6 @@ public class NoticeController {
 		System.out.println(row);
 
 		return "redirect:../{id}";
-	}
+	}*/
 
 }
