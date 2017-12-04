@@ -17,7 +17,9 @@
 
         
         .ppContents{float:left;width:100%;padding:40px;background:#fff;color:#404041;font-size:14px;line-height:22px;}
-
+ .top-user-prof{
+ top: 7px;
+ }
     </style>
 
 </head>

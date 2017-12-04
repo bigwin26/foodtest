@@ -101,21 +101,6 @@ public class MemberController {
 			        
 		      }	  
 		      
-		     
-		      
-		      
-		      
-		     
-		      
-			
-
-
-
-      
-      
-      
-       
-	     
 		      member.setImage(email+ext); 
 		       int row = memberDao.insert(member);
        
@@ -146,11 +131,18 @@ public class MemberController {
 		return resultMsg;
 	}
    
-   @RequestMapping(value="edit/{nickName}", method=RequestMethod.GET)
-   public String edit(@PathVariable("nickName") String nickName,Model model) {
+   @RequestMapping(value="edit", method=RequestMethod.POST)
+   public String edit(String useremail, Model model) {
 	   
-	   model.addAttribute("member", memberDao.getMember(nickName));
-      System.out.println(nickName);
+	   
+	   System.out.println(useremail);
+	   
+	   
+	   model.addAttribute("userinfo", memberDao.get(useremail));   
+	   
+	
+	   
+	   
       return "member.edit";
    }
    
