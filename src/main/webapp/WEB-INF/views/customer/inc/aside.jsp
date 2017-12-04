@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
@@ -9,39 +9,92 @@
 <c:set var="isNotice">${fn:indexOf(url, "notice")>0?'current':''}</c:set>
 <c:set var="isQuestion">${fn:indexOf(url, "question")>0?'current':''}</c:set>
 <c:set var="isGuide">${fn:indexOf(url, "guide")>0?'current':''}</c:set>
+<%-- <style>
+.restaurant-photos {
+	display: block; overflow : hidden;
+	width: 100%;
+	overflow: hidden;
+}
 
-			<aside class="aside">
-				<h1>고객센터</h1>
+.list-photo_wrap {
+	height: 340px;
+	opacity: 1;
+	display: block;
+	visibility: visible;
+}
 
-				<nav class="menu text-menu first margin-top">
-					<h1>고객센터메뉴</h1>
-					<ul>
-						<li class="${isNotice}"><a class="active"  href="${ctx}/customer/notice">공지사항</a></li>
-						<li class="${isQuestion}"><a href="${ctx}/customer/question">고객문의</a></li>
-						<li class="${isGuide}"><a href="${ctx}/customer/guide">학습안내</a></li>
-					</ul>
-				</nav>
+.owl-wrapper-outer {
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	height: inherit;
+	
+}
 
-				<nav class="menu">
-					<h1>추천사이트</h1>
-					<ul>
-						<li><img src="${ctx}/resource/images/answeris.png" alt="앤서이즈" /></li>
-						<li><a href="http://www.notepubs.com"><img src="${ctx}/resource/images/notepubs.png" alt="노트펍스" /></a></li>
-						<li><img src="${ctx}/resource/images/microsoft.png" alt="마이크로소프트" /></li>
-					</ul>
-				</nav>
+.owl-wrapper {
+	width: 1250px;
+    left: -100px;
+    display: block;
+    transition: all 0ms ease;
+    transform: translate3d(0px, 0px, 0px);
+    height: inherit;
+    position: relative;
+    overflow: hidden;
+}
 
-				<!-- <nav class="menu">
-					<h1>협찬광고</h1>
-					<ul>
-		                <li style="width:181px;overflow:hidden;">                            
-                                             
-		                </li>  
-                        <li style="width:181px;overflow:hidden;">                            
-                                               
-		                </li>
-                    </ul>					
-				</nav> -->
-				
-								
-			</aside>
+.owl-item {
+	position: relative;
+	width: 415px;
+	height: inherit;
+	    overflow: hidden;
+	    float: left;
+}
+.restaurant-photos-item {
+    display: block;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: 50% 50%;
+    cursor: pointer;
+    height: inherit;
+}
+.center-croping {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+</style>
+<aside class="restaurant-photos">
+	<div class="list-photo_wrap">
+		<div class="owl-wrapper-outer">
+			<div class="owl-wrapper">
+				<div class="owl-item">
+					<figure class="list-photo" style="display:block; height:inherit;">
+						<figure class="restaurant-photos-item">
+							<img class="center-croping" src="${ctx}/resource/images/staek.jpg">
+						</figure>
+					</figure>
+				</div>
+				<div class="owl-item">
+					<figure class="list-photo" style="display:block; height:inherit;">
+						<figure class="restaurant-photos-item">
+							<img class="center-croping" src="${ctx}/resource/images/staek.jpg">
+						</figure>
+					</figure>
+				</div>
+				<div class="owl-item">
+					<figure class="list-photo" style="display:block; height:inherit;">
+						<figure class="restaurant-photos-item">
+							<img class="center-croping" src="${ctx}/resource/images/staek.jpg">
+						</figure>
+					</figure>
+				</div>
+			</div>
+		</div>
+	</div>
+</aside> --%>
