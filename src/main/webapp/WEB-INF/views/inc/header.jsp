@@ -272,7 +272,14 @@ border-radius: 0 0 5px 5px;
 					
 					<div class="dropdown-content">
 					<c:if test="${!empty pageContext.request.userPrincipal.name}">
-					<a href="${ctx}/member/edit/${nickName}">내정보</a>
+					<a id="info">내정보</a>
+					<form id="submituser" action="${ctx}/member/edit" method="post" accept-charset="UTF-8">
+					<input type="hidden" name="useremail" value="<security:authentication property="name"/>">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+					</form>
+					
+					
+					
 					</c:if>
 						<a href="${ctx}/member/list">좋아요</a>
 					
@@ -309,6 +316,18 @@ border-radius: 0 0 5px 5px;
 </div>
 
 <script type="text/javascript">
+
+
+	$(function (){
+		
+		$("#info").click(function(){
+
+			$("#submituser").submit();
+		})
+	});
+		
+		
+	
 
 $(function () {
 	var chkimg = $("#user_img").attr("src");

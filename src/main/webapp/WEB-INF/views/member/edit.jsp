@@ -43,7 +43,7 @@
 	background-color: #fdfdfd;
 	cursor: pointer;
 	border: 1px solid #ebebeb;
-	border-bottom-color: #E73524;
+	border-bottom-color: #F15C22;
 	border-radius: .25em;
 }
 
@@ -97,14 +97,14 @@
 
 .filebox.bs3-primary label {
 	color: #ffffff;
-	background-color: #E73524;
+	background-color: #F15C22;
 }
 </style>
 
 
 <div id="div_activate" class="container">
 	<div class="title">
-		<div class="row">정보 수정페이지</div>
+		<div class="row">내 정보 수정</div>
 	</div>
 	<!-- 회원가입 폼 -->
 
@@ -114,7 +114,7 @@
 			<table id="tbl_info" class="table table-user">
 
 				<tr id="tr_name">
-					<th>닉네임</th>
+					<th>닉네임</th>${userinfo.nicName}
 					<td><input name="nickName" id="nickName"
 						class="input-text w400" type="text" value="${member.nickName}" placeholder="닉네임" /><br />
 						<br /> 변경할 닉네임을 입력해주세요. <br />영문 혹은 한글2~15자 이내로

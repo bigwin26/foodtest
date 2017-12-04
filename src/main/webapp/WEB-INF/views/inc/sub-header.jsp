@@ -307,7 +307,7 @@ top: 6px;
 </div> --%>
 <div id="mainHeader">
 	<div id="headerWrapper">
-		<a id="headerLogo" href="http://localhost/food/index"><img
+		<a id="headerLogo" href="${ctx}/index"><img
 			src="${ctx}/resource/images/logo-h.png"></a>
 		<ul id="headerNavi">
 			<li id="notice"><a href="${ctx}/customer/restaurant"

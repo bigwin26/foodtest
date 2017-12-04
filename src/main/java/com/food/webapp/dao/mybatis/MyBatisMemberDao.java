@@ -44,6 +44,7 @@ public class MyBatisMemberDao implements MemberDao {
 		return 0;
 	}
 	public Member get(String loginEmail) {
+		
 		MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
 		
 		return memberDao.get(loginEmail);
