@@ -14,8 +14,8 @@
 	<table class="">
 		<tbody>
 			<tr>
-				<th>가게 이름 (${r.countCmt})</th>
-				<td>${r.name}</td>
+				<th>가게 이름</th>
+				<td>${r.name} (${r.countCmt})</td>
 			</tr>
 			<tr>
 				<th>작성일</th>

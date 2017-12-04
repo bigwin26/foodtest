@@ -93,7 +93,7 @@
 			if(confirm("정말 탈퇴 시키겠습니까?") == true){
 				var form = document.form;
 				form.action = "${ctx}/admin/member-delete";
-				alert(form.action);
+				//alert(form.action);
 				
 				form.submit();
 			}

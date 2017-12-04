@@ -1,4 +1,7 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/food/webapp/controller/admin/MemberController.java=UTF-8
+encoding//src/main/java/com/food/webapp/controller/admin/NoticeController.java=UTF-8
+encoding//src/main/java/com/food/webapp/controller/customer/NoticeController.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/inc/footer.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/inc/header.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/index.jsp=UTF-8

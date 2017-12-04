@@ -23,7 +23,7 @@ a{
     margin: auto;
     height: 100%;
     min-height: inherit;
-    width: 1200px;
+    width: 80%;
 }
 
 /* ------------main------------------------- */
@@ -33,11 +33,9 @@ main .title{
 	text-overflow: ellipsis;
 }
 
-main .main{
+#main{
 	font-family: 맑은 고딕, 고딕, sans-serif;
-	font-size: 21px;
-	font-weight: bold;
-	color: #646464;
+	font-size: 16px;
 	padding-left: 25px;
 	/* background: url("../images/icon-main-title.png") no-repeat left center; */
 }
@@ -65,32 +63,53 @@ main .main{
     color: white;
 } */
 
-/* ----restaurant cards------------------------------------------------------------- */
-/* div{
-   display: block;
-} */
-
-.restaurant-cards{
-	margin-top: 50px;
-	margin-left: auto;
-	margin-right: auto;
-   	width: 1200px;
-	position: relative;
-	overflow: hidden;
+.restaurant-reg{
+	height: 40px;
+	text-align: right;
+	line-height: 40px;
+	margin: 10px 10px 10px 10px;
 	/* float: right; */
 }
- 
+
+.restaurant-reg a{
+	margin-left: 10px;
+	width: 40px;
+	height: 40px;
+	font-weight: bold;
+}
+
+.restaurant-reg img{
+	/* margin-right: 50px; */
+	width: 40px;
+	height: 40px;
+	float: right;
+}
+
+/* ----restaurant cards------------------------------------------------------------- */
+
+.restaurant-cards{
+	margin: 0px auto 30px auto;
+	/* margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto; */
+	position: relative;
+	overflow: hidden;
+	border-top: solid 3px #f15c22;
+	border-bottom: solid 3px #f15c22;
+	/* float: right; */
+}
+
 .restaurant-card{
-   position:relative;
-   overflow: hidden;
-   margin:10px;
-   float: left;
+	position:relative;
+	overflow: hidden;
+	margin:10px;
+	float: left;
 }
    
 .img-wrapper{
 	position:relative;
-	background-image: url('../images/jjambbong.jpg'); 
-	width: 370px;
+	/* background-image: url('../images/jjambbong.jpg');  */
+	width: 477px;
 	height: 230px;
 	border-radius: 10px;
 }
@@ -101,6 +120,7 @@ main .main{
    	height: 100%;
    	background-color: rgba(0,0,0,0.3);
    	text-align: center;
+   	border-radius: 10px;
 }
 
 .img-wrapper .gradation .inner-restaurant-info{
@@ -108,11 +128,13 @@ main .main{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
 }
 
 .img-wrapper .gradation .name{
 	font-family: 맑은 고딕, 고딕, sans-serif;
-	font-size: 22px;
+	font-weight: bold;
+	font-size: 25px;
 	color: white;
 	text-align: center;
 	text-shadow: 0.1em 0.2em 0.3em #000000;
