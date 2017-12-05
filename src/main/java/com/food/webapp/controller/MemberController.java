@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.security.Principal;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -53,13 +54,13 @@ public class MemberController {
    @RequestMapping(value="join", method=RequestMethod.POST)
    public String join(String email, Member member,HttpServletRequest request, MultipartFile file) throws IOException{
    
-	   String image = file.getOriginalFilename();	  
-	  String ext = ".png";
+	   		String image = file.getOriginalFilename();	  
+	   		String ext = ".png";
 	   
 
 		     
 	       
-	       ServletContext ctx = request.getServletContext();
+	   		ServletContext ctx = request.getServletContext();
 		      String path = ctx.getRealPath("/resource/userimages/"+email);  
 		      File f1 = new File(path);
 		      if(!f1.isDirectory()) {
@@ -132,19 +133,71 @@ public class MemberController {
 	}
    
    @RequestMapping(value="edit", method=RequestMethod.POST)
-   public String edit(String useremail, Model model) {
+   public String edit(String useremail, Model model, Member member) {
 	   
 	   
-	   System.out.println(useremail);
 	   
-	   
-	   model.addAttribute("userinfo", memberDao.get(useremail));   
-	   
-	
-	   
+	   member.setEmail(useremail);
+	   model.addAttribute("userinfo", memberDao.editUserInfo(member));
+	   	   
 	   
       return "member.edit";
    }
+   
+   @RequestMapping(value="editMember", method=RequestMethod.POST)
+   public String editMember(String nickName, String pwdchk, String mentor, Model model, MultipartFile file, Member member, HttpServletRequest request, Principal principal) throws IOException {
+	   
+	   	  
+	   String email = principal.getName();
+	   String ext = ".png";
+	   
+	   	  ServletContext ctx = request.getServletContext();
+	      String path = ctx.getRealPath("/resource/userimages/"+email);  
+	      File f1 = new File(path);
+	      if(!f1.isDirectory()) 
+	    	  f1.mkdirs();
+	    	  
+	    	  
+	      if(""==file.getOriginalFilename()) {
+	    	  
+	    	  	    	  
+	      } else {
+	    	  path += File.separator+email+ext;
+		      //System.out.println("path : " + path);
+		      File f2 = new File(path);
+		     // System.out.println("path : " + path);
+		      	      
+		      InputStream fis = file.getInputStream();
+		      OutputStream fos = new FileOutputStream(f2);
+		      
+		      byte[] buf = new byte[1024];      
+		      int size = 0;
+		      while((size = fis.read(buf)) > 0)
+		      fos.write(buf, 0, size);
+		      
+		      fis.close();
+		      fos.close();
+	    	  
+		      
+	      }
+	      
+	      member.setEmail(email);
+	      member.setnickName(nickName);
+    	  member.setPwd(pwdchk);
+    	  member.setMentor(mentor);
+    	  member.setImage(email+".png");
+	      
+    	  memberDao.editMember(member);
+	    	  
+	    	  
+	
+	   
+	   
+	   
+      return "redirect:../index";
+   }
+   
+   
    
    /*@RequestMapping(value="edit", method=RequestMethod.POST)
    public String noticeEdit(@PathVariable("id") String id, String title, String content) {

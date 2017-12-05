@@ -71,21 +71,27 @@
 
 @media ( min-width : 768px) {
 	.filebox .upload-display {
-		display: inline-block;
 		margin-right: 5px;
 		margin-bottom: 0;
 	}
 }
 
 .filebox .upload-thumb-wrap {
-	display: inline-block;
-	width: 100px;
-	height: 100px;
-	padding: 2px;
-	vertical-align: middle;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	background-color: #fff;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    padding: 2px;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    overflow: hidden;
+	
+}
+
+.filebox .upload-thumb-wrap.none {
+ display:none;
+	
 }
 
 .filebox .upload-display img {
@@ -99,6 +105,57 @@
 	color: #ffffff;
 	background-color: #F15C22;
 }
+
+.userinfo{
+    width: 100px;
+    height: 100px;
+    padding: 2px;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+.userinfo.show{
+    width: 100px;
+    height: 100px;
+    padding: 2px;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.userinfo.none{
+    display: none;
+}
+
+.userinfo img{
+   	display: block;
+	width: 100px;
+	height: 100px;
+}
+
+
+.cancel-file{
+display: none;
+
+
+}
+.cancel-file.show{
+	display: inline-block;
+    padding: .5em .75em;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #F15C22;
+    border-radius: .25em;
+    color: #ffffff;
+    background-color: #F15C22;
+
+}
+
 </style>
 
 
@@ -106,17 +163,18 @@
 	<div class="title">
 		<div class="row">내 정보 수정</div>
 	</div>
-	<!-- 회원가입 폼 -->
+	<!-- 회원수저 폼 -->
 
 	<div class="row">
-		<form action="?${_csrf.parameterName}=${_csrf.token}" method="post"
+		<form action="editMember?${_csrf.parameterName}=${_csrf.token}" method="post"
 			id="joinsubmit" enctype="multipart/form-data">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<table id="tbl_info" class="table table-user">
 
 				<tr id="tr_name">
-					<th>닉네임</th>${userinfo.nicName}
+					<th>닉네임</th>
 					<td><input name="nickName" id="nickName"
-						class="input-text w400" type="text" value="${member.nickName}" placeholder="닉네임" /><br />
+						class="input-text w400" type="text" value="${userinfo.nickName}" placeholder="닉네임" /><br />
 						<br /> 변경할 닉네임을 입력해주세요. <br />영문 혹은 한글2~15자 이내로
 						입력해주세요.</br> <span id="checkName"></span></td>
 				</tr>
@@ -125,16 +183,15 @@
 				<tr id="tr_email">
 					<th>이메일</th>
 					<td><input name="email" id="email" class="input-text w400"
-						type="text" value="${member.email}" placeholder="이메일" /> <br />변경하실
-						이메일을 입력해 주세요. </br></td>
+						type="text" value="${userinfo.email}" placeholder="이메일"  readonly="readonly" style="background-color: #f9f9f9"/> <br />이메일은 변경하실수 없습니다. </br></td>
 				</tr>
 				<tr id="tr_pw">
 					<th>현재 비밀번호</th>
 					<td>
 
 						<div id="div_password_Y">
-							<input name="pwd" id="pwd" class="input-text w400"
-								type="password" style="margin-bottom: 8px;" placeholder="비밀번호" />
+							<input name="pwd" id="pwd" class="input-text w400" value=""
+								type="password" style="margin-bottom: 8px;" placeholder="현재 비밀번호" />
 							<div id="guidepwd" style="color: red; display: none;"></div>
 							<br />현재 사용중인 비밀번호를 입력해주세요.
 						</div>
@@ -156,32 +213,35 @@
 				<tr id="tr_mentor">
 					<th>선생님</th>
 					<td><input name="mentor" id="mentor" class="input-text w400"
-						type="text" value="${member.mentor}" placeholder="멘토" /><br /> <br /> 본인이 속한
+						type="text" value="${userinfo.mentor}" placeholder="멘토" /><br /> <br /> 본인이 속한
 						클래스의 선생님 성함을 입력해주세요.</td>
 				</tr>
 				<tr id="tr_photo">
 					<th>프로필 사진</th>
 					<td>
 
-
+						<div class="userinfo">
+						<img src="${path}/resource/userimages/${userinfo.email}/${userinfo.image}">
+						</div>
+						
 						<div class="filebox bs3-primary preview-image">
 							<input class="upload-name" disabled="disabled"
-								style="width: 200px;"> <label for="input_file">찾아보기</label>
+								style="width: 200px;"> 
+								<label for="input_file">찾아보기</label>
+								<span class="cancel-file">취소</span>
 							<input type="file" id="input_file" class="upload-hidden"
-								name="file" value="${member.image}">
+								name="file" value="${userinfo.image}">								
 						</div> <br /> <br /> 변경하실 프로필 사진이미지를 등록해 주세요.
 					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
-
 	<div class="row tc" style="padding: 50px 0 55px 0;">
 		<a href="javascript:joinsubmit.submit()"
 			style="text-decoration: none; color: #ffffff;"><button
 				id="btn_submit" type="button" class="btn btn-red w400 fs-16"
 				style="height: 65px;">수정하기</button></a>
-
 
 	</div>
 </div>
@@ -189,7 +249,25 @@
 	style="position: fixed; width: 400px; top: 20px; left: 50%; margin-left: -200px; z-index: 9999; text-align: center;">
 	<!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
 </div>
+
+
 <script>
+
+$(function(){
+	
+	$(".preview-image span").click(function(){
+		$(".upload-thumb-wrap").addClass("none");
+		$(".upload-name").val("");		
+		$(".userinfo").removeClass("none");
+		$(".userinfo").addClass("show");
+		$(".cancel-file").removeClass("show");
+		$(".cancel-file").addClass("none");	
+		
+	})
+	
+})
+
+
 $(document).ready(function() {
 var cfmId = "";		// 중복 체크 완료된 아이디 저장
 /* 이메일 중복체크 */
@@ -391,6 +469,8 @@ $('#nickName').keyup(function() {
 	            reader.onload = function(e){
 	                var src = e.target.result;
 	                parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>');
+	                $(".userinfo").addClass("none");
+	                $(".cancel-file").addClass("show");
 	            }
 	            reader.readAsDataURL($(this)[0].files[0]);
 	        }

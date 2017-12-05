@@ -52,6 +52,10 @@
 		select * from Member where email = #{loginEmail}
 	</select>
 	
+	<select id="editUserInfo" resultType="com.food.webapp.entity.Member" parameterType="com.food.webapp.entity.Member">
+		select * from Member where email = #{email}
+	</select>
+	
 	<select id="sameCheckId" parameterType="com.food.webapp.entity.Member" resultType="Integer" >
 		select count(*) from Member where nickName = #{nickName}
 	</select>
@@ -71,5 +75,10 @@
 	<update id="edit">
 		update Member set nickName=#{nickName}, role=#{role}, mentor=#{mentor} where id=#{id}
 	</update>
+	
+	<update id="editMember">
+		update Member set nickName=#{nickName}, mentor=#{mentor}, pwd=#{pwd}, image=#{image}  where email=#{email}
+	</update>
+	
 	
 </mapper>

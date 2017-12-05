@@ -268,7 +268,7 @@ border-radius: 0 0 5px 5px;
 					</div> 
 					<img id="user_img" src="${ctx}/resource/userimages/<security:authentication property="name"/>/<security:authentication property="name"/>.png"/>
  
-</div>
+					</div>
 					
 					<div class="dropdown-content">
 					<c:if test="${!empty pageContext.request.userPrincipal.name}">
