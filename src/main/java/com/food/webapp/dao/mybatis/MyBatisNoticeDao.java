@@ -98,4 +98,10 @@ public class MyBatisNoticeDao implements NoticeDao {
 		return noticeDao.edit(id, title, content);
 	}
 
+	@Override
+	public int delete(int id) {
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		return noticeDao.delete(id);
+	}
+
 }

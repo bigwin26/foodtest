@@ -71,4 +71,9 @@
 		<!-- update Notice(title, content) set(#{title}, #{content}) where id = ${id} -->
 		update Notice set title=#{title}, content=#{content} where id = ${id}
 	</update>
+	
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from Notice where id = #{id}
+	</delete>
+	
 </mapper>
