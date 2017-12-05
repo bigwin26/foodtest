@@ -19,7 +19,16 @@ public class Restaurant {
 	private Date regDate;
 	private int ok;
 	private String date;
+	private String phoneNumber;
 	
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
 	public int getTime() {
 		return time;
@@ -52,7 +61,7 @@ public class Restaurant {
 
 	
 	public Restaurant( String name, String location, String address, String content, int time, String genre,
-			String keyword, String image, String tip, int memberId, int lastMemberId, Date regDate, int ok) {
+			String keyword, String image, String tip, int memberId, int lastMemberId, Date regDate, int ok, String phoneNumber) {
 		super();
 		
 		this.name = name;
@@ -68,6 +77,7 @@ public class Restaurant {
 		this.lastMemberId = lastMemberId;
 		this.regDate = regDate;
 		this.ok = ok;
+		this.phoneNumber = phoneNumber;
 	}
 	
 	public Restaurant(int memberId, String name,  String date, int ok) {

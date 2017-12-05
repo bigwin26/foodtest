@@ -23,8 +23,60 @@ a{
     margin: auto;
     height: 100%;
     min-height: inherit;
-    width: 1800px;
+    width: 80%;
 }
+
+body{
+	font-family:돋음, Arial, sans-serif;
+	/* font-size: 12px; */
+}
+
+/* ---------------------text Style------------------------------ */
+.text-left{
+	text-align: left;
+}
+.text-center{
+	text-align: center;
+}
+.text-right{
+	text-align: right;
+	font-family:돋음, Arial, sans-serif;
+	font-size: 12px;
+}
+.text-indent{
+	text-indent: 10px;
+}
+.text-strong{
+	color: #48C6C3;
+	font-weight: bold;
+}
+
+/* ------------------------spacing----------------------------------- */
+.space-top-1{
+	margin-top: 50px;
+}
+/* .space-top{
+	margin-top: 10px;
+} */
+
+/* --------------hr-list------------------------------ */
+
+.hr-list{
+		display: inline-block;
+	}
+	
+	.hr-list ul{
+		overflow:auto;
+	}
+	
+		.hr-list li{
+			float: left;
+		}
+		/* li부모의 첫번째 자식 태그 */
+		.hr-list li:first-child{
+			padding-left: 0px;
+			background: none;
+		}
 
 /* ------------main------------------------- */
 main .title{
@@ -33,28 +85,101 @@ main .title{
 	text-overflow: ellipsis;
 }
 
-main .main{
+#main{
 	font-family: 맑은 고딕, 고딕, sans-serif;
-	font-size: 21px;
-	font-weight: bold;
+	font-size: 16px;
 	color: #646464;
 	padding-left: 25px;
 	/* background: url("../images/icon-main-title.png") no-repeat left center; */
 }
 
+main .w60{
+	 width: 60px;
+}
+main .w80{
+	width: 80px;
+}
+main .w100{
+	width: 100px;
+}
+main .w150{
+	width: 150px;
+}
+main .w200{
+	width: 200px;
+}
+main .max400{
+	width: 400px;;
+}
+.text-hide{
+	overflow:hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* --------------격자형--------------------- */
+.table{
+	display: table;
+	width: 100%;
+	/* border: 3px solid #f15c22; */
+	table-layout: fixed;
+}
+
+.table tr,
+.table .tr{
+	display: table-row;
+	height: 60px;
+	line-height: 30px;
+}
+
+#main .table th{
+	color: #ffffff;
+}
+
+.table tr td,
+.table tr th,
+.table .tr .td
+.table .tr .th{
+	border-bottom: 5px solid #ffffff;
+	text-align: center;
+	display:table-cell;
+	
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	
+	/* border: 1px solid #f15c22; */
+}
+
+.table tr th,
+.table .tr .th{
+	background: #f5f5f5 url("../images/bg-title-sp.png") no-repeat left center;
+}
+.table th:first-child{
+	background: none;
+	background: #f15c22;
+}
+		
+.table tr td.text-left,
+.table tr th.text-left,
+.table .tr .td.text-left,
+.table .tr .th.text-left{
+	text-align: left;
+}
+
 /* --------------------visual--------------------------------------- */
 /* views/customer/restaurant/list script 부분에서 변경할 것 */
 
-/* #visual {
-    height: 300px;
-    background: #313131 url(../images/customer-visual3.jpg) center;
+#visual {
+    height: 55px;
+    /* background: #313131 url(../images/customer-visual3.jpg) center;
     background-size: cover;
     border-top: solid 3px #f15c22;
-    background-position: 30% 30%;
+    background-position: 30% 30%; */
 }
 
 
-#visual .content-container {
+/* #visual .content-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,47 +191,52 @@ main .main{
 } */
 
 .restaurant-reg{
-	padding: 5px 5px;
+	height: 40px;
+	text-align: right;
+	line-height: 40px;
+	margin: 10px 10px 10px 10px;
+	/* float: right; */
+}
+
+.restaurant-reg a{
+	margin-left: 10px;
+	width: 40px;
+	height: 40px;
+	font-weight: bold;
+}
+
+.restaurant-reg img{
+	/* margin-right: 50px; */
+	width: 40px;
+	height: 40px;
 	float: right;
 }
 
-
 /* ----restaurant cards------------------------------------------------------------- */
-/* div{
-   display: block;
-} */
 
 .restaurant-cards{
-	margin: 30px auto 30px auto;
+	margin: 0px auto 30px auto;
 	/* margin-top: 30px;
 	margin-left: auto;
 	margin-right: auto; */
-   	width: 1800px;
 	position: relative;
 	overflow: hidden;
 	border-top: solid 3px #f15c22;
 	border-bottom: solid 3px #f15c22;
 	/* float: right; */
 }
- 
-/* .cards-wraaper{
-	display:block;
-	width: 1800px;
-	position: relative;
-	overflow: auto;
-} */
 
 .restaurant-card{
-   position:relative;
-   overflow: hidden;
-   margin:10px;
-   float: left;
+	position:relative;
+	overflow: hidden;
+	margin:10px;
+	float: left;
 }
    
 .img-wrapper{
 	position:relative;
 	/* background-image: url('../images/jjambbong.jpg');  */
-	width: 560px;
+	width: 477px;
 	height: 230px;
 	border-radius: 10px;
 }
@@ -117,6 +247,7 @@ main .main{
    	height: 100%;
    	background-color: rgba(0,0,0,0.3);
    	text-align: center;
+   	border-radius: 10px;
 }
 
 .img-wrapper .gradation .inner-restaurant-info{
@@ -124,12 +255,13 @@ main .main{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
 }
 
 .img-wrapper .gradation .name{
 	font-family: 맑은 고딕, 고딕, sans-serif;
 	font-weight: bold;
-	font-size: 22px;
+	font-size: 25px;
 	color: white;
 	text-align: center;
 	text-shadow: 0.1em 0.2em 0.3em #000000;

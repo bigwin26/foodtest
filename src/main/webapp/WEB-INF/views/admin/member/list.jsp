@@ -11,7 +11,6 @@
 		<h1 class="main title">회원 리스트</h1>
 							
 		<div class="text-right space-top-1">
-			<h3 class="hidden">식당 목록</h3>
 			<div>
 				<form action="list" method="get">
 					<label class="hidden">검색분류</label>

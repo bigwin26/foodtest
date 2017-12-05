@@ -2,165 +2,127 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%-- <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/map.css"> --%>
-<main>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<%-- <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/map.css"> --%>
 
-	<!-- 지도 검색부분 -->
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<div class="map_wrap">
-		<div id="map"
-			style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
-
-		<div id="menu_wrap" class="bg_white">
-			<div class="option">
-				<div>
-					<form onsubmit="searchPlaces(); return false;">
-						키워드 : <input type="text" value=" " id="keyword" size="15">
-						<button type="submit">검색하기</button>
-					</form>
+	<main id="main">
+		
+		<div class="map-form-wrapper">
+			<div class="map_wrap_reg">
+				<div id="map"
+					style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+		
+				<div id="menu_wrap" class="bg_white">
+					<div class="option">
+						<div>
+							<form onsubmit="searchPlaces(); return false;">
+								키워드 : <input type="text" value=" " id="keyword" size="15">
+								<button type="submit">검색</button>
+							</form>
+						</div>
+					</div>
+					<hr>
+					<ul id="placesList"></ul>
+					<div id="pagination"></div>
 				</div>
 			</div>
-			<hr>
-			<ul id="placesList"></ul>
-			<div id="pagination"></div>
+				
+			<div class="restaurant-reg-form">
+				<form action="?${_csrf.parameterName}=${_csrf.token}" 
+									method="post" enctype="multipart/form-data">
+					<table class="table table-list space-top">
+						<tbody>
+							<tr>
+								<th>가게 이름</th>
+								<td><input id="n" type="text" name="name"/></td>
+							</tr>
+							<tr>
+								<th>주소</th>
+								<td>
+									<input id="a" type="text" name="address"/>
+									<input id="l" type="text" name="location" style="display: none;"/>
+								</td>
+							</tr>
+							<tr>
+								<th>상세내용</th>
+								<td><input type="text" name="content" placeholder="예) 2인 1.5만원대"/></td>
+							</tr>
+							<tr>
+								<th colspan="2">음식 종류</th>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<input type="radio" name="genre" value="한식"/>한식
+									<input type="radio" name="genre" value="일식"/>일식
+									<input type="radio" name="genre" value="중식"/>중식
+									<input type="radio" name="genre" value="양식"/>양식
+									<input type="radio" name="genre" value="뷔페"/>뷔페
+									<input type="radio" name="genre" value="세계음식"/>세계음식
+									<input type="radio" name="genre" value="카페"/>카페
+									<input type="radio" name="genre" value="술집"/>술집
+								</td>
+							</tr>
+							<!-- <tr>
+								<td><input type="radio" name="genre" value="한식"/>한식</td>
+								<td><input type="radio" name="genre" value="일식"/>일식</td>
+								<td><input type="radio" name="genre" value="중식"/>중식</td>
+								<td><input type="radio" name="genre" value="양식"/>양식</td>
+								<td><input type="radio" name="genre" value="뷔페"/>뷔페</td>
+								<td><input type="radio" name="genre" value="세계음식"/>세계음식</td>
+								<td><input type="radio" name="genre" value="카페"/>카페</td>
+								<td><input type="radio" name="genre" value="술집"/>술집</td>
+							</tr> -->
+							
+							<!--<tr>
+								<th>가게까지 거리</th>
+							</tr>
+							<tr>
+								<td>
+									<select name="time">
+										<option selected="selected" value="5">가까워요</option>
+										<option value="10">갈만해요</option>
+										<option value="15">멀어요ㅠㅠ</option>
+									</select>
+								</td>
+							</tr> -->
+							<tr>
+								<th>대표 사진</th>
+								<td><input id="f" type="file" name="file"/></td>
+							</tr>
+							<tr>
+								<th>대표 음식</th>
+								<td><input type="text" name="keyword"/></td>
+							</tr>
+							<tr>
+								<th>작성자 한마디!</th>
+								<td><input type="text" name="tip"/></td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<input class="" style="
+									color: #ffffff;
+									border: none;
+									background: #f15c22; 
+									width:100px; 
+									height: 50px; 
+									margin-top:30px; 
+									float: right;
+									" 
+									type="submit" value="등록하기"/>
+				</form>
+			</div>
+		
 		</div>
-	</div>
 	
-
-
-	<h2 class="main title">가게 등록 페이지</h2>
+		<!-- <div class="margin-top text-align-center">
+			<a class="btn btn-list" href="../restaurant">목록</a>
+		</div> -->
 	
-	<div class="">
-		<h3 class="hidden">음식점 등록</h3>
-		<form action="?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
-			<table class="">
-				<tbody>
-					<tr>
-						<th>가게 이름</th>
-						<td><input id="n" type="text" name="name"/></td>
-					</tr>
-					<tr>
-						<th>주소</th>
-						<td><input id="a" type="text" name="address"/><input id="l" type="text" name="location" style="display: none;"/></td>
-					</tr>
-					<tr>
-						<th>상세내용</th>
-						<td><input type="text" name="content" placeholder="예) 2인 1.5만원대"/></td>
-					</tr>
-					<tr>
-						<th>음식 종류</th>
-					</tr>
-					<tr>
-						<td><input type="radio" name="genre" value="한식"/>한식</td>
-						<td><input type="radio" name="genre" value="일식"/>일식</td>
-						<td><input type="radio" name="genre" value="중식"/>중식</td>
-						<td><input type="radio" name="genre" value="양식"/>양식</td>
-						<td><input type="radio" name="genre" value="뷔페"/>뷔페</td>
-						<td><input type="radio" name="genre" value="세계음식"/>세계음식</td>
-						<td><input type="radio" name="genre" value="카페"/>카페</td>
-						<td><input type="radio" name="genre" value="술집"/>술집</td>
-					</tr>
-					<tr>
-						<th>가게까지 거리</th>
-					</tr>
-					<tr>
-						<td>
-							<select name="time">
-								<option selected="selected" value="5">가까워요</option>
-								<option value="10">갈만해요</option>
-								<option value="15">멀어요ㅠㅠ</option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<th>대표 사진</th>
-						<td><input id="f" type="file" name="file"/></td>
-					</tr>
-					<tr>
-						<th>대표 음식</th>
-						<td><input type="text" name="keyword"/></td>
-					</tr>
-					<tr>
-						<th>작성자 한마디!</th>
-						<td><input type="text" name="tip"/></td>
-					</tr>
-				</tbody>
-			</table>
-			<input type="submit" value="등록하기"/>
-		</form>
-	</div>
-	
-	<div>
-		<table class="">
-			<tbody>
-				<c:if test="${empty cmtList}">
-					<tr>
-						<td colspan="3" class="">첫번째 후기를 작성해 주세요!</td>
-					</tr>
-				</c:if>
-				<c:if test="${not empty cmtList}">
-					<tr>
-						<td>번호</td>
-						<td>내용</td>
-						<td>작성자</td>
-					</tr>
-					<c:forEach var="c" items="${cmtList}">					
-						<tr>
-							<td>${c.id}</td>
-							<td class="">${c.content}</td>
-							<td>${c.writerName}</td>
-						</tr>
-					</c:forEach>
-				</c:if>
-			</tbody>
-		</table>
-	</div>
-	
-	<div class="margin-top text-align-center">
-		<a class="btn btn-list" href="../restaurant">목록</a>
-	</div>
-	
-	<div class="">
-		<table class="">
-			<tbody>
-				<c:if test="${empty prev}">
-					<tr>
-						<th>이전글</th>
-						<td colspan="3" class="">이전글이 없습니다.</td>
-					</tr>
-				</c:if>
-				<c:if test="${not empty prev}">
-					<tr>
-						<th>이전글</th>
-						<td colspan="3" class=""><a class="" href="${prev.id}">${prev.name}</a></td>
-					</tr>
-				</c:if>
-				<c:if test="${empty next}">
-					<tr>
-						<th>다음글</th>
-						<td colspan="3" class="">다음글이 없습니다.</td>
-					</tr>
-				</c:if>
-				<c:if test="${not empty next}">
-					<tr>
-						<th>다음글</th>
-						<td colspan="3" class=""><a class="" href="${next.id}">${next.name}</a></td>
-					</tr>
-				</c:if>
-			</tbody>
-		</table>
-	</div>
+	</main>
 	
 	
 	
-</main>
-
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9c613e70636456cd2f3178169be248f&libraries=services"></script>
 		<!-- 형주 admin key: e9c613e70636456cd2f3178169be248f -->
 		

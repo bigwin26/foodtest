@@ -11,6 +11,7 @@
 				<ul style="padding-start:40px ">
 					<li class="aside-menu-item"><a href="${ctx}/admin/restaurant">식당 관리</a></li>
 					<li class="aside-menu-item"><a href="${ctx}/admin/member">회원 관리</a></li>
+					<li class="aside-menu-item"><a href="${ctx}/admin/notice">공지 관리</a></li>
 				</ul>
 			</nav>
          	

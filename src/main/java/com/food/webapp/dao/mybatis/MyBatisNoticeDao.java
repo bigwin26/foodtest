@@ -41,11 +41,11 @@ public class MyBatisNoticeDao implements NoticeDao {
 		return noticeView;
 	}
 
-	@Override
+	/*@Override
 	public int update(String id, String title, String content) {
 		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
 		return noticeDao.update(id, title, content);
-	}
+	}*/
 
 	@Override
 	public NoticeView getPrev(String id) {
@@ -62,8 +62,8 @@ public class MyBatisNoticeDao implements NoticeDao {
 	}
 
 	@Override
-	public int insert(String title, String content, String writerId) {
-		return insert(new Notice(title,content,writerId));
+	public int insert(String title, String content, String writerName) {
+		return insert(new Notice(title,content,writerName));
 	}
 
 	@Override
@@ -77,6 +77,31 @@ public class MyBatisNoticeDao implements NoticeDao {
 	public String getNextId() {
 		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
 		return noticeDao.getNextId();
+	}
+
+	@Override
+	public int getCountAdmin(String field, String query) {
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		return noticeDao.getCountAdmin(field, query);
+	}
+
+	@Override
+	public List<NoticeView> getListAdmin(int page, String field, String query) {
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		List<NoticeView> list = noticeDao.getListAdmin(page, field, query);
+		return list;
+	}
+
+	@Override
+	public int edit(int id, String title, String content) {
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		return noticeDao.edit(id, title, content);
+	}
+
+	@Override
+	public int delete(int id) {
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		return noticeDao.delete(id);
 	}
 
 }
