@@ -17,8 +17,8 @@ public class RestaurantView extends Restaurant {
 	}
 
 	public RestaurantView(int id, String name, String location, String address, String content, int time, String genre,
-			String keyword, String image, String tip, int memberId, int lastMemberId, Date regDate, int ok) {
-		super( name, location, address, content, time, genre, keyword, image, tip, memberId, lastMemberId, regDate, ok);
+			String keyword, String image, String tip, int memberId, int lastMemberId, Date regDate, int ok, String phoneNumber) {
+		super( name, location, address, content, time, genre, keyword, image, tip, memberId, lastMemberId, regDate, ok, phoneNumber);
 		// TODO Auto-generated constructor stub
 	}
 

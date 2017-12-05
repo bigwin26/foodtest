@@ -90,9 +90,9 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 
 	@Override
-	public int insert(String name, String location, String address, String content,int time, String genre, String keyword, String image, String tip, int memberId, int lastMemberId, Date regDate, int ok) {
+	public int insert(String name, String location, String address, String content,int time, String genre, String keyword, String image, String tip, int memberId, int lastMemberId, Date regDate, int ok, String phoneNumber) {
 		
-		return insert(new Restaurant(name, location, address, content, time, genre, keyword, image, tip, memberId, lastMemberId, regDate, ok));
+		return insert(new Restaurant(name, location, address, content, time, genre, keyword, image, tip, memberId, lastMemberId, regDate, ok, phoneNumber));
 	}
 
 
