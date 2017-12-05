@@ -130,39 +130,92 @@
 					image : markerImage // 마커 이미지 
 				});
 				
-				restaurantName = listTitle.eq(i).text();
+				var restaurantName = listTitle.eq(i).text();
 				var index = i;
 				//alert(restaurantName);
 				
+				function mOver(marker, id, name, address, position, restaurantName, index){
+					var imageSrc = "${ctx}/resource/images/markerStar2.png";
+					var imageSize = new daum.maps.Size(24, 35);
+					var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
+					
+					marker.setImage(markerImage);
+					
+					if(name == restaurantName){
+						listInner.eq(index).css({
+							"opacity": "1"
+						});
+						listInner.eq(index).hover(
+								function(){
+									$(this).css("opacity", "1")
+								},
+								function(){
+									$(this).css("opacity", "0.7")
+								});
+					}
+				}
+				
+				function mOut(marker, id, name, address, position, restaurantName, index){
+					var imageSrc = "${ctx}/resource/images/markerStar.png";
+					var imageSize = new daum.maps.Size(24, 35);
+					var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
+					
+					marker.setImage(markerImage);
+					
+					if(name == restaurantName){
+						listInner.eq(index).css({
+							"opacity": "0.7"
+						});
+						listInner.eq(index).hover(
+								function(){
+									$(this).css("opacity", "1")
+								},
+								function(){
+									$(this).css("opacity", "0.7")
+								});
+					}
+				}
+				
 				// 즉시실행함수
 				(function(marker, id, name, address, position, restaurantName, index) {
+					
+					listInner.eq(index).hover(
+							function(){
+								mOver(marker, id, name, address, position, restaurantName, index);
+							},
+							function(){
+								mOut(marker, id, name, address, position, restaurantName, index);
+							});
+					
 					daum.maps.event.addListener(marker, 'click', function() {
 						displayInfowindow(marker, id, name, address, position);
 					});
 											
 					daum.maps.event.addListener(marker, 'mouseover',function() {
-						var imageSrc = "${ctx}/resource/images/markerStar2.png";
+						mOver(marker, id, name, address, position, restaurantName, index);
+						/* var imageSrc = "${ctx}/resource/images/markerStar2.png";
 						var imageSize = new daum.maps.Size(24, 35);
 						var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
 						
 						marker.setImage(markerImage);
 						
 						//alert("restaurantName: " + restaurantName + ", name: " + name);
-						
-						//alert($(".list-item-inner-title").text());
-						/* if(name == restaurantName){
-							//alert("hi");
-							//alert(index);
-							//alert(listInner.eq(index));
+						if(name == restaurantName){
+							listInner.eq(index).css({
+								"opacity": "1"
+							});
+							listInner.eq(index).hover(
+									function(){
+										$(this).css("opacity", "1")
+									},
+									function(){
+										$(this).css("opacity", "0.7")
+									});
 						} */
 					})
 					
 					daum.maps.event.addListener(marker, 'mouseout', function() {
-						var imageSrc = "${ctx}/resource/images/markerStar.png";
-						var imageSize = new daum.maps.Size(24, 35);
-						var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
-						
-						marker.setImage(markerImage);
+						mOut(marker, id, name, address, position, restaurantName, index);
 					});
 				
 				})(marker, places[i].id, places[i].name, places[i].address, places[i].latlng, restaurantName, index);
