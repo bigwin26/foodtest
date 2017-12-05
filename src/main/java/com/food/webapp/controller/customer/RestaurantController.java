@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.food.webapp.dao.CommentDao;
+import com.food.webapp.dao.LikeDao;
 import com.food.webapp.dao.MemberDao;
 import com.food.webapp.dao.RestaurantDao;
 import com.food.webapp.entity.CmtImage;
@@ -45,6 +46,9 @@ public class RestaurantController {
 	
 	@Autowired
 	CommentDao commentDao;
+	
+	@Autowired
+	LikeDao likeDao;
 	
 	@RequestMapping(value="restaurant",method=RequestMethod.GET)
 	public String restaurant(@RequestParam(value="p", defaultValue="1")  Integer page,
@@ -181,6 +185,21 @@ public class RestaurantController {
    public String edit(@PathVariable("id") String id, String title, String content) {
       
       return "redirect:../{id}";
+   }
+   
+   @RequestMapping(value="restaurant/like", method=RequestMethod.GET)
+   @ResponseBody
+   public int like(String restaurantId, String memberId) {
+	   
+	   
+	  int a = likeDao.like(restaurantId, memberId);
+	   System.out.println(restaurantId);
+	   System.out.println(memberId);
+	   
+	   
+	   
+	   return a;
+	   
    }
    
 /*   @RequestMapping(value="searchRestaurant",produces="text/plain;charset=UTF-8")

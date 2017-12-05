@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
@@ -494,7 +496,7 @@ width: 22px;
                         </div>
                         <input type="hidden" id="info_id" name="info_id" value="${r.id}" /> 
                         <div class='item-button-like'>
-                            <a href='#' class='item-button-like'  id='favorite_btn' value='Y'>
+                            <a href='' class='item-button-like'  id='favorite_btn' value='Y'>
                                 <div id='fvr-icon'></div><div id='fvr-text'>좋아요</div>
                             </a>
                         </div>
@@ -836,6 +838,40 @@ function getMore(device, page) {
                 <dc-review-composer data-rid="profile.id"></dc-review-composer>
             </div>
         </div></div>                </div>
+        
+<script>
+$(function(){	
+$("#favorite_btn").click(function(){
 
+	var restaurantId = ${r.id};
+	var memberId = '<security:authentication property="name"/>';
+	
+	
+$.ajax({
+	type:"GET",
+	url:"like",
+	data : {
+		"restaurantId":restaurantId,
+		"memberId":memberId
+		
+	}
+	, success : function(result){
+		if(result ==1){
+			alert("저장되었습니다");
+		}else if(result==0){
+			alert("삭제되었습니다");
+		}
+		
+	}
+	
+	
+});
+
+	
+	
+})
+	
+})
+</script>
 </main>
 
