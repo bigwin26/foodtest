@@ -4,7 +4,7 @@ import com.food.webapp.entity.CmtImage;
 import com.food.webapp.entity.Comment;
 import com.food.webapp.entity.RestaurantMenu;
 
-public interface CommentDao {
+public interface CommentDao{
 	
 	public int insert(Comment comment);
 	public int edit(Comment comment);

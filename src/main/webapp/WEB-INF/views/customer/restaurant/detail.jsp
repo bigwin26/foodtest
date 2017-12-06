@@ -492,9 +492,9 @@ width: 22px;
                                 <div id='review-text'><a href="../comment/${r.id}">평가하기</a></div>
                             </a>
                         </div>
-                        <input type="hidden" id="info_id" name="info_id" value="${r.id}" /> 
                         <div class='item-button-like'>
                             <a href='#' class='item-button-like'  id='favorite_btn' value='Y'>
+                            <input type="hidden" id="restaurant_Id" name="restaurant_Id" value="${r.id}"/>
                                 <div id='fvr-icon'></div><div id='fvr-text'>좋아요</div>
                             </a>
                         </div>
@@ -603,7 +603,7 @@ width: 22px;
 
             <div style="width:960px;"></div>
 
-<script type="Text/JavaScript" src="//www.diningcode.com/Xeroad/getAjax.js"></script>
+<!-- <script type="Text/JavaScript" src="//www.diningcode.com/Xeroad/getAjax.js"></script>
 <script type="Text/JavaScript">
 
 function setFavor(rv_id, write_id, favor) {
@@ -737,37 +737,38 @@ function getMore(device, page) {
 		$('#div_loading').hide();
 	});
 }
-</script>
+</script> -->
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <script>
       //db좋아요올리기
       //댓글을 다는 이벤트
       $("#favorite_btn").click(function() {
-               //console.log("info_id" + $("#info_id").val());
+    	  	alert('눌렸다');
+               console.log("restaurant_Id" + $("#restaurant_Id").val());
                //값 셋팅
                var objParams = {
-                  info_id : $("#info_id").val()
+            		  restaurant_Id : $("#restaurant_Id").val()
                };
                //ajax 호출
 
-               $.get("${path}/food/customer/restaurant/like?infoId="
-                     + $("#info_id").val(), function(data) {
+               $.get("${path}/food/customer/restaurant/like?restaurant_Id="
+                     + $("#restaurant_Id").val(), function(data) {
                   //                   alert(data);
                   //                   alert(JSON.parse(data)['idCheck']);
                   //                   console.log("data" + data);
                   //                   console.log("data type" + typeof data);
                   var json = JSON.parse(data);
-                  //console.log(json);
+                  console.log(json);
                   var idCheck = json['idCheck'];
                   //var idCheck = data.idCheck;//안대~
-                  var likeCount = json['likeCount'];
-                  //console.log("idCheck : " + idCheck);
+                 /*  var likeCount = json['likeCount']; */
+                  console.log("idCheck : " + idCheck);
                   //console.log("likeCount : " + likeCount);
                   if (idCheck > 0)
                      alert("이미 좋아요를 누르셨습니다.");
-                  else if(idCheck==-10)
+                /*   else if(idCheck==-10)
                      alert("죄송합니다. 오류가 생겼습니다. 빠른시일내로 복구하겠습니다.");
-                  $("#likeCount").text(likeCount);
+                  $("#likeCount").text(likeCount); */
                });
 
             });
