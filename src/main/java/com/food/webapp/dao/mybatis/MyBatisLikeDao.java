@@ -2,27 +2,32 @@ package com.food.webapp.dao.mybatis;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.food.webapp.dao.LikeDao;
 
 public class MyBatisLikeDao implements LikeDao {
-
+	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
-	public int like(String restaurantId, String memberId) {
-		
+
+	@Override
+	public int Check(int restaurantId, String memberId) {
 		LikeDao likeDao = sqlSession.getMapper(LikeDao.class);
-		likeDao.like(restaurantId, memberId);
-		
-		return 1;
+		int result = likeDao.Check(restaurantId,memberId);
+		return result;
 	}
 
-	public int unlike(String restaurantId, String memberId) {		
-		
+	@Override
+	public int Insert(int restaurantId, String memberId) {
 		LikeDao likeDao = sqlSession.getMapper(LikeDao.class);
-		likeDao.unlike(restaurantId, memberId);
-		return 0;
+		int result = likeDao.Insert(restaurantId,memberId);
+		return result;
 	}
 
+	@Override
+	public int delete(int restaurantId, String memberId) {
+		LikeDao likeDao = sqlSession.getMapper(LikeDao.class);
+		int result = likeDao.delete(restaurantId,memberId);
+		System.out.println(result);
+		return result;
+	}
 }

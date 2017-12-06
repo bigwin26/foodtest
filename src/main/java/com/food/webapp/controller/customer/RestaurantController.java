@@ -9,7 +9,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.security.Principal;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -187,21 +189,6 @@ public class RestaurantController {
       return "redirect:../{id}";
    }
    
-   @RequestMapping(value="restaurant/like", method=RequestMethod.GET)
-   @ResponseBody
-   public int like(String restaurantId, String memberId) {
-	   
-	   
-	  int a = likeDao.like(restaurantId, memberId);
-	   System.out.println(restaurantId);
-	   System.out.println(memberId);
-	   
-	   
-	   
-	   return a;
-	   
-   }
-   
 /*   @RequestMapping(value="searchRestaurant",produces="text/plain;charset=UTF-8")
 	public String search(Restaurant restaurant,
 			@RequestParam(value="p", defaultValue="1")  Integer page,
@@ -214,4 +201,42 @@ public class RestaurantController {
 
 		return "redirect:restaurant";
 	}*/
+   @RequestMapping(value ="restaurant/like", method = RequestMethod.GET)
+   @ResponseBody
+   public String boardLikeSave(@RequestParam int restaurant_Id, Principal principal) {
+      int restaurantId = restaurant_Id;
+      System.out.println("왓다 infoID : "+ restaurant_Id);
+      String memberId = principal.getName();
+      System.out.println("왓다 memberID : "+ memberId);
+      // 좋아요 start저장하는 부분
+      // 좋아요를 누른 사용자 중복체크
+      Integer checkResult = 0;
+      checkResult = likeDao.Check(restaurantId, memberId);
+       System.out.println("idcheckResult : "+ checkResult);
+      // writerId값이 존재하지 않으면 <=0
+      if (checkResult <= 0) {
+         int insertResult = 0;
+         insertResult = likeDao.Insert(restaurantId, memberId);// 좋아요누른사람저장하기
+         if (insertResult > 0) {
+            System.out.println("Like_writerId등록에 성공하였습니다.");
+         } else {
+            System.out.println("Like_writerId등록에 실패하였습니다.");
+         }
+      }
+      else if(checkResult == 1) {
+    	  int result = 0;
+          result = likeDao.delete(restaurantId, memberId);// 좋아요누른사람삭제
+          if (result == 0) {
+             System.out.println("Like_writerId 삭제에 성공하였습니다.");
+          } 
+      }
+      // 좋아요 값을 가져오는 부분
+      Map<String, Integer> obj = new HashMap<String, Integer>();
+      obj.put("idCheck", checkResult);
+      String json = "";
+      Gson gson = new Gson();
+      json = gson.toJson(obj);
+      return json;
+   }
+
 }
