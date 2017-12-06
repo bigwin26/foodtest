@@ -6,379 +6,7 @@
 
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <style>
-/* #item-header {
-	width: 100%;
-	background-color: #f15c22;
-}
 
-#enc_item_area {
-	position: relative;
-	width: 100%;
-	min-width: 960px;
-	height: auto;
-	color: white !important;
-	text-align: center;
-}
-
-#item-header-left {
-	width: 70%;
-}
-
-#item-rn {
-	float: left;
-	color: #fff;
-	text-align: left;
-	width: 100%;
-	height: 76px;
-	line-height: 76px;
-	padding-left: 30px;
-}
-
-.item-rn-title {
-	font-size: 36px;
-	text-align: left;
-	font-weight: 300;
-}
-
-.item-rn-divider {
-	padding: 0 15px;
-	font-size: 12px;
-	font-weight: 100;
-}
-
-.item-rn-subtitle {
-	font-size: 18px !important;
-	font-weight: normal;
-}
-
-#item-category {
-	float: left;
-	width: 100%;
-	color: #fff;
-	font-size: 18px;
-	text-align: left;
-	line-height: 28px;
-}
-
-#item-header-divider {
-	float: left;
-	width: 100%;
-	border-bottom: 1px solid #fff;
-	opacity: 0.5;
-}
-
-#item-header-bottom {
-	width: 100%;
-	margin-top: 15px;
-	display: flex;
-	display: -webkit-flex;
-}
-
-#item-stats {
-	float: left;
-	width: 30%;
-	padding-left: 20px;
-}
-
-.item-stats {
-	display: inline-block;
-	text-align: left;
-	height: 61px;
-	margin-right: 30px;
-}
-
-.item-stats-count {
-	color: #fff;
-	font-size: 22px;
-	line-height: 27px;
-	font-weight: 300;
-}
-
-.item-stats-title {
-	color: #fff;
-	font-size: 15px;
-	line-height: 19px;
-	font-weight: 100;
-}
-
-#item-header-right {
-	width: 28%;
-}
-
-.pull-right {
-	float: right !important;
-}
-
-.item-button-review {
-	display: inline-block;
-	width: 85px;
-	text-align: right;
-}
-
-.item-button-like {
-	display: inline-block;
-	width: 100px;
-	text-align: right;
-}
-
-a:link, a:hover, a:active {
-	text-decoration: none;
-	color: inherit;
-}
-
-#review-icon {
-	float: left;
-	display: inline-block;
-	width: 24px;
-	height: 22px;
-	background: url(${ctx}/resource/images/review.png) center no-repeat;
-	background-size: cover;
-}
-
-#review-text {
-	display: inline-block;
-	color: #fff;
-	font-size: 15px;
-	height: 22px;
-	line-height: 22px;
-}
-
-#favorite_btn #fvr-icon {
-	float: left;
-	display: inline-block;
-	width: 24px;
-	height: 22px;
-	margin-left: 25px;
-	background: url(${ctx}/resource/images/like.png) center no-repeat;
-	background-size: cover;
-}
-
-#item-body {
-	width: 100%;
-	background: #fff;
-}
-
-#item-body-contents {
-	width: 100%;
-}
-
-.item-information {
-	display: flex;
-	display: -webkit-flex;
-	margin-top: 32px;
-}
-
-.item-information-text {
-	height: 19px;
-	font-size: 15px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	color: #4a4a4a;
-	margin-left: 10px;
-	flex: 1;
-	text-align: left;
-}
-
-.item-information-icon img {
-	width: 22px;
-	height: 22px;
-}
-
-.rest-info-wrapper {
-	width: 960px;
-	color: #4a4a4a;
-	display: flex;
-	display: -webkit-flex;
-	margin: 0 auto;
-	margin-top: 41px;
-	margin-bottom: 50px;
-	text-align: left;
-}
-
-.rest-info-icon {
-	float: left;
-	position: absolute;
-	left: 120px;
-	top: 42px;
-}
-
-.rest-info-icon img {
-	width: 22px;
-	height: 22px;
-}
-
-.rest-info-title {
-	height: 25px;
-	font-size: 24px;
-	font-weight: bold;
-	font-style: normal;
-	font-stretch: normal;
-	color: #4a4a4a;
-	margin-bottom: 17px;
-}
-
-.rest-time {
-	margin-right: 60px;
-}
-
-.rest-time, .rest-menu {
-	padding-left: 150px;
-	position: relative;
-}
-
-.rest-time-block, .rest-menu-block {
-	margin-bottom: 15px;
-	background: url(img/profile/main/img-line.png);
-	background-repeat: repeat-x;
-	position: relative;
-	overflow: hidden;
-	background-position-y: 7px;
-}
-
-.rest-time-left, .rest-menu-left {
-	height: 19px;
-	font-size: 15px;
-	font-weight: 600;
-	font-style: normal;
-	font-stretch: normal;
-	color: #4a4a4a;
-	float: left;
-	background-color: #ffffff;
-	padding-right: 15px;
-}
-
-.rest-time-right, .rest-menu-right {
-	float: right;
-	background-color: #ffffff;
-	padding-left: 10px;
-}
-
-.time {
-	height: 19px;
-	font-size: 15px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	text-align: right;
-	color: #868686;
-}
-
-.more-extra, .more-extra span {
-	margin-top: 18px;
-	text-align: right;
-	height: 19px;
-	font-size: 16px;
-	font-weight: bold;
-	font-style: normal;
-	font-stretch: normal;
-	text-align: right;
-	color: #4a4a4a;
-	cursor: pointer;
-}
-
-.fl {
-	float: left;
-}
-
-.fr {
-	float: right;
-}
-
-.clear {
-	clear: both;
-}
-
-.fs-12 {
-	font-size: 12px;
-}
-
-.fs-13 {
-	font-size: 13px;
-}
-
-.fs-14 {
-	font-size: 14px;
-}
-
-.fs-15 {
-	font-size: 15px;
-}
-
-.fs-16 {
-	font-size: 16px;
-}
-
-.tl {
-	text-align: left;
-}
-
-.tc {
-	text-align: center;
-}
-
-.tr {
-	text-align: right;
-}
-
-.fw-b {
-	font-weight: bold;
-}
-
-.div_section {
-	margin-top: 30px;
-}
-
-.keyword-type {
-	padding-bottom: 26px;
-	border-bottom: #E0E0E0 solid 1px;
-}
-
-.keyword-list {
-	float: left;
-	width: 310px;
-	overflow: hidden;
-	margin-left: 15px;
-}
-
-.keyword-list:first-child {
-	margin-left: 0;
-}
-
-.keyword-text {
-	float: left;
-	font-size: 12px;
-	margin: 0 8px 5px 0;
-	padding: 3px 10px;
-	background-color: #F0F0F0;
-	border-radius: 10px;
-}
-
-.review_image {
-	position: relative;
-	float: left;
-	width: 180px;
-	height: 125px;
-}
-
-.review_ico {
-	position: absolute;
-	right: 8px;
-	bottom: 8px;
-	width: 45px;
-	height: 20px;
-	padding-left: 5px;
-	color: #FFFFFF;
-	border-radius: 10px;
-	background-color: rgba(34, 34, 34, 0.6);
-}
-
-.review_count {
-	float: left;
-	width: 20px;
-	text-align: center;
-	margin-top: 2px;
-} */
 </style>
 
 <main id="main">
@@ -392,20 +20,18 @@ a:link, a:hover, a:active {
 			<div class="item-container" style="width: 100%;">
 				<div id="item-header-top">
 					<div id="item-header-left">
-						<%-- <div id="item-rn">
+						<div id="item-rn">
 							<span class="item-rn-title">${r.name}</span>
 							<span class="item-rn-divider" ></span>
 							<span class="item-rn-subtitle">${r.genre}, ${r.keyword}</span>
-						</div> --%>
-						<div>
-							<span class="item-rn-title">${r.name}</span>
-							<span class="item-rn-divider" ></span>
-							<span class="item-rn-subtitle">${r.genre}, ${r.keyword}</span>
-						</div>
-						<div>
-							<span>${r.tip}</span>
 						</div>
 						<div id="item-category"></div>
+					</div>
+					<div id="item-header-right">
+						<div id="item-sharer">
+							<span class="item-rn-tip">${r.writerName}님의 한줄평: </span>
+							<span class="item-rn-tip">"${r.tip}"</span>
+						</div>
 					</div>
 				</div>
 				<div id="item-header-divider"></div>
@@ -551,10 +177,7 @@ a:link, a:hover, a:active {
 	<div style="width: 960px; margin: 0 auto;"></div>
 	<div style="clear: both;"></div>
 	<div style="width: 960px;"></div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script>
-
-   </script>
+	
 	<div class="div_section">
 		<div id="div_review" class="keyword-title">총 ${cmtp}건의 방문자 평가</div>
 
@@ -702,30 +325,26 @@ $.ajax({
 		$("#visual")
         .css({
            "width": "100%", 
-           "height": "350px", 
+           "height": "300px", 
            "position": "relative",
-           //"top": "100px"
+           "background": "#f15c22",
         });
-		$("#map-block").attr("id", "map");
-		$("#map")
-        .css({
-        	"top": "0px",
-           	"width": "100%", 
-            "height": "350px", 
-            //"position": "relative", 
-            "overflow": "hidden"
-            //"background": "#f15c22",
-        });
-		$("#map-block2")
-        .css({
-           	"width": "100%", 
-            "height": "100px", 
-            "position": "relative", 
-            "background": "#f15c22",
-            "display": "none"
-        });
-		
-		$("#body").css("top","0");
+		$("#visual").attr("id", "map");
+		$(".content-container")
+		.css({
+			"margin": "auto",
+	    	"height": "100%",
+	    	"min-height": "inherit",
+	    	"width": "65%"
+		});
+		$("#main")
+		.css({
+			"margin": "auto",
+	    	"height": "100%",
+	    	"min-height": "inherit",
+	    	"width": "100%",
+	    	"padding": "0px"
+		});
 				
 		/* 지도 부분 =================================================================================*/
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
