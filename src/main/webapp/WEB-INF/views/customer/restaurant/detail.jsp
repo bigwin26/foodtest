@@ -495,7 +495,6 @@ width: 22px;
                             </a>
                         </div>
                         <div class='item-button-like'>
-
                             <a href='#' class='item-button-like'  id='favorite_btn' value='Y'>
                             <input type="hidden" id="restaurant_Id" name="restaurant_Id" value="${r.id}"/>
                                 <div id='fvr-icon'></div><div id='fvr-text'>좋아요</div>

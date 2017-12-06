@@ -189,21 +189,6 @@ public class RestaurantController {
       return "redirect:../{id}";
    }
    
-   @RequestMapping(value="restaurant/like", method=RequestMethod.GET)
-   @ResponseBody
-   public int like(String restaurantId, String memberId) {
-	   
-	   
-	  int a = likeDao.like(restaurantId, memberId);
-	   System.out.println(restaurantId);
-	   System.out.println(memberId);
-	   
-	   
-	   
-	   return a;
-	   
-   }
-   
 /*   @RequestMapping(value="searchRestaurant",produces="text/plain;charset=UTF-8")
 	public String search(Restaurant restaurant,
 			@RequestParam(value="p", defaultValue="1")  Integer page,
