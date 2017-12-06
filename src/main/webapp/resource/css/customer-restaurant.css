@@ -212,6 +212,27 @@ main .max400{
 	float: right;
 }
 
+/* ------- body ------------------------------------ */
+/* #body {
+	border-top: solid 5px #f15c22;
+	margin-top:1px;
+	min-height: 300px;
+} */
+/* 	#body .content-container{
+  	 background:url("../images/bg-body.png") repeat-y left;
+  	 padding-bottom: 50px;
+	}
+	
+	#main {
+		min-height: inherit;
+		float: left;
+		padding-left:35px;
+		padding-top:45px;
+		width:1000px;
+		box-sizing: border-box;
+	} */
+	/* 매인의 막내동생 */
+
 /* ----restaurant cards------------------------------------------------------------- */
 
 .restaurant-cards{

@@ -251,6 +251,7 @@
 				type:"POST",
 				//async: false,
 				url: "restaurant?${_csrf.parameterName}=${_csrf.token}",
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 				data: {
 					"restaurantId":ajaxData[index].id,
 					"name":ajaxData[index].name,
@@ -259,6 +260,7 @@
 				},
 				dataType:"text",
 				success: function (data) {
+					//alert(data);
 					//alert("success");
 				}
 			});

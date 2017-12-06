@@ -92,8 +92,8 @@ public class RestaurantController {
 		return json;
 	}
 	
-	@RequestMapping(value="restaurant", method=RequestMethod.POST)
-	@ResponseBody
+	@RequestMapping(value="restaurant", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
+	//@ResponseBody
 	public String reg(
 			Restaurant restaurant, 
 			int restaurantId, 
@@ -115,13 +115,21 @@ public class RestaurantController {
 		restaurant.setOk(ok);
 		
 		int n = restaurantDao.okRestaurant(restaurant);
+		
 		if(n>0)
 			System.out.println("update success");
 		else
 			System.out.println("update fail");
 		
-		//return "redirect:../restaurant";
-		return "aa";
+		/*String result;
+		if(ok==1)
+			result = "승인";
+		else
+			result = "비승인";
+		
+		return result;*/
+		return "redirect:restaurant";
+		//return "aa";
 	}
 	
 	@RequestMapping(value="restaurant-delete", method=RequestMethod.POST)
