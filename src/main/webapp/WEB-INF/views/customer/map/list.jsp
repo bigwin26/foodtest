@@ -17,7 +17,8 @@
 					<ul class="list-place">
 						<c:forEach var="n" items="${list}">
 							<li class="list-item">
-								<div class="list-item-inner" onclick="location.href='restaurant/${n.id}'">
+								<%-- <div class="list-item-inner" onclick="location.href='restaurant/${n.id}'"> --%>
+								<div class="list-item-inner">
 									<div class="list-item-inner-title">${n.name}<%-- <span>(${n.countCmt})</span> --%></div>
 									<div>${n.address}</div>
 									<div class="list-item-inner-tip">작성자의 한마디</div>
@@ -102,6 +103,7 @@
 				restaurant.id = data[i].id;
 				restaurant.name = data[i].name;
 				restaurant.address = data[i].address;
+				restaurant.foodImage = data[i].image;
 				restaurant.latlng = new daum.maps.LatLng(coordinate[0], coordinate[1]);
 				
 				places.push(restaurant);
@@ -126,6 +128,7 @@
 					id : places[i].id,
 					name : places[i].name, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 					address : places[i].address,
+					foodImage : places[i].foodImage,
 					position : places[i].latlng, // 마커를 표시할 위치
 					image : markerImage // 마커 이미지 
 				});
@@ -155,7 +158,7 @@
 					}
 				}
 				
-				function mOut(marker, id, name, address, position, restaurantName, index){
+				function mOut(marker, name, restaurantName, index){
 					var imageSrc = "${ctx}/resource/images/markerStar.png";
 					var imageSize = new daum.maps.Size(24, 35);
 					var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
@@ -177,48 +180,33 @@
 				}
 				
 				// 즉시실행함수
-				(function(marker, id, name, address, position, restaurantName, index) {
+				(function(marker, id, name, address, foodImage, position, restaurantName, index) {
+					
+					listInner.eq(index).click(function(){
+						displayInfowindow(marker, id, name, address, foodImage, position);
+					});
 					
 					listInner.eq(index).hover(
 							function(){
-								mOver(marker, id, name, address, position, restaurantName, index);
+								mOver(marker, name, restaurantName, index);
 							},
 							function(){
-								mOut(marker, id, name, address, position, restaurantName, index);
+								mOut(marker, name, restaurantName, index);
 							});
 					
 					daum.maps.event.addListener(marker, 'click', function() {
-						displayInfowindow(marker, id, name, address, position);
+						displayInfowindow(marker, id, name, address, foodImage, position);
 					});
 											
 					daum.maps.event.addListener(marker, 'mouseover',function() {
-						mOver(marker, id, name, address, position, restaurantName, index);
-						/* var imageSrc = "${ctx}/resource/images/markerStar2.png";
-						var imageSize = new daum.maps.Size(24, 35);
-						var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
-						
-						marker.setImage(markerImage);
-						
-						//alert("restaurantName: " + restaurantName + ", name: " + name);
-						if(name == restaurantName){
-							listInner.eq(index).css({
-								"opacity": "1"
-							});
-							listInner.eq(index).hover(
-									function(){
-										$(this).css("opacity", "1")
-									},
-									function(){
-										$(this).css("opacity", "0.7")
-									});
-						} */
+						mOver(marker, name, restaurantName, index);
 					})
 					
 					daum.maps.event.addListener(marker, 'mouseout', function() {
-						mOut(marker, id, name, address, position, restaurantName, index);
+						mOut(marker, name, restaurantName, index);
 					});
 				
-				})(marker, places[i].id, places[i].name, places[i].address, places[i].latlng, restaurantName, index);
+				})(marker, places[i].id, places[i].name, places[i].address, places[i].foodImage, places[i].latlng, restaurantName, index);
 				// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다 
 				
 				marker.setMap(map); // 지도 위에 마커를 표출합니다
@@ -236,15 +224,26 @@
 	});
 
 	// 인포윈도우에 장소명을 표시합니다
-	function displayInfowindow(marker, id, name, address, position) {
-		var content = '<div style="padding:5px; z-index:1; width: 180px; height: 180px;">'
-				/* + '<img src="../resources/images/miboondang.jpg" style="width: 160px; padding: 2px;"><hr />' */
-				+ '<a href="restaurant/'+ id +'">' + name + '</a>'
-				+ '<br />'
-				+ address
-				+ '<br />'
+	function displayInfowindow(marker, id, name, address, foodImage, position) {
+		var imageUrl;
+		
+		if(foodImage.length == 0){
+			imageUrl = "${ctx}/resource/images/no-image.png";
+		}
+		else{
+			imageUrl = "${ctx}/resource/customer/restaurant/2017/" + id +"/" + foodImage;
+		}
+			//$("#foodImage").attr("src", "${ctx}/resource/images/no-image.png");
+			//foodImage = 'no-image.png';
+		
+		var content = 
+				'<div style="padding-top: 10px; z-index:1; width: 250px; height: 220px; text-align: center;">'
+				+ '<div>' + name + '</div>'
+				+ '<div>' + address +'</div>'
+				+ '<img id="foodImage" src="' + imageUrl + 
+					'" style="margin-top: 5px; width: 220px; cursor: pointer;" onclick="location.href=\'restaurant/'+ id +'\'">'
 				+ '</div>';
-
+		
 		infowindow.setContent(content);
 		infowindow.open(map, marker);
 	}
