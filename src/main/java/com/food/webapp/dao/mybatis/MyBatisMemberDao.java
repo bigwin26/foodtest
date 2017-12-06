@@ -91,6 +91,23 @@ public class MyBatisMemberDao implements MemberDao {
 		
 		return memberDao.edit(id, nickName, role, mentor);
 	}
+
+	@Override
+	public Member editUserInfo(Member member) {
+		
+		MemberDao memberDao = sqlsession.getMapper(MemberDao.class);	
+		
+		
+		return memberDao.editUserInfo(member);
+	}
+
+	@Override
+	public int editMember(Member member) {
+		
+		MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
+		
+		return memberDao.editMember(member);
+	}
 }
 
 

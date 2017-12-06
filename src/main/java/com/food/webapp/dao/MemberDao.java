@@ -37,8 +37,12 @@ public interface MemberDao {
 	int pointUp(String id);
 	
 	public Member get(String loginEmail);
+	
+	public Member editUserInfo(Member member); //수정페이지 들어가는거
 
 	public int sameCheckId(Member member) throws Exception;
 
 	public Object getMember(String nickName);
+
+	public int editMember(Member member); //수정쿼리날리는거
 }
