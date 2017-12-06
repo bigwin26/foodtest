@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/reset.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/customer-restaurant.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/restaurant-detail.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/map.css">
 <%-- <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/restaurant-reg.css"> --%>
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/board.css">

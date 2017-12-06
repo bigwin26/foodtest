@@ -137,7 +137,8 @@
 				var index = i;
 				//alert(restaurantName);
 				
-				function mOver(marker, id, name, address, position, restaurantName, index){
+				function mOver(marker, name, restaurantName, index){
+					//alert("hi");
 					var imageSrc = "${ctx}/resource/images/markerStar2.png";
 					var imageSize = new daum.maps.Size(24, 35);
 					var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
@@ -148,13 +149,13 @@
 						listInner.eq(index).css({
 							"opacity": "1"
 						});
-						listInner.eq(index).hover(
+						/* listInner.eq(index).hover(
 								function(){
 									$(this).css("opacity", "1")
 								},
 								function(){
 									$(this).css("opacity", "0.7")
-								});
+								}); */
 					}
 				}
 				

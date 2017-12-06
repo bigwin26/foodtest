@@ -11,6 +11,5 @@
 		style="position: absolute; z-index: 1; left: 0px; width: 100%; height: inherit; background-color: rgba(0, 0, 0, .60);">
 		<h1 class="customer-text" style="z-index:2;"></h1>
 	</div>
-	<div id="map-block"></div>
-	<div id="map-block2"></div>
+	
 </div>
