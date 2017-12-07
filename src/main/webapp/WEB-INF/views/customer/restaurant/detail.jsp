@@ -3,11 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
-
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
-<style>
-
-</style>
 
 <main id="main">
 <!-- <div class="map_area">
@@ -24,13 +20,15 @@
 							<span class="item-rn-title">${r.name}</span>
 							<span class="item-rn-divider" ></span>
 							<span class="item-rn-subtitle">${r.genre}, ${r.keyword}</span>
+							<%-- <span class="item-rn-divider" ></span>
+							<span class="item-rn-subtitle">${r.address}</span> --%>
 						</div>
 						<div id="item-category"></div>
 					</div>
 					<div id="item-header-right">
 						<div id="item-sharer">
-							<span class="item-rn-tip">${r.writerName}님의 한줄평: </span>
-							<span class="item-rn-tip">"${r.tip}"</span>
+							<span class="item-rn-tip tip-writer">${r.writerName}</span>
+							<span class="item-rn-tip">님의 한줄평: "${r.tip}"</span>
 						</div>
 					</div>
 				</div>
@@ -42,17 +40,13 @@
 								<div class="item-stats-count">${r.avgPoint}</div>
 								<div class="item-stats-title">평점</div>
 							</div>
-							<div class="item-stats" dc-like-history-popover
-								dc-like-history-modal mode="restaurant" id-key="OSEnXQWBYLcf"
-								ng-if="profile.favorite.count>0">
-								<div class="item-stats-count" ng-bind="profile.favorite.count">${r.countLiked}</div>
+							<div class="item-stats">
+								<div class="item-stats-count">${r.countLiked}</div>
 								<div class="item-stats-title">좋아요</div>
 							</div>
-							<div class="item-stats" ng-if="profile.review_total>0">
-								<a ng-click="profile.anchor('review')" title="바로가기">
-									<div class="item-stats-count" ng-bind="profile.review_total">${r.countCmt}</div>
-									<div class="item-stats-title">평가</div>
-								</a>
+							<div class="item-stats">
+									<div class="item-stats-count">${r.countCmt}</div>
+									<div class="item-stats-title">댓글</div>
 							</div>
 						</div>
 					</div>
@@ -60,15 +54,13 @@
 					<div id='item-header-right' style='margin-top: 10px;'>
 						<div class='pull-right'>
 							<div class='item-button-review'>
-								<a href='#'>
+								<a href="../comment/${r.id}">
 									<div id='review-icon'></div>
-									<div id='review-text'>
-										<a href="../comment/${r.id}">평가하기</a>
-									</div>
+									<div id='review-text'>평가하기</div>
 								</a>
 							</div>
 							<div class='item-button-like'>
-								<a href='#' class='item-button-like' id='favorite_btn' value='Y'>
+								<a class='item-button-like' id='favorite_btn' value='Y'>
 									<input type="hidden" id="restaurant_Id" name="restaurant_Id" value="${r.id}" />
 									<div id='fvr-icon'></div>
 									<div id='fvr-text'>좋아요</div>
@@ -81,96 +73,26 @@
 		</div>
 		
 		<div id="item-body">
-			<div class="item-container" style="width: 100%;">
-				<div id="item-body-contents">
-					<div class="item-information">
-						<div class="item-information-icon">
-							<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/profile/main/icon-profile-tag@2x.png">
-						</div>
-						<div class="item-information-text">
-							<a>${r.tip}</a>
-						</div>
+			<div id="item-body-contents">
+				<div class="item-information">
+					<div class="item-information-icon">
+						<img src="${ctx}/resource/images/menu.png">
 					</div>
-					<div class="item-information">
-						<div class="item-information-icon">
-							<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/profile/main/icon-profile-address@2x.png">
-						</div>
-						<div class="item-information-text">${r.address}</div>
-					</div>
-					<div class="item-information" id="item-tel">
-						<div class="item-information-icon">
-							<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/profile/main/icon-profile-call@2x.png">
-						</div>
-						<div class="item-information-text">${r.phoneNumber}</div>
-					</div>
+					<div class="item-information-text">메뉴: </div>
 				</div>
+				<div class="item-information">
+					<div class="item-information-icon">
+						<img src="${ctx}/resource/images/location.png">
+					</div>
+					<div class="item-information-text">주소: ${r.address}</div>
+				</div>
+				<%-- <div class="item-information" id="item-tel">
+					<div class="item-information-icon">
+						<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/profile/main/icon-profile-call@2x.png">
+					</div>
+					<div class="item-information-text">${r.phoneNumber}</div>
+				</div> --%>
 			</div>
-		</div>
-		<div style="margin: 10px 0 30px 0;">
-			<a href="JavaScript:setAdLog('{|u_id|:|852656|,|device|:|web|,|type|:|view|,|dcad_id|:|19|,|inven_id|:|63|,|inven_type|:|w_profile_middle_banner|,|image_id|:|503|,|v_rid|:|OSEnXQWBYLcf|,|page_type|:|profile|,|lat|:||,|lng|:||,|ip|:|10.253.32.54|}', 'https://box.diningcode.com/shop/item.php?it_id=1510644103');" target="_blank">
-				<img src="https://d2u8ukm27m1oiz.cloudfront.net/banner/dcbox_ad_1511398484.jpg" width="960px" height="120" />
-			</a>
-		</div>
-		<div style='width: 960px; margin: 0 auto;'>
-			<div class="rest-info-wrapper" style="float: left;">
-				<div class="rest-time _flex_1">
-					<div class="rest-info-icon">
-						<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/profile/main/icon-profile-time@2x.png">
-					</div>
-					<div class="rest-info-title">영업 시간</div>
-					<div class="rest-info-contents">
-						<div class="rest-time-block">
-							<div class="rest-time-left">매일</div>
-							<div class="rest-time-right">
-								<div class="time">오전 11시 - 오후 9시</div>
-							</div>
-						</div>
-						<div class="rest-time-block">
-							<div class="rest-time-left">쉬는시간 매일</div>
-							<div class="rest-time-right">
-								<div class="time">오후 3시 - 오후 5시</div>
-							</div>
-						</div>
-					</div>
-				</div>
-            	
-				<div class="rest-menu _flex_1">
-					<div class="rest-info-icon">
-						<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/profile/main/icon-profile-menu@2x.png">
-					</div>
-					<div class="rest-info-title">메뉴 정보</div>
-					<div class="rest-info-contents">
-						<div class="rest-menu-block">
-							<div class="rest-menu-left">1인당 평균가격</div>
-							<div class="rest-menu-right">
-								<div class="time">1만원대</div>
-							</div>
-						</div>
-						<div class="rest-menu-block">
-							<div class="rest-menu-left">차돌박이 쌀국수</div>
-							<div class="rest-menu-right">
-								<div class="time">7,000원</div>
-							</div>
-						</div>
-						<div class="rest-menu-block">
-							<div class="rest-menu-left">양지 쌀국수</div>
-							<div class="rest-menu-right">
-								<div class="time">7,500원</div>
-							</div>
-						</div>
-						<div class="rest-menu-block">
-							<div class="rest-menu-left">차돌양지쌀국수</div>
-							<div class="rest-menu-right">
-								<div class="time">8,000원</div>
-							</div>
-						</div>
-					</div>
-					<div class="more-extra" id="more-extra-menu">
-						메뉴 더 보기<i class="fa fa-angle-down" aria-hidden="true"></i>
-					</div>
-				</div>
-			</div>
-			<div style='clear: both;'></div>
 		</div>
 	</div>
 
@@ -283,6 +205,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 
 	<!-- <script>
 $(function(){	
@@ -335,7 +258,7 @@ $.ajax({
 			"margin": "auto",
 	    	"height": "100%",
 	    	"min-height": "inherit",
-	    	"width": "65%"
+	    	"width": "55%"
 		});
 		$("#main")
 		.css({
