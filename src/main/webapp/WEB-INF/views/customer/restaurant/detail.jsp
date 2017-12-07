@@ -136,9 +136,15 @@
 							<a class="review-name" href="">${c.writerName}</a>
 							<p class="review-text">${c.content}</p>
 							<div class="review-bottom">
-								<span class="review-date">
+								<div class="review-date">
 									<fmt:formatDate pattern="yyyy-MM-dd kk:mm:ss" value="${c.regDate}" />
-								</span>
+								</div>
+								<c:if test="${email == c.memberEmail}">
+									<div style="position: absolute; right: 20px;">
+				                        <input type="button" onclick="location.href='../deleteComment?id=${c.id}'" value="삭제" />
+				                        <input type="button" onclick="location.href='../comment/edit'" value="수정" />
+					                </div>
+			                  	</c:if>
 								<%-- <span class="review-like">
 									<span class="reivew-like-count">
 										<span class="like-count-text">${c.like}</span>
@@ -146,6 +152,9 @@
 								</span>
 								<span class="review-report">신고하기</span> --%>
 							</div>
+							
+			                <div style="display: none;">${c.memberEmail}</div>
+		                  
 						</div>
 					</div>
 					<!-- <span class="baloon-arrow"></span> -->
