@@ -6,7 +6,13 @@
 
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <style>
-
+  #footer_div {
+    position:relative;
+    bottom:0px;
+    width:100%;
+    height:30px;
+    background-color: #e1e0db;
+}
 </style>
 
 <main id="main">

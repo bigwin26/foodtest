@@ -7,6 +7,15 @@
 <%-- <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/customer-restaurant.css"> --%>
 <!-- <!DOCTYPE html> -->
 <script   src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+  #footer_div {
+    position:relative;
+    bottom:0px;
+    width:100%;
+    height:30px;
+    background-color: #e1e0db;
+}
+</style>
 
    <!-- <div id="visual">
       <div class="content-container">

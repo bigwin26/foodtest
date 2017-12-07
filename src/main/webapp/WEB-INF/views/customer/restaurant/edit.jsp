@@ -2,6 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<style>
+  #footer_div {
+    position:relative;
+    bottom:0px;
+    width:100%;
+    height:30px;
+    background-color: #e1e0db;
+}
+</style>
 	<main>
 		<h2 class="main title">에딧 페이지</h2>
 		
