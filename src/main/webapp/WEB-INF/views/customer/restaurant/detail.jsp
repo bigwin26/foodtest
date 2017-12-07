@@ -18,17 +18,12 @@
 					<div id="item-header-left">
 						<div id="item-rn">
 							<span class="item-rn-title">${r.name}</span>
-							<span class="item-rn-divider" ></span>
-							<span class="item-rn-subtitle">${r.genre}, ${r.keyword}</span>
-							<%-- <span class="item-rn-divider" ></span>
-							<span class="item-rn-subtitle">${r.address}</span> --%>
 						</div>
 						<div id="item-category"></div>
 					</div>
 					<div id="item-header-right">
 						<div id="item-sharer">
-							<span class="item-rn-tip tip-writer">${r.writerName}</span>
-							<span class="item-rn-tip">님의 한줄평: "${r.tip}"</span>
+							<span class="item-rn-subtitle">${r.genre}, ${r.keyword}</span>
 						</div>
 					</div>
 				</div>
@@ -76,13 +71,23 @@
 		
 		<div id="item-body">
 			<div id="item-body-contents">
+				<div class="item-information tip-line">
+					<div class="item-information-icon">
+						<img src="${ctx}/resource/images/tip.png">
+					</div>
+					<div class="item-information-text">
+						${r.writerName} 님의 한 줄 평: "${r.tip}"
+					</div>
+					<img id="foodImage" style="border-radius: 10px;">
+				</div>
 				<div class="item-information">
 					<div class="item-information-icon">
 						<img src="${ctx}/resource/images/menu.png">
 					</div>
 					<div class="item-information-text">
-						메뉴가 없당
+						메뉴: 
 					</div>
+					<img id="menuImage">
 				</div>
 				<div class="item-information">
 					<div class="item-information-icon">
@@ -100,80 +105,16 @@
 				</div> --%>
 			</div>
 		</div>
-		<div style="margin: 10px 0 30px 0;">
-			<a href="JavaScript:setAdLog('{|u_id|:|852656|,|device|:|web|,|type|:|view|,|dcad_id|:|19|,|inven_id|:|63|,|inven_type|:|w_profile_middle_banner|,|image_id|:|503|,|v_rid|:|OSEnXQWBYLcf|,|page_type|:|profile|,|lat|:||,|lng|:||,|ip|:|10.253.32.54|}', 'https://box.diningcode.com/shop/item.php?it_id=1510644103');" target="_blank">
-				<img src="https://d2u8ukm27m1oiz.cloudfront.net/banner/dcbox_ad_1511398484.jpg" width="960px" height="120" />
-			</a>
-		</div>
-		<div style='width: 960px; margin: 0 auto;'>
-			<div class="rest-info-wrapper" style="float: left;">
-				<div class="rest-time _flex_1">
-					<div class="rest-info-icon">
-						<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/profile/main/icon-profile-time@2x.png">
-					</div>
-					<div class="rest-info-title">영업 시간</div>
-					<div class="rest-info-contents">
-						<div class="rest-time-block">
-							<div class="rest-time-left">매일</div>
-							<div class="rest-time-right">
-								<div class="time">오전 11시 - 오후 9시</div>
-							</div>
-						</div>
-						<div class="rest-time-block">
-							<div class="rest-time-left">쉬는시간 매일</div>
-							<div class="rest-time-right">
-								<div class="time">오후 3시 - 오후 5시</div>
-							</div>
-						</div>
-					</div>
-				</div>
-            	
-				<div class="rest-menu _flex_1">
-					<div class="rest-info-icon">
-						<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/profile/main/icon-profile-menu@2x.png">
-					</div>
-					<div class="rest-info-title">메뉴 정보</div>
-					<div class="rest-info-contents">
-						<div class="rest-menu-block">
-							<div class="rest-menu-left">1인당 평균가격</div>
-							<div class="rest-menu-right">
-								<div class="time">1만원대</div>
-							</div>
-						</div>
-						<div class="rest-menu-block">
-							<div class="rest-menu-left">차돌박이 쌀국수</div>
-							<div class="rest-menu-right">
-								<div class="time">7,000원</div>
-							</div>
-						</div>
-						<div class="rest-menu-block">
-							<div class="rest-menu-left">양지 쌀국수</div>
-							<div class="rest-menu-right">
-								<div class="time">7,500원</div>
-							</div>
-						</div>
-						<div class="rest-menu-block">
-							<div class="rest-menu-left">차돌양지쌀국수</div>
-							<div class="rest-menu-right">
-								<div class="time">8,000원</div>
-							</div>
-						</div>
-					</div>
-					<div class="more-extra" id="more-extra-menu">
-						메뉴 더 보기<i class="fa fa-angle-down" aria-hidden="true"></i>
-					</div>
-				</div>
-			</div>
-			<div style='clear: both;'></div>
-		</div>
 	</div>
 
-	<div style="width: 960px; margin: 0 auto;"></div>
+	<!-- <div style="width: 960px; margin: 0 auto;"></div>
 	<div style="clear: both;"></div>
-	<div style="width: 960px;"></div>
+	<div style="width: 960px;"></div> -->
 	
 	<div class="div_section">
-		<div id="div_review" class="keyword-title">총 ${cmtp}건의 방문자 평가</div>
+		<div id="div_review" class="keyword-title">
+			<div class="reviews">총 ${cmtp}건의 방문자 평가</div>
+		</div>
 
 		<!-- Review -->
 		<c:if test="${not empty cmtList}">
@@ -190,47 +131,7 @@
 								<i class="fa fa-star" aria-hidden="true" style="width: 20px; margin-top: -5px; font-size: 18px; color: #2483ff;"></i>
 							</div>
 							<div class="fs-15" style="width: 888px; padding: 8px 0; line-height: 27px;">${c.content}</div>
-							<div>
-								<!--// Image -->
-								<div class="review_image">
-									<div style='width: 180px; height: 125px; overflow: hidden;'>
-										<img src='https://s3-ap-northeast-1.amazonaws.com/dcreviewsresized/300_300_20171203094217183_photo1_557fcd08bcab.jpg' width='180'
-											onClick='showImage([{"origin":"https:\/\/s3-ap-northeast-1.amazonaws.com\/dcreviewsresized\/20171203094217183_photo1_557fcd08bcab.jpg","thumb":"https:\/\/s3-ap-northeast-1.amazonaws.com\/dcreviewsresized\/300_300_20171203094217183_photo1_557fcd08bcab.jpg"},{"origin":"https:\/\/s3-ap-northeast-1.amazonaws.com\/dcreviewsresized\/20171203094216804_photo0_557fcd08bcab.jpg","thumb":"https:\/\/s3-ap-northeast-1.amazonaws.com\/dcreviewsresized\/300_300_20171203094216804_photo0_557fcd08bcab.jpg"}], "sue", "https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/review/ic_profile_review_default.png", "1일 전");'
-											style='cursor: pointer;' />
-									</div>
-									<div class="review_ico">
-										<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/review/icProfileReviewMenu.png" class="fl" />
-										<div class="review_count">2</div>
-										<div class="clear"></div>
-									</div>
-								</div>
-								<div class="review_image">
-									<div style='width: 180px; height: 125px; overflow: hidden;'>
-										<img
-											src='https://s3-ap-northeast-1.amazonaws.com/dcreviewsresized/300_300_20171203094252679_menu0_557fcd08bcab.jpg'
-											width='180'
-											onClick='showImage([{"origin":"https:\/\/s3-ap-northeast-1.amazonaws.com\/dcreviewsresized\/20171203094252679_menu0_557fcd08bcab.jpg","thumb":"https:\/\/s3-ap-northeast-1.amazonaws.com\/dcreviewsresized\/300_300_20171203094252679_menu0_557fcd08bcab.jpg"}], "sue", "https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/review/ic_profile_review_default.png", "1일 전");'
-											style='cursor: pointer' />
-									</div>
-									<div class="review_ico">
-										<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/review/icProfileReviewStoreinfo.png" class="fl" />
-										<div class="review_count">1</div>
-										<div class="clear"></div>
-									</div>
-								</div>
-								<div class="clear"></div>
-							</div>
-							<!-- image // -->
-
-							<div style="width: 880px; padding-top: 8px;" style="display:none;">
-								<div class="keyword-text">점심식사</div>
-								<div class="keyword-text">저녁식사</div>
-								<div class="keyword-text">조용한</div>
-								<div class="keyword-text">아담한</div>
-								<div class="clear"></div>
-							</div>
 						</div>
-						<div class="clear"></div>
 					</div>
 
 					<div class="tr" style="margin-top: 8px;">
@@ -247,35 +148,6 @@
 				</div>
 			</c:forEach>
 		</c:if>
-		<div id="seemore_review" style="margin: 0;" onClick="$(this).remove(); $('#div_loading').show();">
-			<a href="JavaScript:getMore('web', 2);">
-				평가 더 보기 <i class="fa fa-angle-down" aria-hidden="true"></i>
-			</a>
-		</div>
-		<div id="div_loading"
-			style="margin: 5px 0; width: 100%; text-align: center; display: none;">
-			<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/ajax-loader.gif" alt="Loading..." />
-		</div>
-		<div id="div_review_2" style="margin: 0;"></div>
-	</div>
-	<div id="enc_review_area" style="margin: 0; padding: 0; height: 0; overflow: hidden;">
-		<div class="review-wrapper" style="margin: 0; padding: 0; height: 0; overflow: hidden;">
-			<div id="review-title">유저 평가</div>
-			<div class="review-list">
-				<div id="review-area">
-					<dc-review ng-repeat="item in profile.review" ng-model="item" index="$index"></dc-review>
-					<div id="seemore_review"
-						ng-if="profile.review_total-profile.review.length>0 && !profile.loading.review"
-						ng-click="profile.load_more_review()">
-						<a>
-							평가 더 보기 <i class="fa fa-angle-down" aria-hidden="true"></i>
-						</a>
-					</div>
-					<dc-loader class="review-seemore-loading" type="1" ng-if="profile.loading.review"></dc-loader>
-					<dc-review-composer data-rid="profile.id"></dc-review-composer>
-				</div>
-			</div>
-		</div>
 	</div>
 </div>
 
@@ -339,6 +211,14 @@ $.ajax({
 	    	"min-height": "inherit",
 	    	"width": "100%",
 	    	"padding": "0px"
+		});
+		
+		var foodImageUrl = "${ctx}/resource/customer/restaurant/2017/${r.id}/${r.image}";
+		//$("#foodImage").attr('id', 'foodImage' + ${r.id});
+		$("#foodImage").attr({
+						"src": foodImageUrl,
+						"width": "200px",
+						"height": "150px",
 		});
 				
 		/* 지도 부분 =================================================================================*/
