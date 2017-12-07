@@ -640,28 +640,6 @@ a:link, a:hover, a:active {
 						</div>
 					</div>
 				</div>
-				<script type="text/javascript">
-                $(document).ready(function(){
-                    var isTimeOpened = false;    
-                
-                   $("#more-extra-time").click(function(){
-                       
-                       if(!isTimeOpened){
-                      
-                           var append = "";$(".rest-time .rest-info-contents").append(append);
-                                isTimeOpened = true;
-                                $("#more-extra-time").html("접기<i class=\"fa fa-angle-up\" aria-hidden=\"true\"></i>"); 
-                        }else{
-                       
-                            $(".rest-time .rest-info-contents .rest-time-block:gt(1)").remove();
-                                $("#more-extra-time").html("시간 더 보기<i class=\"fa fa-angle-down\" aria-hidden=\"true\"></i>");
-                                isTimeOpened = false;
-                        
-                            
-                        }
-                    });    
-                });
-            </script>
 				<div class="rest-menu _flex_1">
 					<div class="rest-info-icon">
 						<img
@@ -850,7 +828,7 @@ a:link, a:hover, a:active {
 									value="삭제" />
 							</div>
 							<div>
-								<input type="button" onclick="location.href='../comment/edit'"
+								<input type="button" onclick="location.href='../comment/edit/${c.id}'"
 									value="수정" />
 							</div>
 						</c:if>
