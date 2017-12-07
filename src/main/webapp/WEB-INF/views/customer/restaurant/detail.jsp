@@ -95,7 +95,7 @@
                   <img src="${ctx}/resource/images/menu.png">
                </div>
                <div class="item-information-text">
-                  메뉴: 
+               		메뉴: 
                </div>
                <img id="menuImage">
             </div>
@@ -123,10 +123,41 @@
    
    <div class="div_section">
       <div id="div_review" class="keyword-title">
-         <div class="reviews">총 ${cmtp}건의 방문자 평가</div>
+         	총 ${cmtp}건의 방문자 평가
       </div>
-
-      <!-- Review -->
+	
+	<ul class="review-list">
+		<c:if test="${not empty cmtList}">
+	         <c:forEach var="c" items="${cmtList}">
+	         	<li>
+		         	<div class="blur-area">
+						<a href="" class="user-pic">
+							<img alt="회원사진" src="${ctx}/resource/images/1.jpg">
+						</a>
+						<div class="review">
+							<a class="review-name" href="">${c.writerName}</a>
+							<p class="review-text">${c.content}</p>
+							<div class="review-bottom">
+								<span class="review-date">
+									<fmt:formatDate pattern="yyyy-MM-dd kk:mm:ss" value="${c.regDate}" />
+								</span>
+								<%-- <span class="review-like">
+									<span class="reivew-like-count">
+										<span class="like-count-text">${c.like}</span>
+									</span>
+								</span>
+								<span class="review-report">신고하기</span> --%>
+							</div>
+						</div>
+					</div>
+					<!-- <span class="baloon-arrow"></span> -->
+				</li>
+	         </c:forEach>
+	    </c:if>
+    </ul>
+	
+	
+      <%-- <!-- Review -->
       <c:if test="${not empty cmtList}">
          <c:forEach var="c" items="${cmtList}">
             <div style="padding: 24px 0; border-bottom: #E0E0E0 solid 1px;">
@@ -157,7 +188,9 @@
                </div>
             </div>
          </c:forEach>
-      </c:if>
+      </c:if> --%>
+      
+      
    </div>
 </div>
 

@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/reset.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/customer-restaurant.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/restaurant-detail.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/restaurant-comment.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/map.css">
 <%-- <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/restaurant-reg.css"> --%>
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/board.css">

@@ -361,11 +361,9 @@ a:link, a:hover, a:active {
 
 .keyword-title{
 	text-align: right;	
+	padding: 15px;
 }
 
-.keyword-title .reviews{
-	padding-bottom: 15px;
-}
 .keyword-type {
 	padding-bottom: 26px;
 	border-bottom: #E0E0E0 solid 1px;
