@@ -383,11 +383,26 @@ $.ajax({
 		  			"restaurant_Id":restaurantId
 		  			//"memberId":memberId
 		  			}, 
-	  			dataType: "text",
+	  			dataType: "json",
 		  		success : function(result){
-		  			alert(result);
-		  			$("#like-count").text(result);
+		  			//var json = JSON.stringify(result);
+		  			//alert(json);
+		  			var likeCount = result.likeCount;
+		  			var checkResult = result.checkResult;
+		  			$("#like-count").text(likeCount);
 		  			
+		  			if(checkResult == 1){
+		  				$("#fvr-icon").css({
+		  					"background": "url(${ctx}/resource/images/dislike.png)",
+		  					"background-size": "cover"
+		  				});
+		  			}
+		  			if(checkResult == 0){
+		  				$("#fvr-icon").css({
+		  					"background": "url(${ctx}/resource/images/like2.png)",
+		  					"background-size": "cover"
+		  				});
+		  			}
 		  			
 		  			/* if(result == 1){
 		  				alert("저장되었습니다");
