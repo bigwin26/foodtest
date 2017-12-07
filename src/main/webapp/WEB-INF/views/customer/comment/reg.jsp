@@ -2,182 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<style>
-.container {
-	width: 100%;
-	padding-bottom: 24px;
-	font-size: 13px;
-}
-
-.row {
-	width: 100%;
-	margin: 0 auto;
-}
-
-.rest_info {
-	float: left;
-	width: 30%;
-	height: 405px;
-	background-color: #F9F9F9;
-	border: solid #E0E0E0 1px;
-	padding: 24px;
-	text-align: center;
-}
-
-.review_info {
-	float: right;
-	width: 60%;
-	padding-left: 24px;
-}
-
-form {
-	margin: 0;
-	padding: 0;
-	color: #222222;
-}
-
-.section {
-	line-height: 1.5;
-	padding-bottom: 100px;
-	margin-bottom: 24px;
-	border-bottom: solid #E0E0E0 1px;
-}
-
-.fl {
-	float: left;
-}
-
-.score_box {
-	float: right;
-	width: 270px;
-	padding: 15px 15px 15px 24px;
-	border: solid #E0E0E0 1px;
-}
-
-.score_title {
-	float: right;
-	width: 65px;
-	height: 20px;
-	border-radius: 2px;
-	color: #FFFFFF;
-	text-align: center;
-	padding-top: 2px;
-}
-
-.bc-gray-review {
-	background-color: #D5D5D5;
-}
-
-.score_star {
-	float: right;
-	width: 110px;
-	padding-top: 5px;
-}
-
-.title {
-	padding-bottom: 4px;
-	font-weight: bold;
-}
-
-.title span {
-	line-height: 2.0;
-	font-weight: normal;
-}
-
-.fr {
-	float: right;
-}
-
-.w90 {
-	width: 90px;
-}
-
-.btn {
-	border: none;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	border-radius: 2px;
-	width: 100%;
-	cursor: pointer;
-	height: 40px;
-	font-size: 13px;
-}
-
-.btn-black {
-	background-color: #f15c22;
-	color: #FFFFFF;
-}
-
-.fa {
-	display: inline-block;
-	font: normal normal normal 14px/1 FontAwesome;
-	font-size: inherit;
-	text-rendering: auto;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	transform: translate(0, 0);
-}
-</style>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<main> <%-- <h2 class="main title">'${r.name}'후기 등록 페이지</h2>
-	
-	<div class="">
-		<h3 class="hidden">후기 등록 내용</h3>
-		<table class="">
-			<tbody>
-				<tr>
-					<th>가게 이름</th>
-					<td>${r.name}</td>
-				</tr>
-				<tr>
-					<th>작성일</th>
-					<td class="text-align-left text-indent" colspan="3"><fmt:formatDate	pattern="yyyy-MM-dd" value="${r.regDate}" /></td>
-				</tr>
-				<tr>
-					<th>작성자</th>
-					<td>${r.writerName}</td>
-					<th>좋아요</th>
-					<td>${r.countLiked}</td>
-				</tr>
-				<tr>
-					<th>상세내용</th>
-					<td>${r.content}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	
-	<form id="comment-form" action="?${_csrf.parameterName}=${_csrf.token}" method="post"	enctype="multipart/form-data">
-		<table class="">
-			<tbody>
-				<tr>
-					<th>전체 평점</th>
-					<td><input type="radio" name="point" value="5"/>훌륭해요!</td>
-					<td><input type="radio" name="point" value="3"/>보통이에요</td>
-					<td><input type="radio" name="point" value="1"/>별로에요..</td>
-				</tr>
-				<tr>
-					<th>후기</th>
-					<td><textarea cols="40" rows="5" name="content" placeholder="음식, 서비스, 분위기, 위생상태 등의 방문 경험을 적어주세요."></textarea></td>
-				</tr>
-				<tr>
-					<th>사진첨부</th>
-					<td><input type="file" name="file" multiple="multiple"/></td>
-				</tr>
-				<tr>
-					<th>메뉴판 사진</th>
-					<td><input type="file" name="image" /></td>
-				</tr>
-			</tbody>
-		</table>
-		<input type="submit" value="등록하기" />
-	</form>
-	
-	
-	<div class="margin-top text-align-center">
-		<a class="btn btn-list" href="../restaurant/${r.id}">취소</a>
-	</div> --%>
+	<script
+	src="${path}/resource/js/star.js"></script>
+<main>
 <div class="container">
 	<div class="row" style="padding: 50px 0;">
 		<div class="rest_info">
@@ -202,27 +32,18 @@ form {
 						전체평점<i>*</i> <span><br />이 음식점에 대한 전반적인 평가를 해주세요.</span>
 					</div>
 					<span class="star-input"> <span class="input"> <input
-							type="radio" name="star-input" value="1" id="p1"> <label
-							for="p1">1</label> <input type="radio" name="star-input"
+							type="radio" name="point" value="1" id="p1"> <label
+							for="p1">1</label> <input type="radio" name="point"
 							value="2" id="p2"> <label for="p2">2</label> <input
-							type="radio" name="star-input" value="3" id="p3"> <label
-							for="p3">3</label> <input type="radio" name="star-input"
+							type="radio" name="point" value="3" id="p3"> <label
+							for="p3">3</label> <input type="radio" name="point"
 							value="4" id="p4"> <label for="p4">4</label> <input
-							type="radio" name="star-input" value="5" id="p5"> <label
+							type="radio" name="point" value="5" id="p5"> <label
 							for="p5">5</label>
 					</span> <output for="star-input">
-							<b>0</b>점
+					<b></b>
 						</output>
 					</span>
-
-					<!-- <div class="score_box">
-						<input id="hid_score" name="score" type="hidden" value="" />
-						<div class="fl">평점</div>
-						<div class="score_title bc-gray-review">평가없음</div>
-						<div class="score_star"><i class="fa fa-star star_off" aria-hidden="true" style="width:20px; margin-top:-5px; font-size:18px; cursor:pointer;"></i><i class="fa fa-star star_off" aria-hidden="true" style="width:20px; margin-top:-5px; font-size:18px; cursor:pointer;"></i><i class="fa fa-star star_off" aria-hidden="true" style="width:20px; margin-top:-5px; font-size:18px; cursor:pointer;"></i><i class="fa fa-star star_off" aria-hidden="true" style="width:20px; margin-top:-5px; font-size:18px; cursor:pointer;"></i><i class="fa fa-star star_off" aria-hidden="true" style="width:20px; margin-top:-5px; font-size:18px; cursor:pointer;"></i></div>
-						<div class="clear"></div>
-					</div> -->
-				<!-- 	<input type="radio" name="point" value="5" />훌륭해요! -->
 					<div class="clear"></div>
 				</div>
 				<!-- 방문후기 -->
@@ -258,7 +79,6 @@ form {
 					</div>
 					<div class="fr">
 						<input type="file" name="file" multiple="multiple" />
-						<!-- <input id="btn_photo" type="file" class="btn btn-black w90 fr"/>사진첨부 -->
 					</div>
 					<div class="clear"></div>
 					<div id="div_photo">
@@ -277,7 +97,6 @@ form {
 					</div>
 					<div class="fr">
 						<input type="file" name="image" />
-						<!-- <button id="btn_menu" type="button" class="btn btn-black w90 fr">사진첨부</button> -->
 					</div>
 					<div class="clear"></div>
 					<div id="div_menu">

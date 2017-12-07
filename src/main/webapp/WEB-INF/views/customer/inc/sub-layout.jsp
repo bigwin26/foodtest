@@ -14,6 +14,7 @@
 <%-- <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/restaurant-reg.css"> --%>
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/board.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/footer.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/comment.css">
 <title>Insert title here</title>
 </head>
 <body>

@@ -246,7 +246,7 @@
                         <input type="button" onclick="location.href='../deleteComment?id=${c.id}'" value="삭제" />
                      </div>
                      <div>
-                        <input type="button" onclick="location.href='../comment/edit'" value="수정" />
+                        <input type="button" onclick="location.href='../comment/edit/${c.id}'" value="수정" />
                      </div>
                   </c:if>
                </div>
