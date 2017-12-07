@@ -7,19 +7,24 @@
 <title>개인정보처리방침</title>
 
  <style>
+       *{padding:0;margin:0;border-spacing:0;border-collapse:collapse;border:none;font-family:'AppleSDGothicNeo-Regular','Nanum Gothic',Helvetica,Arial,sans-serif}
+        body{background-color:#f7f5f0}
 
-        *{padding:0;margin:0;border-spacing:0;border-collapse:collapse;border:none;font-family:'AppleSDGothicNeo-Regular','Nanum Gothic',Helvetica,Arial,sans-serif}
-        body{overflow-y:scroll;width:100%;min-width:960px;min-height:100%;padding:0px !important;margin:0px !important;background-color:#f7f5f0}
 
-
-        .dc-area{position:relative;float:left;width:100%;height:auto;margin-top:56px;}
-        .dc-wrapper{position:relative;width:960px;height:auto;margin:0 auto}
+        .dc-wrapper{width:960px;height:auto;margin:0 auto; margin-top: 56px;}
 
         
-        .ppContents{float:left;width:100%;padding:40px;background:#fff;color:#404041;font-size:14px;line-height:22px;}
+        .ppContents{width:100%;padding:40px;background:#fff;color:#404041;font-size:14px;line-height:22px;}
  .top-user-prof{
  top: 7px;
  }
+  #footer_div {
+    position:relative;
+    bottom:0px;
+    width:100%;
+    height:30px;
+    background-color: #e1e0db;
+}
     </style>
 
 </head>

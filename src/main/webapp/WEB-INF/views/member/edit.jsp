@@ -31,7 +31,10 @@
 	overflow: hidden;
 	clip: rect(0, 0, 0, 0);
 	border: 0;
+	
 }
+
+
 
 .filebox label {
 	display: inline-block;
@@ -130,9 +133,10 @@
 }
 
 .userinfo img{
-   	display: block;
-	width: 100px;
-	height: 100px;
+    display: block;
+    background: rgba(0,0,0, 0.1);
+    width: 94px;
+    height: 94px;
 }
 
 
@@ -164,7 +168,6 @@ display: none;
 		<div class="row">내 정보 수정</div>
 	</div>
 	<!-- 회원수저 폼 -->
-
 	<div class="row">
 		<form action="editMember?${_csrf.parameterName}=${_csrf.token}" method="post"
 			id="joinsubmit" enctype="multipart/form-data">

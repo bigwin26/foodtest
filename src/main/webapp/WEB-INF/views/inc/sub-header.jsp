@@ -8,6 +8,14 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+$(function (){
+	
+	$("#info").click(function(){
+
+		$("#submituser").submit();
+	})
+});
+	
 /* $(document).ready(function() {
 	   $("#notice").off("click").on("click", function() {
 	// test class를 포함하는 DOM 객체가 active class를 포함하면 true 아니면 false를 반환
@@ -29,8 +37,8 @@ $("#notice").click(function () {
 </script>
 <style>
 #mainHeader {
-	position: relative;
-	top: 0px;
+	position: fixed;
+	top: 0;
 	float: left;
 	width: 100%;
 	height: 56px;
@@ -334,7 +342,14 @@ top: 6px;
 					
 					<div class="dropdown-content">
 					<c:if test="${!empty pageContext.request.userPrincipal.name}">
-					<a href="${ctx}/member/edit/${nickName}">내정보</a>
+					<a id="info">내정보</a>
+					<form id="submituser" action="${ctx}/member/edit" method="post" accept-charset="UTF-8">
+					<input type="hidden" name="useremail" value="<security:authentication property="name"/>">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+					</form>
+					
+					
+					
 					</c:if>
 						<a href="${ctx}/member/list">좋아요</a>
 					
