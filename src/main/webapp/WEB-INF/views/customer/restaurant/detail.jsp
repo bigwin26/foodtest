@@ -14,12 +14,10 @@
     background-color: #e1e0db;
 }
 </style>
-
 <main id="main">
 <!-- <div class="map_area">
    <div id="map" style="width: 100%; height: 250px; position: relative; overflow: hidden;"></div>
 </div> -->
-
 <div id="main_area" style="position: relative;">
    <div id="enc_item_area">
       <div id="item-header">

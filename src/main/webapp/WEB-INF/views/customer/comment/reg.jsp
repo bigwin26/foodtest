@@ -5,8 +5,69 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script
-	src="${path}/resource/js/star.js"></script>
+<script src="${path}/resource/js/star.js"></script>
+<script type="text/javascript">
+	window.addEventListener("load", function() {
+		var fileInput = document.querySelector("#ex3-upload input");
+		var spanButton = document.querySelector("#ex3-upload span");
+		/*  var progressBar =  document.querySelector("#ex3-upload #progress-bar");
+		 progressBar.style.width = "0px"; */
+
+		/*  var fileViewer =  document.querySelector("#ex3-upload ul"); */
+		//파일 목록 초기화 
+		/* var xhr = new XMLHttpRequest();
+			xhr.onload = function(){
+		var files = JSON.parse(xhr.responseText);
+		
+		for(var i = 0; i<files.length; i++){
+		var li =  document.createElement("li");
+		li.textContent = files[i];
+		fileViewer.appendChild(li);
+		}
+		
+		};
+		xhr.open("GET","../../file-list");
+		xhr.send(); */
+
+		//var a = document.createElement("a");
+		spanButton.onclick = function(e) {
+			var event = new MouseEvent("click", {
+				'view' : window,
+				'bubbles' : true,
+				'cancelable' : true
+			});
+
+			fileInput.dispatchEvent(event);
+			fileInput.onchange = function() {
+
+				var file = fileInput.files[0];
+				var formData = new FormData();
+
+				formData.append("title", "테스트");
+				formData.append("file", file);
+
+				/* var xhr = new XMLHttpRequest();
+				xhr.upload.onprogress = function(e){
+					var percentage = Math.round(e.loaded*100/e.total);
+					
+					progressBar.textContent = percentage +"%";
+					progressBar.style.width = percentage +"px";
+					progressBar.style.background = "green";
+
+				} */
+				xhr.onload = function() {
+
+				};
+				xhr.onerror = function(e) {
+					alert("예기치 못한 오류가 발생했습니다.")
+				};
+				xhr.open("POST",
+						"${c.id}?${_csrf.parameterName}=${_csrf.token}");
+				xhr.send(formData);
+			};
+		};
+	});
+</script>
 <main>
 <div class="container">
 	<div class="row" style="padding: 50px 0;">
@@ -33,15 +94,14 @@
 					</div>
 					<span class="star-input"> <span class="input"> <input
 							type="radio" name="point" value="1" id="p1"> <label
-							for="p1">1</label> <input type="radio" name="point"
-							value="2" id="p2"> <label for="p2">2</label> <input
-							type="radio" name="point" value="3" id="p3"> <label
-							for="p3">3</label> <input type="radio" name="point"
-							value="4" id="p4"> <label for="p4">4</label> <input
-							type="radio" name="point" value="5" id="p5"> <label
-							for="p5">5</label>
+							for="p1">1</label> <input type="radio" name="point" value="2"
+							id="p2"> <label for="p2">2</label> <input type="radio"
+							name="point" value="3" id="p3"> <label for="p3">3</label>
+							<input type="radio" name="point" value="4" id="p4"> <label
+							for="p4">4</label> <input type="radio" name="point" value="5"
+							id="p5"> <label for="p5">5</label>
 					</span> <output for="star-input">
-					<b></b>
+							<b></b>
 						</output>
 					</span>
 					<div class="clear"></div>
@@ -78,8 +138,19 @@
 							있습니다.</span>
 					</div>
 					<div class="fr">
-						<input type="file" name="file" multiple="multiple" />
+					<div id="ex3-upload">
+						<input type="file" name="file" style="display: none;" /> <span
+							style="border: 1px solid #999; border-radius: 5px; background: #f15c22; padding: 10px; cursor: pointer;color: white;">파일선택</span>
+						<div>
+							<ul>
+								<li></li>
+							</ul>
+						</div>
 					</div>
+					</div>
+					<!-- <div class="fr">
+						<input type="file" name="file" multiple="multiple" />
+					</div> -->
 					<div class="clear"></div>
 					<div id="div_photo">
 						<div class="clear"></div>
@@ -90,14 +161,25 @@
 				<input id="hid_menu_deny" type="hidden" value="" />
 				<div class="section">
 					<div class="title fl">
-						매장정보 사진첨부 <span class="fs-11 fc-red"></span><br /> <span>메뉴판,
+						메뉴판 사진첨부 <span class="fs-11 fc-red"></span><br /> <span>메뉴판,
 							영업시간, 주차 등 매장정보사진을 첨부해주세요.</span><br /> <span class="fc-gray"
 							style="line-height: 1.0;">※저작권에 위배되는 사진첨부시 법적 처벌 조치를 받으실 수
 							있습니다.</span>
 					</div>
 					<div class="fr">
-						<input type="file" name="image" />
+					<div id="ex3-upload">
+						<input type="file" name="image" style="display: none;" /> <span
+							style="border: 1px solid #999; border-radius: 5px; background: #f15c22; padding: 10px; cursor: pointer;color: white;">파일선택</span>
+						<div>
+							<ul>
+								<li></li>
+							</ul>
+						</div>
 					</div>
+					</div>
+					<!-- <<div class="fr">
+						<input type="file" name="image" />
+					</div> -->
 					<div class="clear"></div>
 					<div id="div_menu">
 						<div class="clear"></div>
