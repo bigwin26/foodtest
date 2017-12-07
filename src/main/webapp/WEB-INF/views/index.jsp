@@ -31,7 +31,7 @@
 		<div class="main-info-container-search">
 			 <form action="customer/restaurant" method="get">
 				<span class="main-info-container-search-inner"> <input
-					type="text" class="main-info-container-search-inner-text" name="q" />
+					type="text" class="main-info-container-search-inner-text" name="q" id="autocom"/>
 				</span>
 				<button id="search" class="main-info-container-search-inner-submit"
 					style="background-image: url('resource/images/search.png');"
@@ -46,6 +46,44 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="resource/js/slider.js"></script> 
 <script>
+$(function(){
+	
+	
+	
+	
+	$("#autocom").keyup(function(){		
+		
+		$.ajax({
+			
+			type:"GET",
+			url:"autocom",
+			data:{
+				
+				autocomplete : $("#autocom").val() 
+				
+			},
+			success : function(result){
+				
+				
+				
+				
+			}
+		})
+		
+		
+		
+		
+		
+		
+		
+		
+	})
+	
+		
+	
+})
+
+
 /* $(function(){
 alert("a");
 	updateData();
