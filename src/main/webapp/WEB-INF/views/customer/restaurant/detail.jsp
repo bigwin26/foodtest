@@ -15,6 +15,7 @@
 }
 </style>
 <main id="main">
+<%-- likeCount: ${likeCount} --%>
 <!-- <div class="map_area">
    <div id="map" style="width: 100%; height: 250px; position: relative; overflow: hidden;"></div>
 </div> -->
@@ -44,7 +45,7 @@
                         <div class="item-stats-title">평점</div>
                      </div>
                      <div class="item-stats">
-                        <div class="item-stats-count">${r.countLiked}</div>
+                        <div id="like-count" class="item-stats-count">${r.countLiked}</div>
                         <div class="item-stats-title">좋아요</div>
                      </div>
                      <div class="item-stats">
@@ -65,9 +66,20 @@
                         </a>
                      </div>
                      <div class='item-button-like'>
-                        <a href='#' class='item-button-like' id='favorite_btn' value='Y'>
+                        <a class='item-button-like' id='favorite_btn' value='Y'>
                            <input type="hidden" id="restaurant_Id" name="restaurant_Id" value="${r.id}" />
-                           <div id='fvr-icon'></div>
+                           <c:if test="${like eq 0}">
+                           		<div id='fvr-icon' style="
+                           						background: url('${ctx}/resource/images/dislike.png') center no-repeat; 
+                           						background-size: cover;">
+                    			</div>
+                           </c:if>
+                           <c:if test="${like eq 1}">
+                           		<div id='fvr-icon' style="
+                           						background: url('${ctx}/resource/images/like2.png') center no-repeat; 
+                           						background-size: cover;">
+                    			</div>
+                           </c:if>
                            <div id='fvr-text'>좋아요</div>
                         </a>
                      </div>
@@ -162,8 +174,8 @@
    </div>
 </div>
 
-   <!-- <script>
-$(function(){   
+   <script>
+/* $(function(){   
 $("#favorite_btn").click(function(){
 
    var restaurantId = ${r.id};
@@ -190,8 +202,8 @@ $.ajax({
    
 });
 })
-})
-</script> -->
+}) */
+</script>
 </main>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9c613e70636456cd2f3178169be248f"></script>
@@ -359,72 +371,34 @@ $.ajax({
       }
       
       /* ==================================================================================================== */
-      
-      
-        var isTimeOpened = false;    
-    
-        $("#more-extra-time").click(function(){
-           
-           if(!isTimeOpened){
-          
-               var append = "";$(".rest-time .rest-info-contents").append(append);
-                    isTimeOpened = true;
-                    $("#more-extra-time").html("접기<i class=\"fa fa-angle-up\" aria-hidden=\"true\"></i>"); 
-            }else{
-           
-                $(".rest-time .rest-info-contents .rest-time-block:gt(1)").remove();
-                    $("#more-extra-time").html("시간 더 보기<i class=\"fa fa-angle-down\" aria-hidden=\"true\"></i>");
-                    isTimeOpened = false;
-            }
-       });
        
-       
-       var isMenuOpen = false;    
-       $("#more-extra-menu").click(function(){
-           if(!isMenuOpen){
-               var append = "";append +="<div class=\"rest-menu-block\"><div class=\"rest-menu-left\">모듬전식</div><div class=\"rest-menu-right\"><div class=\"time\">7,500원</div></div></div>";append +="<div class=\"rest-menu-block\"><div class=\"rest-menu-left\">감자말이새우</div><div class=\"rest-menu-right\"><div class=\"time\">2,500원</div></div></div>";$(".rest-menu .rest-info-contents").append(append);
-                    isMenuOpen = true;
-                    $("#more-extra-menu").html("접기<i class=\"fa fa-angle-up\" aria-hidden=\"true\"></i>");
-         }
-           else {
-              $(".rest-menu .rest-info-contents .rest-menu-block:gt(3)").remove();
-              $("#more-extra-menu").html("시간 더 보기<i class=\"fa fa-angle-down\" aria-hidden=\"true\"></i>");
-              isMenuOpen = false;
-           }
-       });
-       
-       //db좋아요올리기
-       //댓글을 다는 이벤트
-       $("#favorite_btn").click(function() {
-         alert('눌렸다');
-         console.log("restaurant_Id" + $("#restaurant_Id").val());
-         //값 셋팅
-         var objParams = {
-            restaurant_Id : $("#restaurant_Id").val()
-         };
-         //ajax 호출
+      $("#favorite_btn").click(function(){
+		  var restaurantId = ${r.id};
+		  //var memberId = '<security:authentication property="name"/>';
+		  $.ajax({
+		  		type:"GET",
+		  		url:"like",
+		  		
+		  		data : {
+		  			"restaurant_Id":restaurantId
+		  			//"memberId":memberId
+		  			}, 
+	  			dataType: "text",
+		  		success : function(result){
+		  			alert(result);
+		  			$("#like-count").text(result);
+		  			
+		  			
+		  			/* if(result == 1){
+		  				alert("저장되었습니다");
+		  			}
+		  			else if(result == 0){
+		  				alert("삭제되었습니다");
+		  			} */
+		  		}
+		  });
+	  })
 
-         $.get("${path}/food/customer/restaurant/like?restaurant_Id="
-            + $("#restaurant_Id").val(), function(data) {
-               //                   alert(data);
-               //                   alert(JSON.parse(data)['idCheck']);
-               //                   console.log("data" + data);
-               //                   console.log("data type" + typeof data);
-               var json = JSON.parse(data);
-               console.log(json);
-               var idCheck = json['idCheck'];
-               //var idCheck = data.idCheck;//안대~
-               /*  var likeCount = json['likeCount']; */
-               console.log("idCheck : " + idCheck);
-               //console.log("likeCount : " + likeCount);
-               if (idCheck > 0)
-                  alert("이미 좋아요를 누르셨습니다.");
-            /*   else if(idCheck==-10)
-                 alert("죄송합니다. 오류가 생겼습니다. 빠른시일내로 복구하겠습니다.");
-              $("#likeCount").text(likeCount); */
-            });
-      });
-      //좋아요
 
    });
    

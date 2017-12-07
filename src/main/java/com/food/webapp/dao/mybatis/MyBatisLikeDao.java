@@ -10,16 +10,16 @@ public class MyBatisLikeDao implements LikeDao {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public int Check(int restaurantId, String memberId) {
+	public int check(int restaurantId, String memberId) {
 		LikeDao likeDao = sqlSession.getMapper(LikeDao.class);
-		int result = likeDao.Check(restaurantId,memberId);
+		int result = likeDao.check(restaurantId,memberId);
 		return result;
 	}
 
 	@Override
-	public int Insert(int restaurantId, String memberId) {
+	public int insert(int restaurantId, String memberId) {
 		LikeDao likeDao = sqlSession.getMapper(LikeDao.class);
-		int result = likeDao.Insert(restaurantId,memberId);
+		int result = likeDao.insert(restaurantId,memberId);
 		return result;
 	}
 
@@ -28,6 +28,13 @@ public class MyBatisLikeDao implements LikeDao {
 		LikeDao likeDao = sqlSession.getMapper(LikeDao.class);
 		int result = likeDao.delete(restaurantId,memberId);
 		System.out.println(result);
+		return result;
+	}
+
+	@Override
+	public int count(int restaurantId) {
+		LikeDao likeDao = sqlSession.getMapper(LikeDao.class);
+		int result = likeDao.count(restaurantId);
 		return result;
 	}
 }

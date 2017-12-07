@@ -118,21 +118,22 @@ public class RestaurantController {
 		//System.out.println(json);
 		return json;
 	}
-
 	
 	@RequestMapping("restaurant/{id}")
 	public String detail(@PathVariable("id") int id,
-						@RequestParam(value="p", defaultValue="1")  Integer page,
-						Model model,Principal principal) {
+						@RequestParam(value="p", defaultValue="1") Integer page,
+						Model model,
+						Principal principal) {
 		
-		model.addAttribute("email",principal.getName());
+		model.addAttribute("email", principal.getName());
 		model.addAttribute("r", restaurantDao.get(id));
 		model.addAttribute("prev", restaurantDao.getPrev(id));
 		model.addAttribute("next", restaurantDao.getNext(id));
 		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//�ı� ����Ʈ 
 		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//�ı� ����
-		
 		model.addAttribute("cmtImageList", restaurantDao.cmtImageList(id));//�ı� ������
+		model.addAttribute("like", likeDao.check(id, principal.getName()));
+		model.addAttribute("likeCount", likeDao.count(id));
 		
 		return "customer.restaurant.detail";
 	}
@@ -201,42 +202,54 @@ public class RestaurantController {
 
 		return "redirect:restaurant";
 	}*/
-   @RequestMapping(value ="restaurant/like", method = RequestMethod.GET)
-   @ResponseBody
-   public String boardLikeSave(@RequestParam int restaurant_Id, Principal principal) {
-      int restaurantId = restaurant_Id;
-      System.out.println("왓다 infoID : "+ restaurant_Id);
-      String memberId = principal.getName();
-      System.out.println("왓다 memberID : "+ memberId);
-      // 좋아요 start저장하는 부분
-      // 좋아요를 누른 사용자 중복체크
-      Integer checkResult = 0;
-      checkResult = likeDao.Check(restaurantId, memberId);
-       System.out.println("idcheckResult : "+ checkResult);
-      // writerId값이 존재하지 않으면 <=0
-      if (checkResult <= 0) {
-         int insertResult = 0;
-         insertResult = likeDao.Insert(restaurantId, memberId);// 좋아요누른사람저장하기
-         if (insertResult > 0) {
-            System.out.println("Like_writerId등록에 성공하였습니다.");
-         } else {
-            System.out.println("Like_writerId등록에 실패하였습니다.");
-         }
-      }
-      else if(checkResult == 1) {
-    	  int result = 0;
-          result = likeDao.delete(restaurantId, memberId);// 좋아요누른사람삭제
-          if (result == 0) {
-             System.out.println("Like_writerId 삭제에 성공하였습니다.");
-          } 
-      }
-      // 좋아요 값을 가져오는 부분
-      Map<String, Integer> obj = new HashMap<String, Integer>();
-      obj.put("idCheck", checkResult);
-      String json = "";
-      Gson gson = new Gson();
-      json = gson.toJson(obj);
-      return json;
-   }
+
+	@RequestMapping(value = "restaurant/like", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String boardLikeSave(@RequestParam String restaurant_Id, Principal principal) {
+		int restaurantId = Integer.parseInt(restaurant_Id);
+		System.out.println("왓다 infoID : " + restaurantId);
+		String memberId = principal.getName();
+		System.out.println("왓다 memberID : " + memberId);
+		// 좋아요 start저장하는 부분
+		// 좋아요를 누른 사용자 중복체크
+		
+		int checkResult = 0;
+		int likeCount = likeDao.count(restaurantId);
+		checkResult = likeDao.check(restaurantId, memberId);
+		System.out.println("idcheckResult : " + checkResult);
+		
+		// writerId값이 존재하지 않으면 <=0
+		if (checkResult <= 0) {
+			int insertResult = 0;
+			insertResult = likeDao.insert(restaurantId, memberId);// 좋아요누른사람저장하기
+			if (insertResult > 0) {
+				System.out.println("Like_writerId 등록에 성공하였습니다.");
+				likeCount += 1;
+			} else {
+				System.out.println("Like_writerId 등록에 실패하였습니다.");
+			}
+		} else if (checkResult == 1) {
+			int deleteResult = 0;
+			deleteResult = likeDao.delete(restaurantId, memberId);// 좋아요누른사람삭제
+			if (deleteResult > 0) {
+				System.out.println("Like_writerId 삭제에 성공하였습니다.");
+				likeCount -= 1;
+			}  else {
+				System.out.println("Like_writerId 삭제에 실패하였습니다.");
+			}
+		}
+		
+		String result = Integer.toString(likeCount);
+		
+		return result;
+		
+		// 좋아요 값을 가져오는 부분
+		/*Map<String, Integer> obj = new HashMap<String, Integer>();
+		obj.put("idCheck", checkResult);
+		String json = "";
+		Gson gson = new Gson();
+		json = gson.toJson(obj);
+		return json;*/
+	}
 
 }
