@@ -46,6 +46,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="resource/js/slider.js"></script> 
 <script>
+/* $(function(){
+alert("a");
+	updateData();
+})
+	function updateData(){
+		$.ajax({
+			url:"index",
+			type:"GET",
+			success: function(result){
+				alert(result);				
+			}
+			
+		});
+		setTimeout("updateData()", 2000);
+	}
+	 */
+
+
+
 		$(function(){
 		        $('.main-info-slide').reSlider({
 		            speed:1000,  //페이드속도
