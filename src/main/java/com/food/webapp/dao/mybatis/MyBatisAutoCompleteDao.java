@@ -1,6 +1,7 @@
 package com.food.webapp.dao.mybatis;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,11 @@ public class MyBatisAutoCompleteDao implements com.food.webapp.dao.AutoCompleteD
 	
 	
 	@Override
-	public List<String> autoComplete(String autoComplete) {
+	public List<Map<String, String>> autoComplete(String autoComplete) {
 
 		
 		AutoCompleteDao autoCompleteDao = sqlSession.getMapper(AutoCompleteDao.class);
-		List<String> list = autoCompleteDao.autoComplete(autoComplete);
+		List<Map<String, String>> list = autoCompleteDao.autoComplete(autoComplete);
 		
 		return list;
 	}

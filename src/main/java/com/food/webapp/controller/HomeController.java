@@ -1,7 +1,10 @@
 package com.food.webapp.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,14 +27,12 @@ public class HomeController {
 	
 	@RequestMapping(value="autocom", method=RequestMethod.GET)
 	@ResponseBody
-	public List<String> autocom(String autocomplete) {
+	public List<Map<String, String>> autocom(String autocomplete) {
+		List<Map<String, String>> result = autoComplateDao.autoComplete(autocomplete);
+		
+	System.out.println(result);
 
-		
-		List<String> result = autoComplateDao.autoComplete(autocomplete);
-		
-		
-		System.out.println(result);
-		
+	
 		
 		return result;
 		
