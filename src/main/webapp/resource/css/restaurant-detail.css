@@ -11,7 +11,7 @@
 
 #item-header {
 	width: 100%;
-	background-color: #f15c22;
+	/* background-color: #f15c22; */
 }
 
 #item-container{
@@ -22,37 +22,37 @@
     width: 100%;
     display: flex;
     display: -webkit-flex;
+    border-bottom: 3px solid #f15c22;
 }
 
 #item-header-left {
-	width: 40%;
+	width: 70%;
 }
 
 #item-header-right {
-	width: 60%;
+	width: 30%;
 }
 
 #item-sharer{
     float: left;
     width: 100%;
     margin-top: 33px;
-    margin-left: 30px;
 }
 
 #item-rn {
 	float: left;
-	color: #fff;
+	/* color: #fff; */
 	text-align: left;
 	width: 100%;
 	height: 76px;
 	line-height: 76px;
-	padding-left: 30px;
+	padding-left: 50px;
 }
 
 .item-rn-title {
-	font-size: 36px;
+	font-size: 30px;
 	text-align: left;
-	font-weight: 300;
+	font-weight: 300 bold;
 }
 
 .item-rn-divider {
@@ -62,7 +62,7 @@
 }
 
 .item-rn-subtitle {
-	font-size: 18px !important;
+	font-size: 18px;
 	font-weight: normal;
 }
 
@@ -70,7 +70,11 @@
 	font-size: 18px;
 	font-weight: normal;
 	text-align: right;
-	color: #fff;
+	/* color: #fff; */
+}
+
+.tip-writer {
+	font-size: 22px;
 }
 
 #item-category {
@@ -94,6 +98,7 @@
 	margin-top: 15px;
 	display: flex;
 	display: -webkit-flex;
+	/* border-bottom: 1px solid #f15c22; */
 }
 
 #item-stats {
@@ -110,14 +115,14 @@
 }
 
 .item-stats-count {
-	color: #fff;
+	/* color: #fff; */
 	font-size: 22px;
 	line-height: 27px;
 	font-weight: 300;
 }
 
 .item-stats-title {
-	color: #fff;
+	/* color: #fff; */
 	font-size: 15px;
 	line-height: 19px;
 	font-weight: 100;
@@ -149,13 +154,13 @@ a:link, a:hover, a:active {
 	display: inline-block;
 	width: 24px;
 	height: 22px;
-	background: url(${ctx}/resource/images/review.png) center no-repeat;
+	background: url(../images/review3.png) center no-repeat;
 	background-size: cover;
 }
 
 #review-text {
 	display: inline-block;
-	color: #fff;
+	/* color: #fff; */
 	font-size: 15px;
 	height: 22px;
 	line-height: 22px;
@@ -167,13 +172,12 @@ a:link, a:hover, a:active {
 	width: 24px;
 	height: 22px;
 	margin-left: 25px;
-	background: url(${ctx}/resource/images/like.png) center no-repeat;
+	background: url(../images/dislike.png) center no-repeat;
 	background-size: cover;
 }
 
 #item-body {
 	width: 100%;
-	background: #fff;
 }
 
 #item-body-contents {
@@ -183,7 +187,11 @@ a:link, a:hover, a:active {
 .item-information {
 	display: flex;
 	display: -webkit-flex;
-	margin-top: 32px;
+	margin-top: 20px;
+}
+
+.tip-line{
+	line-height: 100px;
 }
 
 .item-information-text {
@@ -344,9 +352,20 @@ a:link, a:hover, a:active {
 }
 
 .div_section {
-	margin-top: 30px;
+	margin-top: 10px;
 }
 
+#div_review {
+	border-bottom: 3px solid #f15c22;
+}
+
+.keyword-title{
+	text-align: right;	
+}
+
+.keyword-title .reviews{
+	padding-bottom: 15px;
+}
 .keyword-type {
 	padding-bottom: 26px;
 	border-bottom: #E0E0E0 solid 1px;

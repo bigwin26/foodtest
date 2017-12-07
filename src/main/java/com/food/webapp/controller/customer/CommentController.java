@@ -124,6 +124,10 @@ public class CommentController {
 		}
 		else if((checkFilesName.equals("")) && (!checkMenuName.equals(""))) {
 			
+			comment.setMemberId(loginId);
+			comment.setRestaurantId(id);
+			commentDao.insert(comment);
+			
 			String menuPath = ctx.getRealPath(String.format("/resource/customer/restaurant/%d/%d/menuImage", year, id));
 			File mf = new File(menuPath);
 			if (!mf.exists()) {
