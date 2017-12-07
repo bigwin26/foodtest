@@ -114,10 +114,6 @@
          </div>
       </div>
    </div>
-
-   <!-- <div style="width: 960px; margin: 0 auto;"></div>
-   <div style="clear: both;"></div>
-   <div style="width: 960px;"></div> -->
    
    <div class="div_section">
       <div id="div_review" class="keyword-title">
@@ -162,42 +158,7 @@
 	         </c:forEach>
 	    </c:if>
     </ul>
-	
-	
-      <%-- <!-- Review -->
-      <c:if test="${not empty cmtList}">
-         <c:forEach var="c" items="${cmtList}">
-            <div style="padding: 24px 0; border-bottom: #E0E0E0 solid 1px;">
-               <div>
-                  <div class="fl" style="width: 60px; height: 60px; border-radius: 50%; overflow: hidden;">
-                     <div style="background: url('https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/review/ic_profile_review_default.png') no-repeat; background-size: auto 60px; background-position: center; width: auto; height: 60px;"></div>
-                  </div>
-                  <div class="fl" style="padding: 5px 0 0 12px;">
-                     <div class="fs-15 fw-b">${c.writerName}</div>
-                     <div style="padding: 8px 0;">
-                        <i class="fa fa-star" aria-hidden="true" style="width: 20px; margin-top: -5px; font-size: 18px; color: #2483ff;"></i>
-                        <i class="fa fa-star" aria-hidden="true" style="width: 20px; margin-top: -5px; font-size: 18px; color: #2483ff;"></i>
-                     </div>
-                     <div class="fs-15" style="width: 888px; padding: 8px 0; line-height: 27px;">${c.content}</div>
-                  </div>
-               </div>
-
-               <div class="tr" style="margin-top: 8px;">
-                  <div style="display: none;">${c.memberEmail}</div>
-                  <c:if test="${email == c.memberEmail}">
-                     <div>
-                        <input type="button" onclick="location.href='../deleteComment?id=${c.id}'" value="삭제" />
-                     </div>
-                     <div>
-                        <input type="button" onclick="location.href='../comment/edit'" value="수정" />
-                     </div>
-                  </c:if>
-               </div>
-            </div>
-         </c:forEach>
-      </c:if> --%>
-      
-      
+    
    </div>
 </div>
 
