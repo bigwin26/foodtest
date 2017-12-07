@@ -46,7 +46,7 @@
 							</div>
 							<div class="item-stats">
 									<div class="item-stats-count">${r.countCmt}</div>
-									<div class="item-stats-title">댓글</div>
+									<div class="item-stats-title">평가</div>
 							</div>
 						</div>
 					</div>
@@ -54,13 +54,15 @@
 					<div id='item-header-right' style='margin-top: 10px;'>
 						<div class='pull-right'>
 							<div class='item-button-review'>
-								<a href="../comment/${r.id}">
+								<a href='#'>
 									<div id='review-icon'></div>
-									<div id='review-text'>평가하기</div>
+									<div id='review-text'>
+										<a href="../comment/${r.id}">평가하기</a>
+									</div>
 								</a>
 							</div>
 							<div class='item-button-like'>
-								<a class='item-button-like' id='favorite_btn' value='Y'>
+								<a href='#' class='item-button-like' id='favorite_btn' value='Y'>
 									<input type="hidden" id="restaurant_Id" name="restaurant_Id" value="${r.id}" />
 									<div id='fvr-icon'></div>
 									<div id='fvr-text'>좋아요</div>
@@ -78,13 +80,17 @@
 					<div class="item-information-icon">
 						<img src="${ctx}/resource/images/menu.png">
 					</div>
-					<div class="item-information-text">메뉴: </div>
+					<div class="item-information-text">
+						메뉴가 없당
+					</div>
 				</div>
 				<div class="item-information">
 					<div class="item-information-icon">
 						<img src="${ctx}/resource/images/location.png">
 					</div>
-					<div class="item-information-text">주소: ${r.address}</div>
+					<div class="item-information-text">
+						${r.address}
+					</div>
 				</div>
 				<%-- <div class="item-information" id="item-tel">
 					<div class="item-information-icon">
@@ -93,6 +99,72 @@
 					<div class="item-information-text">${r.phoneNumber}</div>
 				</div> --%>
 			</div>
+		</div>
+		<div style="margin: 10px 0 30px 0;">
+			<a href="JavaScript:setAdLog('{|u_id|:|852656|,|device|:|web|,|type|:|view|,|dcad_id|:|19|,|inven_id|:|63|,|inven_type|:|w_profile_middle_banner|,|image_id|:|503|,|v_rid|:|OSEnXQWBYLcf|,|page_type|:|profile|,|lat|:||,|lng|:||,|ip|:|10.253.32.54|}', 'https://box.diningcode.com/shop/item.php?it_id=1510644103');" target="_blank">
+				<img src="https://d2u8ukm27m1oiz.cloudfront.net/banner/dcbox_ad_1511398484.jpg" width="960px" height="120" />
+			</a>
+		</div>
+		<div style='width: 960px; margin: 0 auto;'>
+			<div class="rest-info-wrapper" style="float: left;">
+				<div class="rest-time _flex_1">
+					<div class="rest-info-icon">
+						<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/profile/main/icon-profile-time@2x.png">
+					</div>
+					<div class="rest-info-title">영업 시간</div>
+					<div class="rest-info-contents">
+						<div class="rest-time-block">
+							<div class="rest-time-left">매일</div>
+							<div class="rest-time-right">
+								<div class="time">오전 11시 - 오후 9시</div>
+							</div>
+						</div>
+						<div class="rest-time-block">
+							<div class="rest-time-left">쉬는시간 매일</div>
+							<div class="rest-time-right">
+								<div class="time">오후 3시 - 오후 5시</div>
+							</div>
+						</div>
+					</div>
+				</div>
+            	
+				<div class="rest-menu _flex_1">
+					<div class="rest-info-icon">
+						<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/profile/main/icon-profile-menu@2x.png">
+					</div>
+					<div class="rest-info-title">메뉴 정보</div>
+					<div class="rest-info-contents">
+						<div class="rest-menu-block">
+							<div class="rest-menu-left">1인당 평균가격</div>
+							<div class="rest-menu-right">
+								<div class="time">1만원대</div>
+							</div>
+						</div>
+						<div class="rest-menu-block">
+							<div class="rest-menu-left">차돌박이 쌀국수</div>
+							<div class="rest-menu-right">
+								<div class="time">7,000원</div>
+							</div>
+						</div>
+						<div class="rest-menu-block">
+							<div class="rest-menu-left">양지 쌀국수</div>
+							<div class="rest-menu-right">
+								<div class="time">7,500원</div>
+							</div>
+						</div>
+						<div class="rest-menu-block">
+							<div class="rest-menu-left">차돌양지쌀국수</div>
+							<div class="rest-menu-right">
+								<div class="time">8,000원</div>
+							</div>
+						</div>
+					</div>
+					<div class="more-extra" id="more-extra-menu">
+						메뉴 더 보기<i class="fa fa-angle-down" aria-hidden="true"></i>
+					</div>
+				</div>
+			</div>
+			<div style='clear: both;'></div>
 		</div>
 	</div>
 
