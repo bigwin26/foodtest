@@ -101,7 +101,7 @@ public class RestaurantController {
 		
 		//System.out.println(id);
 		int id1 = Integer.parseInt(id);
-		List<CmtImage> list = restaurantDao.cmtImageList(id1);
+		List<CmtImage> list = commentDao.cmtImageList(id1);
 		
 		String json = "";
 		
@@ -129,13 +129,13 @@ public class RestaurantController {
 		model.addAttribute("r", restaurantDao.get(id));
 		model.addAttribute("prev", restaurantDao.getPrev(id));
 		model.addAttribute("next", restaurantDao.getNext(id));
-		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//占식깍옙 占쏙옙占쏙옙트 
-		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//占식깍옙 占쏙옙占쏙옙
-		model.addAttribute("cmtImageList", restaurantDao.cmtImageList(id));//占식깍옙 占쏙옙占쏙옙占쏙옙
+		model.addAttribute("cmtList", commentDao.getCmt(id, page));//占식깍옙 占쏙옙占쏙옙트 
+		model.addAttribute("cmtp", commentDao.cmtCount(id));//占식깍옙 占쏙옙占쏙옙
+		model.addAttribute("cmtImageList", commentDao.cmtImageList(id));//占식깍옙 占쏙옙占쏙옙占쏙옙
 		model.addAttribute("like", likeDao.check(id, principal.getName()));
 		model.addAttribute("likeCount", likeDao.count(id));
 		
-		System.out.println("restaurantId: " + id + ", cmtImageList-length: " + restaurantDao.cmtImageList(id).size());
+		System.out.println("restaurantId: " + id + ", cmtImageList-length: " + commentDao.cmtImageList(id).size());
 		
 		return "customer.restaurant.detail";
 	}

@@ -62,16 +62,6 @@
 		from Restaurant	
 	</select>
 
-
-	<select id="getCmt" resultType="com.food.webapp.entity.CommentView">
-		select * from CommentView where restaurantId = #{id} order by regDate desc limit ${(page-1)*5}, 5
-	</select>
-	
-	<select id="cmtCount" resultType="int">
-		select count(*) count from CommentView where restaurantId = #{id}
-	</select>
-
-
 	<insert id="insert" parameterType="com.food.webapp.entity.Restaurant">
 		<selectKey order="BEFORE" keyProperty="id" resultType="int">
 			select IFNULL(max(cast(id as unsigned)), 0)+1 from Restaurant
@@ -79,14 +69,10 @@
 		insert into Restaurant(id, name, location, address, content, genre, keyword, image, tip, memberId, lastMemberId)
 		value(#{id}, #{name}, #{location}, #{address}, #{content}, #{genre}, #{keyword}, #{image}, #{tip}, #{memberId}, #{lastMemberId});
 	</insert>
-
+	
 	<update id="okRestaurant" >
 		update Restaurant set ok=${ok} where id=#{id} and name=#{name} and regDate=#{date}
 	</update>
-	
-	<select id="cmtImageList" resultType="com.food.webapp.entity.CmtImage">
-		select * from CmtImage where commentId = #{id}
-	</select>
 	
 	<select id="menuImageList" resultType="com.food.webapp.entity.RestaurantMenu">
 		select * from RestaurantMenu where restuarantId = #{id}

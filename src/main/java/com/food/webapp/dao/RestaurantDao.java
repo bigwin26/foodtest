@@ -29,11 +29,11 @@ public interface RestaurantDao {
 	int getNextId();
 	int insert(String name, String location, String address, String content,int time, String genre, String keyword, String image, String tip,int memberId, int lastMemberId, Date regDate, int ok,String phoneNumber);
 	int insert(Restaurant restaurant);
-	List<CommentView> getCmt(@Param("id")int id, @Param("page")int page);
+	/*List<CommentView> getCmt(@Param("id")int id, @Param("page")int page);
 	int cmtCount(int id);
+	List<CmtImage> cmtImageList(int id);*/
 	int okRestaurant(int id, String name, String date, int ok);
 	int okRestaurant(Restaurant restaurant);
-	List<CmtImage> cmtImageList(int id);
 	List<RestaurantMenu> menuImageList(int id);
 	int deleteOk(int id);
 }
