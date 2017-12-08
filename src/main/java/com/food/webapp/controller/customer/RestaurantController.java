@@ -118,21 +118,24 @@ public class RestaurantController {
 		//System.out.println(json);
 		return json;
 	}
-
 	
 	@RequestMapping("restaurant/{id}")
 	public String detail(@PathVariable("id") int id,
-						@RequestParam(value="p", defaultValue="1")  Integer page,
-						Model model,Principal principal) {
+						@RequestParam(value="p", defaultValue="1") Integer page,
+						Model model,
+						Principal principal) {
 		
-		model.addAttribute("email",principal.getName());
+		model.addAttribute("email", principal.getName());
 		model.addAttribute("r", restaurantDao.get(id));
 		model.addAttribute("prev", restaurantDao.getPrev(id));
 		model.addAttribute("next", restaurantDao.getNext(id));
-		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//�ı� ����Ʈ 
-		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//�ı� ����
+		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//占식깍옙 占쏙옙占쏙옙트 
+		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//占식깍옙 占쏙옙占쏙옙
+		model.addAttribute("cmtImageList", restaurantDao.cmtImageList(id));//占식깍옙 占쏙옙占쏙옙占쏙옙
+		model.addAttribute("like", likeDao.check(id, principal.getName()));
+		model.addAttribute("likeCount", likeDao.count(id));
 		
-		model.addAttribute("cmtImageList", restaurantDao.cmtImageList(id));//�ı� ������
+		System.out.println("restaurantId: " + id + ", cmtImageList-length: " + restaurantDao.cmtImageList(id).size());
 		
 		return "customer.restaurant.detail";
 	}
@@ -163,7 +166,7 @@ public class RestaurantController {
 		File f = new File(path); 
 	      if(!f.exists()) {
 		         if(!f.mkdirs())
-		            System.out.println("���丮�� ������ ���� �����ϴ�.");
+		            System.out.println("占쏙옙占썰리占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙.");
 	      }
 	    path +=File.separator + file.getOriginalFilename();
 	    File f2 = new File(path); 
@@ -201,42 +204,51 @@ public class RestaurantController {
 
 		return "redirect:restaurant";
 	}*/
-   @RequestMapping(value ="restaurant/like", method = RequestMethod.GET)
-   @ResponseBody
-   public String boardLikeSave(@RequestParam int restaurant_Id, Principal principal) {
-      int restaurantId = restaurant_Id;
-      System.out.println("왓다 infoID : "+ restaurant_Id);
-      String memberId = principal.getName();
-      System.out.println("왓다 memberID : "+ memberId);
-      // 좋아요 start저장하는 부분
-      // 좋아요를 누른 사용자 중복체크
-      Integer checkResult = 0;
-      checkResult = likeDao.Check(restaurantId, memberId);
-       System.out.println("idcheckResult : "+ checkResult);
-      // writerId값이 존재하지 않으면 <=0
-      if (checkResult <= 0) {
-         int insertResult = 0;
-         insertResult = likeDao.Insert(restaurantId, memberId);// 좋아요누른사람저장하기
-         if (insertResult > 0) {
-            System.out.println("Like_writerId등록에 성공하였습니다.");
-         } else {
-            System.out.println("Like_writerId등록에 실패하였습니다.");
-         }
-      }
-      else if(checkResult == 1) {
-    	  int result = 0;
-          result = likeDao.delete(restaurantId, memberId);// 좋아요누른사람삭제
-          if (result == 0) {
-             System.out.println("Like_writerId 삭제에 성공하였습니다.");
-          } 
-      }
-      // 좋아요 값을 가져오는 부분
-      Map<String, Integer> obj = new HashMap<String, Integer>();
-      obj.put("idCheck", checkResult);
-      String json = "";
-      Gson gson = new Gson();
-      json = gson.toJson(obj);
-      return json;
-   }
+
+	@RequestMapping(value = "restaurant/like", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String boardLikeSave(@RequestParam String restaurant_Id, Principal principal) {
+		int restaurantId = Integer.parseInt(restaurant_Id);
+		System.out.println("�솓�떎 infoID : " + restaurantId);
+		String memberId = principal.getName();
+		System.out.println("�솓�떎 memberID : " + memberId);
+		// 醫뗭븘�슂 start���옣�븯�뒗 遺�遺�
+		// 醫뗭븘�슂瑜� �늻瑜� �궗�슜�옄 以묐났泥댄겕
+		
+		int checkResult = 0;
+		int likeCount = likeDao.count(restaurantId);
+		checkResult = likeDao.check(restaurantId, memberId);
+		System.out.println("idcheckResult : " + checkResult);
+		
+		// writerId媛믪씠 議댁옱�븯吏� �븡�쑝硫� <=0
+		if (checkResult <= 0) {
+			int insertResult = 0;
+			insertResult = likeDao.insert(restaurantId, memberId);// 醫뗭븘�슂�늻瑜몄궗�엺���옣�븯湲�
+			if (insertResult > 0) {
+				System.out.println("Like_writerId �벑濡앹뿉 �꽦怨듯븯���뒿�땲�떎.");
+				likeCount += 1;
+			} else {
+				System.out.println("Like_writerId �벑濡앹뿉 �떎�뙣�븯���뒿�땲�떎.");
+			}
+		} else if (checkResult == 1) {
+			int deleteResult = 0;
+			deleteResult = likeDao.delete(restaurantId, memberId);// 醫뗭븘�슂�늻瑜몄궗�엺�궘�젣
+			if (deleteResult > 0) {
+				System.out.println("Like_writerId �궘�젣�뿉 �꽦怨듯븯���뒿�땲�떎.");
+				likeCount -= 1;
+			}  else {
+				System.out.println("Like_writerId �궘�젣�뿉 �떎�뙣�븯���뒿�땲�떎.");
+			}
+		}
+		
+		// 醫뗭븘�슂 媛믪쓣 媛��졇�삤�뒗 遺�遺�
+		Map<String, Integer> obj = new HashMap<String, Integer>();
+		obj.put("likeCount", likeCount);
+		obj.put("checkResult", checkResult);
+		String json = "";
+		Gson gson = new Gson();
+		json = gson.toJson(obj);
+		return json;
+	}
 
 }

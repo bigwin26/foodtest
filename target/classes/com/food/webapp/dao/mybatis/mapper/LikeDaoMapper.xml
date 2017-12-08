@@ -5,17 +5,23 @@
     
 <mapper namespace="com.food.webapp.dao.LikeDao">
 	
-	<insert id="Insert" parameterType="com.food.webapp.entity.Liked">	
+	<insert id="insert" parameterType="com.food.webapp.entity.Liked">	
 		insert into Liked(restaurantId,memberId)
 		values(#{restaurantId},#{memberId})
 	</insert>
 		
-	<select id="Check" resultType="java.lang.Integer">
+	<select id="check" resultType="java.lang.Integer">
 		select count(*)
 		from Liked where restaurantId = #{restaurantId} and memberId = #{memberId}
 	</select>
 	
- 	<delete id="delete" parameterType="java.lang.Integer">
+ 	<delete id="delete">
 		delete from Liked where restaurantId = #{restaurantId} and memberId = #{memberId}
-	</delete> 
+	</delete>
+	
+	<select id="count" resultType="java.lang.Integer">
+		select count(*)
+		from Liked where restaurantId = #{restaurantId}
+	</select>
+	
 </mapper>

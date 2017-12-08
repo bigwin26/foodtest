@@ -15,6 +15,7 @@
 }
 </style>
 <main id="main">
+<%-- likeCount: ${likeCount} --%>
 <!-- <div class="map_area">
    <div id="map" style="width: 100%; height: 250px; position: relative; overflow: hidden;"></div>
 </div> -->
@@ -44,7 +45,7 @@
                         <div class="item-stats-title">평점</div>
                      </div>
                      <div class="item-stats">
-                        <div class="item-stats-count">${r.countLiked}</div>
+                        <div id="like-count" class="item-stats-count">${r.countLiked}</div>
                         <div class="item-stats-title">좋아요</div>
                      </div>
                      <div class="item-stats">
@@ -65,9 +66,20 @@
                         </a>
                      </div>
                      <div class='item-button-like'>
-                        <a href='#' class='item-button-like' id='favorite_btn' value='Y'>
+                        <a class='item-button-like' id='favorite_btn' value='Y'>
                            <input type="hidden" id="restaurant_Id" name="restaurant_Id" value="${r.id}" />
-                           <div id='fvr-icon'></div>
+                           <c:if test="${like eq 0}">
+                           		<div id='fvr-icon' style="
+                           						background: url('${ctx}/resource/images/dislike.png') center no-repeat; 
+                           						background-size: cover;">
+                    			</div>
+                           </c:if>
+                           <c:if test="${like eq 1}">
+                           		<div id='fvr-icon' style="
+                           						background: url('${ctx}/resource/images/like2.png') center no-repeat; 
+                           						background-size: cover;">
+                    			</div>
+                           </c:if>
                            <div id='fvr-text'>좋아요</div>
                         </a>
                      </div>
@@ -93,7 +105,7 @@
                   <img src="${ctx}/resource/images/menu.png">
                </div>
                <div class="item-information-text">
-                  메뉴: 
+               		메뉴: 
                </div>
                <img id="menuImage">
             </div>
@@ -114,53 +126,61 @@
          </div>
       </div>
    </div>
-
-   <!-- <div style="width: 960px; margin: 0 auto;"></div>
-   <div style="clear: both;"></div>
-   <div style="width: 960px;"></div> -->
    
    <div class="div_section">
       <div id="div_review" class="keyword-title">
-         <div class="reviews">총 ${cmtp}건의 방문자 평가</div>
+         	총 ${cmtp}건의 방문자 평가
       </div>
-
-      <!-- Review -->
-      <c:if test="${not empty cmtList}">
-         <c:forEach var="c" items="${cmtList}">
-            <div style="padding: 24px 0; border-bottom: #E0E0E0 solid 1px;">
-               <div>
-                  <div class="fl" style="width: 60px; height: 60px; border-radius: 50%; overflow: hidden;">
-                     <div style="background: url('https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/review/ic_profile_review_default.png') no-repeat; background-size: auto 60px; background-position: center; width: auto; height: 60px;"></div>
-                  </div>
-                  <div class="fl" style="padding: 5px 0 0 12px;">
-                     <div class="fs-15 fw-b">${c.writerName}</div>
-                     <div style="padding: 8px 0;">
-                        <i class="fa fa-star" aria-hidden="true" style="width: 20px; margin-top: -5px; font-size: 18px; color: #2483ff;"></i>
-                        <i class="fa fa-star" aria-hidden="true" style="width: 20px; margin-top: -5px; font-size: 18px; color: #2483ff;"></i>
-                     </div>
-                     <div class="fs-15" style="width: 888px; padding: 8px 0; line-height: 27px;">${c.content}</div>
-                  </div>
-               </div>
-
-               <div class="tr" style="margin-top: 8px;">
-                  <div style="display: none;">${c.memberEmail}</div>
-                  <c:if test="${email == c.memberEmail}">
-                     <div>
-                        <input type="button" onclick="location.href='../deleteComment?id=${c.id}'" value="삭제" />
-                     </div>
-                     <div>
-                        <input type="button" onclick="location.href='../comment/edit'" value="수정" />
-                     </div>
-                  </c:if>
-               </div>
-            </div>
-         </c:forEach>
-      </c:if>
+	
+	<ul class="review-list">
+		<c:if test="${not empty cmtList}">
+	         <c:forEach var="c" items="${cmtList}">
+	         	<li>
+		         	<div class="blur-area">
+						<a href="" class="user-pic">
+							<img alt="회원사진" src="${ctx}/resource/images/1.jpg">
+						</a>
+						<div class="review">
+							<c:forEach var="i" items="${cmtImageList}">
+								<%-- <p>${ci.src}</p> --%>
+								<p>${i.id}</p>
+							</c:forEach>
+							<%-- <p id="${r.id}">${r.id}</p> --%>
+							<p class="review-name">${c.writerName}</p>
+							<p class="review-text">${c.content}</p>
+							<div class="review-bottom">
+								<div class="review-date">
+									<fmt:formatDate pattern="yyyy-MM-dd kk:mm:ss" value="${c.regDate}" />
+								</div>
+								<c:if test="${email == c.memberEmail}">
+									<div style="position: absolute; right: 20px;">
+				                        <input type="button" onclick="location.href='../deleteComment?id=${c.id}'" value="삭제" />
+				                        <input type="button" onclick="location.href='../comment/edit'" value="수정" />
+					                </div>
+			                  	</c:if>
+								<%-- <span class="review-like">
+									<span class="reivew-like-count">
+										<span class="like-count-text">${c.like}</span>
+									</span>
+								</span>
+								<span class="review-report">신고하기</span> --%>
+							</div>
+							
+			                <div style="display: none;">${c.memberEmail}</div>
+		                  
+						</div>
+					</div>
+					<!-- <span class="baloon-arrow"></span> -->
+				</li>
+	         </c:forEach>
+	    </c:if>
+    </ul>
+    
    </div>
 </div>
 
-   <!-- <script>
-$(function(){   
+   <script>
+/* $(function(){   
 $("#favorite_btn").click(function(){
 
    var restaurantId = ${r.id};
@@ -187,8 +207,8 @@ $.ajax({
    
 });
 })
-})
-</script> -->
+}) */
+</script>
 </main>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9c613e70636456cd2f3178169be248f"></script>
@@ -356,72 +376,49 @@ $.ajax({
       }
       
       /* ==================================================================================================== */
-      
-      
-        var isTimeOpened = false;    
-    
-        $("#more-extra-time").click(function(){
-           
-           if(!isTimeOpened){
-          
-               var append = "";$(".rest-time .rest-info-contents").append(append);
-                    isTimeOpened = true;
-                    $("#more-extra-time").html("접기<i class=\"fa fa-angle-up\" aria-hidden=\"true\"></i>"); 
-            }else{
-           
-                $(".rest-time .rest-info-contents .rest-time-block:gt(1)").remove();
-                    $("#more-extra-time").html("시간 더 보기<i class=\"fa fa-angle-down\" aria-hidden=\"true\"></i>");
-                    isTimeOpened = false;
-            }
-       });
        
-       
-       var isMenuOpen = false;    
-       $("#more-extra-menu").click(function(){
-           if(!isMenuOpen){
-               var append = "";append +="<div class=\"rest-menu-block\"><div class=\"rest-menu-left\">모듬전식</div><div class=\"rest-menu-right\"><div class=\"time\">7,500원</div></div></div>";append +="<div class=\"rest-menu-block\"><div class=\"rest-menu-left\">감자말이새우</div><div class=\"rest-menu-right\"><div class=\"time\">2,500원</div></div></div>";$(".rest-menu .rest-info-contents").append(append);
-                    isMenuOpen = true;
-                    $("#more-extra-menu").html("접기<i class=\"fa fa-angle-up\" aria-hidden=\"true\"></i>");
-         }
-           else {
-              $(".rest-menu .rest-info-contents .rest-menu-block:gt(3)").remove();
-              $("#more-extra-menu").html("시간 더 보기<i class=\"fa fa-angle-down\" aria-hidden=\"true\"></i>");
-              isMenuOpen = false;
-           }
-       });
-       
-       //db좋아요올리기
-       //댓글을 다는 이벤트
-       $("#favorite_btn").click(function() {
-         alert('눌렸다');
-         console.log("restaurant_Id" + $("#restaurant_Id").val());
-         //값 셋팅
-         var objParams = {
-            restaurant_Id : $("#restaurant_Id").val()
-         };
-         //ajax 호출
+      $("#favorite_btn").click(function(){
+		  var restaurantId = ${r.id};
+		  //var memberId = '<security:authentication property="name"/>';
+		  $.ajax({
+		  		type:"GET",
+		  		url:"like",
+		  		
+		  		data : {
+		  			"restaurant_Id":restaurantId
+		  			//"memberId":memberId
+		  			}, 
+	  			dataType: "json",
+		  		success : function(result){
+		  			//var json = JSON.stringify(result);
+		  			//alert(json);
+		  			var likeCount = result.likeCount;
+		  			var checkResult = result.checkResult;
+		  			$("#like-count").text(likeCount);
+		  			
+		  			if(checkResult == 1){
+		  				$("#fvr-icon").css({
+		  					"background": "url(${ctx}/resource/images/dislike.png)",
+		  					"background-size": "cover"
+		  				});
+		  			}
+		  			if(checkResult == 0){
+		  				$("#fvr-icon").css({
+		  					"background": "url(${ctx}/resource/images/like2.png)",
+		  					"background-size": "cover"
+		  				});
+		  			}
+		  			
+		  			/* if(result == 1){
+		  				alert("저장되었습니다");
+		  			}
+		  			else if(result == 0){
+		  				alert("삭제되었습니다");
+		  			} */
+		  		}
+		  });
+	  })
 
-         $.get("${path}/food/customer/restaurant/like?restaurant_Id="
-            + $("#restaurant_Id").val(), function(data) {
-               //                   alert(data);
-               //                   alert(JSON.parse(data)['idCheck']);
-               //                   console.log("data" + data);
-               //                   console.log("data type" + typeof data);
-               var json = JSON.parse(data);
-               console.log(json);
-               var idCheck = json['idCheck'];
-               //var idCheck = data.idCheck;//안대~
-               /*  var likeCount = json['likeCount']; */
-               console.log("idCheck : " + idCheck);
-               //console.log("likeCount : " + likeCount);
-               if (idCheck > 0)
-                  alert("이미 좋아요를 누르셨습니다.");
-            /*   else if(idCheck==-10)
-                 alert("죄송합니다. 오류가 생겼습니다. 빠른시일내로 복구하겠습니다.");
-              $("#likeCount").text(likeCount); */
-            });
-      });
-      //좋아요
 
    });
    

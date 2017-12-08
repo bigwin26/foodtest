@@ -172,7 +172,7 @@ a:link, a:hover, a:active {
 	width: 24px;
 	height: 22px;
 	margin-left: 25px;
-	background: url(../images/dislike.png) center no-repeat;
+	/* background: url(../images/dislike.png) center no-repeat; */
 	background-size: cover;
 }
 
@@ -361,11 +361,9 @@ a:link, a:hover, a:active {
 
 .keyword-title{
 	text-align: right;	
+	padding: 15px;
 }
 
-.keyword-title .reviews{
-	padding-bottom: 15px;
-}
 .keyword-type {
 	padding-bottom: 26px;
 	border-bottom: #E0E0E0 solid 1px;

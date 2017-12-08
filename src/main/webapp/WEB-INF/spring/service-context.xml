@@ -42,5 +42,6 @@
    <bean class="com.food.webapp.dao.mybatis.MyBatisNoticeFileDao"/>
    <bean class="com.food.webapp.dao.mybatis.MyBatisCommentDao"/>
    <bean class="com.food.webapp.dao.mybatis.MyBatisLikeDao"/>
+   <bean class="com.food.webapp.dao.mybatis.MyBatisAutoCompleteDao"/>
    <context:annotation-config />
 </beans>

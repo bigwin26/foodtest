@@ -158,4 +158,10 @@ a{
     font-size: 18px;
 }
 
-
+.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front{
+    top: 440px !important; 
+    left: 569px !important;
+    width: 544px !important;
+    display: none !important;
+	
+}

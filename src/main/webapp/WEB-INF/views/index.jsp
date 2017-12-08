@@ -3,7 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<meta charset="utf-8">
 <c:set var="path" value="${pageContext.request.contextPath}" />
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="resource/css/reset.css">
@@ -31,7 +33,7 @@
 		<div class="main-info-container-search">
 			 <form action="customer/restaurant" method="get">
 				<span class="main-info-container-search-inner"> <input
-					type="text" class="main-info-container-search-inner-text" name="q" />
+					type="text" class="main-info-container-search-inner-text" name="q" id="autocom"/>
 				</span>
 				<button id="search" class="main-info-container-search-inner-submit"
 					style="background-image: url('resource/images/search.png');"
@@ -45,7 +47,54 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="resource/js/slider.js"></script> 
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
 <script>
+$(function(){
+	
+	
+	
+	$("#autocom").keyup(function(){		
+		
+		$.ajax({
+			
+			type:"GET",
+			url:"autocom",
+			dataType:"json",
+			data:{
+				
+				autocomplete : $("#autocom").val() 
+				
+			},
+			success : function(result){
+				
+				var a = new Array();
+				for(i=0; i<result.length; i++){
+				 a[i] = result[i].name;
+				}
+				
+				$("#autocom").autocomplete({source:a});			
+				
+			}
+		})
+		
+		
+		
+		
+		
+		
+		
+		
+	})
+	
+		
+	
+})
+
+
 /* $(function(){
 alert("a");
 	updateData();
