@@ -5,6 +5,7 @@ public class CmtImage {
 	private String src;
 	private int commentId;
 	private int memberId;
+	private int restaurantId;
 	
 	
 	public int getId() {
@@ -31,15 +32,22 @@ public class CmtImage {
 	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
+	public int getRestaurantId() {
+		return restaurantId;
+	}
+	public void setRestaurantId(int restaurantId) {
+		this.restaurantId = restaurantId;
+	}
 	public CmtImage() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CmtImage(int id, String src, int commentId, int memberId) {
+	public CmtImage(int id, String src, int commentId, int memberId, int restaurantId) {
 		super();
 		this.id = id;
 		this.src = src;
 		this.commentId = commentId;
 		this.memberId = memberId;
+		this.restaurantId = restaurantId;
 	}
 }

@@ -135,6 +135,8 @@ public class RestaurantController {
 		model.addAttribute("like", likeDao.check(id, principal.getName()));
 		model.addAttribute("likeCount", likeDao.count(id));
 		
+		System.out.println("restaurantId: " + id + ", cmtImageList-length: " + restaurantDao.cmtImageList(id).size());
+		
 		return "customer.restaurant.detail";
 	}
 	
@@ -238,10 +240,6 @@ public class RestaurantController {
 				System.out.println("Like_writerId �궘�젣�뿉 �떎�뙣�븯���뒿�땲�떎.");
 			}
 		}
-		
-		/*String result = Integer.toString(likeCount);
-		
-		return result;*/
 		
 		// 醫뗭븘�슂 媛믪쓣 媛��졇�삤�뒗 遺�遺�
 		Map<String, Integer> obj = new HashMap<String, Integer>();

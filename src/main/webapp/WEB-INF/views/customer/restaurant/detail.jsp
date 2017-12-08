@@ -141,7 +141,12 @@
 							<img alt="회원사진" src="${ctx}/resource/images/1.jpg">
 						</a>
 						<div class="review">
-							<a class="review-name" href="">${c.writerName}</a>
+							<c:forEach var="i" items="${cmtImageList}">
+								<%-- <p>${ci.src}</p> --%>
+								<p>${i.id}</p>
+							</c:forEach>
+							<%-- <p id="${r.id}">${r.id}</p> --%>
+							<p class="review-name">${c.writerName}</p>
 							<p class="review-text">${c.content}</p>
 							<div class="review-bottom">
 								<div class="review-date">

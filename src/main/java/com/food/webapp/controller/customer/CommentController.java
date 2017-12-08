@@ -96,6 +96,7 @@ public class CommentController {
 			for (int i = 0; i < file.length; i++) {
 				path += File.separator + file[i].getOriginalFilename();
 				cmtImage.setSrc(file[i].getOriginalFilename());
+				cmtImage.setRestaurantId(id);
 				commentDao.insertCmtImage(cmtImage);
 				File f2 = new File(path);
 				file[i].transferTo(f2);
@@ -165,6 +166,7 @@ public class CommentController {
 			for (int i = 0; i < file.length; i++) {
 				path += File.separator + file[i].getOriginalFilename();
 				cmtImage.setSrc(file[i].getOriginalFilename());
+				cmtImage.setRestaurantId(id);
 				commentDao.insertCmtImage(cmtImage);
 				File f2 = new File(path);
 				file[i].transferTo(f2);
@@ -173,8 +175,6 @@ public class CommentController {
 			}
 			
 		}
-		
-		
 
 		return "redirect:../restaurant/{id}";
 	}
