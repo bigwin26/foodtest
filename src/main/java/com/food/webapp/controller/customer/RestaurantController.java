@@ -101,7 +101,7 @@ public class RestaurantController {
 		
 		//System.out.println(id);
 		int id1 = Integer.parseInt(id);
-		List<CmtImage> list = restaurantDao.cmtImageList(id1);
+		List<CmtImage> list = commentDao.cmtImageList(id1);
 		
 		String json = "";
 		
@@ -129,11 +129,13 @@ public class RestaurantController {
 		model.addAttribute("r", restaurantDao.get(id));
 		model.addAttribute("prev", restaurantDao.getPrev(id));
 		model.addAttribute("next", restaurantDao.getNext(id));
-		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//占식깍옙 占쏙옙占쏙옙트 
-		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//占식깍옙 占쏙옙占쏙옙
-		model.addAttribute("cmtImageList", restaurantDao.cmtImageList(id));//占식깍옙 占쏙옙占쏙옙占쏙옙
+		model.addAttribute("cmtList", commentDao.getCmt(id, page));//占식깍옙 占쏙옙占쏙옙트 
+		model.addAttribute("cmtp", commentDao.cmtCount(id));//占식깍옙 占쏙옙占쏙옙
+		model.addAttribute("cmtImageList", commentDao.cmtImageList(id));//占식깍옙 占쏙옙占쏙옙占쏙옙
 		model.addAttribute("like", likeDao.check(id, principal.getName()));
 		model.addAttribute("likeCount", likeDao.count(id));
+		
+		System.out.println("restaurantId: " + id + ", cmtImageList-length: " + commentDao.cmtImageList(id).size());
 		
 		return "customer.restaurant.detail";
 	}
@@ -238,10 +240,6 @@ public class RestaurantController {
 				System.out.println("Like_writerId �궘�젣�뿉 �떎�뙣�븯���뒿�땲�떎.");
 			}
 		}
-		
-		/*String result = Integer.toString(likeCount);
-		
-		return result;*/
 		
 		// 醫뗭븘�슂 媛믪쓣 媛��졇�삤�뒗 遺�遺�
 		Map<String, Integer> obj = new HashMap<String, Integer>();

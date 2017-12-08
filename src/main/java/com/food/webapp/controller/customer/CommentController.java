@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.Principal;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +28,10 @@ import com.food.webapp.dao.MemberDao;
 import com.food.webapp.dao.RestaurantDao;
 import com.food.webapp.entity.CmtImage;
 import com.food.webapp.entity.Comment;
+import com.food.webapp.entity.CommentView;
 import com.food.webapp.entity.RestaurantMenu;
+import com.google.gson.Gson;
+
 
 @Controller
 @RequestMapping("/customer/*")
@@ -47,8 +51,7 @@ public class CommentController {
 						Model model) {
 		
 		model.addAttribute("r", restaurantDao.get(id));
-		
-		model.addAttribute("cmtp", restaurantDao.cmtCount(id));
+		model.addAttribute("cmtp", commentDao.cmtCount(id));
 		
 		return "customer.comment.reg";
 	}
@@ -96,6 +99,7 @@ public class CommentController {
 			for (int i = 0; i < file.length; i++) {
 				path += File.separator + file[i].getOriginalFilename();
 				cmtImage.setSrc(file[i].getOriginalFilename());
+				cmtImage.setRestaurantId(id);
 				commentDao.insertCmtImage(cmtImage);
 				File f2 = new File(path);
 				file[i].transferTo(f2);
@@ -165,6 +169,7 @@ public class CommentController {
 			for (int i = 0; i < file.length; i++) {
 				path += File.separator + file[i].getOriginalFilename();
 				cmtImage.setSrc(file[i].getOriginalFilename());
+				cmtImage.setRestaurantId(id);
 				commentDao.insertCmtImage(cmtImage);
 				File f2 = new File(path);
 				file[i].transferTo(f2);
@@ -173,38 +178,54 @@ public class CommentController {
 			}
 			
 		}
-		
-		
 
 		return "redirect:../restaurant/{id}";
 	}
 	
-	@RequestMapping(value="comment/edit/{id}", method=RequestMethod.GET)
-	   public String edit(@PathVariable("id") int id,Model model,Integer page) {
-		   
+	@RequestMapping(value = "comment/edit/{id}", method = RequestMethod.GET)
+	public String edit(@PathVariable("id") int id, Model model, Integer page) {
+
 		model.addAttribute("r", restaurantDao.get(id));
 		model.addAttribute("prev", restaurantDao.getPrev(id));
 		model.addAttribute("next", restaurantDao.getNext(id));
-		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//�ı� ����Ʈ 
-		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//�ı� ����
-		
-		model.addAttribute("cmtImageList", restaurantDao.cmtImageList(id));//�ı� ������
-	      
-	      return "customer.comment.edit";
-	   }
-	   
-	   @RequestMapping(value="comment/edit/{id}", method=RequestMethod.POST)
-	   public String noticeEdit(@PathVariable("id") String id, Comment comment) {
-	      
-	      int row = commentDao.edit(comment);
-	      System.out.println(row);
-		   
-	      return "redirect:../{id}";
-	   }
-	
-	@RequestMapping(value="deleteComment",method=RequestMethod.GET)
-	public String deleteComment(@RequestParam(value="id") int id) {
+		model.addAttribute("cmtList", commentDao.getCmt(id, page));// �ı� ����Ʈ
+		model.addAttribute("cmtp", commentDao.cmtCount(id));// �ı� ����
+
+		model.addAttribute("cmtImageList", commentDao.cmtImageList(id));// �ı� ������
+
+		return "customer.comment.edit";
+	}
+
+	@RequestMapping(value = "comment/edit/{id}", method = RequestMethod.POST)
+	public String noticeEdit(@PathVariable("id") String id, Comment comment) {
+
+		int row = commentDao.edit(comment);
+		System.out.println(row);
+
+		return "redirect:../{id}";
+	}
+
+	@RequestMapping(value = "deleteComment", method = RequestMethod.GET)
+	public String deleteComment(@RequestParam(value = "id") int id) {
 		commentDao.delete(id);
 		return "redirect:restaurant";
 	}
+	
+	@RequestMapping(value="comment-ajax", produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String commentAjax(int id, int page) {
+		
+		//System.out.println(page);
+		List<CommentView> list = commentDao.getCmt(id, page);
+		
+		String json = "";
+		
+		Gson gson = new Gson();
+		json = gson.toJson(list);
+		
+		return json;
+	}
+	
+	
+	
 }

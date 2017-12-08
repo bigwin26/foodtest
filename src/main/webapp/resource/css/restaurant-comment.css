@@ -35,13 +35,13 @@ h5 .view-all-link{
 }
 	.review-name{
 		font-size: 14px;
-		color: black;
+		/* color: black; */
 	    cursor: pointer;
 	}
 	.review-text{
 		margin-top: 10px;
 	    line-height: 20px;
-	    color: #555555;
+	    /* color: #555555; */
 	    font-size: 14px;
 	    white-space: pre-wrap;
 	}

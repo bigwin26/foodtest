@@ -8,8 +8,8 @@
 <script src="${path}/resource/js/star.js"></script>
 <script type="text/javascript">
 	window.addEventListener("load", function() {
-		var fileInput = document.querySelector("#ex3-upload input");
-		var spanButton = document.querySelector("#ex3-upload span");
+		var fileInput = document.querySelector(".ex3-upload input");
+		var spanButton = document.querySelector(".ex3-upload span");
 		/*  var progressBar =  document.querySelector("#ex3-upload #progress-bar");
 		 progressBar.style.width = "0px"; */
 
@@ -138,7 +138,7 @@
 							있습니다.</span>
 					</div>
 					<div class="fr">
-					<div id="ex3-upload">
+					<div class="ex3-upload">
 						<input type="file" name="file" style="display: none;" /> <span
 							style="border: 1px solid #999; border-radius: 5px; background: #f15c22; padding: 10px; cursor: pointer;color: white;">파일선택</span>
 						<div>
@@ -167,7 +167,7 @@
 							있습니다.</span>
 					</div>
 					<div class="fr">
-					<div id="ex3-upload">
+					<div class="ex3-upload">
 						<input type="file" name="image" style="display: none;" /> <span
 							style="border: 1px solid #999; border-radius: 5px; background: #f15c22; padding: 10px; cursor: pointer;color: white;">파일선택</span>
 						<div>

@@ -141,7 +141,12 @@
 							<img alt="회원사진" src="${ctx}/resource/images/1.jpg">
 						</a>
 						<div class="review">
-							<a class="review-name" href="">${c.writerName}</a>
+							<%-- <c:forEach var="i" items="${cmtImageList}">
+								<p>${i.id}</p>
+							</c:forEach> --%>
+							<%-- <p id="${r.id}">${r.id}</p> --%>
+							<p>${c.id}</p>
+							<p class="review-name">${c.writerName}</p>
 							<p class="review-text">${c.content}</p>
 							<div class="review-bottom">
 								<div class="review-date">
@@ -174,7 +179,11 @@
    </div>
 </div>
 
-   <script>
+<div class="ajax-loading" style="position: fixed; top: 40%; left: 45%; z-index: 999; display: none;">
+	<img src="${ctx}/resource/images/loading.gif" style="width: 100px; height: 100px; text-align: center;">
+</div>
+
+<script>
 /* $(function(){   
 $("#favorite_btn").click(function(){
 
@@ -208,7 +217,127 @@ $.ajax({
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9c613e70636456cd2f3178169be248f"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="${ctx}/resource/js/moment.min.js"></script>
 <script>
+	
+	var page = 1;
+	$(window).scroll(function() {
+	
+	    if ($(document).height() <= $(window).scrollTop() + $(window).height()) {
+	
+	        $(function() {
+	            page += 1;
+	        
+	            $.ajax({
+	                type: "POST",
+	                url: "../comment-ajax?${_csrf.parameterName}=${_csrf.token}",
+	                data: {
+	                	"id": ${r.id},
+	                    "page": page
+	                },
+	                dataType: "json",
+	                beforeSend: function() {
+	                   $(".ajax-loading").css("display","inline-block");
+	                },
+	                complete: function() {
+	                   $(".ajax-loading").css("display","none");
+	                },
+	                success: function(data) {
+	                    var json = JSON.stringify(data);
+	                    //alert(json);
+	                	
+	                    if(data.length == 0){
+	                        page -= 1;
+	                        return;
+	                    }
+						
+	                    var content = "";
+	                    for (var i = 0; i < data.length; i++) {
+	                    	//var date = new Date(data[i].regDate).format("yyyy-mm-dd ff:mm:ss");
+	                    	//var fromDate = new Date(data[i].regDate);
+	                    	//var date = new Date(data[i].regDate, "YYYY/MM/DD");
+	                    	//alert(date);
+	                    	var date = new Date(data[i].regDate);
+	                    	//alert(date);
+	                    	
+	                    	alert(moment(date, "YYYY-MM-DD").format());
+	                    	
+	                        content +=
+	                        	'<li>' +
+	    		         		'<div class="blur-area">' +
+	    						'<a href="" class="user-pic">' +
+	    						'<img alt="회원사진" src="${ctx}/resource/images/1.jpg">' + 
+	    						'</a>' +
+	    						'<div class="review">' +
+	    							'<p>' + data[i].id + '</p>' + 
+	    							'<p class="review-name">' + data[i].writerName + '</p>' + 
+	    							'<p class="review-text">' + data[i].content + '</p>' + 
+	    							'<div class="review-bottom">' + 
+	    								'<div class="review-date">' +
+	    									//data[i].regDate;
+	    									//'<fmt:formatDate pattern="yyyy-MM-dd kk:mm:ss" value="${c.regDate}" />' +
+	    								'</div>' +
+	    								'<c:if test="${email == c.memberEmail}">' +
+	    									'<div style="position: absolute; right: 20px;">' +
+	    				                        '<input type="button" onclick="location.href=\'../deleteComment?id=${c.id}\'" value="삭제" />' +
+	    				                        '<input type="button" onclick="location.href=\'../comment/edit\'" value="수정" />' +
+	    					                '</div>' +
+	    			                  	'</c:if>' +
+	    							'</div>' +
+	    			                '<div style="display: none;">${c.memberEmail}</div>' +
+	    						'</div>' +
+	    					'</div>' +
+	    				'</li>'
+	                    }
+	                    $(".review-list").append(content);
+	                    
+	                    /* var content = "";
+	                    for (var i = 0; i < data.length; i++) {
+	                        content +=
+	                            "<a href='restaurant/" + data[i].id + "'>" +
+	                            "<div class='restaurant-card'>" +
+	                            "<div id='menu-images' class='img-wrapper'>" +
+	                            "<div class='gradation'>" +
+	                            "<div class='inner-restaurant-info'>" +
+	                            "<span class='name'>" + data[i].name + "</span>" +
+	                            "<p class='tip'>" + data[i].genre + "</p>" +
+	                            "<p class='tip'>\"" + data[i].tip + "\"</p>" +
+	                            "</div>" +
+	                            "</div>" +
+	                            "</div>" +
+	                            "</div>" +
+	                            "</a>";
+	                    }
+	                    $(".restaurant-cards").append(content);
+	
+	                    for (var i = 0; i < data.length; i++) {
+	                        $("#menu-images").attr('id', 'menu-images' + data[i].id);
+	
+	                        if (data[i].image.length == 0) {
+	                            $("#menu-images" + data[i].id).css({
+	                                //"background-image": "url('../resource/customer/restaurant/2017/"+${n.id}+"/"+${n.image}+"')",
+	                                "background-image": "url('../resource/images/no-image.png')",
+	                                "background-size": "cover",
+	                                "background-position": "center center"
+	                            });
+	                        } else {
+	                            $("#menu-images" + data[i].id).css({
+	                                //"background-image": "url('../resource/customer/restaurant/2017/"+${n.id}+"/"+${n.image}+"')",
+	                                "background-image": "url('../resource/customer/restaurant/2017/" + data[i].id + "/" + data[i].image + "')",
+	                                "background-size": "cover",
+	                                "background-position": "center center"
+	                            });
+	                        }
+	                    } */
+	                }/* ,
+	                error: function(request, status, error) {
+	                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+	                } */
+	            });
+	        });
+	    }
+	});
+
    $(document).ready(function(){
       
       $("#cover").css("display","none");
@@ -413,8 +542,7 @@ $.ajax({
 		  		}
 		  });
 	  })
-
-
+	  
    });
    
 </script>

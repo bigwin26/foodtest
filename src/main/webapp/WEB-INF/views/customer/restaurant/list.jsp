@@ -54,8 +54,8 @@
       
       
       <div class="ajax-loading" style="position:fixed; top: 40%; left: 45%; z-index: 999; display: none;" >
-            <img src="${ctx}/resource/images/loading.gif" style="width: 100px; height: 100px; text-align: center;" >
-         </div>
+      	<img src="${ctx}/resource/images/loading.gif" style="width: 100px; height: 100px; text-align: center;" >
+      </div>
    
       <!-- <div>
          <h3 class="hidden">현재 페이지</h3>
