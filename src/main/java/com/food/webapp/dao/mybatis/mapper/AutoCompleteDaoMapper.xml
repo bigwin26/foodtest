@@ -7,7 +7,7 @@
     <mapper namespace="com.food.webapp.dao.AutoCompleteDao">
     
     <select id="autoComplete" resultType="hashmap">
-	select name from Restaurant where name like '${autoComplete}%' limit 10;	
+	select name from Restaurant where name like '%${autoComplete}%' limit 10;	
 	</select>
 	
     
