@@ -37,10 +37,10 @@
 		insert into RestaurantMenu(id, src, restaurantId, memberId)
 		value(#{id}, #{src},#{restaurantId},#{memberId})
 	</insert>
+	
 	<delete id="delete" parameterType="java.lang.Integer">
 		delete from Comment where id = #{id}
 	</delete>
-	
 	<update id="update">
 	update Comment set point = #{point}, content=#{content} where id = #{id} and restaurantId = #{restaurantId}
 	</update>
@@ -50,4 +50,15 @@
 	<!-- <update id="updateMenu">
 	update RestaurantMenu set point = 3, content='수정테스트' where id = #{id} and restaurantId = #{restaurantId}
 	</update> -->
+	<select id="getCmt" resultType="com.food.webapp.entity.CommentView">
+		select * from CommentView where restaurantId = #{id} order by regDate desc limit ${(page-1)*5}, 5
+	</select>
+	
+	<select id="cmtCount" resultType="int">
+		select count(*) count from CommentView where restaurantId = #{id}
+	</select>
+	
+	<select id="cmtImageList" resultType="com.food.webapp.entity.CmtImage">
+		select * from CmtImage where commentId = #{id}
+	</select>
 </mapper>

@@ -1,5 +1,7 @@
 package com.food.webapp.dao.mybatis;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -56,27 +58,25 @@ public class MyBatisCommentDao implements CommentDao {
 		int result = commentDao.insertMenuImage(restaurantMenu);
 		return result;
 	}
-
 	@Override
-	public int update(Comment comment) {
+	public List<CommentView> getCmt(int id, int page) {
 		CommentDao commentDao = sqlSession.getMapper(CommentDao.class);
-		int result = commentDao.update(comment);
-		return result;
+		List<CommentView> list = commentDao.getCmt(id, page);
+		return list;
 	}
 
 	@Override
-	public int updateImg(CmtImage cmtImage) {
+	public int cmtCount(int id) {
 		CommentDao commentDao = sqlSession.getMapper(CommentDao.class);
-		int result = commentDao.updateImg(cmtImage);
-		return result;
+		return commentDao.cmtCount(id);
 	}
 
 	@Override
-	public CommentView get(int id) {
+	public List<CmtImage> cmtImageList(int id) {
 		CommentDao commentDao = sqlSession.getMapper(CommentDao.class);
-		return commentDao.get(id);
-	}
-	
+		List<CmtImage> list = commentDao.cmtImageList(id);
+		return list;
+	}	
 }
 
 

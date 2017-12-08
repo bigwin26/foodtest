@@ -117,7 +117,7 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 		return restaurantDao.getNext(id);
 	}
 
-	@Override
+/*	@Override
 	public List<CommentView> getCmt(int id, int page) {
 		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
 		List<CommentView> list = restaurantDao.getCmt(id, page);
@@ -133,6 +133,13 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 	}
 
 	@Override
+	public List<CmtImage> cmtImageList(int id) {
+		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
+		List<CmtImage> list = restaurantDao.cmtImageList(id);
+		return list;
+	}*/
+
+	@Override
 	public int okRestaurant(int id, String name, String date, int ok) {
 		
 		return okRestaurant(new Restaurant(id, name, date, ok));
@@ -145,13 +152,6 @@ public class MyBatisRestaurantDao implements RestaurantDao {
 		int result = restaurantDao.okRestaurant(restaurant);
 		
 		return result;
-	}
-
-	@Override
-	public List<CmtImage> cmtImageList(int id) {
-		RestaurantDao restaurantDao = sqlSession.getMapper(RestaurantDao.class);
-		List<CmtImage> list = restaurantDao.cmtImageList(id);
-		return list;
 	}
 
 	@Override

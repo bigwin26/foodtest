@@ -1,5 +1,9 @@
 package com.food.webapp.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.food.webapp.entity.CmtImage;
 import com.food.webapp.entity.Comment;
 import com.food.webapp.entity.CommentView;
@@ -13,7 +17,7 @@ public interface CommentDao{
 	int getNextId();
 	public int insertCmtImage(CmtImage cmtImage);
 	public int insertMenuImage(RestaurantMenu restaurantMenu);
-	public int update(Comment comment);
-	public int updateImg(CmtImage cmtImage);
-	CommentView get(int restaurantId);
+	List<CommentView> getCmt(@Param("id")int id, @Param("page")int page);
+	int cmtCount(int id);
+	List<CmtImage> cmtImageList(int id);
 }
