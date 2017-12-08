@@ -180,16 +180,20 @@ public class CommentController {
 	}
 	
 	@RequestMapping(value="comment/edit/{id}", method=RequestMethod.GET)
-	   public String edit(@PathVariable("id") int id,Model model,Integer page) {
+	   public String edit(@PathVariable("id") int id,Model model,
+			   @RequestParam(value="p", defaultValue="1") Integer page,
+			   @RequestParam(value="restaurantId", defaultValue="") int restaurantId) {
 		   
-		model.addAttribute("r", restaurantDao.get(id));
-		model.addAttribute("prev", restaurantDao.getPrev(id));
-		model.addAttribute("next", restaurantDao.getNext(id));
+		model.addAttribute("r", restaurantDao.get(restaurantId));
+		model.addAttribute("c", commentDao.get(id));
+		/*model.addAttribute("prev", restaurantDao.getPrev(id));
+		model.addAttribute("next", restaurantDao.getNext(id));*/
 		model.addAttribute("cmtList", restaurantDao.getCmt(id, page));//�ı� ����Ʈ 
 		model.addAttribute("cmtp", restaurantDao.cmtCount(id));//�ı� ����
 		
 		model.addAttribute("cmtImageList", restaurantDao.cmtImageList(id));//�ı� ������
 	      
+		
 	      return "customer.comment.edit";
 	   }
 	   

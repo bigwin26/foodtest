@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.food.webapp.dao.CommentDao;
 import com.food.webapp.entity.CmtImage;
 import com.food.webapp.entity.Comment;
+import com.food.webapp.entity.CommentView;
 import com.food.webapp.entity.RestaurantMenu;
 
 
@@ -55,7 +56,26 @@ public class MyBatisCommentDao implements CommentDao {
 		int result = commentDao.insertMenuImage(restaurantMenu);
 		return result;
 	}
-	
+
+	@Override
+	public int update(Comment comment) {
+		CommentDao commentDao = sqlSession.getMapper(CommentDao.class);
+		int result = commentDao.update(comment);
+		return result;
+	}
+
+	@Override
+	public int updateImg(CmtImage cmtImage) {
+		CommentDao commentDao = sqlSession.getMapper(CommentDao.class);
+		int result = commentDao.updateImg(cmtImage);
+		return result;
+	}
+
+	@Override
+	public CommentView get(int id) {
+		CommentDao commentDao = sqlSession.getMapper(CommentDao.class);
+		return commentDao.get(id);
+	}
 	
 }
 

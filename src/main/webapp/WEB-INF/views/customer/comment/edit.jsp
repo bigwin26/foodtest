@@ -77,7 +77,7 @@
 <div class="container">
 	<div class="row" style="padding: 50px 0;">
 		<div class="rest_info">
-			<span class="fs-20 fw-b">'${r.name}' 평가하기</span><br />
+			<span class="fs-20 fw-b">'${r.name}'평가하기</span><br />
 			<div style='padding: 24px 0;'>
 				<img
 					src='https://d2t7cq5f1ua57i.cloudfront.net/images/r_images/52671/54138/52671_54138_86_5_7288_2016520232152807_496x331.jpg'
