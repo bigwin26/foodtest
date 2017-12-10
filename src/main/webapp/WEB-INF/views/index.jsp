@@ -31,9 +31,9 @@
 		<div class="main-info-container-logo"
 			style="background-image: url('resource/images/main-logo.png');"></div>
 		<div class="main-info-container-search">
-			 <form action="customer/restaurant" method="get">
-				<span class="main-info-container-search-inner"> <input
-					type="text" class="main-info-container-search-inner-text" name="q" id="autocom"/>
+			 <form action="customer/restaurant" method="get" >
+				<span class="main-info-container-search-inner"> 
+				<input type="text" class="main-info-container-search-inner-text" name="q" id="autocom"  autocomplete="off" />
 				</span>
 				<button id="search" class="main-info-container-search-inner-submit"
 					style="background-image: url('resource/images/search.png');"
@@ -56,42 +56,47 @@
 $(function(){
 	
 	
-	
-	$("#autocom").keyup(function(){		
-		
-		$.ajax({
+
 			
-			type:"GET",
-			url:"autocom",
-			dataType:"json",
-			data:{
-				
-				autocomplete : $("#autocom").val() 
-				
-			},
-			success : function(result){
-				
-				var a = new Array();
-				for(i=0; i<result.length; i++){
-				 a[i] = result[i].name;
-				}
-				
-				$("#autocom").autocomplete({source:a});			
-				
-			}
-		})
+	$("#autocom").keydown(function(e){
+							 	
+				  	 
+						$("#autocom").autocomplete({
+						
+			                minLength: 1,
+			                source: function( request, response ) {
+			                	$.ajax({
+			                    	type:"GET",
+			                     url: "autocom",
+			                     dataType: "json",
+			                     data: { 
+			                    	 term: request.term 
+			                  
+			                     },
+			                     
+			                     success: function( data ) {
+			                      response( $.map( data, function( item ) {
+			                       return {
+			                        label: item.name,
+			                        value: item.value             
+			                       
+			                       }
+			                        
+			                      }));
+			                     }
+			                    });
+			                   },
+			                   focus: function( event, ui )
+			                   {
+			                    $("#autocom").val( ui.item.label );
+			                    return false;
+			                   },
+							
+							
+						});
 		
-		
-		
-		
-		
-		
-		
-		
-	})
-	
-		
-	
+						
+	})	
 })
 
 
