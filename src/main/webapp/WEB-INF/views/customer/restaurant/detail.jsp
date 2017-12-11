@@ -124,12 +124,6 @@
                   ${r.address}
                </div>
             </div>
-            <%-- <div class="item-information" id="item-tel">
-               <div class="item-information-icon">
-                  <img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/profile/main/icon-profile-call@2x.png">
-               </div>
-               <div class="item-information-text">${r.phoneNumber}</div>
-            </div> --%>
          </div>
       </div>
    </div>
@@ -293,10 +287,9 @@ $.ajax({
 	                   $(".ajax-loading").css("display","none");
 	                },
 	                success: function(data) {
-	                	test = data;
-	                    var json = JSON.stringify(test);
+	                	//test = data;
+	                    //var json = JSON.stringify(test);
 	                    //alert(json);
-	                	
 	                    
 	                    if(data.length == 0){
 	                        page -= 1;
@@ -322,13 +315,16 @@ $.ajax({
 				    							/* '<p class="review-text">' + data[i].content + '</p>' +  */
 				    							'<div class="review-content">' + 
 													'<div class="review-text">' + data[i].content + '</div>' +
-													'<div class="comment-image">' + '</div>' +
+													'<div class="comment-image" id="comment-image'+ data[i].id +'">' + 
+														'<ul>' + 
+														'</ul>' +
+													'</div>' +
 												'</div>' +
 				    							'<div class="review-bottom">' + 
 				    								'<div class="review-date">' +
 				    									date.format('YYYY-MM-DD hh:mm:ss') + 
 				    								'</div>' +
-			    									'<div style="position: absolute; right: 20px;">' +
+			    									'<div id="end" style="position: absolute; right: 20px;">' +
 			    										'<input type="button" onclick="location.href=\'../deleteComment?id=' + data[i].id +'\'" value="삭제" />' +
 			    				                        '<input type="button" onclick="location.href=\'../comment/edit\'" value="수정" />' +
 			    					                '</div>' +
@@ -352,7 +348,10 @@ $.ajax({
 				    							/* '<p class="review-text">' + data[i].content + '</p>' +  */
 				    							'<div class="review-content">' + 
 													'<div class="review-text">' + data[i].content + '</div>' +
-													'<div class="comment-image">' + '</div>' +
+													'<div class="comment-image" id="comment-image'+ data[i].id +'">' + 
+														'<ul>' + 
+														'</ul>' +
+													'</div>' +
 												'</div>' +
 				    							'<div class="review-bottom">' + 
 				    								'<div class="review-date">' +
@@ -366,12 +365,34 @@ $.ajax({
 	                    	}
 		                    $(".review-list").append(content);
 	                    }
-	                    commentIds = $(".commentId");
+	                    
+	                    /* commentIds = $(".commentId");
                     	for(var i=0; i<commentIds.length; i++){
                     		//alert(commentIds.eq(i).text());
-                    		
-                    		
-                    	}
+                    		$("#comment-image"+commentId+" ul")
+                			.append('<li><img src="${ctx}/resource/customer/restaurant/2017/' + restaurantId + "/commentImage/" + data[j].src + '"></li>');
+                			
+                			$("#comment-image"+commentId+" ul img").css({
+                				"margin-right": "10px",
+                				"margin-top": "10px",
+                				"width": "100px",
+                				"height:": "100px"
+                			});
+                    	} */
+                    	
+	                    //commentIds = $(".commentId");
+                    	/* for(var i = 0; i < data.length; i++){
+                    		//alert(commentIds.eq(i).text());
+                    		$("#comment-image"+commentId+" ul")
+                			.append('<li><img src="${ctx}/resource/customer/restaurant/2017/' + restaurantId + "/commentImage/" + data[j].src + '"></li>');
+                			
+                			$("#comment-image"+commentId+" ul img").css({
+                				"margin-right": "10px",
+                				"margin-top": "10px",
+                				"width": "100px",
+                				"height:": "100px"
+                			});
+                    	} */
 	                    
 	                    
 	                    
