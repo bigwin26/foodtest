@@ -8,7 +8,7 @@
     
     
     <select id="realTime" resultType="String"> 
-	  select name from Restaurant r left join Liked l on r.id = l.restaurantId group by id order by count(*) desc
+	  select name from Restaurant r left join Liked l on r.id = l.restaurantId group by id order by count(*) desc limit 20
     </select>
     
     </mapper>

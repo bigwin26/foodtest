@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,19 +42,33 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="index", method=RequestMethod.GET)
-	public String index() {
+	public String index(Model model) {
 
 		
-		List<String> result = realTimeDao.realTime();
+
 		
-		
-		System.out.println(result);
 		
 		
 		
 		
 		
 		return "home.index";
+	}
+	
+	@RequestMapping(value="realTime", method=RequestMethod.GET)
+	@ResponseBody
+	public List<String> realTime(Model model) {
+
+		
+		List<String> result = realTimeDao.realTime();
+		
+		
+		
+		
+		
+		
+		
+		return result;
 	}
 	
 	

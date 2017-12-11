@@ -8,6 +8,8 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+<script src="${path}/resource/js/jquery-rolling.js"></script>
 <link rel="stylesheet" href="resource/css/reset.css">
 <link rel="stylesheet" href="resource/css/index.css">
 
@@ -45,13 +47,89 @@
 	</div>
 </div>
 </div>
+
+<div >
+<ul id="content">
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+
+</ul>
+
+</div>
+
+<div id="srolling" style="position: relative;overflow:hidden;width:100px;height:30px;border:#e0e2ef 1px solid;"></div>
+<div id="aaa" style="display:none;">
+<ul id="content">
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+
+</ul>
+</div>﻿
+<!-- <span id="p_click">이전</span>
+<span id="n_click">다음</span> -->
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="resource/js/slider.js"></script> 
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-
+    <script type="text/javascript">
+        $(function() {
+ 
+            $("#srolling").srolling({
+                data : $("#content > li"),  // 노출될 아이템
+                auto : true,                    //자동 롤링 true , false
+                width : 20,                 // 노출될 아이템 크기
+                height : 30,                    // 노출될 아이템 크기
+                item_count : 1,         // 이동 될 아이템 수
+                cache_count : 1,            // 임시로 불러올 아이템 수
+                delay : 1000,               // 이동 아이템 딜레이
+                delay_frame : 500,      // 아이템 흐르는 속도
+                move : 'top',               // 이동 방향 left , right , top , down
+                prev : '#p_click',          // < 이동 버튼
+                next : '#n_click'           // > 이동 버튼
+            });
+        });
+    </script>
 <script>
 $(function(){
 	
@@ -99,17 +177,22 @@ $(function(){
 	updateData();
 })
 	function updateData(){
+	
 		$.ajax({
-			url:"index",
+			url:"realTime",
 			type:"GET",
+			dataType:"json",
 			success: function(result){
-				
-				console.log(result);
-				
+				for(var i=0; i<result.length; i++){
+					//$("#content li:nth-child("+(i+1)+")").text(result[i]);
+					//http://www.uhoon.co.kr/jQuery/2544
+					
+				}
+								
 			}
 			
 		});
-		setTimeout("updateData()", 2000);
+		setTimeout("updateData()", 20000);
 	} 
 	 
 
