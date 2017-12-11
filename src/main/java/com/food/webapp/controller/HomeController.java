@@ -1,8 +1,5 @@
 package com.food.webapp.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -27,8 +24,9 @@ public class HomeController {
 	
 	@RequestMapping(value="autocom", method=RequestMethod.GET)
 	@ResponseBody
-	public List<Map<String, String>> autocom(String autocomplete) {
-		List<Map<String, String>> result = autoComplateDao.autoComplete(autocomplete);
+	public List<Map<String, String>> autocom(String term) {
+		System.out.println(term);
+		List<Map<String, String>> result = autoComplateDao.autoComplete(term);
 		
 	System.out.println(result);
 
