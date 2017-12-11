@@ -13,6 +13,10 @@
 		value(#{id}, #{content},#{point},#{memberId},#{restaurantId})
 	</insert>
 		
+	<select id="get" resultType="com.food.webapp.entity.CommentView">
+		select * from CommentView where id = #{id}
+	</select>
+	
 	<select id="getNextId" resultType="int">
 		select ifnull(max(cast(id as unsigned)), 0) + 1
 		from Comment	
@@ -37,7 +41,15 @@
 	<delete id="delete" parameterType="java.lang.Integer">
 		delete from Comment where id = #{id}
 	</delete>
-	
+	<update id="update">
+	update Comment set point = #{point}, content=#{content} where id = #{id}
+	</update>
+	<update id="updateImg">
+	update CmtImage set src = #{src} where commentId = #{commentId} and restaurantId = #{restaurantId}
+	</update>
+	<!-- <update id="updateMenu">
+	update RestaurantMenu set point = 3, content='수정테스트' where id = #{id} and restaurantId = #{restaurantId}
+	</update> -->
 	<select id="getCmt" resultType="com.food.webapp.entity.CommentView">
 		select * from CommentView where restaurantId = #{id} order by regDate desc limit ${(page-1)*5}, 5
 	</select>
@@ -49,5 +61,4 @@
 	<select id="cmtImageList" resultType="com.food.webapp.entity.CmtImage">
 		select * from CmtImage where commentId = #{id}
 	</select>
-	
 </mapper>

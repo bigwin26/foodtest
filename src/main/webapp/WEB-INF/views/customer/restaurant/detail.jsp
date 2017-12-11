@@ -12,7 +12,7 @@
     width:100%;
     height:30px;
     background-color: #e1e0db;
-}
+    }
 </style>
 <main id="main">
 <%-- likeCount: ${likeCount} --%>
@@ -167,9 +167,9 @@
 									<fmt:formatDate pattern="yyyy-MM-dd kk:mm:ss" value="${c.regDate}" />
 								</div>
 								<c:if test="${email == c.memberEmail}">
-									<div style="position: absolute; right: 20px;">
+									<div id="end" style="position: absolute; right: 20px;">
+				                        <input type="button" onclick="location.href='../comment/edit/${c.id}?restaurantId=${r.id}'" value="수정" />
 				                        <input type="button" onclick="location.href='../deleteComment?id=${c.id}'" value="삭제" />
-				                        <input type="button" onclick="location.href='../comment/edit'" value="수정" />
 					                </div>
 			                  	</c:if>
 							</div>

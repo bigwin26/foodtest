@@ -26,13 +26,6 @@ public class MyBatisCommentDao implements CommentDao {
 	}
 
 	@Override
-	public int edit(Comment comment) {
-		CommentDao commentDao = sqlSession.getMapper(CommentDao.class);
-		int result = commentDao.edit(comment);
-		return result;
-	}
-
-	@Override
 	public int delete(int id) {
 		CommentDao commentDao = sqlSession.getMapper(CommentDao.class);
 		int result = commentDao.delete(id);
@@ -58,7 +51,6 @@ public class MyBatisCommentDao implements CommentDao {
 		int result = commentDao.insertMenuImage(restaurantMenu);
 		return result;
 	}
-	
 	@Override
 	public List<CommentView> getCmt(int id, int page) {
 		CommentDao commentDao = sqlSession.getMapper(CommentDao.class);
@@ -78,8 +70,20 @@ public class MyBatisCommentDao implements CommentDao {
 		List<CmtImage> list = commentDao.cmtImageList(id);
 		return list;
 	}
-	
-	
+
+	@Override
+	public int update(String id,int point, String content) {
+		CommentDao commentDao = sqlSession.getMapper(CommentDao.class);
+		int result = commentDao.update(id,point,content);
+		return result;
+	}
+
+	@Override
+	public CommentView get(int id) {
+		CommentDao commentDao = sqlSession.getMapper(CommentDao.class);
+		CommentView commentView = commentDao.get(id);
+		return commentView;
+	}	
 }
 
 

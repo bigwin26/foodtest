@@ -77,21 +77,23 @@
 <div class="container">
 	<div class="row" style="padding: 50px 0;">
 		<div class="rest_info">
-			<span class="fs-20 fw-b">'${r.name}' 평가하기</span><br />
+			<span class="fs-20 fw-b">'${r.name}'평가하기</span><br />
 			<div style='padding: 24px 0;'>
 				<img
-					src='https://d2t7cq5f1ua57i.cloudfront.net/images/r_images/52671/54138/52671_54138_86_5_7288_2016520232152807_496x331.jpg'
+					src='${path}/resource/customer/restaurant/2017/${r.id}/${r.image}'
 					width='300' height='200' />
 			</div>
 			<div style="padding-bottom: 5px;">${r.genre}</div>
 			<div class="bb-gray" style="padding-bottom: 12px;">${r.keyword}</div>
 			<div style="padding: 12px 0 5px 0;">${r.address}</div>
 			<div>${r.phoneNumber}</div>
+			
 		</div>
 		<form id="comment-form"
 			action="?${_csrf.parameterName}=${_csrf.token}" method="post"
 			enctype="multipart/form-data">
 			<div class="review_info">
+			<input type="hidden" value="${c.restaurantId}" name="rr">
 				<!-- score -->
 				<div class="section">
 					<div class="title fl">
@@ -124,7 +126,7 @@
 
 					<textarea id="txt_contents" name="content" class="fs-13"
 						placeholder="음식, 서비스, 분위기, 위생상태 등의 방문 경험을 적어주세요."
-						style="border: solid 1px #D5D5D5; width: 100%; height: 120px;" value="${c.content}"></textarea>
+						style="border: solid 1px #D5D5D5; width: 100%; height: 120px;">${c.content}</textarea>
 					<div style="padding-top: 5px;">
 						<div class="fr">
 							<span id="lbl_limit">0</span> / 1000
@@ -144,7 +146,8 @@
 							있습니다.</span>
 					</div>
 					<div class="fr">
-						<input type="file" name="file" multiple="multiple" />
+						<button class="replace">파일 업로드</button>
+						<input type="file" name="file" multiple="multiple" class="upload"/>
 					</div>
 					<div class="clear"></div>
 					<div id="div_photo">
@@ -162,7 +165,8 @@
 							있습니다.</span>
 					</div>
 					<div class="fr">
-						<input type="file" name="image" />
+						<button class="replace">파일 업로드</button>
+						<input type="file" name="image" class="upload"/>
 					</div>
 					<div class="clear"></div>
 					<div id="div_menu">
