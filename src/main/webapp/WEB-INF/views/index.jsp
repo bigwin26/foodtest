@@ -55,11 +55,7 @@
 <script>
 $(function(){
 	
-	
-
-			
-	$("#autocom").keydown(function(e){
-							 	
+	$("#autocom").keydown(function(e){							 	
 				  	 
 						$("#autocom").autocomplete({
 						
@@ -88,7 +84,6 @@ $(function(){
 			                   },
 			                   focus: function( event, ui )
 			                   {
-			                    $("#autocom").val( ui.item.label );
 			                    return false;
 			                   },
 							
@@ -100,8 +95,7 @@ $(function(){
 })
 
 
-/* $(function(){
-alert("a");
+  $(function(){
 	updateData();
 })
 	function updateData(){
@@ -109,13 +103,15 @@ alert("a");
 			url:"index",
 			type:"GET",
 			success: function(result){
-				alert(result);				
+				
+				console.log(result);
+				
 			}
 			
 		});
 		setTimeout("updateData()", 2000);
-	}
-	 */
+	} 
+	 
 
 
 
