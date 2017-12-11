@@ -155,7 +155,7 @@
 								<c:if test="${email == c.memberEmail}">
 									<div style="position: absolute; right: 20px;">
 				                        <input type="button" onclick="location.href='../deleteComment?id=${c.id}'" value="삭제" />
-				                        <input type="button" onclick="location.href='../comment/edit'" value="수정" />
+				                        <input type="button" onclick="location.href='../comment/edit/${c.id}?restaurantId=${r.id}'" value="수정" />
 					                </div>
 			                  	</c:if>
 								<%-- <span class="review-like">
