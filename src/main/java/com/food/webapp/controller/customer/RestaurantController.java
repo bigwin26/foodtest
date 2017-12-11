@@ -135,7 +135,7 @@ public class RestaurantController {
 		model.addAttribute("like", likeDao.check(id, principal.getName()));
 		model.addAttribute("likeCount", likeDao.count(id));
 		
-		System.out.println("restaurantId: " + id + ", cmtImageList-length: " + commentDao.cmtImageList(id).size());
+		//System.out.println("restaurantId: " + id + ", cmtImageList-length: " + commentDao.cmtImageList(id).size());
 		
 		return "customer.restaurant.detail";
 	}

@@ -98,7 +98,14 @@
                <div class="item-information-text">
                   ${r.writerName} 님의 한 줄 평: "${r.tip}"
                </div>
-               <img id="foodImage" style="border-radius: 10px;">
+               	<div id="" style="background: url('${ctx}/resource/customer/restaurant/2017/${r.id}/${r.image}');
+               				width: 200px;
+               				height: 150px;
+               				border-radius: 10px;
+							background-size: cover;
+							background-position: center center;">
+            	</div>
+               <%-- <img id="foodImage" src="${ctx}/resource/customer/restaurant/2017/${r.id}/${r.image}"> --%>
             </div>
             <div class="item-information">
                <div class="item-information-icon">
@@ -144,10 +151,17 @@
 							<%-- <c:forEach var="i" items="${cmtImageList}">
 								<p>${i.id}</p>
 							</c:forEach> --%>
-							<%-- <p id="${r.id}">${r.id}</p> --%>
-							<p>${c.id}</p>
+							<p class="commentId">${c.id}</p>
+							<p class="restaurantId" style="display: none">${c.restaurantId}</p>
 							<p class="review-name">${c.writerName}</p>
-							<p class="review-text">${c.content}</p>
+							<%-- <p class="review-text">${c.content}</p> --%>
+							<div class="review-content">
+								<div class="review-text">${c.content}</div>
+								<div class="comment-image">
+									<ul>
+									</ul>
+								</div>
+							</div>
 							<div class="review-bottom">
 								<div class="review-date">
 									<fmt:formatDate pattern="yyyy-MM-dd kk:mm:ss" value="${c.regDate}" />
@@ -158,12 +172,6 @@
 				                        <input type="button" onclick="location.href='../comment/edit'" value="수정" />
 					                </div>
 			                  	</c:if>
-								<%-- <span class="review-like">
-									<span class="reivew-like-count">
-										<span class="like-count-text">${c.like}</span>
-									</span>
-								</span>
-								<span class="review-report">신고하기</span> --%>
 							</div>
 							
 			                <div style="display: none;">${c.memberEmail}</div>
@@ -219,14 +227,56 @@ $.ajax({
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="${ctx}/resource/js/moment.min.js"></script>
 <script>
-	
 	var page = 1;
+	var commentIds = $(".commentId");
+	var restaurantIds = $(".restaurantId");
+	for(var i=0; i<commentIds.length; i++){
+		var commentId = commentIds.eq(i).text();
+		var restaurantId = restaurantIds.eq(i).text();
+		
+		$.ajax({
+			type: "POST",
+			async: false,
+			url: "../comment-image-ajax?${_csrf.parameterName}=${_csrf.token}",
+			data: {
+            	"commentId": commentId
+            },
+            dataType: "json",
+            success: function(data) {
+            	var json = JSON.stringify(data);
+            	//alert(commentId + ": " + data.length);
+            	if(data.length > 0){
+            		//alert(commentId);
+            		$(".comment-image").eq(i).attr("id", "comment-image"+commentId);
+            		
+            		for(var j=0; j<data.length; j++){
+		            	//$("#comment-image"+commentId+" ul").append("<li>" + data[j].src + "</li>");
+            			$("#comment-image"+commentId+" ul")
+            			.append('<li><img src="${ctx}/resource/customer/restaurant/2017/' + restaurantId + "/commentImage/" + data[j].src + '"></li>');
+            			
+            			$("#comment-image"+commentId+" ul img").css({
+            				"margin-right": "10px",
+            				"margin-top": "10px",
+            				"width": "100px",
+            				"height:": "100px"
+            			})
+            		}
+            		
+            	}
+            	
+            }
+		});
+	}
+	//alert(ids.eq(i).text());
+    
+	
 	$(window).scroll(function() {
 	
 	    if ($(document).height() <= $(window).scrollTop() + $(window).height()) {
 	
 	        $(function() {
 	            page += 1;
+	            var test;
 	        
 	            $.ajax({
 	                type: "POST",
@@ -243,9 +293,11 @@ $.ajax({
 	                   $(".ajax-loading").css("display","none");
 	                },
 	                success: function(data) {
-	                    var json = JSON.stringify(data);
+	                	test = data;
+	                    var json = JSON.stringify(test);
 	                    //alert(json);
 	                	
+	                    
 	                    if(data.length == 0){
 	                        page -= 1;
 	                        return;
@@ -253,86 +305,80 @@ $.ajax({
 						
 	                    var content = "";
 	                    for (var i = 0; i < data.length; i++) {
-	                    	//var date = new Date(data[i].regDate).format("yyyy-mm-dd ff:mm:ss");
-	                    	//var fromDate = new Date(data[i].regDate);
-	                    	//var date = new Date(data[i].regDate, "YYYY/MM/DD");
-	                    	//alert(date);
 	                    	var date = new Date(data[i].regDate);
-	                    	//alert(date);
-	                    	
-	                    	alert(moment(date, "YYYY-MM-DD").format());
-	                    	
-	                        content +=
-	                        	'<li>' +
-	    		         		'<div class="blur-area">' +
-	    						'<a href="" class="user-pic">' +
-	    						'<img alt="회원사진" src="${ctx}/resource/images/1.jpg">' + 
-	    						'</a>' +
-	    						'<div class="review">' +
-	    							'<p>' + data[i].id + '</p>' + 
-	    							'<p class="review-name">' + data[i].writerName + '</p>' + 
-	    							'<p class="review-text">' + data[i].content + '</p>' + 
-	    							'<div class="review-bottom">' + 
-	    								'<div class="review-date">' +
-	    									//data[i].regDate;
-	    									//'<fmt:formatDate pattern="yyyy-MM-dd kk:mm:ss" value="${c.regDate}" />' +
-	    								'</div>' +
-	    								'<c:if test="${email == c.memberEmail}">' +
-	    									'<div style="position: absolute; right: 20px;">' +
-	    				                        '<input type="button" onclick="location.href=\'../deleteComment?id=${c.id}\'" value="삭제" />' +
-	    				                        '<input type="button" onclick="location.href=\'../comment/edit\'" value="수정" />' +
-	    					                '</div>' +
-	    			                  	'</c:if>' +
-	    							'</div>' +
-	    			                '<div style="display: none;">${c.memberEmail}</div>' +
-	    						'</div>' +
-	    					'</div>' +
-	    				'</li>'
+	                    	date = moment(date);
+	                    	//alert(date.format('YYYY-MM-DD hh:mm:ss'));
+	                    	if("${email}" == data[i].memberEmail){
+		                        content =
+		                        	'<li>' +
+			    		         		'<div class="blur-area">' +
+				    						'<a href="" class="user-pic">' +
+				    						'<img alt="회원사진" src="${ctx}/resource/images/1.jpg">' + 
+				    						'</a>' +
+				    						'<div class="review">' +
+				    							'<p class="commentId">' + data[i].id + '</p>' +
+												'<p class="restaurantId" style="display: none">' + data[i].restaurantId + '</p>' +
+				    							'<p class="review-name">' + data[i].writerName + '</p>' + 
+				    							/* '<p class="review-text">' + data[i].content + '</p>' +  */
+				    							'<div class="review-content">' + 
+													'<div class="review-text">' + data[i].content + '</div>' +
+													'<div class="comment-image">' + '</div>' +
+												'</div>' +
+				    							'<div class="review-bottom">' + 
+				    								'<div class="review-date">' +
+				    									date.format('YYYY-MM-DD hh:mm:ss') + 
+				    								'</div>' +
+			    									'<div style="position: absolute; right: 20px;">' +
+			    										'<input type="button" onclick="location.href=\'../deleteComment?id=' + data[i].id +'\'" value="삭제" />' +
+			    				                        '<input type="button" onclick="location.href=\'../comment/edit\'" value="수정" />' +
+			    					                '</div>' +
+				    							'</div>' +
+				    			                '<div style="display: none;">' + data[i].memberEmail + '</div>' +
+				    						'</div>' +
+			    						'</div>' +
+		    						'</li>'
+	                    	}
+	                    	else{
+	                    		content =
+		                        	'<li>' +
+			    		         		'<div class="blur-area">' +
+				    						'<a href="" class="user-pic">' +
+				    						'<img alt="회원사진" src="${ctx}/resource/images/1.jpg">' + 
+				    						'</a>' +
+				    						'<div class="review">' +
+					    						'<p class="commentId">' + data[i].id + '</p>' +
+												'<p class="restaurantId" style="display: none">' + data[i].restaurantId + '</p>' +
+				    							'<p class="review-name">' + data[i].writerName + '</p>' + 
+				    							/* '<p class="review-text">' + data[i].content + '</p>' +  */
+				    							'<div class="review-content">' + 
+													'<div class="review-text">' + data[i].content + '</div>' +
+													'<div class="comment-image">' + '</div>' +
+												'</div>' +
+				    							'<div class="review-bottom">' + 
+				    								'<div class="review-date">' +
+				    									date.format('YYYY-MM-DD hh:mm:ss') + 
+				    								'</div>' +
+				    							'</div>' +
+				    			                '<div style="display: none;">' + data[i].memberEmail + '</div>' +
+				    						'</div>' +
+			    						'</div>' +
+		    						'</li>'
+	                    	}
+		                    $(".review-list").append(content);
 	                    }
-	                    $(".review-list").append(content);
+	                    commentIds = $(".commentId");
+                    	for(var i=0; i<commentIds.length; i++){
+                    		//alert(commentIds.eq(i).text());
+                    		
+                    		
+                    	}
 	                    
-	                    /* var content = "";
-	                    for (var i = 0; i < data.length; i++) {
-	                        content +=
-	                            "<a href='restaurant/" + data[i].id + "'>" +
-	                            "<div class='restaurant-card'>" +
-	                            "<div id='menu-images' class='img-wrapper'>" +
-	                            "<div class='gradation'>" +
-	                            "<div class='inner-restaurant-info'>" +
-	                            "<span class='name'>" + data[i].name + "</span>" +
-	                            "<p class='tip'>" + data[i].genre + "</p>" +
-	                            "<p class='tip'>\"" + data[i].tip + "\"</p>" +
-	                            "</div>" +
-	                            "</div>" +
-	                            "</div>" +
-	                            "</div>" +
-	                            "</a>";
-	                    }
-	                    $(".restaurant-cards").append(content);
-	
-	                    for (var i = 0; i < data.length; i++) {
-	                        $("#menu-images").attr('id', 'menu-images' + data[i].id);
-	
-	                        if (data[i].image.length == 0) {
-	                            $("#menu-images" + data[i].id).css({
-	                                //"background-image": "url('../resource/customer/restaurant/2017/"+${n.id}+"/"+${n.image}+"')",
-	                                "background-image": "url('../resource/images/no-image.png')",
-	                                "background-size": "cover",
-	                                "background-position": "center center"
-	                            });
-	                        } else {
-	                            $("#menu-images" + data[i].id).css({
-	                                //"background-image": "url('../resource/customer/restaurant/2017/"+${n.id}+"/"+${n.image}+"')",
-	                                "background-image": "url('../resource/customer/restaurant/2017/" + data[i].id + "/" + data[i].image + "')",
-	                                "background-size": "cover",
-	                                "background-position": "center center"
-	                            });
-	                        }
-	                    } */
-	                }/* ,
+	                    
+	                    
+	                },
 	                error: function(request, status, error) {
 	                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-	                } */
+	                }
 	            });
 	        });
 	    }
@@ -364,15 +410,7 @@ $.ajax({
           "width": "100%",
           "padding": "0px"
       });
-      
-      var foodImageUrl = "${ctx}/resource/customer/restaurant/2017/${r.id}/${r.image}";
-      //$("#foodImage").attr('id', 'foodImage' + ${r.id});
-      $("#foodImage").attr({
-                  "src": foodImageUrl,
-                  "width": "200px",
-                  "height": "150px",
-      });
-            
+	            
       /* 지도 부분 =================================================================================*/
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
          mapOption = {

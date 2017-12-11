@@ -91,3 +91,8 @@ h5 .view-all-link{
     overflow: hidden;
     background: url("../images/bubble-left.png");
 }
+
+
+.comment-image ul li{
+	display: inline-block;
+}

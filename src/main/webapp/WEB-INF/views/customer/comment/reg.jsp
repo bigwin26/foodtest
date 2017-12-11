@@ -139,7 +139,7 @@
 					</div>
 					<div class="fr">
 					<div class="ex3-upload">
-						<input type="file" name="file" style="display: none;" /> <span
+						<input type="file" name="file" style="display: none;" multiple="multiple"/> <span
 							style="border: 1px solid #999; border-radius: 5px; background: #f15c22; padding: 10px; cursor: pointer;color: white;">파일선택</span>
 						<div>
 							<ul>

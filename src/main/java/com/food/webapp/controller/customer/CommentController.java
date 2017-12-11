@@ -226,6 +226,20 @@ public class CommentController {
 		return json;
 	}
 	
+	@RequestMapping(value="comment-image-ajax", produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String commentImageAjax(int commentId) {
+		
+		List<CmtImage> list = commentDao.cmtImageList(commentId);
+		
+		String json = "";
+		
+		Gson gson = new Gson();
+		json = gson.toJson(list);
+		
+		return json;
+	}
+	
 	
 	
 }
