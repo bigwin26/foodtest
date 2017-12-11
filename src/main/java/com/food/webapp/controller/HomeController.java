@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.food.webapp.dao.AutoCompleteDao;
+import com.food.webapp.dao.RealTimeDao;
 import com.food.webapp.dao.RestaurantDao;
 
 @Controller
@@ -21,27 +22,37 @@ public class HomeController {
 	@Autowired
 	AutoCompleteDao autoComplateDao;
 	
+	@Autowired
+	RealTimeDao realTimeDao;
+	
 	
 	@RequestMapping(value="autocom", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Map<String, String>> autocom(String term) {
+
 		System.out.println(term);
+		
 		List<Map<String, String>> result = autoComplateDao.autoComplete(term);
 		
-	System.out.println(result);
-
+		System.out.println(result);
 	
-		
 		return result;
 		
 	}
 	
-	
-	
-	
 	@RequestMapping(value="index", method=RequestMethod.GET)
 	public String index() {
 
+		
+		List<String> result = realTimeDao.realTime();
+		
+		
+		System.out.println(result);
+		
+		
+		
+		
+		
 		return "home.index";
 	}
 	
