@@ -76,7 +76,7 @@ window.addEventListener("load", function(){
 			<span class="fs-20 fw-b">'${r.name}' 평가하기</span><br />
 			<div style='padding: 24px 0;'>
 				<img
-					src='https://d2t7cq5f1ua57i.cloudfront.net/images/r_images/52671/54138/52671_54138_86_5_7288_2016520232152807_496x331.jpg'
+					src='${path}/resource/customer/restaurant/2017/${r.id}/${r.image}'
 					width='300' height='200' />
 			</div>
 			<div style="padding-bottom: 5px;">${r.genre}</div>
@@ -139,15 +139,9 @@ window.addEventListener("load", function(){
 							style="line-height: 1.0;">※저작권에 위배되는 사진첨부시 법적 처벌 조치를 받으실 수
 							있습니다.</span>
 					</div>
-					<div id="ex3-upload">
-						<input type="file" name="file" multiple="multiple" /> <!-- <span
-							style="border: 1px solid #999; border-radius: 5px; background: pink; padding: 3px; cursor: pointer;">파일선택</span> -->
-						<span id="progress-bar" style="display: inline-block;"></span>
-						<div>
-							<ul>
-								<li></li>
-							</ul>
-						</div>
+					<div class="fr">
+						<button class="replace">파일 업로드</button>
+						<input type="file" name="file" multiple="multiple" class="upload"/>
 					</div>
 					<div class="clear"></div>
 					<div id="div_photo">
@@ -164,15 +158,9 @@ window.addEventListener("load", function(){
 							style="line-height: 1.0;">※저작권에 위배되는 사진첨부시 법적 처벌 조치를 받으실 수
 							있습니다.</span>
 					</div>
-					<div id="ex3-upload">
-						<input type="file" name="image" /> <!-- <span
-							style="border: 1px solid #999; border-radius: 5px; background: pink; padding: 3px; cursor: pointer;">파일선택</span> -->
-						<span id="progress-bar" style="display: inline-block;"></span>
-						<div>
-							<ul>
-								<li></li>
-							</ul>
-						</div>
+					<div class="fr">
+						<button class="replace">파일 업로드</button>
+						<input type="file" name="image" class="upload"/>
 					</div>
 					<div class="clear"></div>
 					<div id="div_menu">

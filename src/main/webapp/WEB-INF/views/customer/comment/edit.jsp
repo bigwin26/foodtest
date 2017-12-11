@@ -80,7 +80,7 @@
 			<span class="fs-20 fw-b">'${r.name}'평가하기</span><br />
 			<div style='padding: 24px 0;'>
 				<img
-					src='https://d2t7cq5f1ua57i.cloudfront.net/images/r_images/52671/54138/52671_54138_86_5_7288_2016520232152807_496x331.jpg'
+					src='${path}/resource/customer/restaurant/2017/${r.id}/${r.image}'
 					width='300' height='200' />
 			</div>
 			<div style="padding-bottom: 5px;">${r.genre}</div>
@@ -146,7 +146,8 @@
 							있습니다.</span>
 					</div>
 					<div class="fr">
-						<input type="file" name="file" multiple="multiple" />
+						<button class="replace">파일 업로드</button>
+						<input type="file" name="file" multiple="multiple" class="upload"/>
 					</div>
 					<div class="clear"></div>
 					<div id="div_photo">
@@ -164,7 +165,8 @@
 							있습니다.</span>
 					</div>
 					<div class="fr">
-						<input type="file" name="image" />
+						<button class="replace">파일 업로드</button>
+						<input type="file" name="image" class="upload"/>
 					</div>
 					<div class="clear"></div>
 					<div id="div_menu">
