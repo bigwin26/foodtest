@@ -178,7 +178,12 @@ public class CommentController {
 			}
 			
 		}
-
+		else {
+			comment.setMemberId(loginId);
+			comment.setRestaurantId(id);
+			commentDao.insert(comment);
+		}
+		
 		return "redirect:../restaurant/{id}";
 	}
 	
