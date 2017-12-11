@@ -42,7 +42,7 @@
 		delete from Comment where id = #{id}
 	</delete>
 	<update id="update">
-	update Comment set point = #{point}, content=#{content} where id = #{id} and restaurantId = #{restaurantId}
+	update Comment set point = #{point}, content=#{content} where id = #{id}
 	</update>
 	<update id="updateImg">
 	update CmtImage set src = #{src} where commentId = #{commentId} and restaurantId = #{restaurantId}

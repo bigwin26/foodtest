@@ -87,11 +87,13 @@
 			<div class="bb-gray" style="padding-bottom: 12px;">${r.keyword}</div>
 			<div style="padding: 12px 0 5px 0;">${r.address}</div>
 			<div>${r.phoneNumber}</div>
+			
 		</div>
 		<form id="comment-form"
 			action="?${_csrf.parameterName}=${_csrf.token}" method="post"
 			enctype="multipart/form-data">
 			<div class="review_info">
+			<input type="hidden" value="${c.restaurantId}" name="rr">
 				<!-- score -->
 				<div class="section">
 					<div class="title fl">
@@ -124,7 +126,7 @@
 
 					<textarea id="txt_contents" name="content" class="fs-13"
 						placeholder="음식, 서비스, 분위기, 위생상태 등의 방문 경험을 적어주세요."
-						style="border: solid 1px #D5D5D5; width: 100%; height: 120px;" value="${c.content}"></textarea>
+						style="border: solid 1px #D5D5D5; width: 100%; height: 120px;">${c.content}</textarea>
 					<div style="padding-top: 5px;">
 						<div class="fr">
 							<span id="lbl_limit">0</span> / 1000

@@ -183,26 +183,28 @@ public class CommentController {
 	}
 	
 	@RequestMapping(value = "comment/edit/{id}", method = RequestMethod.GET)
-	public String edit(@PathVariable("id") int id, Model model, Integer page) {
-
-		model.addAttribute("r", restaurantDao.get(id));
-		model.addAttribute("prev", restaurantDao.getPrev(id));
-		model.addAttribute("next", restaurantDao.getNext(id));
-		model.addAttribute("cmtList", commentDao.getCmt(id, page));// �ı� ����Ʈ
+	public String update(@PathVariable("id") int id, Model model, Integer page,
+			@RequestParam(value = "restaurantId") int restaurantId) {
+		System.out.println("restaurantId:"+restaurantId);
+		System.out.println("commentId:"+id);
+		
+		model.addAttribute("r", restaurantDao.get(restaurantId));
 		model.addAttribute("cmtp", commentDao.cmtCount(id));// �ı� ����
-
+		model.addAttribute("c", commentDao.get(id));// �ı� ����
 		model.addAttribute("cmtImageList", commentDao.cmtImageList(id));// �ı� ������
 
 		return "customer.comment.edit";
 	}
 
 	@RequestMapping(value = "comment/edit/{id}", method = RequestMethod.POST)
-	public String noticeEdit(@PathVariable("id") String id, Comment comment) {
-
-		int row = commentDao.edit(comment);
+	public String commentUpdate(@PathVariable("id") String id, int point,String content,String rr) {
+		
+		System.err.println("rr"+rr);
+		System.out.println(id);
+		int row = commentDao.update(id,point,content);
 		System.out.println(row);
 
-		return "redirect:../{id}";
+		return "redirect:../../restaurant/"+rr;
 	}
 
 	@RequestMapping(value = "deleteComment", method = RequestMethod.GET)
