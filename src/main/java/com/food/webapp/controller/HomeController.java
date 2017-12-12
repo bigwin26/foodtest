@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.food.webapp.dao.AutoCompleteDao;
 import com.food.webapp.dao.RealTimeDao;
 import com.food.webapp.dao.RestaurantDao;
+import com.food.webapp.entity.RealTime;
+import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/*")
@@ -55,20 +57,19 @@ public class HomeController {
 		return "home.index";
 	}
 	
-	@RequestMapping(value="realTime", method=RequestMethod.GET)
+	@RequestMapping(value="realTime", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public List<String> realTime(Model model) {
-
+	public String realTime(Model model) {
 		
-		List<String> result = realTimeDao.realTime();
+		List<RealTime> result = realTimeDao.realTime();
 		
+		String json = "";
+		Gson gson = new Gson();
+		json = gson.toJson(result);
 		
+		System.out.println(json);
 		
-		
-		
-		
-		
-		return result;
+		return json;
 	}
 	
 	

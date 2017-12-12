@@ -7,8 +7,12 @@
     <mapper namespace="com.food.webapp.dao.RealTimeDao">
     
     
-    <select id="realTime" resultType="String"> 
+    <!-- <select id="realTime" resultType="String"> 
 	  select name from Restaurant r left join Liked l on r.id = l.restaurantId group by id order by count(*) desc limit 20
+    </select> -->
+    
+    <select id="realTime" resultType="com.food.webapp.entity.RealTime"> 
+	  select name, id from Restaurant r left join Liked l on r.id = l.restaurantId group by id order by count(*) desc limit 20
     </select>
     
     </mapper>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.food.webapp.dao.AutoCompleteDao;
 import com.food.webapp.dao.RealTimeDao;
+import com.food.webapp.entity.RealTime;
 
 public class MyBatisRealTimeDao implements RealTimeDao {
 
@@ -16,7 +17,7 @@ public class MyBatisRealTimeDao implements RealTimeDao {
 	private SqlSessionTemplate sqlSession;
 	
 	
-	@Override
+	/*@Override
 	public List<String> realTime() {
 
 		
@@ -24,7 +25,15 @@ public class MyBatisRealTimeDao implements RealTimeDao {
 		List<String> list = realTimeDao.realTime();
 		
 		return list;
+	}*/
+	
+	
+	@Override
+	public List<RealTime> realTime() {
+		RealTimeDao realTimeDao = sqlSession.getMapper(RealTimeDao.class);
+		List<RealTime> list = realTimeDao.realTime();
+		
+		return list;
 	}
-
 
 }

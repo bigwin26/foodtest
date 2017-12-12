@@ -165,10 +165,13 @@ $(function(){
 			dataType:"json",
 			success: function(result){
 				for(var i=0; i<result.length; i++){
-
-					$("#realtime-content ul li a:nth-child("+(i+1)+")")
-					.text(i+1+". "+result[i]);
+					//var json = JSON.stringify(result);
+					//alert(json);
+					/* $("#realtime-content ul li a:nth-child("+(i+1)+")")
+					.text(i+1+". "+result[i]); */
 					
+					$("#realtime-content ul li:nth-child("+(i+1)+")")
+		               .html("<a href=customer/restaurant/"+result[i].id+">"+(i+1)+". "+result[i].name+"</a>");
 					
 				}
 								
