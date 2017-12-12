@@ -34,7 +34,7 @@
 							<div style="display: none;">${n.id}</div>
 							<div class="article-text">
 								<div class="article-title text-ellipsis">
-									<a href="notice/${n.id}">${n.title}</a>
+									<span>${n.title}</span>
 								</div>
 								<div class="article-content">${n.content}</div>
 							</div>

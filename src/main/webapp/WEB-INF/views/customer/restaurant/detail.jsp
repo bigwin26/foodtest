@@ -255,7 +255,7 @@ $.ajax({
             				"margin-right": "10px",
             				"margin-top": "10px",
             				"width": "100px",
-            				"height:": "100px"
+            				"height": "100px"
             			})
             		}
             		
@@ -386,7 +386,7 @@ $.ajax({
                                 				"margin-right": "10px",
                                 				"margin-top": "10px",
                                 				"width": "100px",
-                                				"height:": "100px"
+                                				"height": "100px"
                                 			})
                                 		}
                                 	}
