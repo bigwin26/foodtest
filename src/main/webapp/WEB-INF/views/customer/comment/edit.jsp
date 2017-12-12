@@ -73,6 +73,22 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script
 	src="${path}/resource/js/star.js"></script>
+<script>
+/* $(function(){
+		var value = $('input[name=point]:checked').val();
+		var btn_save = $("#btn_save");
+		
+		btn_save.click(function(e){
+			alert('눌렀다');
+			/* if(value == ){
+				alert('별점을 선택해주세요.')
+				e.preventDefault();
+			}
+			else
+				form.submit(); */
+	/*	});
+}) */
+	</script>
 <main>
 <div class="container">
 	<div class="row" style="padding: 50px 0;">
@@ -99,17 +115,21 @@
 					<div class="title fl">
 						전체평점<i>*</i> <span><br />이 음식점에 대한 전반적인 평가를 해주세요.</span>
 					</div>
-					<span class="star-input"> <span class="input"> <input
-							type="radio" name="point" value="1" id="p1"> <label
-							for="p1">1</label> <input type="radio" name="point"
-							value="2" id="p2"> <label for="p2">2</label> <input
-							type="radio" name="point" value="3" id="p3"> <label
-							for="p3">3</label> <input type="radio" name="point"
-							value="4" id="p4"> <label for="p4">4</label> <input
-							type="radio" name="point" value="5" id="p5"> <label
-							for="p5">5</label>
-					</span> <output for="star-input">
-					<b></b>
+					<span class="star-input">
+						<span class="input">
+							<input type="radio" name="point" value="1" id="p1">
+								<label for="p1">1</label>
+							<input type="radio" name="point" value="2" id="p2">
+								<label for="p2">2</label>
+							<input type="radio" name="point" value="3" id="p3">
+								<label for="p3">3</label>
+							<input type="radio" name="point" value="4" id="p4">
+								<label for="p4">4</label>
+							<input type="radio" name="point" value="5" id="p5">
+								<label for="p5">5</label>
+						</span>
+						<output for="star-input">
+							<b></b>
 						</output>
 					</span>
 					<div class="clear"></div>
