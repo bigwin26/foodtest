@@ -6,15 +6,16 @@
 <meta charset="utf-8">
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="resource/js/slider.js"></script> 
+<script src="resource/js/vticker.min.js"></script> 
 	
-<script src="${path}/resource/js/jquery-rolling.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="resource/css/reset.css">
 <link rel="stylesheet" href="resource/css/index.css">
 
 <main>
-
 <div class="main-info">
 	<div id="outline_div">
 	<div id="back_div">
@@ -42,14 +43,13 @@
 					type="submit"></button>
 			</form> 
 		</div>
-	</div>
-	</div>
-	</div>
-</div>
-</div>
-
-<div >
-<ul id="content">
+		<div class="realtime">
+		<div class="realtime-header">
+		<span class="realtime-header-text">추천 인기 맛집</span>
+		</div>
+		<div id="realtime-content">
+<ul>
+<!-- <li></li>
 <li></li>
 <li></li>
 <li></li>
@@ -68,69 +68,50 @@
 <li></li>
 <li></li>
 <li></li>
-<li></li>
-<li></li>
-
+<li></li> -->
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
 </ul>
-
+</div>
+		
+	</div>
+	</div>
+	</div>
+	</div>
+</div>
 </div>
 
-<div id="srolling" style="position: relative;overflow:hidden;width:100px;height:30px;border:#e0e2ef 1px solid;"></div>
-<div id="aaa" style="display:none;">
-<ul id="content">
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-
-</ul>
-</div>﻿
-<!-- <span id="p_click">이전</span>
-<span id="n_click">다음</span> -->
 
 
+  
+  
+  
+<script>	
+$(function(){
+$("#realtime-content").vTicker('init',{speed:1200, pause:1000, showItems:6, padding:15, mousePause:false});	
+	
+	
+	
+});
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="resource/js/slider.js"></script> 
-
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <script type="text/javascript">
-        $(function() {
- 
-            $("#srolling").srolling({
-                data : $("#content > li"),  // 노출될 아이템
-                auto : true,                    //자동 롤링 true , false
-                width : 20,                 // 노출될 아이템 크기
-                height : 30,                    // 노출될 아이템 크기
-                item_count : 1,         // 이동 될 아이템 수
-                cache_count : 1,            // 임시로 불러올 아이템 수
-                delay : 1000,               // 이동 아이템 딜레이
-                delay_frame : 500,      // 아이템 흐르는 속도
-                move : 'top',               // 이동 방향 left , right , top , down
-                prev : '#p_click',          // < 이동 버튼
-                next : '#n_click'           // > 이동 버튼
-            });
-        });
-    </script>
-<script>
 $(function(){
 	
 	$("#autocom").keydown(function(e){							 	
@@ -184,15 +165,17 @@ $(function(){
 			dataType:"json",
 			success: function(result){
 				for(var i=0; i<result.length; i++){
-					//$("#content li:nth-child("+(i+1)+")").text(result[i]);
-					//http://www.uhoon.co.kr/jQuery/2544
+
+					$("#realtime-content ul li a:nth-child("+(i+1)+")")
+					.text(i+1+". "+result[i]);
+					
 					
 				}
 								
 			}
 			
 		});
-		setTimeout("updateData()", 20000);
+		setTimeout("updateData()", 29000);
 	} 
 	 
 
