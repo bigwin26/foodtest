@@ -27,6 +27,7 @@
                <div id="item-header-left">
                   <div id="item-rn">
                      <span class="item-rn-title">${r.name}</span>
+                     <span class="restaurant-location" style="display: none">${r.location}</span>
                   </div>
                   <div id="item-category"></div>
                </div>
@@ -145,13 +146,13 @@
 							<%-- <c:forEach var="i" items="${cmtImageList}">
 								<p>${i.id}</p>
 							</c:forEach> --%>
-							<p class="commentId">${c.id}</p>
+							<p class="commentId" id="commentId" style="display: none">${c.id}</p>
 							<p class="restaurantId" style="display: none">${c.restaurantId}</p>
 							<p class="review-name">${c.writerName}</p>
 							<%-- <p class="review-text">${c.content}</p> --%>
 							<div class="review-content">
 								<div class="review-text">${c.content}</div>
-								<div class="comment-image">
+								<div class="comment-image" id="comment-image">
 									<ul>
 									</ul>
 								</div>
@@ -221,12 +222,15 @@ $.ajax({
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="${ctx}/resource/js/moment.min.js"></script>
 <script>
+	
 	var page = 1;
 	var commentIds = $(".commentId");
 	var restaurantIds = $(".restaurantId");
+	
 	for(var i=0; i<commentIds.length; i++){
 		var commentId = commentIds.eq(i).text();
 		var restaurantId = restaurantIds.eq(i).text();
+		$(".commentId").eq(i).attr("id", "commentId"+commentId);
 		
 		$.ajax({
 			type: "POST",
@@ -240,7 +244,6 @@ $.ajax({
             	var json = JSON.stringify(data);
             	//alert(commentId + ": " + data.length);
             	if(data.length > 0){
-            		//alert(commentId);
             		$(".comment-image").eq(i).attr("id", "comment-image"+commentId);
             		
             		for(var j=0; j<data.length; j++){
@@ -261,8 +264,6 @@ $.ajax({
             }
 		});
 	}
-	//alert(ids.eq(i).text());
-    
 	
 	$(window).scroll(function() {
 	
@@ -287,8 +288,7 @@ $.ajax({
 	                   $(".ajax-loading").css("display","none");
 	                },
 	                success: function(data) {
-	                	//test = data;
-	                    //var json = JSON.stringify(test);
+	                    //var json = JSON.stringify(data);
 	                    //alert(json);
 	                    
 	                    if(data.length == 0){
@@ -309,7 +309,7 @@ $.ajax({
 				    						'<img alt="회원사진" src="${ctx}/resource/images/1.jpg">' + 
 				    						'</a>' +
 				    						'<div class="review">' +
-				    							'<p class="commentId">' + data[i].id + '</p>' +
+				    							'<p class="commentId" id="commentId' + data[i].id + '" style="display: none">' + data[i].id + '</p>' +
 												'<p class="restaurantId" style="display: none">' + data[i].restaurantId + '</p>' +
 				    							'<p class="review-name">' + data[i].writerName + '</p>' + 
 				    							/* '<p class="review-text">' + data[i].content + '</p>' +  */
@@ -342,7 +342,7 @@ $.ajax({
 				    						'<img alt="회원사진" src="${ctx}/resource/images/1.jpg">' + 
 				    						'</a>' +
 				    						'<div class="review">' +
-					    						'<p class="commentId">' + data[i].id + '</p>' +
+					    						'<p class="commentId' + data[i].id + '" style="display: none">' + data[i].id + '</p>' +
 												'<p class="restaurantId" style="display: none">' + data[i].restaurantId + '</p>' +
 				    							'<p class="review-name">' + data[i].writerName + '</p>' + 
 				    							/* '<p class="review-text">' + data[i].content + '</p>' +  */
@@ -364,38 +364,35 @@ $.ajax({
 		    						'</li>'
 	                    	}
 		                    $(".review-list").append(content);
+		                    
+		                    var commentId = $("#commentId" + data[i].id).text();
+                    		var restaurantId = $(".restaurantId").eq(i).text();
+		                    
+                    		$.ajax({
+                    			type: "POST",
+                    			async: false,
+                    			url: "../comment-image-ajax?${_csrf.parameterName}=${_csrf.token}",
+                    			data: {
+                                	"commentId": commentId
+                                },
+                                dataType: "json",
+                                success: function(data) {
+                                	if(data.length > 0){
+                                		for(var j=0; j<data.length; j++){
+                                			$("#comment-image"+commentId+" ul")
+                                			.append('<li><img src="${ctx}/resource/customer/restaurant/2017/' + restaurantId + "/commentImage/" + data[j].src + '"></li>');
+                                			
+                                			$("#comment-image"+commentId+" ul img").css({
+                                				"margin-right": "10px",
+                                				"margin-top": "10px",
+                                				"width": "100px",
+                                				"height:": "100px"
+                                			})
+                                		}
+                                	}
+                                }
+                    		});
 	                    }
-	                    
-	                    /* commentIds = $(".commentId");
-                    	for(var i=0; i<commentIds.length; i++){
-                    		//alert(commentIds.eq(i).text());
-                    		$("#comment-image"+commentId+" ul")
-                			.append('<li><img src="${ctx}/resource/customer/restaurant/2017/' + restaurantId + "/commentImage/" + data[j].src + '"></li>');
-                			
-                			$("#comment-image"+commentId+" ul img").css({
-                				"margin-right": "10px",
-                				"margin-top": "10px",
-                				"width": "100px",
-                				"height:": "100px"
-                			});
-                    	} */
-                    	
-	                    //commentIds = $(".commentId");
-                    	/* for(var i = 0; i < data.length; i++){
-                    		//alert(commentIds.eq(i).text());
-                    		$("#comment-image"+commentId+" ul")
-                			.append('<li><img src="${ctx}/resource/customer/restaurant/2017/' + restaurantId + "/commentImage/" + data[j].src + '"></li>');
-                			
-                			$("#comment-image"+commentId+" ul img").css({
-                				"margin-right": "10px",
-                				"margin-top": "10px",
-                				"width": "100px",
-                				"height:": "100px"
-                			});
-                    	} */
-	                    
-	                    
-	                    
 	                },
 	                error: function(request, status, error) {
 	                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
@@ -431,12 +428,18 @@ $.ajax({
           "width": "100%",
           "padding": "0px"
       });
+      
+
+  	var restaurantLocation = $(".restaurant-location").text().replace(/\(|\)/g,"");
+    var coordinate = restaurantLocation.split(", ");
+    //alert(coordinate[0]);
 	            
       /* 지도 부분 =================================================================================*/
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
          mapOption = {
-            center : new daum.maps.LatLng(37.55325832462685, 126.93698692019638), // 지도의 중심좌표
-            level : 4 // 지도의 확대 레벨
+            //center : new daum.maps.LatLng(37.55325832462685, 126.93698692019638), // 지도의 중심좌표
+            center : new daum.maps.LatLng(coordinate[0], coordinate[1]), // 지도의 중심좌표
+            level : 5 // 지도의 확대 레벨
          };
    
       var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -470,70 +473,44 @@ $.ajax({
          infowindow.open(map, baseMarker);
       }
       
-      /* -----------------------------------------------------------------------------------------*/
+      /* ---------------------------------------------------------------------------------------- */
+	
+   // 마커 이미지의 이미지 주소입니다
+      var imageSrc = "${ctx}/resource/images/markerStar2.png";
       
-      $.getJSON("map-ajax")
-         .done(function(data) {
-            var json = JSON.stringify(data);
-            //alert(json);
-            var locations = new Array();
-            for(var i=0; i<data.length; i++){
-               var location = data[i].location.replace(/\(|\)/g,"");
-               locations.push(location);
-            }
-               
-            var places = new Array();
-            for(var i=0; i<data.length; i++){
-               var restaurant = new Object();
-               var coordinate = locations[i].split(", ");
-               
-               restaurant.id = data[i].id;
-               restaurant.name = data[i].name;
-               restaurant.address = data[i].address;
-               restaurant.latlng = new daum.maps.LatLng(coordinate[0], coordinate[1]);
-               
-               places.push(restaurant);
-            }
-               
-            //var positions = JSON.stringify(places);
-            
-            for (var i = 0; i < data.length; i++) {
-               // 마커 이미지의 이미지 주소입니다
-               var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-               
-               // 마커 이미지의 이미지 크기 입니다
-               var imageSize = new daum.maps.Size(24, 35);
-   
-               // 마커 이미지를 생성합니다    
-               var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
-   
-               // 마커를 생성합니다
-               var marker = new daum.maps.Marker({
-                  map : map, // 마커를 표시할 지도
-                  id : places[i].id,
-                  name : places[i].name, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-                  address : places[i].address,
-                  position : places[i].latlng, // 마커를 표시할 위치
-                  image : markerImage // 마커 이미지 
+      // 마커 이미지의 이미지 크기 입니다
+      var imageSize = new daum.maps.Size(24, 35);
+
+      // 마커 이미지를 생성합니다    
+      var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
+      
+      var latlng = new daum.maps.LatLng(coordinate[0], coordinate[1]);
+
+      // 마커를 생성합니다
+      var marker = new daum.maps.Marker({
+         map : map, // 마커를 표시할 지도
+         id : ${r.id},
+         name : "${r.name}", // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+         address : "${r.address}",
+         position : latlng, // 마커를 표시할 위치
+         image : markerImage // 마커 이미지 
+      });
+      
+      marker.setMap(map); // 지도 위에 마커를 표출합니다
+                        
+      (function(marker, id, name, address, position) {
+         daum.maps.event.addListener(
+               marker
+               , 'click'
+               , function() {
+                  
+                  displayInfowindow(marker, id, name, address, position);
                });
-               
-               marker.setMap(map); // 지도 위에 마커를 표출합니다
-                                 
-               (function(marker, id, name, address, position) {
-                  daum.maps.event.addListener(
-                        marker
-                        , 'click'
-                        , function() {
-                           
-                           displayInfowindow(marker, id, name, address, position);
-                        });
-               
-               })(marker, places[i].id, places[i].name, places[i].address, places[i].latlng);   
-               // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다 
-   
-            }
-   
-         })
+      
+      })(marker, ${r.id}, "${r.name}", "${r.address}", latlng);   
+      // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다 
+      
+      /* -----------------------------------------------------------------------------------------*/
    
       //infowindow를 끌 수 있는 x표시를 만듦
       var iwRemoveable = true;
@@ -546,12 +523,9 @@ $.ajax({
    
       // 인포윈도우에 장소명을 표시합니다
       function displayInfowindow(marker, id, name, address, position) {
-         var content = '<div style="padding:5px; z-index:1; width: 180px; height: 180px;">'
-               /* + '<img src="../resources/images/miboondang.jpg" style="width: 160px; padding: 2px;"><hr />' */
-               + '<a href="restaurant/'+ id +'">' + name + '</a>'
-               + '<br />'
-               + address
-               + '<br />'
+         var content = '<div style="padding:5px; z-index:1; width: 180px;">'
+        	 	+ '<div>' + name + '</div>'
+				+ '<div>' + address +'</div>'
                + '</div>';
    
          infowindow.setContent(content);
@@ -560,6 +534,7 @@ $.ajax({
       
       /* ==================================================================================================== */
        
+      //좋아요
       $("#favorite_btn").click(function(){
 		  var restaurantId = ${r.id};
 		  //var memberId = '<security:authentication property="name"/>';
