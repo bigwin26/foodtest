@@ -10,6 +10,16 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/reset.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/admin.css">
 <title>Insert title here</title>
+<style>
+  #footer_div {
+position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 30px;
+    background-color: #e1e0db;
+    z-index: 2;
+}
+</style>
 </head>
 <body>
 
