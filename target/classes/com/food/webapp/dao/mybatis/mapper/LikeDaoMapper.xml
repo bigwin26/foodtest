@@ -12,7 +12,7 @@
 		
 	<select id="check" resultType="java.lang.Integer">
 		select count(*)
-		from Liked where restaurantId = #{restaurantId} and memberId = #{memberId}
+		from Liked where memberId = #{memberId}
 	</select>
 	
  	<delete id="delete">
@@ -24,4 +24,7 @@
 		from Liked where restaurantId = #{restaurantId}
 	</select>
 	
+	<select id="getList" resultType="com.food.webapp.entity.RestaurantView">
+		select * from RestaurantView where id in (select restaurantId from Liked where memberId = #{memberId} );
+	</select> 
 </mapper>

@@ -146,7 +146,7 @@ float: right;
 								<div class="bk-default-content">
 									<div class="like-count">
 										<img
-											src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/bucket/icon-like-counter@2x.png">2
+											src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/bucket/icon-like-counter@2x.png">${like}
 									</div>
 									<div class="title-text">내가 좋아요한 맛집</div>
 									<div class="title-desc"></div>
@@ -155,7 +155,7 @@ float: right;
 						</div>
 					</a>
 				</div>
-				<div id="bkReview" class="default-bks">
+				<%-- <div id="bkReview" class="default-bks">
 				<a href="${path}/member/commented">
 						<div class="bk-box">
 							<div class="bk-default-title">
@@ -177,7 +177,7 @@ float: right;
 
 						</div>
 					</a>
-				</div>
+				</div> --%>
 			</div>
 		</div>
 	</div>

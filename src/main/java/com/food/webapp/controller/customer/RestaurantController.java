@@ -132,7 +132,7 @@ public class RestaurantController {
 		model.addAttribute("cmtList", commentDao.getCmt(id, page));//占식깍옙 占쏙옙占쏙옙트 
 		model.addAttribute("cmtp", commentDao.cmtCount(id));//占식깍옙 占쏙옙占쏙옙
 		model.addAttribute("cmtImageList", commentDao.cmtImageList(id));//占식깍옙 占쏙옙占쏙옙占쏙옙
-		model.addAttribute("like", likeDao.check(id, principal.getName()));
+		model.addAttribute("like", likeDao.check(principal.getName()));
 		model.addAttribute("likeCount", likeDao.count(id));
 		
 		//System.out.println("restaurantId: " + id + ", cmtImageList-length: " + commentDao.cmtImageList(id).size());
@@ -217,7 +217,7 @@ public class RestaurantController {
 		
 		int checkResult = 0;
 		int likeCount = likeDao.count(restaurantId);
-		checkResult = likeDao.check(restaurantId, memberId);
+		checkResult = likeDao.check(memberId);
 		System.out.println("idcheckResult : " + checkResult);
 		
 		// writerId媛믪씠 議댁옱�븯吏� �븡�쑝硫� <=0

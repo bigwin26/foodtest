@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.food.webapp.dao.LikeDao;
 import com.food.webapp.dao.MemberDao;
 import com.food.webapp.dao.RestaurantDao;
 import com.food.webapp.entity.Member;
@@ -38,6 +39,9 @@ public class MemberController {
 	
 	@Autowired
 	private RestaurantDao restaurantDao;
+	
+	@Autowired
+	private LikeDao likeDao;
 	
    @RequestMapping(value="login")
    public String login() { 
@@ -209,7 +213,9 @@ public class MemberController {
    }*/
    
    @RequestMapping(value="list",method=RequestMethod.GET)
-	public String list() {
+	public String list(Model model,Principal principal) {
+	   String memberId = principal.getName();
+	   model.addAttribute("like",likeDao.check(memberId));
 		return "member.myinfo.list";
 	}
    

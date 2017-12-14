@@ -1,8 +1,12 @@
 package com.food.webapp.dao.mybatis;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.food.webapp.dao.LikeDao;
+import com.food.webapp.dao.RestaurantDao;
+import com.food.webapp.entity.Restaurant;
 
 public class MyBatisLikeDao implements LikeDao {
 	
@@ -10,9 +14,9 @@ public class MyBatisLikeDao implements LikeDao {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public int check(int restaurantId, String memberId) {
+	public int check(String memberId) {
 		LikeDao likeDao = sqlSession.getMapper(LikeDao.class);
-		int result = likeDao.check(restaurantId,memberId);
+		int result = likeDao.check(memberId);
 		return result;
 	}
 
@@ -36,5 +40,12 @@ public class MyBatisLikeDao implements LikeDao {
 		LikeDao likeDao = sqlSession.getMapper(LikeDao.class);
 		int result = likeDao.count(restaurantId);
 		return result;
+	}
+
+	@Override
+	public List<Restaurant> getList(String memberId) {
+		LikeDao likeDao = sqlSession.getMapper(LikeDao.class);
+		List<Restaurant> list = likeDao.getList(memberId);
+		return list;
 	}
 }
